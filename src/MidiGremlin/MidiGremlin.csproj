@@ -46,15 +46,23 @@
     <Compile Include="InstrumentType_Enum.cs" />
     <Compile Include="Internal\ChordInstance.cs" />
     <Compile Include="Internal\SingleBeat.cs" />
+    <Compile Include="Internal\Windows Multi Media\MIDIOUTCAPS.cs" />
+    <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
+    <Compile Include="Internal\Windows Multi Media\Winmm.cs" />
     <Compile Include="MusicObject.cs" />
     <Compile Include="Note.cs" />
+    <Compile Include="NoteNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
-    <Compile Include="ParralelMusicCollection.cs" />
+    <Compile Include="ParallelMusicCollection.cs" />
     <Compile Include="Pause.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scale.cs" />
     <Compile Include="SequentialMusicCollection.cs" />
     <Compile Include="Tone_Enum.cs" />
+    <Compile Include="WinmmOut.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

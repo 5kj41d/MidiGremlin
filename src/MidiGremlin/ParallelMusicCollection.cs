@@ -5,13 +5,13 @@ using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
-    public class ParralelMusicCollection : MusicObject, IList<MusicObject>
+    public class ParallelMusicCollection : MusicObject, IList<MusicObject>
     {
-        public ParralelMusicCollection (IEnumerable<MusicObject> children)
+        public ParallelMusicCollection (IEnumerable<MusicObject> children)
         {
             throw new NotImplementedException();
         }
-        public ParralelMusicCollection (params MusicObject[] children)
+        public ParallelMusicCollection (params MusicObject[] children)
         {
             throw new NotImplementedException();
         }
