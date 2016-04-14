@@ -3,20 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
     class Orchestra
     {
-        //TODO:List of instruments
+        private readonly IMidiOut _output;
+        private List<Instrument> _instruments = new List<Instrument>();
+        
+        public Scale DefaultScale { get; set; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.GSharp, Tone.GSharp);
+        public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
+
+
         public Orchestra (IMidiOut output)
         {
-            throw new NotImplementedException();
+            _output = output;
         }
 
-        public Instrument AddInstrument ()
+
+        public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
         {
-            throw new NotImplementedException();
+            return AddInstrument(instrumentType, DefaultScale, ocatave);
+        }
+        public Instrument AddInstrument (InstrumentType instrumentType, Scale scale, int octave=3)
+        {
+            Instrument instrument = new Instrument(this, instrumentType, scale, octave);
+            _instruments.Add(instrument);
+
+            return instrument;
+        }
+
+        internal void CopyToOutput(List<SingleBeat> music)
+        {
+            //TODO Allocate channel
+            //_output.QueueMusic(musicWithChannel);
+        }
+
+        public int CurrentTime()
+        {
+            return _output.CurrentTime();
         }
     }
 }

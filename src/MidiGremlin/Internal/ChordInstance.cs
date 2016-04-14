@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace MidiGremlin
+namespace MidiGremlin.Internal
 {
     internal class ChordInstance : MusicObject
     {
-        internal override IEnumerator<SingleBeat> GetChildren()
+        internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, int startTime)
         {
             throw new NotImplementedException();
         }

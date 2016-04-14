@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
@@ -12,7 +14,7 @@ namespace MidiGremlin
             throw new NotImplementedException();
         }
 
-        internal override IEnumerator<SingleBeat> GetChildren ()
+        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
             throw new NotImplementedException();
         }

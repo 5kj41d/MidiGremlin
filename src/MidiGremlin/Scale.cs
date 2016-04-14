@@ -1,17 +1,51 @@
-﻿using System;
+﻿using System.Linq;
 
 namespace MidiGremlin
 {
     public class Scale
     {
+        private readonly Tone[] _tones;
+        private const int _numberOfTones = 12;
+
+        public int Count => _tones.Length;
+
         public Scale(params Tone[] tones)
         {
-            
+            _tones = tones;
         }
 
-        MusicObject this[int interval]
+        public bool Contains(Tone tone)
         {
-            get { throw new NotImplementedException();}
+            return _tones.Any(x => ((int)x%_numberOfTones) == ((int)tone%_numberOfTones));
+        }
+
+        public int Interval(Tone tone)
+        {
+            int octaveDelta = (int) tone/_numberOfTones;
+            Tone rawTone = (Tone) ((int) tone%_numberOfTones);
+
+            for (int i = 0; i < _tones.Length; i++)
+            {
+                if (_tones[i] == rawTone)
+                {
+                    return i + (octaveDelta*_numberOfTones);
+                }
+            }
+
+            throw new NoteNotFoundException(tone);
+        }
+        
+        public Tone this[int interval]
+        {
+            get
+            {
+                int ocatveOffset = interval/_tones.Length;
+                int index = interval%_tones.Length;
+                if (index < 0)
+                    index += _numberOfTones;
+
+                return _tones[index] + (ocatveOffset * _numberOfTones);
+            }
         }
     }
 }

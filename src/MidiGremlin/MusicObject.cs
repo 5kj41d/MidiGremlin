@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
@@ -10,6 +12,6 @@ namespace MidiGremlin
      */
     public abstract class MusicObject
     {
-        internal abstract IEnumerator<SingleBeat> GetChildren ();
+        internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime);
     }
 }
