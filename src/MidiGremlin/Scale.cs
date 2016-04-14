@@ -2,6 +2,10 @@
 
 namespace MidiGremlin
 {
+    ///<summary>
+    ///The class Scale implements the most used scale in Music(twelve tone scale).
+    ///This 
+    ///</summary>
     public class Scale
     {
         private readonly Tone[] _tones;

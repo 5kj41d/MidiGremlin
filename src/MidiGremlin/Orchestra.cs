@@ -7,6 +7,10 @@ using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
+    ///<summary>
+    ///The Orchestra class creates new instances of the instrument class
+    ///It works as a compilation for these instruments.
+    ///</summary>
     class Orchestra
     {
         private readonly IMidiOut _output;

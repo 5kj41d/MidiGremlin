@@ -4,6 +4,9 @@ using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
+    ///<summary>
+    ///The Instrument class implements the method Play which plays the saved music from the class MusicObject.
+    ///</summary>
     public class Instrument
     {
         public Scale Scale { get; set; }

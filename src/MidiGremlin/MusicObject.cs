@@ -10,6 +10,10 @@ namespace MidiGremlin
      *  Potentially an object signifying a pause. (Take a guess)
      *  Potentially an object signifying a pitch and a duration. (Tone)
      */
+    ///<summary>
+    ///The class Music object is an abstract class that represents several different music structures. 
+    ///It handles the individual tones, pauses, and a sequence of tones or chords
+    ///</summary>
     public abstract class MusicObject
     {
         internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime);

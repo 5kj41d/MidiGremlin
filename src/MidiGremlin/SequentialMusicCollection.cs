@@ -5,6 +5,11 @@ using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
+    ///<summary>
+    ///The class SequentialMusicCollection inherits from the class MusicObject.
+    ///The class consist of a list of MusicObjects, which will be played apart from each other.
+    ///The MusicObjects will be played in a certain order.
+    ///</summary>
     public class SequentialMusicCollection : MusicObject, IList<MusicObject>
     {
         public SequentialMusicCollection (IEnumerable<MusicObject> children)

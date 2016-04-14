@@ -6,6 +6,9 @@ using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
+    ///<summary>
+    ///The class Chord is used to construct and define the different chords.
+    ///</summary>
     public class Chord
     {
         public Chord(params int[] toneSteps)
