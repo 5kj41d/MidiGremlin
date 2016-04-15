@@ -51,6 +51,7 @@
     <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
     <Compile Include="Internal\Windows Multi Media\Winmm.cs" />
     <Compile Include="MusicObject.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
@@ -67,11 +68,19 @@
     <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SystemRoot)\microsoft.net\framework64\v4.0.30319\msbuild.exe" /p:CleanIntermediates=True /p:Configuration=$(ConfigurationName) "$(SolutionDir)..\doc\MIDI Gremlin.shfbproj"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
+  
   <Target Name="AfterBuild">
+    <exec Command="${msbuild} /p:CleanIntermediates=True /p:Configuration=Release $(SolutionDir)..\doc\MIDI Gremlin.shfbproj" WorkingDirectory="../doc">
+		
+	</exec>
+    
   </Target>
   -->
 </Project>
