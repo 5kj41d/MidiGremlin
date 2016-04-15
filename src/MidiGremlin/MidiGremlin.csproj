@@ -51,6 +51,7 @@
     <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
     <Compile Include="Internal\Windows Multi Media\Winmm.cs" />
     <Compile Include="MusicObject.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
