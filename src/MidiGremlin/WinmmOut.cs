@@ -9,6 +9,9 @@ using MidiGremlin.Internal.Windows_Multi_Media;
 
 namespace MidiGremlin
 {
+    /// <summary>
+    /// The class WinmmOut stands for, Windows Multi Media Output, and does exactly that. It communicates with Windows Multi Media player and creates a file in which you can listen to the programmed music. 
+    /// </summary>
     public class WinmmOut : IMidiOut
     {
         public uint DevicID { get; }
