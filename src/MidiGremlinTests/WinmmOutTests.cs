@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MidiGremlin.Tests
@@ -15,6 +16,7 @@ namespace MidiGremlin.Tests
         public void WinmmOutTest ()
         {
             new WinmmOut(0);
+            Thread.Sleep(1000);
             Assert.Pass();
         }
 

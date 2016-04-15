@@ -11,7 +11,7 @@ namespace MidiGremlin
     ///The Orchestra class creates new instances of the instrument class
     ///It works as a compilation for these instruments.
     ///</summary>
-    class Orchestra
+    public class Orchestra
     {
         private readonly IMidiOut _output;
         private List<Instrument> _instruments = new List<Instrument>();

@@ -51,6 +51,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="InstrumentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScaleTests.cs" />
     <Compile Include="WinmmOutTests.cs" />

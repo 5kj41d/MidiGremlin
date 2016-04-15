@@ -37,12 +37,12 @@ namespace MidiGremlin
             _orchestra.CopyToOutput(new List<SingleBeat>(music.GetChildren(this, startTime)));
         }
 
-        public void Play(Tone tone, int duration, int velocity = 64)
+        public void Play(Tone tone, int duration, byte velocity = 64)
         {
             Play(_orchestra.CurrentTime(), tone, duration,  velocity);
         }
 
-        public void Play(int startTime, Tone tone, int duration,  int velocity = 64)
+        public void Play(int startTime, Tone tone, int duration,  byte velocity = 64)
         {
             Note note = new Note(tone, duration, velocity);
             Play(startTime, note);

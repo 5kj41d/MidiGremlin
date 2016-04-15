@@ -6,42 +6,122 @@ using System.Text;
 using System.Threading.Tasks;
 using MidiGremlin.Internal;
 using MidiGremlin.Internal.Windows_Multi_Media;
+using System.Diagnostics;
+using System.Threading;
 
 namespace MidiGremlin
 {
+    struct SimpleMidiMessage
+    {
+        public readonly int Timestamp;
+        public readonly int Data;
+
+        public SimpleMidiMessage(int data, int timestamp)
+        {
+            this.Data = data;
+            this.Timestamp = timestamp;
+        }
+    }
+
+
+
     public class WinmmOut : IMidiOut
     {
-        public uint DevicID { get; }
+        public uint DeviceID { get; }
 
+        private const int UpdateFrequency = 100;
         private IntPtr _handle;
-        private bool disposed = false;
+        private bool _disposed = false;
+        private Stopwatch _time;
+        private Thread _workThread;
+        private readonly object _sync = new object();
+        private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
+        private bool _running = true;
 
         public WinmmOut(uint deviceID)
         {
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
-            DevicID = numberOfDevices < deviceID ? 0 : deviceID;
+            DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
 
-            if(0!= Winmm.midiOutOpen(out _handle, DevicID, IntPtr.Zero, IntPtr.Zero, 0))
+            if(0!= Winmm.midiOutOpen(out _handle, DeviceID, IntPtr.Zero, IntPtr.Zero, 0))
                 throw new Exception("Opening MIDI device unsuccessful.");
 
-            Winmm.midiOutShortMsg(_handle, 0x404000);
+            _time = Stopwatch.StartNew();
+
+            _workThread = new Thread(ThreadEntryPrt);
+            _workThread.Start();
         }
 
 
         public void Dispose()
         {
             Winmm.midiOutClose(_handle);
-            disposed = true;
+            _disposed = true;
         }
 
         public int CurrentTime()
         {
-            throw new NotImplementedException();
+            double bogus_value = 16;
+            return  (int) (_time.Elapsed.TotalSeconds*bogus_value);
         }
 
+        
         public void QueueMusic(IEnumerable<SingleBeatWithChannel> music)
         {
-            throw new NotImplementedException();
+            lock (_sync)
+            {
+                toPlay.AddRange(music.SelectMany(TransformFunction));
+                toPlay.Sort((lhs, rhs) => rhs.Timestamp - lhs.Timestamp);   //Beat to play next is the last in the list and so on.
+            }
+        }
+
+        private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeatWithChannel arg)
+        {
+            yield return new SimpleMidiMessage(
+                MakeMidiEvent(0x9, arg.Channel, arg.Tone, arg.ToneVelocity)   //Key down.
+                , arg.ToneStartTime);
+
+            yield return new SimpleMidiMessage(
+                MakeMidiEvent(0x8, arg.Channel, arg.Tone, arg.ToneVelocity)   //Key up.
+                , arg.ToneEndTime);
+        }
+
+        private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
+        {
+            int data = 0;
+
+            data |= channel << 0;
+            data |= midiEventType << 4;
+            data |= tone << 8;  //TODO: Tone needs to be translated this does not work.
+            data |= toneVelocity << 16;
+
+            return data;
+        }
+
+
+        private void ThreadEntryPrt()
+        {
+            while (_running)
+            {
+                SimpleMidiMessage next;
+                lock (_sync)
+                {
+                    if (toPlay.Count > 0)
+                        next = toPlay[toPlay.Count - 1];
+                    else
+                        next = new SimpleMidiMessage(0, int.MaxValue);
+                }
+
+                int sleeptime = Math.Max(Math.Min(next.Timestamp - CurrentTime(), UpdateFrequency), 0);
+
+                if(sleeptime > 0)
+                    Thread.Sleep(sleeptime);
+
+                if (next.Timestamp < CurrentTime())
+                {
+                    Winmm.midiOutShortMsg(_handle, (uint) next.Data);
+                }
+            }
         }
     }
 }

@@ -11,14 +11,19 @@ namespace MidiGremlin
     ///</summary>
     public class Note : MusicObject
     {
-        public int Duration { get; set; }
         public Tone Tone { get; set; }
-        public int Velocity { get; set; }
+        public int Duration { get; set; }
+        public byte Velocity { get; set; }
         public int OctaveOffset { get; set; }
+        
 
-        public Note (Tone tone, int duration, int velocity = 64)    //TODO: Make ctor that takes only offset
+        public Note (Tone tone, int duration, byte velocity = 64)
         {
-            throw new NotImplementedException();
+            //OctaveOffset = (int)tone/12;
+            Tone = tone;
+            Duration = duration;
+            Velocity = velocity;
+
         }
 
         public Note OffsetBy(int offset, int? duration = null, int? velocity = null)
@@ -30,9 +35,16 @@ namespace MidiGremlin
             throw new NotImplementedException();
         }
 
+
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
-            throw new NotImplementedException();
+            byte velocity = Math.Min((byte) 127, Velocity);
+
+            int tone = (int) Tone + (playedBy.Octave + OctaveOffset)*12;
+            if (0 > tone || tone > 127)
+                throw new ToneOutOfRangeExceptioin(tone);
+
+            yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
         }
     }
 }
