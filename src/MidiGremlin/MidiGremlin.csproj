@@ -69,7 +69,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SystemRoot)\microsoft.net\framework64\v4.0.30319\msbuild.exe" /p:CleanIntermediates=True /p:Configuration=$(ConfigurationName) "$(SolutionDir)..\doc\MIDI Gremlin.shfbproj"</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(Configuration)' == 'Release' ">"$(SystemRoot)\microsoft.net\framework64\v4.0.30319\msbuild.exe" /p:CleanIntermediates=True /p:Configuration=$(ConfigurationName) "$(SolutionDir)..\doc\MIDI Gremlin.shfbproj"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
