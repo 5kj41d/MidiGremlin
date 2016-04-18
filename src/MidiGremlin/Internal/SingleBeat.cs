@@ -4,6 +4,23 @@ namespace MidiGremlin.Internal
 {
     public struct SingleBeat
     {
+        public override bool Equals(object obj)
+        {
+            if (obj is SingleBeat)
+            {
+                SingleBeat other = (SingleBeat)obj;
+
+                return
+                    other.instrumentType == this.instrumentType &&
+                    other.ToneOffset == this.ToneOffset &&
+                    other.ToneVelocity == this.ToneVelocity &&
+                    other.ToneStartTime == this.ToneStartTime &&
+                    other.ToneEndTime == this.ToneEndTime;
+            }
+
+            return false;
+        }
+
         public SingleBeat(InstrumentType instrumentType, byte toneOffset, byte toneVelocity, int toneStartTime, int toneEndTime)
         {
             this.instrumentType = instrumentType;
