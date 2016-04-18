@@ -3,7 +3,7 @@
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class Scale represents the most used scale in Music(twelve tone scale), which is used when determining Chords.
+    ///The class represents any scale, which is used when determining Chords.
     ///</summary>
     public class Scale
     {
