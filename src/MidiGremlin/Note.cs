@@ -19,22 +19,77 @@ namespace MidiGremlin
 
         public Note (Tone tone, int duration, byte velocity = 64)
         {
-            //OctaveOffset = (int)tone/12;
+            OctaveOffset = (int)tone/12;
             Tone = tone;
             Duration = duration;
             Velocity = velocity;
 
         }
 
-        public Note OffsetBy(int offset, int? duration = null, int? velocity = null)
+        public Note OffsetBy(int offset, int? duration = null, byte? velocity = null)
         {
-            throw new NotImplementedException();
+            byte tempVelocity = (byte)velocity;
+            int tempDuration = (int)duration;
+
+
+            if (velocity == null)
+            {
+                tempVelocity = Velocity;
+            }
+
+            if (duration == null)
+            {
+                tempDuration = Duration;
+            }
+
+            return new Note(Tone + offset, tempDuration, tempVelocity);
         }
-        public Note OffsetBy (Scale scale, int offset, int? duration = null, int? velocity = null)
+            
+        //TODO: Fix OctaveOffset, Should make it possible for the programmer to move a tone by one... two octaves. 
+        public Note OffsetBy(Scale scale, int offset, int? duration = null, byte? velocity = null)
         {
-            throw new NotImplementedException();
+
+            byte tempVelocity = (byte)velocity;
+            int tempDuration = (int)duration;
+
+
+            if (velocity == null)
+            {
+                tempVelocity = Velocity;
+            }
+
+            if (duration == null)
+            {
+                tempDuration = Duration;
+            }
+
+            return new Note((Tone)(scale.Interval(Tone) + (int)scale[offset]), tempDuration, tempVelocity);
         }
 
+        public Note OctaveOffsetBy(Scale scale, int OctaveOffset, int? duration = null, byte? velocity = null)
+        {
+
+            byte tempVelocity = (byte)velocity;
+            int tempDuration = (int)duration;
+
+
+            if (velocity == null)
+            {
+                tempVelocity = Velocity;
+            }
+
+            if (duration == null)
+            {
+                tempDuration = Duration;
+            }
+
+            if(OctaveOffset < 4 || OctaveOffset > 4 )
+            {
+                1 = Tone + 12;
+            }
+
+            return new Note((Tone)(scale.Interval(Tone) + (int)OctaveOffset, tempDuration, tempVelocity);
+        }
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {

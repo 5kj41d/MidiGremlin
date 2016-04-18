@@ -18,4 +18,5 @@ namespace MidiGremlin
     {
         internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime);
     }
+
 }
