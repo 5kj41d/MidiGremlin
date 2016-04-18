@@ -11,7 +11,7 @@ namespace MidiGremlin
     ///The Orchestra class creates new instances of the instrument class
     ///It works as a compilation for these instruments.
     ///</summary>
-    public class Orchestra
+    class Orchestra
     {
         private readonly IMidiOut _output;
         private List<Instrument> _instruments = new List<Instrument>();
@@ -41,7 +41,7 @@ namespace MidiGremlin
         internal void CopyToOutput(List<SingleBeat> music)
         {
             //TODO Allocate channel
-            //_output.QueueMusic(musicWithChannel);
+            _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.ToneOffset, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
         }
 
         public int CurrentTime()

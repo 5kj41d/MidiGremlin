@@ -14,6 +14,7 @@ namespace MidiGremlin
     struct SimpleMidiMessage
     {
         public readonly int Timestamp;
+		[DebuggerDisplay("0x{Data.ToString(\"X\")}")]
         public readonly int Data;
 
         public SimpleMidiMessage(int data, int timestamp)
@@ -110,8 +111,11 @@ namespace MidiGremlin
                 SimpleMidiMessage next;
                 lock (_sync)
                 {
-                    if (toPlay.Count > 0)
-                        next = toPlay[toPlay.Count - 1];
+	                if (toPlay.Count > 0)
+	                {
+		                next = toPlay[toPlay.Count - 1];
+						toPlay.RemoveAt(toPlay.Count - 1);
+	                }
                     else
                         next = new SimpleMidiMessage(0, int.MaxValue);
                 }
