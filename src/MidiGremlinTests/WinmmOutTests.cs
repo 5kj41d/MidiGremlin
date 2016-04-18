@@ -20,11 +20,6 @@ namespace MidiGremlin.Tests
             Assert.Pass();
         }
 
-        [Test()]
-        public void DisposeTest ()
-        {
-            Assert.Fail();
-        }
 
         [Test()]
         public void CurrentTimeTest ()
