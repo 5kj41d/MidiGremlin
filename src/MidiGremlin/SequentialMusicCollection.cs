@@ -12,26 +12,32 @@ namespace MidiGremlin
     ///</summary>
     public class SequentialMusicCollection : MusicObject, IList<MusicObject>
     {
-
+        List<MusicObject> _children;
         public SequentialMusicCollection (IEnumerable<MusicObject> children)
         {
-            throw new NotImplementedException();
+            foreach(MusicObject m in children)
+            {
+                Add(m);
+            }
         }
         public SequentialMusicCollection (params MusicObject[] children)
         {
-            throw new NotImplementedException();
+            foreach (MusicObject m in children)
+            {
+                Add(m);
+            }
         }
 
         public MusicObject this[int index]
         {
             get
             {
-                throw new NotImplementedException();
+                return _children[index];
             }
 
             set
             {
-                throw new NotImplementedException();
+                _children[index] = value;
             }
         }
 
@@ -39,7 +45,7 @@ namespace MidiGremlin
         {
             get
             {
-                throw new NotImplementedException();
+                return _children.Count;
             }
         }
 
@@ -47,63 +53,75 @@ namespace MidiGremlin
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 
         public void Add (MusicObject item)
         {
-            throw new NotImplementedException();
+            _children.Add(item);
         }
 
         public void Clear ()
         {
-            throw new NotImplementedException();
+            _children.Clear();
         }
 
         public bool Contains (MusicObject item)
         {
-            throw new NotSupportedException();
+            return _children.Contains(item);
         }
 
         public void CopyTo (MusicObject[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            _children.CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<MusicObject> GetEnumerator ()
         {
-            throw new NotImplementedException();
+            return _children.GetEnumerator();
         }
 
         public int IndexOf (MusicObject item)
         {
-            throw new NotImplementedException();
+            return _children.IndexOf(item);
         }
 
         public void Insert (int index, MusicObject item)
         {
-            throw new NotImplementedException();
+            _children.Insert(index, item);
         }
 
         public bool Remove (MusicObject item)
         {
-            throw new NotImplementedException();
+            return _children.Remove(item);
         }
 
         public void RemoveAt (int index)
         {
-            throw new NotImplementedException();
+            _children.RemoveAt(index);
         }
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
-            throw new NotImplementedException();
+            int tempTime = startTime;
+            foreach(MusicObject m in _children)
+            {
+                foreach(SingleBeat sb in m.GetChildren(playedBy, startTime)) //TODO: Start time might need a rework (Maybe a reference)
+                {
+                    yield return sb;
+                }
+                if(m is Pause)
+                {
+                    tempTime += ((Pause)m).Duration;
+                }
+            }
+            
         }
 
         IEnumerator IEnumerable.GetEnumerator ()
         {
-            throw new NotImplementedException();
+            return _children.GetEnumerator();
         }
     }
 }
