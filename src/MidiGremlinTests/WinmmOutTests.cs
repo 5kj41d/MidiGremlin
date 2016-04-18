@@ -35,7 +35,15 @@ namespace MidiGremlin.Tests
         [Test()]
         public void QueueMusicTest ()
         {
-            Assert.Fail();
+            Orchestra o = new Orchestra(new WinmmOut(0));
+			Note n = new Note(Tone.C,  1000);
+	        Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
+
+			i.Play(n);
+
+			Thread.Sleep(5000);
+
+			Assert.Pass();
         }
     }
 }
