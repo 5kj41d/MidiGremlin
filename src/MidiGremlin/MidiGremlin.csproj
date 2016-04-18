@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,10 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram2.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SystemRoot)\microsoft.net\framework64\v4.0.30319\msbuild.exe" /p:CleanIntermediates=True /p:Configuration=$(ConfigurationName) "$(SolutionDir)..\doc\MIDI Gremlin.shfbproj"</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(Configuration)' == 'Release' ">"$(SystemRoot)\microsoft.net\framework64\v4.0.30319\msbuild.exe" /p:CleanIntermediates=True /p:Configuration=$(ConfigurationName) "$(SolutionDir)..\doc\MIDI Gremlin.shfbproj"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

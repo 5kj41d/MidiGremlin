@@ -14,10 +14,10 @@ namespace MidiGremlin
 
         public InstrumentType InstrumentType { get; }
 
-        private Orchestra _orchestra;
+        private IOrchestra _orchestra;
 
 
-        internal Instrument (Orchestra orchestra, InstrumentType instrumentType, Scale scale, int octave)
+        internal Instrument (IOrchestra orchestra, InstrumentType instrumentType, Scale scale, int octave)
         {
             Scale = scale;
             Octave = octave;

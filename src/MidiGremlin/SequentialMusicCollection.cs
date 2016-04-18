@@ -12,6 +12,7 @@ namespace MidiGremlin
     ///</summary>
     public class SequentialMusicCollection : MusicObject, IList<MusicObject>
     {
+
         public SequentialMusicCollection (IEnumerable<MusicObject> children)
         {
             throw new NotImplementedException();

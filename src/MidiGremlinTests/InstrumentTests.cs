@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NSubstitute;
 using MidiGremlin;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MidiGremlin.Internal;
 
 namespace MidiGremlin.Tests
 {
@@ -13,33 +15,31 @@ namespace MidiGremlin.Tests
     public class InstrumentTests
     {
         [Test()]
-        public void PlayTest ()
+        public void PlayTest()
         {
-            Orchestra orchestra = new Orchestra(new WinmmOut(0));
-
-            Instrument instrument = orchestra.AddInstrument(InstrumentType.Violin);
-
-            instrument.Play(Tone.A, 5);
-
-            Thread.Sleep(100);
-
-            instrument.Play(Tone.B, 30, byte.MaxValue);
-
-            Thread.Sleep(100);
-
-            instrument.Play(Tone.CSharp, 100);
-
-            Thread.Sleep(300);
-
-            instrument.Play(Tone.B, 200);
-
-
-            Thread.Sleep(100);
-
-            instrument.Play(Tone.B, 500);
-
-
-            Assert.Pass();
+            IOrchestra orchestra = Substitute.For<IOrchestra>();
+            orchestra.CurrentTime().Returns(0);
+            Instrument i = new Instrument(orchestra, InstrumentType.AccousticGrandPiano, new Scale(), 4);
+            i.Play(Tone.CSharp, 5);
+            
+            orchestra.Received().CopyToOutput(Arg.Any<List<SingleBeat>>());
+            
         }
-    }
+
+        [Test]
+        public void PlayTest_1()
+        {
+            IOrchestra orchestra = Substitute.For<IOrchestra>();
+            orchestra.CurrentTime().Returns(0);
+            Instrument i = new Instrument(orchestra, InstrumentType.AccousticBass, new Scale(), 4);
+            i.Play(Tone.DSharp, 4);
+            List<SingleBeat> complist = new List<SingleBeat>();
+            
+
+            complist.Add(new SingleBeat(InstrumentType.AccousticBass,54,64,0,4));
+
+            orchestra.Received().CopyToOutput(Arg.Is<List<SingleBeat>>(value => value.SequenceEqual(complist)));
+        }
+
+}
 }
