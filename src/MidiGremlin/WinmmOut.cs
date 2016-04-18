@@ -14,7 +14,7 @@ namespace MidiGremlin
     struct SimpleMidiMessage
     {
         public readonly int Timestamp;
-		[DebuggerDisplay("0x{Data.ToString(\"X\")}")]
+		[DebuggerDisplay("{Data,h}")]
         public readonly int Data;
 
         public SimpleMidiMessage(int data, int timestamp)

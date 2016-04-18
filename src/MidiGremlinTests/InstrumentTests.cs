@@ -17,11 +17,13 @@ namespace MidiGremlin.Tests
         [Test()]
         public void PlayTest ()
         {
-            Orchestra orchestra = Substitute.For<Orchestra>();
+            IOrchestra orchestra = Substitute.For<IOrchestra>();
             orchestra.CurrentTime().Returns(0);
             Instrument i = new Instrument(orchestra, InstrumentType.AccousticGrandPiano, new Scale(), 4);
             i.Play(Tone.CSharp, 5);
-            orchestra.Received().CopyToOutput(Arg.Any<List<SingleBeat>>());
+	        List<SingleBeat> v = Arg.Any<List<SingleBeat>>();
+
+			orchestra.Received().CopyToOutput(v);
         }
     }
 }
