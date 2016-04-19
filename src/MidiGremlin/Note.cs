@@ -7,7 +7,7 @@ namespace MidiGremlin
 {
     ///<summary>
     ///The class Note constructs an individual and simpel sound.
-    ///The class consists of duration, tone, velocity and a Octaveoffset which represents which octave the note is placed at.
+    ///The class consists of duration, tone, velocity and an Octaveoffset which represents the octave which the note is placed at.
     ///</summary>
     public class Note : MusicObject
     {
