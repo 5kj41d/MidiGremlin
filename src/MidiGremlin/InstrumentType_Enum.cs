@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MidiGremlin
 {
     /// <summary>
-    /// The enumeration InstrumentType is an enumeration which represents and gives the different instrument types certain values.
+    /// The enumeration InstrumentType is an enumeration which represents and gives the different instruments types certain values.
     /// </summary>
     public enum InstrumentType
     {

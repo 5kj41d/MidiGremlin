@@ -26,7 +26,7 @@ namespace MidiGremlin
         //TODO Og så videre. Muligvis ikke rent faktisk en dur det her.
         public static Chord Major { get; } = new Chord(4, 7);
         /// <summary>
-        /// Creates a new instance of the chord with a default value duration and velocity using a tone as the value of the root.
+        /// Creates a new instance of the chord with a default value duration and velocity, using a tone as the value of the root.
         /// </summary>
         /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
         /// <returns></returns>
@@ -38,9 +38,9 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        /// Creates a new instance of the chord with a given duration and velocity, using a tone as the value of the root.
+        /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
-        /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
+        /// <param name="tone">An enum value depicting the root of the chord.</param>
         /// <param name="duration">The duration of the chord.</param>
         /// <param name="velocity">The velocity of the chord.</param>
         /// <returns></returns>

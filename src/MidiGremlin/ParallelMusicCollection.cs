@@ -6,7 +6,7 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class ParalelMusicCollection inherits from the class MusicObject.
+    ///The class ParallelMusicCollection inherits from the class MusicObject.
     ///The class consist of a list of MusicObjects, which will be played simultaneously. 
     ///</summary>
     public class ParallelMusicCollection : MusicObject, IList<MusicObject>
