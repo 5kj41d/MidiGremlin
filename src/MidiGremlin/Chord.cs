@@ -7,12 +7,17 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class Chord is used to construct and define the different chords.
+    ///Used to construct and define the different chords.
     ///</summary>
     public class Chord
     {
         int[] _toneSteps;
         const int _defaultDuration = 2;
+        
+        //TODO Og så videre. Muligvis ikke rent faktisk en dur det her.
+        public static Chord Major { get; } = new Chord(4, 7);
+
+
         public Chord(params int[] toneSteps)
         {
             _toneSteps = toneSteps;
@@ -22,9 +27,8 @@ namespace MidiGremlin
         {
             throw new NotImplementedException();
         }
-            
-        //TODO Og så videre. Muligvis ikke rent faktisk en dur det her.
-        public static Chord Major { get; } = new Chord(4, 7);
+
+
         /// <summary>
         /// Creates a new instance of the chord with a default value duration and velocity using a tone as the value of the root.
         /// </summary>
@@ -34,11 +38,11 @@ namespace MidiGremlin
         {
             get
             {
-                return new ChordInstance(tone, _defaultDuration, _toneSteps);
+                return WithBaseTone(tone, _defaultDuration);
             }
         }
         /// <summary>
-        /// Creates a new instance of the chord with a given duration and velocity, using a tone as the value of the root.
+        /// Creates a new chord instance with a given duration and velocity, using a tone as the value of the chord's root.
         /// </summary>
         /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
         /// <param name="duration">The duration of the chord.</param>
@@ -47,6 +51,13 @@ namespace MidiGremlin
         public MusicObject WithBaseTone(Tone tone, int duration, byte velocity)
         {
             return new ChordInstance(tone,duration, velocity, _toneSteps);
+        }
+        /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
+        /// <param name="duration">The duration of the chord.</param>
+        /// <returns></returns>
+        public MusicObject WithBaseTone (Tone tone, int duration)
+        {
+            return new ChordInstance(tone, duration, _toneSteps);
         }
     }
 }
