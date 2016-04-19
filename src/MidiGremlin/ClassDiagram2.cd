@@ -3,7 +3,7 @@
   <Class Name="MidiGremlin.Chord">
     <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAACAEAAAQAQAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Chord.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MidiGremlin.MusicObject" Collapsed="true">
-    <Position X="2.75" Y="6.5" Width="1.5" />
+    <Position X="2" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>MusicObject.cs</FileName>
@@ -38,20 +38,21 @@
   <Class Name="MidiGremlin.Orchestra">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAACAAAAABAAAAAAAAAFABAAAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>gAIAAAACAAAAABAAAAAAAAABABAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Orchestra.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="MidiGremlin.ParallelMusicCollection" Collapsed="true">
-    <Position X="6" Y="7.75" Width="2" />
+    <Position X="9" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AEIAAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
       <FileName>ParallelMusicCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MidiGremlin.Pause" Collapsed="true">
-    <Position X="2.75" Y="8.75" Width="1.5" />
+  <Class Name="MidiGremlin.Pause">
+    <Position X="2.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pause.cs</FileName>
@@ -65,17 +66,17 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MidiGremlin.SequentialMusicCollection" Collapsed="true">
-    <Position X="3.75" Y="7.75" Width="2" />
+    <Position X="5.25" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AEIAAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
+      <HashCode>AEIQAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
       <FileName>SequentialMusicCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MidiGremlin.WinmmOut" BaseTypeListCollapsed="true">
-    <Position X="2.75" Y="4.25" Width="1.5" />
+    <Position X="4.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAgAAAAAA=</HashCode>
+      <HashCode>CAAAEAAQEGAkAAAAAgCAAAAAAAAAACAAAAAAkAAAAQA=</HashCode>
       <FileName>WinmmOut.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.226" />
@@ -83,7 +84,7 @@
   <Class Name="MidiGremlin.Internal.ChordInstance" Collapsed="true">
     <Position X="0.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Internal\ChordInstance.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -97,14 +98,14 @@
   <Struct Name="MidiGremlin.Internal.SingleBeat" Collapsed="true">
     <Position X="11" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAQAABAAAA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAAgAAAAAAAEAAAQAAAAAAQAABAAAA=</HashCode>
       <FileName>Internal\SingleBeat.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="MidiGremlin.Internal.SingleBeatWithChannel" Collapsed="true">
     <Position X="11" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAgAAAAAAAAAAAAAAAAEAAAQAAAAAAQAABAAAA=</HashCode>
+      <HashCode>ACAAAEAgAAAAAAAAAAAAAAAAEAAAQAAAAAAAAABAAAA=</HashCode>
       <FileName>Internal\SingleBeat.cs</FileName>
     </TypeIdentifier>
   </Struct>
@@ -129,8 +130,8 @@
       <FileName>InstrumentType_Enum.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="MidiGremlin.Tone" Collapsed="true">
-    <Position X="7.5" Y="5" Width="1.5" />
+  <Enum Name="MidiGremlin.Tone">
+    <Position X="6.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAACAABAAAAAgAAAABAAAAAAvgEAAAA=</HashCode>
       <FileName>Tone_Enum.cs</FileName>

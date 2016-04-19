@@ -7,8 +7,6 @@ namespace MidiGremlin
     ///The class represents any scale, which is used when determining Chords.
     ///</summary>
 
-
-
     public class Scale
     {
         private readonly Tone[] _tones;

@@ -45,7 +45,6 @@ namespace MidiGremlin
             return new Note(Tone + offset, tempDuration, tempVelocity);
         }
             
-        //TODO: Fix OctaveOffset, Should make it possible for the programmer to move a tone by one... two octaves. 
         public Note OffsetBy(Scale scale, int offset, int? duration = null, byte? velocity = null)
         {
 
@@ -82,13 +81,8 @@ namespace MidiGremlin
             {
                 tempDuration = Duration;
             }
-
-            if(OctaveOffset < 4 || OctaveOffset > 4 )
-            {
-                1 = Tone + 12;
-            }
-
-            return new Note((Tone)(scale.Interval(Tone) + (int)OctaveOffset, tempDuration, tempVelocity);
+ 
+            return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * (int)OctaveOffset)), tempDuration, tempVelocity);
         }
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
