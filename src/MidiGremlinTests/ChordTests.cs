@@ -23,20 +23,59 @@ namespace MidiGremlin.Tests
         //{
         //    Assert.Fail();
         //}
-
-        [Test()]
-        public void WithBaseToneTest()
+        [Test]
+        [TestCase(Tone.CSharp,5,64)]
+        public void WithBaseToneTest(Tone tone, int duration, byte velocity)
         {
-            Chord acd = new Chord(4,7);
+            Chord acd = new Chord(1,4,7);
 
             Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
-            List<SingleBeat> v =acd.WithBaseTone(Tone.CSharp, 5, 64).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano),1).ToList();
+            List<SingleBeat> v =acd.WithBaseTone(tone, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano),0).ToList();
 
             
 
             List<SingleBeat> comp = new List<SingleBeat>();
-            SingleBeat compbeat = new SingleBeat(InstrumentType.AccousticGrandPiano, 37, 64, 1, 5);
+            comp.AddRange(new Note(tone,duration,velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Note(Tone.E, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Note(Tone.G, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+
+            Assert.IsTrue(v.SequenceEqual(comp));
+        }
+
+        [Test]
+        [TestCase(Tone.CSharp, 5)]
+        public void WithBaseToneTest(Tone tone, int duration)
+        {
+            Chord acd = new Chord(1, 4, 7);
+
+            Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
+            List<SingleBeat> v = acd.WithBaseTone(Tone.CSharp, 5).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList();
+
+
+
+            List<SingleBeat> comp = new List<SingleBeat>();
+            comp.AddRange(new Note(tone, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Note(Tone.E, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Note(Tone.G, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+
+            Assert.IsTrue(v.SequenceEqual(comp));
+        }
+
+        [Test]
+        public void WithBaseToneIndexerTest()
+        {
+            Chord acd = new Chord(1,4,7);
+            Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
+
+            List<SingleBeat> v = acd[Tone.CSharp].GetChildren(orc.AddInstrument(InstrumentType.Violin), 0).ToList();
+
+            List<SingleBeat> comp = new List<SingleBeat>();
+            SingleBeat compbeat = new SingleBeat(InstrumentType.Violin, 40, 64, 0, 2);
             comp.Add(compbeat);
+            SingleBeat fisk = new SingleBeat(InstrumentType.Violin, 43, 64, 0, 2);
+            comp.Add(fisk);
+            SingleBeat ost = new SingleBeat(InstrumentType.Violin, 46, 64, 0, 2);
+            comp.Add(ost);
 
             Assert.IsTrue(v.SequenceEqual(comp));
         }
