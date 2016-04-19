@@ -15,12 +15,12 @@ namespace MidiGremlin
 
         public Pause (int duration)
         {
-            throw new NotImplementedException();
+            Duration = duration;
         }
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
-            throw new NotImplementedException();
+            yield return new SingleBeat();
         }
     }
 }

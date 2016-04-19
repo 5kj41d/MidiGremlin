@@ -105,18 +105,21 @@ namespace MidiGremlin
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
             int tempTime = startTime;
-            foreach(MusicObject m in _children)
+            foreach (MusicObject m in _children)
             {
-                foreach(SingleBeat sb in m.GetChildren(playedBy, startTime)) //TODO: Start time might need a rework (Maybe a reference)
-                {
-                    yield return sb;
-                }
-                if(m is Pause)
+                if (m is Pause)
                 {
                     tempTime += ((Pause)m).Duration;
                 }
+                else
+                {
+                    foreach (SingleBeat sb in m.GetChildren(playedBy, tempTime))
+                    {
+                        tempTime = Math.Max(tempTime, sb.ToneStartTime);
+                        yield return sb;
+                    }
+                }
             }
-            
         }
 
         IEnumerator IEnumerable.GetEnumerator ()

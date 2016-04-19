@@ -42,7 +42,11 @@ namespace MidiGremlin
             }
         }
         /// <summary>
+<<<<<<< HEAD
+        /// Creates a new chord instance with a given duration and velocity, using a tone as the value of the chord's root.
+=======
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
+>>>>>>> 862469c3ff783de92849b33173e5fe959035bd06
         /// </summary>
         /// <param name="tone">An enum value depicting the root of the chord.</param>
         /// <param name="duration">The duration of the chord.</param>

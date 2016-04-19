@@ -5,7 +5,7 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     ///<summary>
-    ///IMidiOutput is a interface for the output that the user expects to recieve.
+    ///IMidiOutput is a interface for the output which the user expects to recieve.
     ///</summary>
     public interface IMidiOut : IDisposable
     {

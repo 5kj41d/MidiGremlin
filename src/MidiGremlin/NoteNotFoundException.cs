@@ -3,7 +3,7 @@ using System;
 namespace MidiGremlin
 {
     /// <summary>
-    /// The class NoteNotFoundException is a simple class which handles exceptions which could happen when running the program. 
+    /// The class NoteNotFoundException is a simple class which handles exceptions that could happen when running the program. 
     /// </summary>
     public class NoteNotFoundException : Exception
     {
