@@ -104,7 +104,7 @@ namespace MidiGremlin
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
-            
+            throw new NotImplementedException();
             foreach (MusicObject m in _children)
             {
                 
