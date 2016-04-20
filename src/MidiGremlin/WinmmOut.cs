@@ -57,6 +57,8 @@ namespace MidiGremlin
             _workThread.Start();
         }
 
+     
+
 
         public void Dispose()
         {

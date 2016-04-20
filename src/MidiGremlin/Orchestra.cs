@@ -48,9 +48,17 @@ namespace MidiGremlin
         {
             return _output.CurrentTime();
         }
+
+        public double ConvertBPMToMs(double bpm, double fraction)
+        {
+            double millisecond;
+            millisecond = (60000 / bpm) * fraction;
+            return (int)millisecond;
+        }
+
     }
 
-	internal interface IOrchestra
+    internal interface IOrchestra
 	{
 		void CopyToOutput(List<SingleBeat> music);
 		int CurrentTime();
