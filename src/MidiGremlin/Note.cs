@@ -65,7 +65,7 @@ namespace MidiGremlin
             return new Note((Tone)(scale.Interval(Tone) + (int)scale[offset]), tempDuration, tempVelocity);
         }
 
-        public Note OctaveOffsetBy(Scale scale, int OctaveOffset, int? duration = null, byte? velocity = null)
+        public Note OctaveOffsetBy(Scale scale, int offset, int OctaveOffset, int? duration = null, byte? velocity = null)
         {
 
             byte tempVelocity = (byte)velocity;
