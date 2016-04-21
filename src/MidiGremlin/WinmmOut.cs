@@ -33,7 +33,7 @@ namespace MidiGremlin
     public class WinmmOut : IMidiOut
     {
         public uint DeviceID { get; }
-
+        
         private const int UpdateFrequency = 100;
         private IntPtr _handle;
         private bool _disposed = false;
@@ -42,9 +42,10 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
-
-        public WinmmOut(uint deviceID)
+        Orchestra _orchestra;
+        public WinmmOut(uint deviceID, Orchestra orchestra)
         {
+            _orchestra = orchestra;
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
             DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
 
@@ -55,9 +56,14 @@ namespace MidiGremlin
 
             _workThread = new Thread(ThreadEntryPrt);
             _workThread.Start();
+
+            
+            
+
+
         }
 
-     
+
 
 
         public void Dispose()
@@ -68,8 +74,9 @@ namespace MidiGremlin
 
         public int CurrentTime()
         {
-            double bogus_value = 16;
-            return  (int) (_time.Elapsed.TotalSeconds*bogus_value);
+            double beat = _orchestra.DurationOfBeat();
+            
+            return  (int) (_time.Elapsed.TotalSeconds*beat);
         }
 
         

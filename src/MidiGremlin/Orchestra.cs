@@ -29,12 +29,12 @@ namespace MidiGremlin
         private int _bpm;
         public int BeatsPerMin { get { return _bpm; } set { _bpm = value; } }
 
-       public int DurationOfBeat(double notelength)
+        public double DurationOfBeat()
         {
             double beatlength;
-            beatlength = (60000 / BeatsPerMin) * notelength;
+            beatlength = (60000 / BeatsPerMin);
 
-            return (int)beatlength;
+            return beatlength;
         }
 
 
