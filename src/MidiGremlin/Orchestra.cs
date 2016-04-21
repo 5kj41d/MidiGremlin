@@ -11,7 +11,7 @@ namespace MidiGremlin
     ///The Orchestra class creates new instances of the instrument class.
     ///It works as a compilation for these instruments.
     ///</summary>
-    class Orchestra : IOrchestra
+   public class Orchestra : IOrchestra
     {
         private readonly IMidiOut _output;
         private List<Instrument> _instruments = new List<Instrument>();
@@ -19,22 +19,31 @@ namespace MidiGremlin
         public Scale DefaultScale { get; set; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.GSharp, Tone.GSharp);
         public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
 
-
-        public Orchestra (IMidiOut output, int bpm)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="beatsPerMinutes">The amount of beats per 60 seconds.</param>
+        public Orchestra (IMidiOut output, int beatsPerMinutes)
         {
             _output = output;
 
-            _bpm = bpm;
+            _bpm = beatsPerMinutes;
         }
         private int _bpm;
-        public int BeatsPerMin { get { return _bpm; } set { _bpm = value; } }
+        public int BeatsPerMinutes { get { return _bpm; } set { _bpm = value; } }
 
-        public double DurationOfBeat()
+        /// <summary> Conversion constant between minutes and milliseconds. </summary>
+        private static double _minutesToMilliseconds = (5 / 3) * Math.Pow(10, -5);
+        /// <summary>
+        /// The duration of 1 beat in milliseconds.
+        /// </summary>
+        /// <returns>The duration of 1 beat in milliseconds.</returns>
+        public double BeatDuratinInMilliseconds()
         {
-            double beatlength;
-            beatlength = (60000 / BeatsPerMin);
-
-            return beatlength;
+            double durationInMinutes = 1 / BeatsPerMinutes;
+            double durationInMilliseconds = durationInMinutes * _minutesToMilliseconds;
+            return durationInMilliseconds;
         }
 
 
