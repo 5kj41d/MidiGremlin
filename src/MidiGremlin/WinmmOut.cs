@@ -11,22 +11,7 @@ using System.Threading;
 
 namespace MidiGremlin
 {
-    struct SimpleMidiMessage
-    {
-        public readonly int Timestamp;
-		[DebuggerDisplay("{Data,h}")]
-        public readonly int Data;
-
-        public SimpleMidiMessage(int data, int timestamp)
-        {
-            this.Data = data;
-            this.Timestamp = timestamp;
-        }
-    }
-
-
-
-    /// <summary>
+	/// <summary>
     /// The class WinmmOut stands for, Windows Multi Media Output, and does exactly that. 
     /// It communicates with Windows Multi Media player and creates a file in which you can listen to the programmed music. 
     /// </summary>

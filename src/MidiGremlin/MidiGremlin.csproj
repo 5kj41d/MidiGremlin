@@ -49,7 +49,9 @@
     <Compile Include="IMidiOut.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentType_Enum.cs" />
+    <Compile Include="Internal\BeatScheduler.cs" />
     <Compile Include="Internal\ChordInstance.cs" />
+    <Compile Include="Internal\SimpleMidiMessage.cs" />
     <Compile Include="Internal\SingleBeat.cs" />
     <Compile Include="Internal\Windows Multi Media\MIDIOUTCAPS.cs" />
     <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
