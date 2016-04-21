@@ -9,7 +9,7 @@ namespace MidiGremlin.Internal
         List<Note> _notes = new List<Note>();
 
 
-        internal ChordInstance(Tone tone, int duration, int[] toneSteps)
+        internal ChordInstance(Tone tone, double duration, int[] toneSteps)
         {
             //The root tone is not implicit.
             foreach(int i in toneSteps)
@@ -18,7 +18,7 @@ namespace MidiGremlin.Internal
                 _notes.Add(new Note(tone + interval, duration));
             }
         }
-        internal ChordInstance(Tone tone, int duration, byte velocity, int[] toneSteps)
+        internal ChordInstance(Tone tone, double duration, byte velocity, int[] toneSteps)
         {
             //The root tone is not implicit.
             foreach (int i in toneSteps)
@@ -29,7 +29,7 @@ namespace MidiGremlin.Internal
         }
 
 
-        internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, int startTime)
+        internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, double startTime)
         {
             foreach (Note n in _notes)
             {
