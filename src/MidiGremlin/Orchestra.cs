@@ -20,10 +20,23 @@ namespace MidiGremlin
         public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
 
 
-        public Orchestra (IMidiOut output)
+        public Orchestra (IMidiOut output, int bpm)
         {
             _output = output;
+
+            _bpm = bpm;
         }
+        private int _bpm;
+        public int BeatsPerMin { get { return _bpm; } set { _bpm = value; } }
+
+       public int DurationOfBeat(double notelength)
+        {
+            double beatlength;
+            beatlength = (60000 / BeatsPerMin) * notelength;
+
+            return (int)beatlength;
+        }
+
 
 
         public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
@@ -49,12 +62,7 @@ namespace MidiGremlin
             return _output.CurrentTime();
         }
 
-        public double ConvertBPMToMs(double bpm, double fraction)
-        {
-            double millisecond;
-            millisecond = (60000 / bpm) * fraction;
-            return (int)millisecond;
-        }
+        
 
     }
 

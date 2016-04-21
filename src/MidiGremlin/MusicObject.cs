@@ -16,7 +16,7 @@ namespace MidiGremlin
     ///</summary>
     public abstract class MusicObject
     {
-        internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime);
+        internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime);
     }
 
 }
