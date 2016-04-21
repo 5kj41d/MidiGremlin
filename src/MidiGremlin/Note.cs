@@ -12,12 +12,12 @@ namespace MidiGremlin
     public class Note : MusicObject
     {
         public Tone Tone { get; set; }
-        public int Duration { get; set; }
+        public double Duration { get; set; }
         public byte Velocity { get; set; }
         public int OctaveOffset { get; set; }
         
 
-        public Note (Tone tone, int duration, byte velocity = 64)
+        public Note (Tone tone, double duration, byte velocity = 64)
         {
             OctaveOffset = (int)tone/12;
             Tone = tone;
@@ -26,10 +26,10 @@ namespace MidiGremlin
 
         }
 
-        public Note OffsetBy(int offset, int? duration = null, byte? velocity = null)
+        public Note OffsetBy(int offset, double? duration = null, byte? velocity = null)
         {
             byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
+            double tempDuration = (double)duration;
 
 
             if (velocity == null)
@@ -45,11 +45,11 @@ namespace MidiGremlin
             return new Note(Tone + offset, tempDuration, tempVelocity);
         }
             
-        public Note OffsetBy(Scale scale, int offset, int? duration = null, byte? velocity = null)
+        public Note OffsetBy(Scale scale, int offset, double? duration = null, byte? velocity = null)
         {
 
             byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
+            double tempDuration = (double)duration;
 
 
             if (velocity == null)
@@ -65,11 +65,11 @@ namespace MidiGremlin
             return new Note((Tone)(scale.Interval(Tone) + (int)scale[offset]), tempDuration, tempVelocity);
         }
 
-        public Note OctaveOffsetBy(Scale scale, int offset, int OctaveOffset, int? duration = null, byte? velocity = null)
+        public Note OctaveOffsetBy(Scale scale, int offset, int OctaveOffset, double? duration = null, byte? velocity = null)
         {
 
             byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
+            double tempDuration = (double)duration;
 
 
             if (velocity == null)
@@ -85,7 +85,7 @@ namespace MidiGremlin
             return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * (int)OctaveOffset)), tempDuration, tempVelocity);
         }
 
-        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
+        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
             byte velocity = Math.Min((byte) 127, Velocity);
 

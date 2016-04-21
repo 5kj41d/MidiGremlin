@@ -102,9 +102,9 @@ namespace MidiGremlin
             _children.RemoveAt(index);
         }
 
-        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
+        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
-            int tempTime = startTime;
+            double tempTime = startTime;
             foreach (MusicObject m in _children)
             {
                 if (m is Pause)

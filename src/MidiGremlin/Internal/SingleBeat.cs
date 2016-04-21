@@ -21,7 +21,7 @@ namespace MidiGremlin.Internal
             return false;
         }
 
-        public SingleBeat(InstrumentType instrumentType, byte toneOffset, byte toneVelocity, int toneStartTime, int toneEndTime)
+        public SingleBeat(InstrumentType instrumentType, byte toneOffset, byte toneVelocity, double toneStartTime, double toneEndTime)
         {
             this.instrumentType = instrumentType;
             ToneOffset = toneOffset;
@@ -33,13 +33,13 @@ namespace MidiGremlin.Internal
         public InstrumentType instrumentType{ get; }
         public byte ToneOffset{ get; }
         public byte ToneVelocity{ get; }
-        public int ToneStartTime{ get; }
-        public int ToneEndTime{ get; }
+        public double ToneStartTime{ get; }
+        public double ToneEndTime{ get; }
     }
 
     public struct SingleBeatWithChannel
     {
-        public SingleBeatWithChannel(InstrumentType instrumentType, byte tone, byte toneVelocity, int toneStartTime, int toneEndTime, byte channel)
+        public SingleBeatWithChannel(InstrumentType instrumentType, byte tone, byte toneVelocity, double toneStartTime, double toneEndTime, byte channel)
         {
             this.instrumentType = instrumentType;
             Tone = tone;
@@ -52,8 +52,8 @@ namespace MidiGremlin.Internal
         public InstrumentType instrumentType { get; }
         public byte Tone { get; }
         public byte ToneVelocity { get; }
-        public int ToneStartTime { get; }
-        public int ToneEndTime { get; }
+        public double ToneStartTime { get; }
+        public double ToneEndTime { get; }
 
         public  byte Channel { get; }
     }

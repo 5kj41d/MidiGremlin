@@ -30,7 +30,7 @@ namespace MidiGremlin.Tests
         [Test()]
         public void QueueMusicTest ()
         {
-            Orchestra o = new Orchestra(new WinmmOut(0));
+            Orchestra o = new Orchestra(new WinmmOut(0), 8);
 			Note n = new Note(Tone.C,  1000);
 	        Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
 
