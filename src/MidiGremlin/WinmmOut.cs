@@ -43,13 +43,12 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
-        Orchestra _orchestra;
-        public WinmmOut(uint deviceID, Orchestra orchestra)
+        public WinmmOut (uint deviceID, int beatsPerMinutes=60)
         {
-            _orchestra = orchestra;
+            BeatsPerMinute = beatsPerMinutes;
+
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
             DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
-
             if(0!= Winmm.midiOutOpen(out _handle, DeviceID, IntPtr.Zero, IntPtr.Zero, 0))
                 throw new Exception("Opening MIDI device unsuccessful.");
 
@@ -57,15 +56,26 @@ namespace MidiGremlin
 
             _workThread = new Thread(ThreadEntryPrt);
             _workThread.Start();
-
-            
-            
-
-
         }
 
+        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
+        public int BeatsPerMinute { get; set; }
 
-
+        /// <summary> Conversion constant between minutes and milliseconds. </summary>
+        private static double _minutesToMilliseconds = (5 / 3) * Math.Pow(10, -5);
+        /// <summary>
+        /// The duration of 1 beat in milliseconds.
+        /// </summary>
+        /// <returns>The duration of 1 beat in milliseconds.</returns>
+        public double BeatDuratinInMilliseconds
+        {
+            get
+            {
+                double durationInMinutes = 1.0/BeatsPerMinute;
+                double durationInMilliseconds = durationInMinutes * _minutesToMilliseconds;
+                return durationInMilliseconds;
+            }
+        }
 
         public void Dispose()
         {
@@ -79,7 +89,7 @@ namespace MidiGremlin
         /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
         public int CurrentTime()
         {
-            return  (int) (_time.Elapsed.TotalMilliseconds / _orchestra.BeatDuratinInMilliseconds());
+            return  (int) (_time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds);
         }
 
        /// <summary>
@@ -170,7 +180,7 @@ namespace MidiGremlin
                 }
 
                 int sleeptime = Math.Min
-                    ( (int)Math.Floor((next.Timestamp - CurrentTime()) * _orchestra.BeatDuratinInMilliseconds())
+                    ( (int)Math.Floor((next.Timestamp - CurrentTime()) * BeatDuratinInMilliseconds)
                     , UpdateFrequency);
 
                 if(sleeptime > 0)

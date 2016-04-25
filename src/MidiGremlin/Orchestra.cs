@@ -25,26 +25,9 @@ namespace MidiGremlin
         /// <param name="output"></param>
         /// <param name="beatsPerMinutes">The amount of beats per 60 seconds.
         /// If you set beats per min to 60 then you can consider it as seconds</param>
-        public Orchestra (IMidiOut output, int beatsPerMinutes=60)
+        public Orchestra (IMidiOut output)
         {
             _output = output;
-
-            _bpm = beatsPerMinutes;
-        }
-        private int _bpm;
-        public int BeatsPerMinutes { get { return _bpm; } set { _bpm = value; } }
-
-        /// <summary> Conversion constant between minutes and milliseconds. </summary>
-        private static double _minutesToMilliseconds = (5 / 3) * Math.Pow(10, -5);
-        /// <summary>
-        /// The duration of 1 beat in milliseconds.
-        /// </summary>
-        /// <returns>The duration of 1 beat in milliseconds.</returns>
-        public double BeatDuratinInMilliseconds()
-        {
-            double durationInMinutes = 1 / BeatsPerMinutes;
-            double durationInMilliseconds = durationInMinutes * _minutesToMilliseconds;
-            return durationInMilliseconds;
         }
 
 

@@ -39,18 +39,18 @@ namespace MidiGremlin
         /// <returns> Returns a new note where tone is added by offset</returns>
         public Note OffsetBy(int offset, double? duration = null, byte? velocity = null)
         {
-            byte tempVelocity = (byte)velocity;
-            double tempDuration = (double)duration;
+            byte tempVelocity = this.Velocity;
+            double tempDuration = this.Duration;
 
 
-            if (velocity == null)
+            if (velocity != null)
             {
-                tempVelocity = Velocity;
+                tempVelocity = velocity.Value;
             }
 
-            if (duration == null)
+            if (duration != null)
             {
-                tempDuration = Duration;
+                tempDuration = duration.Value;
             }
 
             return new Note(Tone + offset, tempDuration, tempVelocity);
@@ -66,18 +66,18 @@ namespace MidiGremlin
         public Note OffsetBy(Scale scale, int offset, double? duration = null, byte? velocity = null)
         {
 
-            byte tempVelocity = (byte)velocity;
-            double tempDuration = (double)duration;
+            byte tempVelocity = this.Velocity;
+            double tempDuration = this.Duration;
 
 
-            if (velocity == null)
+            if (velocity != null)
             {
-                tempVelocity = Velocity;
+                tempVelocity = velocity.Value;
             }
 
-            if (duration == null)
+            if (duration != null)
             {
-                tempDuration = Duration;
+                tempDuration = duration.Value;
             }
 
             return new Note((Tone)(scale.Interval(Tone) + (int)scale[offset]), tempDuration, tempVelocity);
