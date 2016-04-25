@@ -16,7 +16,7 @@ namespace MidiGremlin
         private readonly IMidiOut _output;
         private List<Instrument> _instruments = new List<Instrument>();
         
-        public Scale DefaultScale { get; set; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.GSharp, Tone.GSharp);
+        
         public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
 
 
@@ -28,7 +28,7 @@ namespace MidiGremlin
 
         public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
         {
-            return AddInstrument(instrumentType, DefaultScale, ocatave);
+            return AddInstrument(instrumentType, Scale.ChromaticScale, ocatave);
         }
         public Instrument AddInstrument (InstrumentType instrumentType, Scale scale, int octave=3)
         {

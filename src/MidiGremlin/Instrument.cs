@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -17,7 +18,7 @@ namespace MidiGremlin
         private IOrchestra _orchestra;
 
 
-        internal Instrument (IOrchestra orchestra, InstrumentType instrumentType, Scale scale, int octave)
+        internal Instrument (IOrchestra orchestra, InstrumentType instrumentType, Scale scale, int octave = 0)
         {
             Scale = scale;
             Octave = octave;
@@ -34,7 +35,10 @@ namespace MidiGremlin
 
         public void Play (int startTime, MusicObject music)
         {
-            _orchestra.CopyToOutput(new List<SingleBeat>(music.GetChildren(this, startTime)));
+            List<SingleBeat> singleBeats = new List<SingleBeat>(music.GetChildren(this, startTime))
+                .Select(offsetByOctave)
+                .ToList();
+            _orchestra.CopyToOutput(singleBeats);
         }
 
         public void Play(Tone tone, int duration, byte velocity = 64)
@@ -46,6 +50,18 @@ namespace MidiGremlin
         {
             Note note = new Note(tone, duration, velocity);
             Play(startTime, note);
+        }
+
+        
+        private SingleBeat offsetByOctave (SingleBeat arg)
+        {
+            return arg;
+            return new SingleBeat
+                (arg.instrumentType
+                , (byte) (arg.ToneOffset + Octave*12)   //The important part.
+                , arg.ToneVelocity
+                , arg.ToneStartTime
+                , arg.ToneEndTime);
         }
     }
 }

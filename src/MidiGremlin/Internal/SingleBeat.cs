@@ -2,6 +2,9 @@
 
 namespace MidiGremlin.Internal
 {
+    /// <summary>
+    /// Represents a single musical tune with a beginning and an end.
+    /// </summary>
     public struct SingleBeat
     {
         public override bool Equals(object obj)
@@ -31,6 +34,10 @@ namespace MidiGremlin.Internal
         }
 
         public InstrumentType instrumentType{ get; }
+        /// <summary>
+        /// Represents the tone as it is saved in the MIDI standard.
+        /// http://www.tonalsoft.com/pub/news/pitch-bend.aspx
+        /// </summary>
         public byte ToneOffset{ get; }
         public byte ToneVelocity{ get; }
         public int ToneStartTime{ get; }
@@ -50,6 +57,10 @@ namespace MidiGremlin.Internal
         }
 
         public InstrumentType instrumentType { get; }
+        /// <summary>
+        /// Represents the tone as it is saved in the MIDI standard.
+        /// http://www.tonalsoft.com/pub/news/pitch-bend.aspx
+        /// </summary>
         public byte Tone { get; }
         public byte ToneVelocity { get; }
         public int ToneStartTime { get; }

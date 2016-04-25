@@ -85,15 +85,27 @@ namespace MidiGremlin
             return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * (int)OctaveOffset)), tempDuration, tempVelocity);
         }
 
+
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
         {
             byte velocity = Math.Min((byte) 127, Velocity);
 
-            int tone = (int) Tone + (playedBy.Octave + OctaveOffset)*12;
-            if (0 > tone || tone > 127)
-                throw new ToneOutOfRangeExceptioin(tone);
+            int tone = MidiPithFromTone(Tone, playedBy.Octave);
 
             yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
+        }
+
+
+        internal int MidiPithFromTone(Tone tone, int octave)
+        {
+            int pitch = (int) Tone //Tone enum is a value between 1 and 12, where C is the first tone.
+                        + (octave + 5 //Pitch 0 has octave -5, so octave 0 starts at 5*12=60. 
+                           + OctaveOffset //Apply OctaveOffset of the note's tone.
+                            )*12;   //1 octave is 12 tone steps.
+            if (0 > pitch || pitch > 127)
+                throw new ToneOutOfRangeExceptioin(pitch);
+
+            return pitch;
         }
     }
 }
