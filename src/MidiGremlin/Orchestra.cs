@@ -48,11 +48,24 @@ namespace MidiGremlin
         }
 
 
-
+        /// <summary>
+        /// Constructs a new instrument and adds it to the orchestra.
+        /// </summary>
+        /// <param name="instrumentType">Enum that represents an instrument</param>
+        /// <param name="ocatave">The interval between two tones.Default is 3</param>
+        /// <returns> Returns an overloaded AddInstrument,
+        /// where the the scale parameter is set to the ChromaticScale </returns>
         public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
         {
             return AddInstrument(instrumentType, Scale.ChromaticScale, ocatave);
         }
+        /// <summary>
+        /// Constructs a new instrument and adds it to the orchestra. With scale as a parameter
+        /// </summary>
+        /// <param name="instrumentType">Enum that represents an instrument</param>
+        /// <param name="scale">In the scale you want the music to be played</param>
+        /// <param name="octave">The interval between two tones.Default is 3</param>
+        /// <returns></returns>
         public Instrument AddInstrument (InstrumentType instrumentType, Scale scale, int octave=3)
         {
             Instrument instrument = new Instrument(this, instrumentType, scale, octave);
@@ -66,7 +79,10 @@ namespace MidiGremlin
             //TODO Allocate channel
             _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.ToneOffset, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
         }
-
+        /// <summary>
+        /// Returns the current time 
+        /// </summary>
+        /// <returns>Returns the current time </returns>
         public int CurrentTime()
         {
             return _output.CurrentTime();

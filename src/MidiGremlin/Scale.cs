@@ -13,7 +13,7 @@ namespace MidiGremlin
         private const int _numberOfTones = 12;
 
         /// <summary>
-        /// The Chromatic Scale, witch contains all 12 tones in order.
+        /// The Chromatic Scale, which contains all 12 tones in order.
         /// </summary>
         public static Scale ChromaticScale { get; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.GSharp, Tone.GSharp);
         

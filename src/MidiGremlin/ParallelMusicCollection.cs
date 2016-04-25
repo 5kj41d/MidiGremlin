@@ -12,7 +12,11 @@ namespace MidiGremlin
     ///</summary>
     public class ParallelMusicCollection : MusicObject, IList<MusicObject>
     {
-        List<MusicObject> _children;
+        List<MusicObject> _children = new List<MusicObject>();
+        /// <summary>
+        /// Adds a number of MusicObjects to parralellmusiclist 
+        /// </summary>
+        /// <param name="children">A number of MusicObjects</param>
         public ParallelMusicCollection (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
@@ -20,6 +24,10 @@ namespace MidiGremlin
                 Add(m);
             }
         }
+        /// <summary>
+        /// Adds a number of MusicObjects to parralellmusiclist. Give it at least 1 parameter
+        /// </summary>
+        /// <param name="children">A number of MusicObjects.</param>
         public ParallelMusicCollection (params MusicObject[] children)
         {
             foreach (MusicObject m in children)
@@ -27,7 +35,11 @@ namespace MidiGremlin
                 Add(m);
             }
         }
-
+        /// <summary>
+        ///  Gets and sets MusicObject from the indicated index.
+        /// </summary>
+        /// <param name="index">Indicated index where it gets and sets MusicObject</param>
+        /// <returns></returns>
         public MusicObject this[int index]
         {
             get
@@ -40,7 +52,9 @@ namespace MidiGremlin
                 _children[index] = value;
             }
         }
-
+        /// <summary>
+        /// Gets the number of elements contained in the list
+        /// </summary>
         public int Count
         {
             get
@@ -48,7 +62,9 @@ namespace MidiGremlin
                 return _children.Count;
             }
         }
-
+        /// <summary>
+        /// Checks if it is readonly
+        /// </summary>
         public bool IsReadOnly
         {
             get
@@ -57,46 +73,78 @@ namespace MidiGremlin
             }
         }
 
+        /// <summary>
+        /// Adds MusicObject to list
+        /// </summary>
+        /// <param name="item">Is a MusicObject</param>
         public void Add (MusicObject item)
         {
             _children.Add(item);
         }
-
+        /// <summary>
+        /// clears the list
+        /// </summary>
         public void Clear ()
         {
             _children.Clear();
         }
-
+        /// <summary>
+        /// checks if it is contained in list
+        /// </summary>
+        /// <param name="item">Is a MusicObject</param>
+        /// <returns></returns>
         public bool Contains (MusicObject item)
         {
             return _children.Contains(item);
         }
-
+        /// <summary>
+        /// copies to list
+        /// </summary>
+        /// <param name="array">Is a MusicObject array</param>
+        /// <param name="arrayIndex">index of the array</param>
         public void CopyTo (MusicObject[] array, int arrayIndex)
         {
             _children.CopyTo(array, arrayIndex);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<MusicObject> GetEnumerator ()
         {
             return _children.GetEnumerator();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int IndexOf (MusicObject item)
         {
             return _children.IndexOf(item);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="item"></param>
         public void Insert (int index, MusicObject item)
         {
             _children.Insert(index, item);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Remove (MusicObject item)
         {
             return _children.Remove(item);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveAt (int index)
         {
             _children.RemoveAt(index);

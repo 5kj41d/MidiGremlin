@@ -52,12 +52,18 @@ namespace MidiGremlin
         /// </summary>
         /// <param name="tone">An enum which represents a tone</param>
         /// <param name="duration">How long the tone should last. In beats</param>
-        /// <param name="velocity"></param>
+        /// <param name="velocity">Goes from 0 to 127. Default is 64. </param>
         public void Play(Tone tone, double duration, byte velocity = 64)
         {
             Play(_orchestra.CurrentTime(), tone, duration,  velocity);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startTime">When the music should play. In beats</param>
+        /// <param name="tone">An enum which represents a tone</param>
+        /// <param name="duration">How long the tone should last. In beats</param>
+        /// <param name="velocity">Goes from 0 to 127. Default is 64.</param>
         public void Play(double startTime, Tone tone, double duration,  byte velocity = 64)
         {
             Note note = new Note(tone, duration, velocity);
