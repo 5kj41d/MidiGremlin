@@ -82,7 +82,10 @@ namespace MidiGremlin
             return  (int) (_time.Elapsed.TotalMilliseconds / _orchestra.BeatDuratinInMilliseconds());
         }
 
-        
+       /// <summary>
+       /// plays the music in order.
+       /// </summary>
+       /// <param name="music">the actual music that should be played</param>
         public void QueueMusic(IEnumerable<SingleBeatWithChannel> music)
         {
             lock (_sync)

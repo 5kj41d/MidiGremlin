@@ -17,12 +17,19 @@ namespace MidiGremlin
         //TODO Og så videre. Muligvis ikke rent faktisk en dur det her.
         public static Chord Major { get; } = new Chord(4, 7);
 
-
+        /// <summary>
+        /// A list of singlebeats.Are played on the same time.
+        /// </summary>
+        /// <param name="toneSteps">Distance from basetone.Basetone included .</param>
         public Chord(params int[] toneSteps)
         {
             _toneSteps = toneSteps;
         }
-
+        /// <summary>
+        ///  A list of singlebeats. Find chord by name.
+        /// </summary>
+        /// <param name="name">The name of a chord</param>
+        /// <returns></returns>
         public static Chord Name(string name)
         {
             throw new NotImplementedException();

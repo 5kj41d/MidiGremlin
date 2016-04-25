@@ -23,7 +23,14 @@ namespace MidiGremlin.Internal
 
             return false;
         }
-
+        /// <summary>
+        /// the actual tone that gets played
+        /// </summary>
+        /// <param name="instrumentType">the type of instrument that should be playing the music</param>
+        /// <param name="toneOffset"> MIDI note number on this chart:http://www.tonalsoft.com/pub/news/pitch-bend.aspx </param>
+        /// <param name="toneVelocity">how hard the key is hit on the instrument </param>
+        /// <param name="toneStartTime">start time of the note</param>
+        /// <param name="toneEndTime">end of the note</param>
         public SingleBeat(InstrumentType instrumentType, byte toneOffset, byte toneVelocity, double toneStartTime, double toneEndTime)
         {
             this.instrumentType = instrumentType;
@@ -43,7 +50,9 @@ namespace MidiGremlin.Internal
         public double ToneStartTime{ get; }
         public double ToneEndTime{ get; }
     }
-
+    /// <summary>
+    /// a singlebeat with a channel
+    /// </summary>
     public struct SingleBeatWithChannel
     {
         public SingleBeatWithChannel(InstrumentType instrumentType, byte tone, byte toneVelocity, double toneStartTime, double toneEndTime, byte channel)

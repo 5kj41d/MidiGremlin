@@ -23,8 +23,9 @@ namespace MidiGremlin
         /// 
         /// </summary>
         /// <param name="output"></param>
-        /// <param name="beatsPerMinutes">The amount of beats per 60 seconds.</param>
-        public Orchestra (IMidiOut output, int beatsPerMinutes)
+        /// <param name="beatsPerMinutes">The amount of beats per 60 seconds.
+        /// If you set beats per min to 60 then you can consider it as seconds</param>
+        public Orchestra (IMidiOut output, int beatsPerMinutes=60)
         {
             _output = output;
 

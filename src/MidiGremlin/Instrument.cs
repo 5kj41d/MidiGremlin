@@ -27,12 +27,19 @@ namespace MidiGremlin
         }
 
         
-        
+        /// <summary>
+        /// Plays the MusicObject.
+        /// </summary>
+        /// <param name="music"> The music that the user wants played</param>
         public void Play(MusicObject music)
         {
             Play(_orchestra.CurrentTime(), music);
         }
-
+        /// <summary>
+        /// Plays the MusicObject.With given start time.
+        /// </summary>
+        /// <param name="startTime">When the music should play. In beats</param>
+        /// <param name="music">The actual music</param>
         public void Play (double startTime, MusicObject music)
         {
             List<SingleBeat> singleBeats = new List<SingleBeat>(music.GetChildren(this, startTime))
@@ -40,7 +47,12 @@ namespace MidiGremlin
                 .ToList();
             _orchestra.CopyToOutput(singleBeats);
         }
-
+        /// <summary>
+        /// Plays the tone specified in the duration and velocity specified.
+        /// </summary>
+        /// <param name="tone">An enum which represents a tone</param>
+        /// <param name="duration">How long the tone should last. In beats</param>
+        /// <param name="velocity"></param>
         public void Play(Tone tone, double duration, byte velocity = 64)
         {
             Play(_orchestra.CurrentTime(), tone, duration,  velocity);
