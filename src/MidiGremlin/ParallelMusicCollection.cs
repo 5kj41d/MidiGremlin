@@ -102,13 +102,23 @@ namespace MidiGremlin
             _children.RemoveAt(index);
         }
 
-        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
+        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
-            throw new NotImplementedException();
+            List<SingleBeat> sBeats = new List<SingleBeat>();
             foreach (MusicObject m in _children)
             {
-                
+                foreach (SingleBeat sb in m.GetChildren(playedBy, startTime))
+                {
+                    sBeats.Add(sb);
+                }
             }
+            sBeats = sBeats.OrderBy(sb => sb.ToneStartTime).ToList();
+
+            foreach (SingleBeat sb in sBeats)
+            {
+                yield return sb;
+            }
+            
         }
 
         IEnumerator IEnumerable.GetEnumerator ()

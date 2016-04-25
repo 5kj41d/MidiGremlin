@@ -11,14 +11,14 @@ namespace MidiGremlin
     ///</summary>
     public class Pause : MusicObject
     {
-        public int Duration { get; set; }
+        public double Duration { get; set; }
 
-        public Pause (int duration)
+        public Pause (double duration)
         {
             Duration = duration;
         }
 
-        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
+        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
             yield return new SingleBeat();
         }

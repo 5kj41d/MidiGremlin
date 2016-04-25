@@ -33,7 +33,7 @@ namespace MidiGremlin
             Play(_orchestra.CurrentTime(), music);
         }
 
-        public void Play (int startTime, MusicObject music)
+        public void Play (double startTime, MusicObject music)
         {
             List<SingleBeat> singleBeats = new List<SingleBeat>(music.GetChildren(this, startTime))
                 .Select(offsetByOctave)
@@ -41,12 +41,12 @@ namespace MidiGremlin
             _orchestra.CopyToOutput(singleBeats);
         }
 
-        public void Play(Tone tone, int duration, byte velocity = 64)
+        public void Play(Tone tone, double duration, byte velocity = 64)
         {
             Play(_orchestra.CurrentTime(), tone, duration,  velocity);
         }
 
-        public void Play(int startTime, Tone tone, int duration,  byte velocity = 64)
+        public void Play(double startTime, Tone tone, double duration,  byte velocity = 64)
         {
             Note note = new Note(tone, duration, velocity);
             Play(startTime, note);

@@ -13,11 +13,12 @@ namespace MidiGremlin
 {
     struct SimpleMidiMessage
     {
-        public readonly int Timestamp;
+        /// <summary> The time in beats to play this MIDI message. </summary>
+        public readonly double Timestamp;
 		[DebuggerDisplay("{Data,h}")]
         public readonly int Data;
 
-        public SimpleMidiMessage(int data, int timestamp)
+        public SimpleMidiMessage(int data, double timestamp)
         {
             this.Data = data;
             this.Timestamp = timestamp;
@@ -33,8 +34,8 @@ namespace MidiGremlin
     public class WinmmOut : IMidiOut
     {
         public uint DeviceID { get; }
-
-        private const int UpdateFrequency = 100;
+        
+        private const int UpdateFrequency = 20;
         private IntPtr _handle;
         private bool _disposed = false;
         private Stopwatch _time;
@@ -42,9 +43,10 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
-
-        public WinmmOut(uint deviceID)
+        Orchestra _orchestra;
+        public WinmmOut(uint deviceID, Orchestra orchestra)
         {
+            _orchestra = orchestra;
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
             DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
 
@@ -55,7 +57,14 @@ namespace MidiGremlin
 
             _workThread = new Thread(ThreadEntryPrt);
             _workThread.Start();
+
+            
+            
+
+
         }
+
+
 
 
         public void Dispose()
@@ -64,10 +73,13 @@ namespace MidiGremlin
             _disposed = true;
         }
 
+        /// <summary>
+        /// The amount of beats that have passed since this class was instantiated.
+        /// </summary>
+        /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
         public int CurrentTime()
         {
-            double bogus_value = 16;
-            return  (int) (_time.Elapsed.TotalSeconds*bogus_value);
+            return  (int) (_time.Elapsed.TotalMilliseconds / _orchestra.BeatDuratinInMilliseconds());
         }
 
         
@@ -76,10 +88,12 @@ namespace MidiGremlin
             lock (_sync)
             {
                 toPlay.AddRange(music.SelectMany(TransformFunction));
-                toPlay.Sort((lhs, rhs) => rhs.Timestamp - lhs.Timestamp);   //Beat to play next is the last in the list and so on.
+                toPlay.Sort((lhs, rhs) => lhs.Timestamp.CompareTo(rhs.Timestamp));
+                toPlay.Reverse();   //Beat to play next is the last in the list and so on.
             }
         }
 
+        
         private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeatWithChannel arg)
         {
             yield return new SimpleMidiMessage(
@@ -106,28 +120,63 @@ namespace MidiGremlin
 
         private void ThreadEntryPrt()
         {
+            bool played= false;
+            SimpleMidiMessage next = new SimpleMidiMessage(0, double.MaxValue);
+
             while (_running)
             {
-                SimpleMidiMessage next;
+                
+                
                 lock (_sync)
                 {
+                   
 	                if (toPlay.Count > 0)
-	                {
-		                next = toPlay[toPlay.Count - 1];
-						toPlay.RemoveAt(toPlay.Count - 1);
+                    {
+                        if (played)
+                        {
+                            next = toPlay[toPlay.Count - 1];
+                            toPlay.RemoveAt(toPlay.Count - 1);
+
+                            played = false;
+                        }
+                        else
+                        {
+                            if(next.Timestamp > toPlay[toPlay.Count - 1].Timestamp)
+                            {
+                                SimpleMidiMessage actualNext = toPlay[toPlay.Count - 1];
+                                toPlay.RemoveAt(toPlay.Count - 1);
+
+                                //Put "next" back in list so we can play actualNext inistead.
+                                for (int i = toPlay.Count - 1; i >= 0; i--)
+                                {
+                                    if(next.Timestamp <= toPlay[i].Timestamp)
+                                    {
+                                        toPlay.Insert(i, next);
+                                        break;
+                                    }
+                                }
+                                next = actualNext;
+
+                                played = false;
+                            }
+                            //Else the current "next" is correct so keep it.
+                        }
 	                }
                     else
-                        next = new SimpleMidiMessage(0, int.MaxValue);
+                        next = new SimpleMidiMessage(0, double.MaxValue);
                 }
 
-                int sleeptime = Math.Max(Math.Min(next.Timestamp - CurrentTime(), UpdateFrequency), 0);
+                int sleeptime = Math.Min
+                    ( (int)Math.Floor((next.Timestamp - CurrentTime()) * _orchestra.BeatDuratinInMilliseconds())
+                    , UpdateFrequency);
 
                 if(sleeptime > 0)
                     Thread.Sleep(sleeptime);
 
-                if (next.Timestamp < CurrentTime())
+                if (next.Timestamp <= CurrentTime())
                 {
                     Winmm.midiOutShortMsg(_handle, (uint) next.Data);
+                    played = true;
                 }
             }
         }
