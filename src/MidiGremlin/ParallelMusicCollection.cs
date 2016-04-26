@@ -14,7 +14,7 @@ namespace MidiGremlin
     {
         List<MusicObject> _children = new List<MusicObject>();
         /// <summary>
-        /// Adds a number of MusicObjects to parralellmusiclist 
+        /// Adds a number of MusicObjects to parralellmusicCollection 
         /// </summary>
         /// <param name="children">A number of MusicObjects</param>
         public ParallelMusicCollection (IEnumerable<MusicObject> children)
@@ -25,7 +25,8 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        /// Adds a number of MusicObjects to parralellmusiclist. Give it at least 1 parameter
+        /// Adds a number of MusicObjects to parralellmusicCollection.
+        /// Give it at least 1 parameter
         /// </summary>
         /// <param name="children">A number of MusicObjects.</param>
         public ParallelMusicCollection (params MusicObject[] children)
@@ -82,14 +83,14 @@ namespace MidiGremlin
             _children.Add(item);
         }
         /// <summary>
-        /// clears the list
+        /// Clears the list
         /// </summary>
         public void Clear ()
         {
             _children.Clear();
         }
         /// <summary>
-        /// checks if it is contained in list
+        /// Checks if it is contained in list
         /// </summary>
         /// <param name="item">Is a MusicObject</param>
         /// <returns></returns>
@@ -98,53 +99,53 @@ namespace MidiGremlin
             return _children.Contains(item);
         }
         /// <summary>
-        /// copies to list
+        /// Copies to list
         /// </summary>
         /// <param name="array">Is a MusicObject array</param>
-        /// <param name="arrayIndex">index of the array</param>
+        /// <param name="arrayIndex">Index of the array</param>
         public void CopyTo (MusicObject[] array, int arrayIndex)
         {
             _children.CopyTo(array, arrayIndex);
         }
         /// <summary>
-        /// 
+        /// An enumerator that iterates through the list
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an enumerator that iterates through the list</returns>
         public IEnumerator<MusicObject> GetEnumerator ()
         {
             return _children.GetEnumerator();
         }
         /// <summary>
-        /// 
+        /// Searches  for the specified object and returns the index of the first occurrence within the list
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">The object which the list is seaching for</param>
+        /// <returns>Returns the index of the object searched for</returns>
         public int IndexOf (MusicObject item)
         {
             return _children.IndexOf(item);
         }
         /// <summary>
-        /// 
+        /// Inserts an element into the list at the specified list
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="item"></param>
+        /// <param name="index">Index where the element is inserted </param>
+        /// <param name="item">Element inserted </param>
         public void Insert (int index, MusicObject item)
         {
             _children.Insert(index, item);
         }
         /// <summary>
-        /// 
+        /// Removes the first occurrence of the object within the list
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item"> Specified object which should be removed </param>
+        /// <returns>Returns a list without the spicified object</returns>
         public bool Remove (MusicObject item)
         {
             return _children.Remove(item);
         }
         /// <summary>
-        /// 
+        /// Removed the element at a specified index
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Index where the element is removed</param>
         public void RemoveAt (int index)
         {
             _children.RemoveAt(index);

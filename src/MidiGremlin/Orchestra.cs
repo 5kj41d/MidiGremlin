@@ -16,7 +16,9 @@ namespace MidiGremlin
         private readonly IMidiOut _output;
         private List<Instrument> _instruments = new List<Instrument>();
         
-        
+        /// <summary>
+        /// property of the istruments which is readonly
+        /// </summary>
         public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
 
         /// <summary>
