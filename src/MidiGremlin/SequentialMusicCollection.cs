@@ -12,7 +12,7 @@ namespace MidiGremlin
     ///</summary>
     public class SequentialMusicCollection : MusicObject, IList<MusicObject>
     {
-        List<MusicObject> _children;
+        List<MusicObject> _children = new List<MusicObject>();
         public SequentialMusicCollection (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
