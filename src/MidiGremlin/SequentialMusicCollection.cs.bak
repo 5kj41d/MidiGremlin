@@ -17,7 +17,6 @@ namespace MidiGremlin
         /// <summary>
         /// Adds a number of MusicObjects to SequentialMusicCollection
         /// </summary>
-        /// <param name="children">A number of MusicObjects</param>
         public SequentialMusicCollection (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
