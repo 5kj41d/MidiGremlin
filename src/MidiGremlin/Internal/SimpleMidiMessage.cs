@@ -10,6 +10,20 @@ namespace MidiGremlin.Internal
 		}
 
 		/// <summary>
+		/// Returns the hash code for this instance.
+		/// </summary>
+		/// <returns>
+		/// A 32-bit signed integer that is the hash code for this instance.
+		/// </returns>
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				return (Timestamp.GetHashCode() * 397) ^ Data;
+			}
+		}
+
+		/// <summary>
 		/// Indicates whether this instance and a specified object are equal.
 		/// </summary>
 		/// <returns>
@@ -22,25 +36,11 @@ namespace MidiGremlin.Internal
 			return obj is SimpleMidiMessage && Equals((SimpleMidiMessage) obj);
 		}
 
-		/// <summary>
-		/// Returns the hash code for this instance.
-		/// </summary>
-		/// <returns>
-		/// A 32-bit signed integer that is the hash code for this instance.
-		/// </returns>
-		public override int GetHashCode()
-		{
-			unchecked
-			{
-				return (Timestamp*397) ^ Data;
-			}
-		}
-
-		public readonly int Timestamp;
+		public readonly double Timestamp;
 		[DebuggerDisplay("{Data,h}")]
 		public readonly int Data;
 
-		public SimpleMidiMessage(int data, int timestamp)
+		public SimpleMidiMessage(int data, double timestamp)
 		{
 			this.Data = data;
 			this.Timestamp = timestamp;

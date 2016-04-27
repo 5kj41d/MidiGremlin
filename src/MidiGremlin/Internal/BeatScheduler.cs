@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MidiGremlin.Internal
 {
@@ -14,7 +11,7 @@ namespace MidiGremlin.Internal
 	/// </summary>
 	public class BeatScheduler
 	{
-		private /*const*/ readonly SimpleMidiMessage _emptyMessage = new SimpleMidiMessage(0,0);
+		private /*const*/ static readonly SimpleMidiMessage EmptyMessage = new SimpleMidiMessage(0,0);
 
 		//TODO: Make this a real concurrent priority queue. Well, this works, but muh performance
 		//Last [Count - 1] is first as it is cheaper to remove / insert there
@@ -22,14 +19,21 @@ namespace MidiGremlin.Internal
 
 		private readonly object _syncRoot = new object();
 		private readonly EventWaitHandle _newDataAdded = new AutoResetEvent(false);
-		private readonly Stopwatch _time = Stopwatch.StartNew();
+		private readonly Orchestra _orchestra;
+		private readonly IMidiOut _output;
 
-		
+		internal BeatScheduler(Orchestra orchestra, IMidiOut output)
+		{
+			this._orchestra = orchestra;
+			_output = output;
+		}
+
+
 		/// <summary>
 		/// Returns the next simple midi event to be played from the queue. 
 		/// Can either block until it is time to actually play it or return the current next imediatly
 		/// </summary>
-		/// <param name="force">Force the BeatScheduler to return imediatly</param>
+		/// <param name="block">Force the BeatScheduler to return imediatly</param>
 		/// <returns>A simple MIDI event and a timestamp. If nothing exists in the queue, it either 
 		/// returns an empty message or blocks until one is available</returns>
 		public SimpleMidiMessage GetNextMidiCommand(bool block = true)
@@ -49,11 +53,11 @@ namespace MidiGremlin.Internal
 					}
 					else
 					{
-						message = _emptyMessage;
+						message = EmptyMessage;
 					}
 				}
 
-				if (message == _emptyMessage)
+				if (message == EmptyMessage)
 				{
 					if (block)
 					{
@@ -62,12 +66,12 @@ namespace MidiGremlin.Internal
 					}
 					else
 					{
-						return _emptyMessage;
+						return EmptyMessage;
 					}
 				}
 
 				//If we was not interupted we assume we arrived at time
-				if (!block || !_newDataAdded.WaitOne(GetWaitTime(message)))
+				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(message)))
 				{
 					return message;
 				}
@@ -84,20 +88,31 @@ namespace MidiGremlin.Internal
 #endif
 		}
 
-		private int GetWaitTime(SimpleMidiMessage message)
+		private int GetWaitTimeMs(SimpleMidiMessage message)
 		{
-			return 
+			double current = _orchestra.CurrentTime();
+			double remaining = message.Timestamp - current;
+
+			return remaining < 0 ? 0 : BeatsToMs(remaining);
+		}
+
+		private int BeatsToMs(double remaining)
+		{
+			double msPerBeat = (60.0 / _output.BeatsPerMinute) * 1000;
+
+			return (int) (remaining*msPerBeat);
 		}
 
 
-		public void AddToQueue(IEnumerable<SingleBeat> beats)
+		internal void AddToQueue(IEnumerable<SingleBeat> beats)
 		{
-			
-
 			lock (_syncRoot)
 			{
-				_priorityQueue.AddRange(beats.SelectMany(TransformFunction));
-				_priorityQueue.Sort((lhs, rhs) => rhs.Timestamp - lhs.Timestamp);   //Beat to play next is the last in the list and so on.
+
+				var allTheBeats = beats.ToList();
+				var v = allTheBeats.SelectMany(TransformFunction).ToList();
+				_priorityQueue.AddRange(v);
+				_priorityQueue.Sort((lhs, rhs) => (int) (rhs.Timestamp - lhs.Timestamp));   //Beat to play next is the last in the list and so on.
 
 				_newDataAdded.Set();
 			}
@@ -106,12 +121,10 @@ namespace MidiGremlin.Internal
 		private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeat arg)
 		{
 			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x9, 0, arg.ToneOffset, arg.ToneVelocity)   //Key down.
-				, arg.ToneStartTime);
+				MakeMidiEvent(0x9, 0, arg.ToneOffset, arg.ToneVelocity), arg.ToneStartTime);  //Key down.
 
 			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x8, 0, arg.ToneOffset, arg.ToneVelocity)   //Key up.
-				, arg.ToneEndTime);
+				MakeMidiEvent(0x8, 0, arg.ToneOffset, arg.ToneVelocity), arg.ToneEndTime); //Key up.
 		}
 
 		private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
@@ -120,7 +133,7 @@ namespace MidiGremlin.Internal
 
 			data |= channel << 0;
 			data |= midiEventType << 4;
-			data |= tone << 8;  //TODO: Tone needs to be translated this does not work.
+			data |= tone << 8;
 			data |= toneVelocity << 16;
 
 			return data;
