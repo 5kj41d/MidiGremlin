@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace MidiGremlin.Internal
+﻿namespace MidiGremlin.Internal
 {
     /// <summary>
     /// Represents a single musical tune with a beginning and an end.

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MidiGremlin
+﻿namespace MidiGremlin
 {
     /// <summary>
     /// This program is part of a project made by the group A311b from the University of Aalborg. 

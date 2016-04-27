@@ -1,16 +1,11 @@
 ﻿using NUnit.Framework;
-using MidiGremlin;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MidiGremlin.Internal;
 using NSubstitute;
 
 namespace MidiGremlin.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class NoteTests
     {
         [TestCase(4, Tone.E, 112)]
