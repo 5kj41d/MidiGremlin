@@ -58,8 +58,10 @@
     <Compile Include="ChordTests.cs" />
     <Compile Include="InstrumentTests.cs" />
     <Compile Include="NoteTests.cs" />
+    <Compile Include="ParallelMusicCollectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScaleTests.cs" />
+    <Compile Include="SequentialMusicCollectionTests.cs" />
     <Compile Include="WinmmOutTests.cs" />
   </ItemGroup>
   <ItemGroup>
