@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class ParallelMusicCollection inherits from the class MusicObject.
-    ///The class consist of a list of MusicObjects, which will be played simultaneously. 
+    ///The class SequentialMusicCollection inherits from the class MusicObject.
+    ///The class consist of a list of MusicObjects, which will be played apart from each other.
+    ///The MusicObjects will be played in a certain order.
     ///</summary>
-    public class ParallelMusicCollection : MusicObject, IList<MusicObject>
+    public class SequentialMusicCollection : MusicObject, IList<MusicObject>
     {
-        List<MusicObject> _children = new List<MusicObject>();
+         List<MusicObject> _children = new List<MusicObject>();
+
         /// <summary>
-        /// Adds a number of MusicObjects to parralellmusicCollection 
+        /// Adds a number of MusicObjects to SequentialMusicCollection
         /// </summary>
-        /// <param name="children">A number of MusicObjects</param>
-        public ParallelMusicCollection (IEnumerable<MusicObject> children)
+        public SequentialMusicCollection (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
             {
@@ -25,11 +25,11 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        /// Adds a number of MusicObjects to parralellmusicCollection.
+        /// Adds a number of MusicObjects to SequentialMusicCollection.
         /// Give it at least 1 parameter
         /// </summary>
-        /// <param name="children">A number of MusicObjects.</param>
-        public ParallelMusicCollection (params MusicObject[] children)
+        /// <param name="children">A number of MusicObjects</param>
+        public SequentialMusicCollection (params MusicObject[] children)
         {
             foreach (MusicObject m in children)
             {
@@ -37,7 +37,7 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        ///  Gets and sets MusicObject from the indicated index.
+        /// Gets and sets MusicObject from the indicated index
         /// </summary>
         /// <param name="index">Indicated index where it gets and sets MusicObject</param>
         /// <returns></returns>
@@ -73,7 +73,6 @@ namespace MidiGremlin
                 return false;
             }
         }
-
         /// <summary>
         /// Adds MusicObject to list
         /// </summary>
@@ -110,7 +109,7 @@ namespace MidiGremlin
         /// <summary>
         /// An enumerator that iterates through the list
         /// </summary>
-        /// <returns>Returns an enumerator that iterates through the list</returns>
+        /// <returns></returns>
         public IEnumerator<MusicObject> GetEnumerator ()
         {
             return _children.GetEnumerator();
@@ -127,8 +126,8 @@ namespace MidiGremlin
         /// <summary>
         /// Inserts an element into the list at the specified list
         /// </summary>
-        /// <param name="index">Index where the element is inserted </param>
-        /// <param name="item">Element inserted </param>
+        /// <param name="index">Index where the element is inserted</param>
+        /// <param name="item">Element inserted</param>
         public void Insert (int index, MusicObject item)
         {
             _children.Insert(index, item);
@@ -136,7 +135,7 @@ namespace MidiGremlin
         /// <summary>
         /// Removes the first occurrence of the object within the list
         /// </summary>
-        /// <param name="item"> Specified object which should be removed </param>
+        /// <param name="item">Specified object which should be removed</param>
         /// <returns>Returns a list without the spicified object</returns>
         public bool Remove (MusicObject item)
         {
@@ -153,21 +152,22 @@ namespace MidiGremlin
 
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
-            List<SingleBeat> sBeats = new List<SingleBeat>();
+            double tempTime = startTime;
             foreach (MusicObject m in _children)
             {
-                foreach (SingleBeat sb in m.GetChildren(playedBy, startTime))
+                if (m is Pause)
                 {
-                    sBeats.Add(sb);
+                    tempTime += ((Pause)m).Duration;
+                }
+                else
+                {
+                    foreach (SingleBeat sb in m.GetChildren(playedBy, tempTime))
+                    {
+                        tempTime = Math.Max(tempTime, sb.ToneStartTime);
+                        yield return sb;
+                    }
                 }
             }
-            sBeats = sBeats.OrderBy(sb => sb.ToneStartTime).ToList();
-
-            foreach (SingleBeat sb in sBeats)
-            {
-                yield return sb;
-            }
-            
         }
 
         IEnumerator IEnumerable.GetEnumerator ()
