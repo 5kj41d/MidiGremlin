@@ -1,4 +1,5 @@
 ﻿using MidiGremlin;
+using MidiGremlin.Helpers;
 
 namespace Für_Elise
 {
@@ -27,54 +28,48 @@ namespace Für_Elise
             
             //Making all the six bars:
 
-            MusicObject rBar0 = new SequentialMusicCollection
-            (
-                new Note(s[5 + trebleClef], eigth, baseVelocity),
-                new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
-            );
-            
-            MusicObject rBar1 = new SequentialMusicCollection
-            (
-                new Note(s[5 + trebleClef], eigth, baseVelocity),
-                new Note(s[4 + trebleClef] + 1, eigth, baseVelocity),
-                new Note(s[5 + trebleClef] + 1, eigth, baseVelocity),
-                new Note(s[2 + trebleClef] + 1, eigth, baseVelocity),
-                new Note(s[4 + trebleClef], eigth, baseVelocity),
-                new Note(s[3 + trebleClef], eigth, baseVelocity)
-            );
-            
-            MusicObject rBar2 = new SequentialMusicCollection
-            (
-                new Note(s[1 + trebleClef], eigth*2, baseVelocity),
-                new Pause(eigth),
-                new Note(s[-4 + trebleClef], eigth, baseVelocity),
-                new Note(s[-2 + trebleClef], eigth, baseVelocity),
-                new Note(s[1 + trebleClef], eigth, baseVelocity)
-            );
-            
-            MusicObject rBar3 = new SequentialMusicCollection
-            (
-                new Note(s[2 + trebleClef], eigth*2, baseVelocity),
-                new Pause(eigth),
-                new Note(s[-2 + trebleClef], eigth, baseVelocity),
-                new Note(s[0 + trebleClef] + 1, eigth, baseVelocity),
-                new Note(s[2 + trebleClef] + 1, eigth, baseVelocity)
-            );
-            
-            MusicObject rBar4 = new SequentialMusicCollection
-            (
-                new Note(s[3 + trebleClef], eigth*2, baseVelocity),
-                new Pause(eigth),
-                new Note(s[-2 + trebleClef], eigth, baseVelocity),
-                new Note(s[5 + trebleClef], eigth, baseVelocity),
-                new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
-            );
+	        MusicObject rBar0 = new SequentialHelper()
+		        .Solo(new Note(s[5 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Note(s[4 + trebleClef] + 1, eigth, baseVelocity))
+		        .Build();
 
-            MusicObject rBar5 = rBar1;
+	        MusicObject rBar1 = new SequentialHelper()
+		        .Solo(new Note(s[5 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Note(s[4 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Note(s[5 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Note(s[2 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Note(s[4 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Note(s[3 + trebleClef], eigth, baseVelocity))
+		        .Build();
+
+			MusicObject rBar2 = new SequentialHelper()
+                .Solo(new Note(s[1 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Note(s[-4 + trebleClef], eigth, baseVelocity))
+                .Solo(new Note(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Note(s[1 + trebleClef], eigth, baseVelocity))
+		   .Build();
+
+			MusicObject rBar3 = new SequentialHelper()
+                .Solo(new Note(s[2 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Note(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Note(s[0 + trebleClef] + 1, eigth, baseVelocity))
+                .Solo(new Note(s[2 + trebleClef] + 1, eigth, baseVelocity))
+		   .Build();
+
+			MusicObject rBar4 = new SequentialHelper()
+                .Solo(new Note(s[3 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Note(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Note(s[5 + trebleClef], eigth, baseVelocity))
+                .Solo(new Note(s[4 + trebleClef] + 1, eigth, baseVelocity))
+			.Build();
+
+			MusicObject rBar5 = rBar1;
 
             //The whole right hand.
-            MusicObject rightHand = new SequentialMusicCollection
-            (
+            MusicObject rightHand = new SequentialMusicCollection(
                 rBar0,
                 rBar1,
                 rBar2,
@@ -97,31 +92,30 @@ namespace Für_Elise
 
             MusicObject lBar1 = new Pause(eigth*6);
 
-            MusicObject lBar2 = new SequentialMusicCollection
-            (
-                new Note(s[-5 + bassClef], eigth, baseVelocity),
-                new Note(s[-1 + bassClef], eigth, baseVelocity),
-                new Note(s[2 + bassClef], eigth, baseVelocity),
-                new Pause(eigth),
-                new Pause(eigth*2)
-            );
+            MusicObject lBar2 = new SequentialHelper()
+                .Solo(new Note(s[-5 + bassClef], eigth, baseVelocity))
+                .Solo(new Note(s[-1 + bassClef], eigth, baseVelocity))
+                .Solo(new Note(s[2 + bassClef], eigth, baseVelocity))
+                .Any(new Pause(eigth))
+                .Any(new Pause(eigth*2))
+				.Build();
 
-            MusicObject lBar3 = new SequentialMusicCollection
-            (
-                new Note(s[-8 + bassClef], eigth, baseVelocity),
-                new Note(s[-1 + bassClef], eigth, baseVelocity),
-                new Note(s[1 + bassClef] + 1, eigth, baseVelocity),
-                new Pause(eigth),
-                new Pause(eigth*2)
-            );
+
+			MusicObject lBar3 = new SequentialHelper()
+                .Solo(new Note(s[-8 + bassClef], eigth, baseVelocity))
+                .Solo(new Note(s[-1 + bassClef], eigth, baseVelocity))
+                .Solo(new Note(s[1 + bassClef] + 1, eigth, baseVelocity))
+                .Any(new Pause(eigth))
+                .Any(new Pause(eigth*2))
+				.Build();
+            
 
             MusicObject lBar4 = lBar2;
 
             MusicObject lBar5 = lBar1;
 
             //The whole left hand.
-            MusicObject leftHand = new SequentialMusicCollection
-            (
+            MusicObject leftHand = new SequentialMusicCollection(
                 lBar0,
                 lBar1,
                 lBar2,
@@ -134,7 +128,7 @@ namespace Für_Elise
             MusicObject furEliseIntro = new ParallelMusicCollection(rightHand, leftHand);
 
             //To play music, first we need an orchestra with access to a player
-            Orchestra o = new Orchestra(new WinmmOut(0, 120));
+            Orchestra o = new Orchestra(new WinmmOut(0, 70));  //Slow but...
 
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, s, 0);
