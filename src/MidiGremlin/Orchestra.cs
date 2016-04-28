@@ -10,12 +10,13 @@ namespace MidiGremlin
    public class Orchestra : IOrchestra
     {
         private readonly IMidiOut _output;
-        private List<Instrument> _instruments = new List<Instrument>();
-        
+        private readonly List<Instrument> _instruments = new List<Instrument>();
+	    private readonly BeatScheduler _beatScheduler;
+
         /// <summary>
         /// property of the istruments which is readonly
         /// </summary>
-        public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
+        public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();  //TODO: Cache
 
         /// <summary>
         /// Creates a new instance of the orchestra class. 
@@ -25,6 +26,8 @@ namespace MidiGremlin
         public Orchestra (IMidiOut output)
         {
             _output = output;
+			_beatScheduler = new BeatScheduler(this, _output);
+			_output.SetSource(_beatScheduler);
         }
 
 
@@ -61,21 +64,22 @@ namespace MidiGremlin
 
         void IOrchestra.CopyToOutput(List<SingleBeat> music)
         {
-            //TODO Allocate channel
-            _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.Tone, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
+            _beatScheduler.AddToQueue(music);
         }
+	    Internal.SimpleMidiMessage IOrchestra.NextToPlay(bool block)
+	    {
+		    return _beatScheduler.GetNextMidiCommand(block);
+	    }
 
 
         /// <summary>
         /// Returns the current time specified by the output class.
         /// </summary>
         /// <returns>The current time </returns>
-        public int CurrentTime => _output.CurrentTime;
-    }
-
-    internal interface IOrchestra
-	{
-		void CopyToOutput(List<SingleBeat> music);
-        int CurrentTime { get; }
+        public double CurrentTime()
+        {
+			double d = _output.CurrentTime();
+	        return d;
+        }
     }
 }

@@ -46,14 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChordVariety.cs" />
+    <Compile Include="Helpers\SequentialHelper.cs" />
     <Compile Include="IMidiOut.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentType_Enum.cs" />
+    <Compile Include="Internal\BeatScheduler.cs" />
     <Compile Include="Internal\ChordInstance.cs" />
+    <Compile Include="Internal\SimpleMidiMessage.cs" />
     <Compile Include="Internal\SingleBeat.cs" />
     <Compile Include="Internal\Windows Multi Media\MIDIOUTCAPS.cs" />
     <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
     <Compile Include="Internal\Windows Multi Media\Winmm.cs" />
+    <Compile Include="IOrchestra.cs" />
     <Compile Include="MusicObject.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Note.cs" />

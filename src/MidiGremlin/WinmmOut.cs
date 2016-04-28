@@ -8,22 +8,6 @@ using System.Threading;
 
 namespace MidiGremlin
 {
-    struct SimpleMidiMessage
-    {
-        /// <summary> The time in beats to play this MIDI message. </summary>
-        public readonly double Timestamp;
-		[DebuggerDisplay("{Data,h}")]
-        public readonly int Data;
-
-        public SimpleMidiMessage(int data, double timestamp)
-        {
-            Data = data;
-            Timestamp = timestamp;
-        }
-    }
-
-
-
     /// <summary>
     /// The class Winmm Windows Multi Media Output.
     /// This class communicates with winmm which outputs to the speaker using the specified device.
@@ -64,14 +48,16 @@ namespace MidiGremlin
             _time = Stopwatch.StartNew();
 
             _workThread = new Thread(ThreadEntryPrt);
-            _workThread.Start();
         }
 
         /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
         public int BeatsPerMinute { get; set; }
 
+	    private BeatScheduler _source;
+
         /// <summary> Conversion constant between minutes and milliseconds. </summary>
         private static double _minutesToMilliseconds = 60000;
+
         
         /// <summary>
         /// The duration of 1 beat in milliseconds.
@@ -97,115 +83,40 @@ namespace MidiGremlin
             _disposed = true;
         }
 
-
-        /// <summary>
-        /// The amount of beats that have passed since this class was instantiated.
-        /// </summary>
-        /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
-        public int CurrentTime => (int) (_time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds);
-
-        /// <summary>
-        /// Plays the MusicObject at its specified start-time.
-        /// In normal cases, please use the Play method of an <see cref="T:MidiGremlin.Instrument"/> instead.
-        /// </summary>
-        /// <param name="music">The music that should be played.</param>
-        public void QueueMusic(IEnumerable<SingleBeatWithChannel> music)
+	    /// <summary>
+	    /// The amount of beats that have passed since this class was instantiated.
+	    /// </summary>
+	    /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
+	    public double CurrentTime()
         {
-            lock (_sync)
-            {
-                toPlay.AddRange(music.SelectMany(TransformFunction));
-                toPlay.Sort((lhs, rhs) => lhs.Timestamp.CompareTo(rhs.Timestamp));
-                toPlay.Reverse();   //Beat to play next is the last in the list and so on.
-            }
+            return  _time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds;
         }
 
-        /// <summary>
-        /// Transforms the SimpleMidiMessages to two seperate ones each, one for key down and one for key up.
-        /// </summary>
-        private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeatWithChannel arg)
+	    void IMidiOut.SetSource(BeatScheduler source)
+	    {
+		    lock (_sync)
+		    {
+			    if (_source == null)
+			    {
+					_source = source;
+					_workThread.Start();
+				}
+			    else
+			    {
+				    throw new InvalidOperationException("This IMidiOut is already in use");
+			    }
+		    }
+	    }
+
+	    private void ThreadEntryPrt()
         {
-            yield return new SimpleMidiMessage(
-                MakeMidiEvent(0x9, arg.Channel, arg.Tone, arg.ToneVelocity)   //Key down.
-                , arg.ToneStartTime);
-
-            yield return new SimpleMidiMessage(
-                MakeMidiEvent(0x8, arg.Channel, arg.Tone, arg.ToneVelocity)   //Key up.
-                , arg.ToneEndTime);
-        }
-
-        private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
-        {
-            int data = 0;
-
-            data |= channel << 0;
-            data |= midiEventType << 4;
-            data |= tone << 8;  //TODO: Tone needs to be translated this does not work.
-            data |= toneVelocity << 16;
-
-            return data;
-        }
-
-
-        private void ThreadEntryPrt()
-        {
-            bool played= false;
-            SimpleMidiMessage next = new SimpleMidiMessage(0, double.MaxValue);
+            SimpleMidiMessage next;
 
             while (_running)
             {
-                
-                
-                lock (_sync)
-                {
-                   
-	                if (toPlay.Count > 0)
-                    {
-                        if (played)
-                        {
-                            next = toPlay[toPlay.Count - 1];
-                            toPlay.RemoveAt(toPlay.Count - 1);
+	            next = _source.GetNextMidiCommand(block: true);
 
-                            played = false;
-                        }
-                        else
-                        {
-                            if(next.Timestamp > toPlay[toPlay.Count - 1].Timestamp)
-                            {
-                                SimpleMidiMessage actualNext = toPlay[toPlay.Count - 1];
-                                toPlay.RemoveAt(toPlay.Count - 1);
-
-                                //Put "next" back in list so we can play actualNext inistead.
-                                for (int i = toPlay.Count - 1; i >= 0; i--)
-                                {
-                                    if(next.Timestamp <= toPlay[i].Timestamp)
-                                    {
-                                        toPlay.Insert(i, next);
-                                        break;
-                                    }
-                                }
-                                next = actualNext;
-
-                                played = false;
-                            }
-                            //Else the current "next" is correct so keep it.
-                        }
-	                }
-                    else
-                        next = new SimpleMidiMessage(0, double.MaxValue);
-                }
-
-                int sleeptime = Math.Min
-                    ( (int)Math.Floor((next.Timestamp - CurrentTime) * BeatDuratinInMilliseconds)
-                    , UpdateFrequency);
-
-                if(sleeptime > 0)
-                    Thread.Sleep(sleeptime);
-
-                if (next.Timestamp <= CurrentTime)
-                {
-                    Winmm.midiOutShortMsg(_handle, (uint) next.Data);
-                    played = true;
-                }
+	            Winmm.midiOutShortMsg(_handle, next.Data);
             }
         }
     }

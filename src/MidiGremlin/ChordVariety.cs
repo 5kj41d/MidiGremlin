@@ -13,7 +13,7 @@ namespace MidiGremlin
         /// <summary> The default duration used when creating chord instances from index. </summary>
         public double DefaultDuration = 1;
 
-        /// <summary>
+	    /// <summary>
         /// Initialises a new ChordVariety defined by the tone steps.
         /// The tone steps are indicated by intervals(Always on the full 12-tone scale). NB: The root tone has interval 1 and is not implicit.
         /// </summary>
@@ -37,8 +37,7 @@ namespace MidiGremlin
             }
         }
 
-
-        /// <summary>
+	    /// <summary>
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
         /// <param name="tone">An enum value depicting the root of the chord.</param>
@@ -59,5 +58,8 @@ namespace MidiGremlin
         {
             return new ChordInstance(tone, duration, _toneSteps);
         }
-    }
+
+		public static ChordVariety Major { get; } = new ChordVariety(1, 3, 5);
+
+	}
 }

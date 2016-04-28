@@ -9,16 +9,14 @@ namespace MidiGremlin
     ///</summary>
     public interface IMidiOut : IDisposable
     {
+        void SetSource(BeatScheduler source);
+	    int BeatsPerMinute { get; set; }
+
+
         /// <summary>
         /// The number of beats elapsed since this instance was created.
         /// </summary>
         /// <returns>The number of beats elapsed since this instance was created.</returns>
-        int CurrentTime { get; }
-
-        /// <summary>
-        /// Queques a MusicObject to be output at the time the MusicObject indicates.
-        /// </summary>
-        /// <param name="music"></param>
-        void QueueMusic(IEnumerable<SingleBeatWithChannel> music);
+        double CurrentTime ();
     }
 }

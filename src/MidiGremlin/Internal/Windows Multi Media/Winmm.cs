@@ -53,6 +53,6 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         /// <param name="dwMsg">The short message.</param>
         /// <returns>Method call status.</returns>
         [DllImport("winmm.dll")]
-        public static extern uint midiOutShortMsg (IntPtr hMidiOut, uint dwMsg);
+        public static extern uint midiOutShortMsg (IntPtr hMidiOut, int dwMsg);
     }
 }
