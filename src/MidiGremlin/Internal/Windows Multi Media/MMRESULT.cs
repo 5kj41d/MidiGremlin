@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MidiGremlin.Internal.Windows_Multi_Media
+﻿namespace MidiGremlin.Internal.Windows_Multi_Media
 {
     /// <summary>
     /// Result of multi media function call.

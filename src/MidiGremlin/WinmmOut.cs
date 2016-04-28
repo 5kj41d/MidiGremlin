@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using MidiGremlin.Internal;
 using MidiGremlin.Internal.Windows_Multi_Media;
 using System.Diagnostics;
@@ -43,6 +40,11 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
+        /// <summary>
+        /// Plays the music using the windows music player
+        /// </summary>
+        /// <param name="deviceID">The underlaying hardware port used to play music</param>
+        /// <param name="beatsPerMinutes">Represents the pace of the music</param>
         public WinmmOut (uint deviceID, int beatsPerMinutes=60)
         {
             BeatsPerMinute = beatsPerMinutes;
@@ -76,7 +78,9 @@ namespace MidiGremlin
                 return durationInMilliseconds;
             }
         }
-
+        /// <summary>
+        /// closes safely the winmmout
+        /// </summary>
         public void Dispose()
         {
             Winmm.midiOutClose(_handle);
