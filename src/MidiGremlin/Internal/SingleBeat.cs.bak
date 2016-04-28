@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Runtime.InteropServices;
 
 namespace MidiGremlin.Internal
+=======
+﻿namespace MidiGremlin.Internal
+>>>>>>> be576f091be69c322409925cb07048f3186b0cbe
 {
     /// <summary>
     /// Internal data type that represents a single musical tune with a beginning and an end.

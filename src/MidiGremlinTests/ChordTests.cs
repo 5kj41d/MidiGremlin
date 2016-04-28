@@ -23,7 +23,7 @@ namespace MidiGremlin.Tests
         [TestCase(Tone.CSharp,5,64)]
         public void WithBaseToneTest(Tone tone, double duration, byte velocity)
         {
-            Chord acd = new Chord(1,4,7);
+            ChordVariety acd = new ChordVariety(1,4,7);
 
             Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
             List<SingleBeat> v =acd.WithBaseTone(tone, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano),0).ToList();
@@ -42,7 +42,7 @@ namespace MidiGremlin.Tests
         [TestCase(Tone.CSharp, 5)]
         public void WithBaseToneTest(Tone tone, double duration)
         {
-            Chord acd = new Chord(1, 4, 7);
+            ChordVariety acd = new ChordVariety(1, 4, 7);
 
             Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
             List<SingleBeat> v = acd.WithBaseTone(Tone.CSharp, 5).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList();
@@ -60,7 +60,7 @@ namespace MidiGremlin.Tests
         [Test]
         public void WithBaseToneIndexerTest()
         {
-            Chord acd = new Chord(1,4,7);
+            ChordVariety acd = new ChordVariety(1,4,7);
             Orchestra orc = new Orchestra(NSubstitute.Substitute.For<IMidiOut>());
 
             List<SingleBeat> v = acd[Tone.CSharp].GetChildren(orc.AddInstrument(InstrumentType.Violin), 0).ToList();

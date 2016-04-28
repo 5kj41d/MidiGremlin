@@ -6,35 +6,26 @@ namespace MidiGremlin
     ///<summary>
     ///Used to construct and define the different chords.
     ///</summary>
-    public class Chord
+    public class ChordVariety
     {
         int[] _toneSteps;
-        const double _defaultDuration = 2;
-        
-        //TODO Og så videre. Muligvis ikke rent faktisk en dur det her.
-        public static Chord Major { get; } = new Chord(4, 7);
 
-        /// <summary>
-        /// A list of singlebeats.Are played on the same time.
+        /// <summary> The default duration used when creating chord instances from index. </summary>
+        public double DefaultDuration = 1;
+
+	    /// <summary>
+        /// Initialises a new ChordVariety defined by the tone steps.
+        /// The tone steps are indicated by intervals(Always on the full 12-tone scale). NB: The root tone has interval 1 and is not implicit.
         /// </summary>
-        /// <param name="toneSteps">Distance from basetone.Basetone included .</param>
-        public Chord(params int[] toneSteps)
+        /// <param name="toneSteps"> The tone steps that makes the chord. </param>
+        public ChordVariety (params int[] toneSteps)
         {
             _toneSteps = toneSteps;
         }
-        /// <summary>
-        ///  A list of singlebeats. Find chord by name.
-        /// </summary>
-        /// <param name="name">The name of a chord</param>
-        /// <returns></returns>
-        public static Chord Name(string name)
-        {
-            throw new NotImplementedException();
-        }
 
 
         /// <summary>
-        /// Creates a new instance of the chord with a default value duration and velocity, using a tone as the value of the root.
+        /// Creates a new instance of the chord using DefaultDuration and a standard velocity , using tone as the root.
         /// </summary>
         /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
         /// <returns></returns>
@@ -42,26 +33,33 @@ namespace MidiGremlin
         {
             get
             {
-                return WithBaseTone(tone, _defaultDuration);
+                return WithBaseTone(tone, DefaultDuration);
             }
+        }
+
+	    /// <summary>
+        /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
+        /// </summary>
+        /// <param name="tone">An enum value depicting the root of the chord.</param>
+        /// <param name="duration">The duration of the chord.</param>
+        /// <param name="velocity">The velocity of the chord.</param>
+        /// <returns>A single chord with the given root tone.</returns>
+        public MusicObject WithBaseTone(Tone tone, double duration, byte velocity)
+        {
+            return new ChordInstance(tone, duration, velocity, _toneSteps);
         }
         /// <summary>
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
         /// <param name="tone">An enum value depicting the root of the chord.</param>
         /// <param name="duration">The duration of the chord.</param>
-        /// <param name="velocity">The velocity of the chord.</param>
-        /// <returns></returns>
-        public MusicObject WithBaseTone(Tone tone, double duration, byte velocity)
-        {
-            return new ChordInstance(tone, duration, velocity, _toneSteps);
-        }
-        /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
-        /// <param name="duration">The duration of the chord.</param>
-        /// <returns></returns>
+        /// <returns>A single chord with the given root tone.</returns>
         public MusicObject WithBaseTone (Tone tone, double duration)
         {
             return new ChordInstance(tone, duration, _toneSteps);
         }
-    }
+
+		public static ChordVariety Major { get; } = new ChordVariety(1, 3, 5);
+
+	}
 }

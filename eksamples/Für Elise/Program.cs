@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MidiGremlin;
+﻿using MidiGremlin;
 
 namespace Für_Elise
 {
@@ -14,13 +9,13 @@ namespace Für_Elise
         /// Plays the first bit of Für Elise, read from
         /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
         /// </summary>
-        static void Main (string[] args)
+        static void Main ()
         {
             //Like most old western it is played in the A minor scale.
             Scale s = new Scale(Tone.A, Tone.B, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G);
 
             double eigth = 1 / 8D;
-            byte baseVelocity = 48;
+            byte baseVelocity = 72;
 
             //Creating the right hand:
 

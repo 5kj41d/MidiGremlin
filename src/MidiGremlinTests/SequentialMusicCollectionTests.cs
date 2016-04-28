@@ -61,7 +61,7 @@ namespace MidiGremlin.Tests
             MusicObject[] testObjects = new MusicObject[5];
             testObjects[0] = new Note(Tone.A, 2);
             testObjects[1] = new Pause(1);
-            testObjects[2] = Chord.Major.WithBaseTone(Tone.E, 2);
+            testObjects[2] = ChordVariety.Major.WithBaseTone(Tone.E, 2);
             testObjects[3] = new Pause(1);
             testObjects[4] = new Note(Tone.D, 2);
             List<SingleBeat> sTestList = new List<SingleBeat>();

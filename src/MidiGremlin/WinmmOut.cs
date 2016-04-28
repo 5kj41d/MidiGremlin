@@ -46,12 +46,12 @@ namespace MidiGremlin
         /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
         public int BeatsPerMinute { get; set; }
 
-        /// <summary> Conversion constant between minutes and milliseconds. </summary>
-        private static double _minutesToMilliseconds = (5 / 3) * Math.Pow(10, -5);
-
 	    private BeatScheduler _source;
 
-	    /// <summary>
+        /// <summary> Conversion constant between minutes and milliseconds. </summary>
+        private static double _minutesToMilliseconds = 60000;
+
+        /// <summary>
         /// The duration of 1 beat in milliseconds.
         /// </summary>
         /// <returns>The duration of 1 beat in milliseconds.</returns>

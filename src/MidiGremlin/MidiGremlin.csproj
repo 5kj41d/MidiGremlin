@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chord.cs" />
+    <Compile Include="ChordVariety.cs" />
     <Compile Include="IMidiOut.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentType_Enum.cs" />
