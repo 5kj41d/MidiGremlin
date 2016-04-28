@@ -50,6 +50,7 @@ namespace MidiGremlin.Internal
 					if (_priorityQueue.Count != 0)
 					{
 						message = _priorityQueue[_priorityQueue.Count - 1];
+						_priorityQueue.RemoveAt(_priorityQueue.Count - 1);
 					}
 					else
 					{
@@ -71,8 +72,10 @@ namespace MidiGremlin.Internal
 				}
 
 				//If we was not interupted we assume we arrived at time
+				Console.Write($"{!block} || {GetWaitTimeMs(message)}");
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(message)))
 				{
+					Console.WriteLine($"Fin {message.Data:x}");
 					return message;
 				}
 			}
@@ -112,7 +115,7 @@ namespace MidiGremlin.Internal
 				var allTheBeats = beats.ToList();
 				var v = allTheBeats.SelectMany(TransformFunction).ToList();
 				_priorityQueue.AddRange(v);
-				_priorityQueue.Sort((lhs, rhs) => (int) (rhs.Timestamp - lhs.Timestamp));   //Beat to play next is the last in the list and so on.
+				_priorityQueue.Sort((lhs, rhs) =>rhs.Timestamp.CompareTo(lhs.Timestamp));   //Beat to play next is the last in the list and so on.
 
 				_newDataAdded.Set();
 			}
@@ -121,10 +124,10 @@ namespace MidiGremlin.Internal
 		private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeat arg)
 		{
 			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x9, 0, arg.ToneOffset, arg.ToneVelocity), arg.ToneStartTime);  //Key down.
+				MakeMidiEvent(0x9, 0, arg.Tone, arg.ToneVelocity), arg.ToneStartTime);  //Key down.
 
 			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x8, 0, arg.ToneOffset, arg.ToneVelocity), arg.ToneEndTime); //Key up.
+				MakeMidiEvent(0x8, 0, arg.Tone, arg.ToneVelocity), arg.ToneEndTime); //Key up.
 		}
 
 		private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
