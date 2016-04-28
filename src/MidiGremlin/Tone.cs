@@ -2,7 +2,7 @@
 {
     ///<summary>
     ///An enumeration which represents the tones by their names. 
-    /// Starts at C.
+    /// Starts at C. Values outside the ones enumerated are interpreted as part being a different octave.
     ///</summary>
     public enum Tone
     {
