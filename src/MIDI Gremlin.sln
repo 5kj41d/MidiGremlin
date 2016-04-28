@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiGremlinTests", "MidiGre
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ekamples", "Ekamples", "{777190FA-E2F8-4F72-B345-5267874794B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fur_Elise", "..\eksamples\Für Elise\Fur_Elise.csproj", "{2F117189-B516-4619-9129-6A3BF55F4461}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fur_Elise", "..\eksamples\Fur Elise\Fur_Elise.csproj", "{2F117189-B516-4619-9129-6A3BF55F4461}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
