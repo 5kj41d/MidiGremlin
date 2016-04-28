@@ -43,8 +43,8 @@ namespace MidiGremlin
         /// <returns> Returns a new note that has been offset. </returns>
         public Note OffsetBy(int offset, double? duration = null, byte? velocity = null)
         {
-            byte tempVelocity = this.Velocity;
-            double tempDuration = this.Duration;
+            byte tempVelocity = Velocity;
+            double tempDuration = Duration;
 
 
             if (velocity != null)
@@ -69,8 +69,8 @@ namespace MidiGremlin
         /// <returns> Returns a new note that has been offset within the scale. </returns>
         public Note OffsetBy(Scale scale, int offset, double? duration = null, byte? velocity = null)
         {
-            byte tempVelocity = this.Velocity;
-            double tempDuration = this.Duration;
+            byte tempVelocity = Velocity;
+            double tempDuration = Duration;
 
 
             if (velocity != null)
@@ -97,8 +97,8 @@ namespace MidiGremlin
         /// <returns> Returns a new note that has been offset within the scale. </returns>
         public Note OctaveOffsetBy(Scale scale, int offset, int octaveOffset, double? duration = null, byte? velocity = null)
         {
-            byte tempVelocity = this.Velocity;
-            double tempDuration = this.Duration;
+            byte tempVelocity = Velocity;
+            double tempDuration = Duration;
 
             if (velocity != null)
             {
@@ -110,7 +110,7 @@ namespace MidiGremlin
                 tempDuration = duration.Value;
             }
 
-            return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * (int)octaveOffset)), tempDuration, tempVelocity);
+            return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * octaveOffset)), tempDuration, tempVelocity);
         }
 
 
@@ -137,10 +137,10 @@ namespace MidiGremlin
         internal int MidiPithFromTone(Tone tone, int octave)
         {
             int pitch = (int) Tone + //Tone enum is a value between 1 and 12, where C is the first tone.
-                        (
-                        octave + 5 //Pitch 0 has octave -5, so octave 0 starts at 5*12=60. 
-                        + OctaveOffset //Apply OctaveOffset of the note's tone.
-                        )*12;   //1 octave is 12 tone steps.
+                (
+                    octave + 5 + //Pitch 0 has octave -5, so octave 0 starts at 5*12=60. 
+                    OctaveOffset //Apply OctaveOffset of the note's tone.
+                )*12;   //1 octave is 12 tone steps.
             if (0 > pitch || pitch > 127)
                 throw new ToneOutOfRangeExceptioin(pitch);
 

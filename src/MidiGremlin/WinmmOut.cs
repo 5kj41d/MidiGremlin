@@ -17,19 +17,21 @@ namespace MidiGremlin
 
         public SimpleMidiMessage(int data, double timestamp)
         {
-            this.Data = data;
-            this.Timestamp = timestamp;
+            Data = data;
+            Timestamp = timestamp;
         }
     }
 
 
 
     /// <summary>
-    /// The class WinmmOut stands for, Windows Multi Media Output, and does exactly that. 
-    /// It communicates with Windows Multi Media player and creates a file in which you can listen to the programmed music. 
+    /// The class Winmm Windows Multi Media Output.
+    /// This class communicates with winmm which outputs to the speaker using the specified device.
     /// </summary>
     public class WinmmOut : IMidiOut
     {
+        /// <summary> The ID of the device to use. 
+        /// If the device is not found, the default(ID 0) Windows virtual synthesizer will be used.</summary>
         public uint DeviceID { get; }
         
         private const int UpdateFrequency = 20;
@@ -40,11 +42,16 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
+
+
         /// <summary>
-        /// Plays the music using the windows music player
+        /// Creates a new instance of the WinmmOut class which opens a MIDI port at the specified device ID.
         /// </summary>
-        /// <param name="deviceID">The underlaying hardware port used to play music</param>
-        /// <param name="beatsPerMinutes">Represents the pace of the music</param>
+        /// <param name="deviceID">The underlaying hardware port used to play music. 
+        /// Windows should have a built-in virtual synthesizer as device 0.
+        /// The next port(if available) will be port 1 and so on.</param>
+        /// <param name="beatsPerMinutes">Specifies the length of a beat, which is the unit of time used throughout MIDI Gremlin.
+        /// If left at 60, a beat will be the same as a second.</param>
         public WinmmOut (uint deviceID, int beatsPerMinutes=60)
         {
             BeatsPerMinute = beatsPerMinutes;
@@ -65,6 +72,7 @@ namespace MidiGremlin
 
         /// <summary> Conversion constant between minutes and milliseconds. </summary>
         private static double _minutesToMilliseconds = 60000;
+        
         /// <summary>
         /// The duration of 1 beat in milliseconds.
         /// </summary>
@@ -78,8 +86,10 @@ namespace MidiGremlin
                 return durationInMilliseconds;
             }
         }
+
+
         /// <summary>
-        /// closes safely the winmmout
+        /// Closes the WinmmOut instance safely.
         /// </summary>
         public void Dispose()
         {
@@ -87,19 +97,18 @@ namespace MidiGremlin
             _disposed = true;
         }
 
+
         /// <summary>
         /// The amount of beats that have passed since this class was instantiated.
         /// </summary>
         /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
-        public int CurrentTime()
-        {
-            return  (int) (_time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds);
-        }
+        public int CurrentTime => (int) (_time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds);
 
-       /// <summary>
-       /// plays the music in order.
-       /// </summary>
-       /// <param name="music">the actual music that should be played</param>
+        /// <summary>
+        /// Plays the MusicObject at its specified start-time.
+        /// In normal cases, please use the Play method of an <see cref="T:MidiGremlin.Instrument"/> instead.
+        /// </summary>
+        /// <param name="music">The music that should be played.</param>
         public void QueueMusic(IEnumerable<SingleBeatWithChannel> music)
         {
             lock (_sync)
@@ -110,7 +119,9 @@ namespace MidiGremlin
             }
         }
 
-        
+        /// <summary>
+        /// Transforms the SimpleMidiMessages to two seperate ones each, one for key down and one for key up.
+        /// </summary>
         private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeatWithChannel arg)
         {
             yield return new SimpleMidiMessage(
@@ -184,13 +195,13 @@ namespace MidiGremlin
                 }
 
                 int sleeptime = Math.Min
-                    ( (int)Math.Floor((next.Timestamp - CurrentTime()) * BeatDuratinInMilliseconds)
+                    ( (int)Math.Floor((next.Timestamp - CurrentTime) * BeatDuratinInMilliseconds)
                     , UpdateFrequency);
 
                 if(sleeptime > 0)
                     Thread.Sleep(sleeptime);
 
-                if (next.Timestamp <= CurrentTime())
+                if (next.Timestamp <= CurrentTime)
                 {
                     Winmm.midiOutShortMsg(_handle, (uint) next.Data);
                     played = true;

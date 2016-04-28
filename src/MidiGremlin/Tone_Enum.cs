@@ -1,8 +1,34 @@
-namespace MidiGremlin
+﻿namespace MidiGremlin
 {
     ///<summary>
-    ///Tone is an enumeration which represents the tones with their respectable names. 
-    ///</summary> 
-    ///
-    public enum Tone { C, CSharp, D, DSharp, E, F, FSharp, G, GSharp, A, ASharp, B }
+    ///An enumeration which represents the tones by their names. 
+    /// Starts at C.
+    ///</summary>
+    public enum Tone
+    {
+        /// <summary> C(First element in the enum.) </summary>
+        C,
+        /// <summary> C♯ </summary>
+        CSharp,
+        /// <summary> D </summary>
+        D,
+        /// <summary> D♯ </summary>
+        DSharp,
+        /// <summary> E </summary>
+        E,
+        /// <summary> F </summary>
+        F,
+        /// <summary> F♯ </summary>
+        FSharp,
+        /// <summary> G </summary>
+        G,
+        /// <summary> G♯ </summary>
+        GSharp,
+        /// <summary> A </summary>
+        A,
+        /// <summary> A♯ </summary>
+        ASharp,
+        /// <summary> B(Or H in european notation.) </summary>
+        B
+    }
 }

@@ -13,7 +13,8 @@ namespace MidiGremlin
         /// The number of beats elapsed since this instance was created.
         /// </summary>
         /// <returns>The number of beats elapsed since this instance was created.</returns>
-        int CurrentTime ();
+        int CurrentTime { get; }
+
         /// <summary>
         /// Queques a MusicObject to be output at the time the MusicObject indicates.
         /// </summary>

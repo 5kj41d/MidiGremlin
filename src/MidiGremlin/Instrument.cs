@@ -36,7 +36,7 @@ namespace MidiGremlin
         /// <param name="music"> The music that the user wants played</param>
         public void Play(MusicObject music)
         {
-            Play(_orchestra.CurrentTime(), music);
+            Play(_orchestra.CurrentTime, music);
         }
         /// <summary>
         /// Plays the MusicObject at the given start time, using this instrument.
@@ -61,7 +61,7 @@ namespace MidiGremlin
         /// <param name="velocity">From 0 to 127. Default is 64. </param>
         public void Play(Tone tone, double duration, byte velocity = 64)
         {
-            Play(_orchestra.CurrentTime(), tone, duration,  velocity);
+            Play(_orchestra.CurrentTime, tone, duration,  velocity);
         }
         /// <summary>
         /// Plays a tone with duration, velocity and start-time specified.

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
     ///<summary>
-    ///The Orchestra class creates new instances of the instrument class.
-    ///It works as a compilation for these instruments.
+    ///The Orchestra class creates and mannages new instances of the instrument class.
     ///</summary>
    public class Orchestra : IOrchestra
     {
@@ -20,11 +18,10 @@ namespace MidiGremlin
         public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
 
         /// <summary>
-        /// 
+        /// Creates a new instance of the orchestra class. 
+        /// Needs a reference to an output class, which can be acieved by creating a new WinmmOut instance.
         /// </summary>
-        /// <param name="output"></param>
-        /// <param name="beatsPerMinutes">The amount of beats per 60 seconds.
-        /// If you set beats per min to 60 then you can consider it as seconds</param>
+        /// <param name="output"> The output class to send all played music to. </param>
         public Orchestra (IMidiOut output)
         {
             _output = output;
@@ -34,21 +31,26 @@ namespace MidiGremlin
         /// <summary>
         /// Constructs a new instrument and adds it to the orchestra.
         /// </summary>
-        /// <param name="instrumentType">Enum that represents an instrument</param>
-        /// <param name="ocatave">The interval between two tones.Default is 3</param>
-        /// <returns> Returns an overloaded AddInstrument,
-        /// where the the scale parameter is set to the ChromaticScale </returns>
-        public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
+        /// <param name="instrumentType">Enum that represents an instrument.</param>
+        /// <param name="ocatave">The instruments offset from the base octave. 
+        /// If this number is negative, the instrument will have a deeper sound,
+        ///  and if it is positive it will have a lighter sound. 
+        /// It can be between -5 and 5, but this is outside normal human hearing. </param>
+        /// <returns> Returns an instrument that plays in the chromatic scale. </returns>
+        public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 0)
         {
             return AddInstrument(instrumentType, Scale.ChromaticScale, ocatave);
         }
         /// <summary>
-        /// Constructs a new instrument and adds it to the orchestra. With scale as a parameter
+        /// Constructs a new instrument with a specified scale and adds it to the orchestra
         /// </summary>
         /// <param name="instrumentType">Enum that represents an instrument</param>
         /// <param name="scale">In the scale you want the music to be played</param>
-        /// <param name="octave">The interval between two tones.Default is 3</param>
-        /// <returns></returns>
+        /// <param name="octave">The instruments offset from the base octave. 
+        /// If this number is negative, the instrument will have a deeper sound,
+        ///  and if it is positive it will have a lighter sound. 
+        /// It can be between -5 and 5, but this is outside normal human hearing. </param>
+        /// <returns> Returns an instrument that plays in the specified scale. </returns>
         public Instrument AddInstrument (InstrumentType instrumentType, Scale scale, int octave=3)
         {
             Instrument instrument = new Instrument(this, instrumentType, scale, octave);
@@ -62,22 +64,18 @@ namespace MidiGremlin
             //TODO Allocate channel
             _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.Tone, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
         }
+
+
         /// <summary>
-        /// Returns the current time 
+        /// Returns the current time specified by the output class.
         /// </summary>
-        /// <returns>Returns the current time </returns>
-        public int CurrentTime()
-        {
-            return _output.CurrentTime();
-        }
-
-        
-
+        /// <returns>The current time </returns>
+        public int CurrentTime => _output.CurrentTime;
     }
 
     internal interface IOrchestra
 	{
 		void CopyToOutput(List<SingleBeat> music);
-		int CurrentTime();
-	}
+        int CurrentTime { get; }
+    }
 }
