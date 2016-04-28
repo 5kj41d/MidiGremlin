@@ -57,7 +57,7 @@ namespace MidiGremlin
         /// </summary>
         /// <param name="tone">The tone whose interval will be returned.</param>
         /// <returns>Returns the position of the tone in the scale.</returns>
-        /// <exception cref="NoteNotFoundException"> Thrown if the tone does not exist in the scale. </exception>
+        /// <exception cref="ToneNotFoundException"> Thrown if the tone does not exist in the scale. </exception>
         public int Interval(Tone tone)
         {
             int octaveDelta = (int)tone / _numberOfTones;
@@ -71,7 +71,7 @@ namespace MidiGremlin
                 }
             }
 
-            throw new NoteNotFoundException(tone);
+            throw new ToneNotFoundException(tone);
         }
 
 
