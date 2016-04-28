@@ -136,7 +136,7 @@ namespace MidiGremlin
         /// </summary>
         internal int MidiPithFromTone(Tone tone, int octave)
         {
-            int pitch = (int) Tone + //Tone enum is a value between 1 and 12, where C is the first tone.
+            int pitch = (int) tone + //Tone enum is a value between 1 and 12, where C is the first tone.
                         (
                         octave + 5 //Pitch 0 has octave -5, so octave 0 starts at 5*12=60. 
                         + OctaveOffset //Apply OctaveOffset of the note's tone.
