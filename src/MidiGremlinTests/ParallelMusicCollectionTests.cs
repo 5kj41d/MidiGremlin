@@ -17,11 +17,11 @@ namespace MidiGremlin.Tests
         public void ParallelMusicCollectionTest()
         {
             MusicObject[] testObjects = new MusicObject[5];
-            testObjects[0] = new Note(Tone.A, 2);
-            testObjects[1] = new Note(Tone.C, 4);
-            testObjects[2] = new Note(Tone.B, 3);
-            testObjects[3] = new Note(Tone.E, 1);
-            testObjects[4] = new Note(Tone.D, 5);
+            testObjects[0] = new Keystroke(Tone.A, 2);
+            testObjects[1] = new Keystroke(Tone.C, 4);
+            testObjects[2] = new Keystroke(Tone.B, 3);
+            testObjects[3] = new Keystroke(Tone.E, 1);
+            testObjects[4] = new Keystroke(Tone.D, 5);
 
             ParallelMusicCollection pM = new ParallelMusicCollection(testObjects);
             Assert.IsTrue(pM.Contains(testObjects[0]) && pM.Contains(testObjects[1]) && pM.Contains(testObjects[2]) && pM.Contains(testObjects[3]) && pM.Contains(testObjects[4]));
@@ -31,11 +31,11 @@ namespace MidiGremlin.Tests
         public void ParallelGetChildrenTest()
         {
             MusicObject[] testObjects = new MusicObject[5];
-            testObjects[0] = new Note(Tone.A, 2);
+            testObjects[0] = new Keystroke(Tone.A, 2);
             testObjects[1] = new Pause(1);
-            testObjects[2] = new Note(Tone.B, 3);
+            testObjects[2] = new Keystroke(Tone.B, 3);
             testObjects[3] = new Pause(1);
-            testObjects[4] = new Note(Tone.D, 5);
+            testObjects[4] = new Keystroke(Tone.D, 5);
             List<SingleBeat> sTestList = new List<SingleBeat>();
 
             ParallelMusicCollection sTestCollection = new ParallelMusicCollection(testObjects);

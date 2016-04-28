@@ -3,7 +3,7 @@
 namespace MidiGremlin
 {
     /// <summary>
-    /// Exception thrown when the tone contained in a Note class 
+    /// Exception thrown when the tone contained in a Keystroke class 
     /// is not supported by the MIDI standard because it is out of range.
     /// A rising or falling sequence of tones will be
     ///  outside normal human hearing(and perhaps speaker capacity)

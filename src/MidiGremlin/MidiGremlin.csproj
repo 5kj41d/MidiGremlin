@@ -60,7 +60,7 @@
     <Compile Include="IOrchestra.cs" />
     <Compile Include="MusicObject.cs" />
     <Compile Include="NamespaceDoc.cs" />
-    <Compile Include="Note.cs" />
+    <Compile Include="Keystroke.cs" />
     <Compile Include="NoteNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
     <Compile Include="ParallelMusicCollection.cs" />

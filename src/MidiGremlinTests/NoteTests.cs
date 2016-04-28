@@ -22,7 +22,7 @@ namespace MidiGremlin.Tests
             IOrchestra o = Substitute.For<IOrchestra>();
             Instrument i = new Instrument(o, InstrumentType.AccousticBass, new Scale(), octave);
 
-            Note n = new Note(tone, 22, 33);
+            Keystroke n = new Keystroke(tone, 22, 33);
 
             SingleBeat actual = n.GetChildren(i, 0).First();
             SingleBeat expected = new SingleBeat(i.InstrumentType, expectedPitch, n.Velocity, 0, n.Duration);

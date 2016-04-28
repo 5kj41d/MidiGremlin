@@ -25,7 +25,7 @@ namespace MidiGremlin.Tests
         public void QueueMusicTest ()
         {
             Orchestra o = new Orchestra(new WinmmOut(0));
-			Note n = new Note(Tone.C,  1000);
+			Keystroke n = new Keystroke(Tone.C,  1000);
 	        Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
 
 			i.Play(n);

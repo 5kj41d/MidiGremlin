@@ -17,11 +17,11 @@ namespace MidiGremlin.Tests
         public void SequentialMusicCollectionTest()
         {
             MusicObject[] testObjects = new MusicObject[5];
-            testObjects[0] = new Note(Tone.A, 2);
-            testObjects[1] = new Note(Tone.C, 4);
-            testObjects[2] = new Note(Tone.B, 3);
-            testObjects[3] = new Note(Tone.E, 1);
-            testObjects[4] = new Note(Tone.D, 5);
+            testObjects[0] = new Keystroke(Tone.A, 2);
+            testObjects[1] = new Keystroke(Tone.C, 4);
+            testObjects[2] = new Keystroke(Tone.B, 3);
+            testObjects[3] = new Keystroke(Tone.E, 1);
+            testObjects[4] = new Keystroke(Tone.D, 5);
 
             SequentialMusicCollection sTest = new SequentialMusicCollection(testObjects);
             Assert.IsTrue(sTest.Contains(testObjects[0]) && sTest.Contains(testObjects[1]) && sTest.Contains(testObjects[2]) && sTest.Contains(testObjects[3]) && sTest.Contains(testObjects[4]));
@@ -30,11 +30,11 @@ namespace MidiGremlin.Tests
         public void SequentialGetChildrenTest()
         {
             MusicObject[] testObjects = new MusicObject[5];
-            testObjects[0] = new Note(Tone.A, 2);
+            testObjects[0] = new Keystroke(Tone.A, 2);
             testObjects[1] = new Pause(1);
-            testObjects[2] = new Note(Tone.B, 3);
+            testObjects[2] = new Keystroke(Tone.B, 3);
             testObjects[3] = new Pause(1);
-            testObjects[4] = new Note(Tone.D, 5);
+            testObjects[4] = new Keystroke(Tone.D, 5);
             List<SingleBeat> sTestList = new List<SingleBeat>();
 
             SequentialMusicCollection sTestCollection = new SequentialMusicCollection(testObjects);
@@ -59,11 +59,11 @@ namespace MidiGremlin.Tests
         public void SequentialGetChildrenTest2()
         {
             MusicObject[] testObjects = new MusicObject[5];
-            testObjects[0] = new Note(Tone.A, 2);
+            testObjects[0] = new Keystroke(Tone.A, 2);
             testObjects[1] = new Pause(1);
             testObjects[2] = new ChordVariety(1, 4, 7).WithBaseTone(Tone.E, 2);
             testObjects[3] = new Pause(1);
-            testObjects[4] = new Note(Tone.D, 2);
+            testObjects[4] = new Keystroke(Tone.D, 2);
             List<SingleBeat> sTestList = new List<SingleBeat>();
 
             SequentialMusicCollection sTestCollection = new SequentialMusicCollection(testObjects);

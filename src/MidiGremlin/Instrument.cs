@@ -73,8 +73,8 @@ namespace MidiGremlin
         /// <param name="velocity">Goes from 0 to 127. Default is 64.</param>
         public void Play(double startTime, Tone tone, double duration,  byte velocity = 64)
         {
-            Note note = new Note(tone, duration, velocity);
-            Play(startTime, note);
+            Keystroke keystroke = new Keystroke(tone, duration, velocity);
+            Play(startTime, keystroke);
         }
 
         

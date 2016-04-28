@@ -31,9 +31,9 @@ namespace MidiGremlin.Tests
             
 
             List<SingleBeat> comp = new List<SingleBeat>();
-            comp.AddRange(new Note(tone,duration,velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
-            comp.AddRange(new Note(Tone.E, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
-            comp.AddRange(new Note(Tone.G, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(tone,duration,velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(Tone.E, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(Tone.G, duration, velocity).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
 
             Assert.IsTrue(v.SequenceEqual(comp));
         }
@@ -50,9 +50,9 @@ namespace MidiGremlin.Tests
 
 
             List<SingleBeat> comp = new List<SingleBeat>();
-            comp.AddRange(new Note(tone, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
-            comp.AddRange(new Note(Tone.E, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
-            comp.AddRange(new Note(Tone.G, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(tone, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(Tone.E, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
+            comp.AddRange(new Keystroke(Tone.G, duration).GetChildren(orc.AddInstrument(InstrumentType.AccousticGrandPiano), 0).ToList());
 
             Assert.IsTrue(v.SequenceEqual(comp));
         }

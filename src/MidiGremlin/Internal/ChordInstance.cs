@@ -4,7 +4,7 @@ namespace MidiGremlin.Internal
 {
     internal class ChordInstance : MusicObject
     {
-        List<Note> _notes = new List<Note>();
+        List<Keystroke> _notes = new List<Keystroke>();
 
         /// <summary>
         /// A chord consisting of a root tone and the tone-steps from the root-tone.
@@ -19,7 +19,7 @@ namespace MidiGremlin.Internal
             foreach(int i in toneSteps)
             {
                 int interval = i - 1;   //The root tone is defined as having interval 1. So if i is 1, the tone should be shifted 0 intervals etc.
-                _notes.Add(new Note(tone + interval, duration));
+                _notes.Add(new Keystroke(tone + interval, duration));
             }
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace MidiGremlin.Internal
             foreach (int i in toneSteps)
             {
                 int interval = i - 1; //The root tone is defined as having interval 1.
-                _notes.Add(new Note(tone + interval, duration, velocity));
+                _notes.Add(new Keystroke(tone + interval, duration, velocity));
             }
         }
 
@@ -49,7 +49,7 @@ namespace MidiGremlin.Internal
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, double startTime)
         {
-            foreach (Note n in _notes)
+            foreach (Keystroke n in _notes)
             {
                 int tone = (int)n.Tone + (playedBy.Octave + n.OctaveOffset) * 12;
                 yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, n.Velocity, startTime, startTime + n.Duration);

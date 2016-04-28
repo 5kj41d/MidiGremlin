@@ -10,10 +10,10 @@ namespace MidiGremlin.Helpers
 	{
 		private readonly List<MusicObject> _list = new List<MusicObject>();
 
-		public SequentialHelper Solo(Note note)
+		public SequentialHelper Solo(Keystroke keystroke)
 		{
-			_list.Add(note);
-			_list.Add(new Pause(note.Duration));
+			_list.Add(keystroke);
+			_list.Add(new Pause(keystroke.Duration));
 			return this;
 		}
 
