@@ -60,7 +60,7 @@ namespace MidiGremlin
         void IOrchestra.CopyToOutput(List<SingleBeat> music)
         {
             //TODO Allocate channel
-            _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.ToneOffset, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
+            _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.Tone, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
         }
         /// <summary>
         /// Returns the current time 

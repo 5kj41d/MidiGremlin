@@ -62,7 +62,7 @@ namespace MidiGremlin
         public int BeatsPerMinute { get; set; }
 
         /// <summary> Conversion constant between minutes and milliseconds. </summary>
-        private static double _minutesToMilliseconds = (5 / 3) * Math.Pow(10, -5);
+        private static double _minutesToMilliseconds = 60000;
         /// <summary>
         /// The duration of 1 beat in milliseconds.
         /// </summary>
