@@ -61,7 +61,7 @@
     <Compile Include="MusicObject.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Keystroke.cs" />
-    <Compile Include="NoteNotFoundException.cs" />
+    <Compile Include="ToneNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
     <Compile Include="ParallelMusicCollection.cs" />
     <Compile Include="Pause.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Scale.cs" />
     <Compile Include="SequentialMusicList.cs" />
     <Compile Include="ToneOutOfRangeExceptioin.cs" />
-    <Compile Include="Tone_Enum.cs" />
+    <Compile Include="Tone.cs" />
     <Compile Include="WinmmOut.cs" />
   </ItemGroup>
   <ItemGroup>
