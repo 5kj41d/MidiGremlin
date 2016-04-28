@@ -23,9 +23,9 @@ namespace MidiGremlin.Helpers
 			return this;
 		}
 
-		public SequentialMusicCollection Build()
+		public SequentialMusicList Build()
 		{
-			return new SequentialMusicCollection(_list);
+			return new SequentialMusicList(_list);
 		}
 	}
 }

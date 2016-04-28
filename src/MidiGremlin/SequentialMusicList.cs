@@ -6,18 +6,18 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class SequentialMusicCollection inherits from the class MusicObject.
+    ///The class SequentialMusicList inherits from the class MusicObject.
     ///The class consists of an ordered list of MusicObjects, each played after the last pause of the previous one.
     ///</summary>
-    public class SequentialMusicCollection : MusicObject, IList<MusicObject>
+    public class SequentialMusicList : MusicObject, IList<MusicObject>
     {
          List<MusicObject> _children = new List<MusicObject>();
 
         /// <summary>
-        /// Creates a new instance of the SequentialMusicCollection class containg a number of MusicObjects.
+        /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
         /// </summary>
         /// <param name="children">A list of MusicObjects.</param>
-        public SequentialMusicCollection (IEnumerable<MusicObject> children)
+        public SequentialMusicList (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
             {
@@ -25,11 +25,11 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        /// Creates a new instance of the SequentialMusicCollection class containg a number of MusicObjects.
+        /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
         /// Give it at least 1 parameter
         /// </summary>
         /// <param name="children">A number of MusicObjects.</param>
-        public SequentialMusicCollection (params MusicObject[] children)
+        public SequentialMusicList (params MusicObject[] children)
         {
             foreach (MusicObject m in children)
             {

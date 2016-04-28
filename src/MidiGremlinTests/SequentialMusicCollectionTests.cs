@@ -23,7 +23,7 @@ namespace MidiGremlin.Tests
             testObjects[3] = new Keystroke(Tone.E, 1);
             testObjects[4] = new Keystroke(Tone.D, 5);
 
-            SequentialMusicCollection sTest = new SequentialMusicCollection(testObjects);
+            SequentialMusicList sTest = new SequentialMusicList(testObjects);
             Assert.IsTrue(sTest.Contains(testObjects[0]) && sTest.Contains(testObjects[1]) && sTest.Contains(testObjects[2]) && sTest.Contains(testObjects[3]) && sTest.Contains(testObjects[4]));
         }
         [Test]
@@ -35,16 +35,16 @@ namespace MidiGremlin.Tests
             testObjects[2] = new Keystroke(Tone.B, 3);
             testObjects[3] = new Pause(1);
             testObjects[4] = new Keystroke(Tone.D, 5);
-            List<SingleBeat> sTestList = new List<SingleBeat>();
+            List<SingleBeat> sSBList = new List<SingleBeat>();
 
-            SequentialMusicCollection sTestCollection = new SequentialMusicCollection(testObjects);
+            SequentialMusicList sTestList = new SequentialMusicList(testObjects);
             IOrchestra testOrc = Substitute.For<IOrchestra>();
             Instrument i = new Instrument(testOrc, InstrumentType.AccousticBass, new Scale());
-            sTestList.AddRange(sTestCollection.GetChildren(i, 1));
+            sSBList.AddRange(sTestList.GetChildren(i, 1));
 
             bool testBool = true;
             double testDouble = 0;
-            foreach (SingleBeat sb in sTestList)
+            foreach (SingleBeat sb in sSBList)
             {
                 if (!(sb.ToneStartTime > testDouble))
                 {
@@ -64,16 +64,16 @@ namespace MidiGremlin.Tests
             testObjects[2] = new ChordVariety(1, 4, 7).WithBaseTone(Tone.E, 2);
             testObjects[3] = new Pause(1);
             testObjects[4] = new Keystroke(Tone.D, 2);
-            List<SingleBeat> sTestList = new List<SingleBeat>();
+            List<SingleBeat> sSBList = new List<SingleBeat>();
 
-            SequentialMusicCollection sTestCollection = new SequentialMusicCollection(testObjects);
+            SequentialMusicList sTestList = new SequentialMusicList(testObjects);
             IOrchestra testOrc = Substitute.For<IOrchestra>();
             Instrument i = new Instrument(testOrc, InstrumentType.AccousticBass, new Scale());
-            sTestList.AddRange(sTestCollection.GetChildren(i, 1));
+            sSBList.AddRange(sTestList.GetChildren(i, 1));
 
             int testInt = 0 ;
             double testDouble = 0;
-            foreach (SingleBeat sb in sTestList)
+            foreach (SingleBeat sb in sSBList)
             {
                 if ((sb.ToneStartTime > testDouble))
                 {

@@ -4,7 +4,7 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     /*
-     *  Potentially a list of other MusicObjects to be played in sequence. (SequentialMusicCollection)
+     *  Potentially a list of other MusicObjects to be played in sequence. (SequentialMusicList)
      *  Potentially a list of other MusicObjects to be played at the same time. (ChordVariety)
      *  Potentially an object signifying a pause. (Take a guess)
      *  Potentially an object signifying a pitch and a duration. (Tone)

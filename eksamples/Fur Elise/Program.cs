@@ -69,7 +69,7 @@ namespace Für_Elise
 			MusicObject rBar5 = rBar1;
 
             //The whole right hand.
-            MusicObject rightHand = new SequentialMusicCollection(
+            MusicObject rightHand = new SequentialMusicList(
                 rBar0,
                 rBar1,
                 rBar2,
@@ -115,7 +115,7 @@ namespace Für_Elise
             MusicObject lBar5 = lBar1;
 
             //The whole left hand.
-            MusicObject leftHand = new SequentialMusicCollection(
+            MusicObject leftHand = new SequentialMusicList(
                 lBar0,
                 lBar1,
                 lBar2,
