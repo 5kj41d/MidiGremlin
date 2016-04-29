@@ -12,13 +12,15 @@ namespace MidiGremlin
         private readonly IMidiOut _output;
         private readonly List<Instrument> _instruments = new List<Instrument>();
 	    private readonly BeatScheduler _beatScheduler;
+	    private IReadOnlyCollection<Instrument> _roInstrumentsCache;
 
-        /// <summary>
-        /// property of the istruments which is readonly
-        /// </summary>
-        public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();  //TODO: Cache
+		/// <summary>
+		/// property of the istruments which is readonly
+		/// </summary>
+		public IReadOnlyCollection<Instrument> Instruments => _roInstrumentsCache ?? (_roInstrumentsCache = _instruments.AsReadOnly());
 
-        /// <summary>
+
+	    /// <summary>
         /// Creates a new instance of the orchestra class. 
         /// Needs a reference to an output class, which can be acieved by creating a new WinmmOut instance.
         /// </summary>
@@ -66,13 +68,13 @@ namespace MidiGremlin
         {
             _beatScheduler.AddToQueue(music);
         }
+
 	    Internal.SimpleMidiMessage IOrchestra.NextToPlay(bool block)
 	    {
 		    return _beatScheduler.GetNextMidiCommand(block);
 	    }
 
-
-        /// <summary>
+		/// <summary>
         /// Returns the current time specified by the output class.
         /// </summary>
         /// <returns>The current time </returns>
