@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChordVariety.cs" />
-    <Compile Include="Helpers\SequentialHelper.cs" />
     <Compile Include="IMidiOut.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentType_Enum.cs" />

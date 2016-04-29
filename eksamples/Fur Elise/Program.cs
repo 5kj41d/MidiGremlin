@@ -1,5 +1,4 @@
 ﻿using MidiGremlin;
-using MidiGremlin.Helpers;
 
 namespace Für_Elise
 {
@@ -24,47 +23,52 @@ namespace Für_Elise
             // so by counting a note's offset from the G 
             // and adding the value corresponding to G in the scale
             // you get the tone you want.
-            int trebleClef = 7; 
-            
-            //Making all the six bars:
+            int trebleClef = 7;
 
-	        MusicObject rBar0 = new SequentialHelper()
-		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-		        .Build();
+			//Making all the six bars:
 
-	        MusicObject rBar1 = new SequentialHelper()
-		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[5 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[3 + trebleClef], eigth, baseVelocity))
-		        .Build();
+			MusicObject rBar0 = new SequentialMusicList
+						(
+							new Note(s[5 + trebleClef], eigth, baseVelocity),
+							new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
+						);
 
-			MusicObject rBar2 = new SequentialHelper()
-                .Solo(new Keystroke(s[1 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-4 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[1 + trebleClef], eigth, baseVelocity))
-		   .Build();
+			MusicObject rBar1 = new SequentialMusicList
+			(
+				new Note(s[5 + trebleClef], eigth, baseVelocity),
+				new Note(s[4 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[5 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[2 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[4 + trebleClef], eigth, baseVelocity),
+				new Note(s[3 + trebleClef], eigth, baseVelocity)
+			);
 
-			MusicObject rBar3 = new SequentialHelper()
-                .Solo(new Keystroke(s[2 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[0 + trebleClef] + 1, eigth, baseVelocity))
-                .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
-		   .Build();
+			MusicObject rBar2 = new SequentialMusicList
+			(
+				new Note(s[1 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-4 + trebleClef], eigth, baseVelocity),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[1 + trebleClef], eigth, baseVelocity)
+			);
 
-			MusicObject rBar4 = new SequentialHelper()
-                .Solo(new Keystroke(s[3 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-			.Build();
+			MusicObject rBar3 = new SequentialMusicList
+			(
+				new Note(s[2 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[0 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[2 + trebleClef] + 1, eigth, baseVelocity)
+			);
+
+			MusicObject rBar4 = new SequentialMusicList
+			(
+				new Note(s[3 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[5 + trebleClef], eigth, baseVelocity),
+				new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
+			);
 
 			MusicObject rBar5 = rBar1;
 
@@ -92,25 +96,26 @@ namespace Für_Elise
 
             MusicObject lBar1 = new Pause(eigth*6);
 
-            MusicObject lBar2 = new SequentialHelper()
-                .Solo(new Keystroke(s[-5 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[2 + bassClef], eigth, baseVelocity))
-                .Any(new Pause(eigth))
-                .Any(new Pause(eigth*2))
-				.Build();
+			MusicObject lBar2 = new SequentialMusicList
+			(
+				new Note(s[-5 + bassClef], eigth, baseVelocity),
+				new Note(s[-1 + bassClef], eigth, baseVelocity),
+				new Note(s[2 + bassClef], eigth, baseVelocity),
+				new Pause(eigth),
+				new Pause(eigth * 2)
+			);
+
+			MusicObject lBar3 = new SequentialMusicList
+			(
+				new Note(s[-8 + bassClef], eigth, baseVelocity),
+				new Note(s[-1 + bassClef], eigth, baseVelocity),
+				new Note(s[1 + bassClef] + 1, eigth, baseVelocity),
+				new Pause(eigth),
+				new Pause(eigth * 2)
+			);
 
 
-			MusicObject lBar3 = new SequentialHelper()
-                .Solo(new Keystroke(s[-8 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[1 + bassClef] + 1, eigth, baseVelocity))
-                .Any(new Pause(eigth))
-                .Any(new Pause(eigth*2))
-				.Build();
-            
-
-            MusicObject lBar4 = lBar2;
+			MusicObject lBar4 = lBar2;
 
             MusicObject lBar5 = lBar1;
 
