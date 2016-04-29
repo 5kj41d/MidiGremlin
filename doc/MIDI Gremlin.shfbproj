@@ -38,6 +38,25 @@
     <NamingMethod>Guid</NamingMethod>
     <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <TocParentId>-1</TocParentId>
+    <TocParentVersion>100</TocParentVersion>
+    <TopicVersion>100</TopicVersion>
+    <TocOrder>-1</TocOrder>
+    <ProductTitle>MIDI Gremlin</ProductTitle>
+    <MSHelpViewerSdkLinkType>Msdn</MSHelpViewerSdkLinkType>
+    <CatalogVersion>100</CatalogVersion>
+    <CatalogProductId>VS</CatalogProductId>
+    <TransformComponentArguments>
+      <Argument Key="logoFile" Value="Gremlin.png" />
+      <Argument Key="logoHeight" Value="150" />
+      <Argument Key="logoWidth" Value="250" />
+      <Argument Key="logoAltText" Value="" />
+      <Argument Key="logoPlacement" Value="left" />
+      <Argument Key="logoAlignment" Value="left" />
+      <Argument Key="maxVersionParts" Value="" />
+      <Argument Key="defaultLanguage" Value="cs" />
+      <Argument Key="includeEnumValues" Value="true" />
+    </TransformComponentArguments>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
@@ -68,4 +87,23 @@
     </PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icons\GremlinIcon.png">
+      <ImageId>GremlinIcon</ImageId>
+      <AlternateText>Gremlin Icon</AlternateText>
+    </Image>
+    <Content Include="icons\Gremlin.png">
+      <ImageId>Gremlin</ImageId>
+      <AlternateText>Gremlin</AlternateText>
+      <CopyToMedia>True</CopyToMedia>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Thumbs.db" />
+    <None Include="icons\GremlinIcon.svg" />
+    <None Include="icons\Gremlin.svg" />
+  </ItemGroup>
 </Project>
