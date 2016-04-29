@@ -61,6 +61,7 @@
     <Compile Include="MusicObject.cs" />
     <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Keystroke.cs" />
+    <Compile Include="Note.cs" />
     <Compile Include="ToneNotFoundException.cs" />
     <Compile Include="Orchestra.cs" />
     <Compile Include="ParallelMusicCollection.cs" />
