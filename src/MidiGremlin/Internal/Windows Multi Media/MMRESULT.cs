@@ -4,7 +4,7 @@
     /// Result of multi media function call.
     /// http://www.pinvoke.net/default.aspx/winmm/MMRESULT.html
     /// </summary>
-    public enum MMRESULT : uint
+    internal enum MMRESULT : uint
     {
         MMSYSERR_NOERROR = 0,
         MMSYSERR_ERROR = 1,
