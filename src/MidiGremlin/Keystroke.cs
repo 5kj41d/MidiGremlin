@@ -125,7 +125,7 @@ namespace MidiGremlin
         {
             byte velocity = Math.Min((byte) 127, Velocity);
 
-            int tone = MidiPithFromTone(Tone, playedBy.Octave);
+            int tone = MidiPitchFromTone(Tone, playedBy.Octave);
 
             yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
         }
@@ -134,7 +134,7 @@ namespace MidiGremlin
         /// <summary>
         /// Converts the MIDI Gremlin tone to the pitch that the MIDI standard specifies.
         /// </summary>
-        internal int MidiPithFromTone(Tone tone, int octave)
+        internal int MidiPitchFromTone(Tone tone, int octave)
         {
             int pitch = (int) tone + //Tone enum is a value between 1 and 12, where C is the first tone.
                 (
