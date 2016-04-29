@@ -115,10 +115,15 @@ namespace MidiGremlin.Internal
 				var allTheBeats = beats.ToList();
 				var v = allTheBeats.SelectMany(TransformFunction).ToList();
 				_priorityQueue.AddRange(v);
-				_priorityQueue.Sort((lhs, rhs) =>rhs.Timestamp.CompareTo(lhs.Timestamp));   //Beat to play next is the last in the list and so on.
+				_priorityQueue.Sort(sortSimpleMessages);   //Beat to play next is the last in the list and so on.
 
 				_newDataAdded.Set();
 			}
+		}
+
+		private int sortSimpleMessages(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
+		{
+			return rhs.Timestamp.CompareTo(lhs.Timestamp);
 		}
 
 		private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeat arg)
