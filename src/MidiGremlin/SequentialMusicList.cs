@@ -182,18 +182,15 @@ namespace MidiGremlin
             double tempTime = startTime;
             foreach (MusicObject m in _children)
             {
-                if (m is Pause)
-                {
-                    tempTime += ((Pause)m).Duration;
-                }
-                else
-                {
-                    foreach (SingleBeat sb in m.GetChildren(playedBy, tempTime))
-                    {
-                        tempTime = Math.Max(tempTime, sb.ToneStartTime);
-                        yield return sb;
-                    }
-                }
+
+	            foreach (SingleBeat sb in m.GetChildren(playedBy, tempTime))
+	            {
+		            tempTime = Math.Max(tempTime, sb.ToneStartTime);
+		            if (sb.ToneVelocity == 0xff && sb.Tone == 0xff)
+			            continue;
+
+					yield return sb;
+	            }
             }
         }
 

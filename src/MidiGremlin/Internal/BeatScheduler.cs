@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,23 +13,27 @@ namespace MidiGremlin.Internal
 	public class BeatScheduler
 	{
 		private /*const*/ static readonly SimpleMidiMessage EmptyMessage = new SimpleMidiMessage(0,0);
+		private static readonly HashSet<InstrumentType> DrumInstrumentTypes = new HashSet<InstrumentType>()
+		{
+			InstrumentType.AccousticBass
+		}; 
 
 		//TODO: Make this a real concurrent priority queue. Well, this works, but muh performance
 		//Last [Count - 1] is first as it is cheaper to remove / insert there
 		private readonly List<SimpleMidiMessage> _priorityQueue = new List<SimpleMidiMessage>(); 
-
+		//overflow queue of midi commands to play imediatly
 		private readonly object _syncRoot = new object();
 		private readonly EventWaitHandle _newDataAdded = new AutoResetEvent(false);
+		private readonly EventWaitHandle _emptyHandle = new ManualResetEvent(false);
 		private readonly Orchestra _orchestra;
 		private readonly IMidiOut _output;
-
+		
 		internal BeatScheduler(Orchestra orchestra, IMidiOut output)
 		{
 			this._orchestra = orchestra;
 			_output = output;
 		}
-
-
+		
 		/// <summary>
 		/// Returns the next simple midi event to be played from the queue. 
 		/// Can either block until it is time to actually play it or return the current next imediatly
@@ -54,6 +59,11 @@ namespace MidiGremlin.Internal
 					}
 					else
 					{
+						//If the emptyHandle is not set, notify that we have finished everything
+						if (!_emptyHandle.WaitOne(0))
+						{
+							_emptyHandle.Set();  
+						}
 						message = EmptyMessage;
 					}
 				}
@@ -72,10 +82,10 @@ namespace MidiGremlin.Internal
 				}
 
 				//If we was not interupted we assume we arrived at time
-				Console.Write($"{!block} || {GetWaitTimeMs(message)}");
+				Console.Write($"{!block} || {GetWaitTimeMs(message):D4}");
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(message)))
 				{
-					Console.WriteLine($"Fin {message.Data:x}");
+					Console.WriteLine($"Fin {message}");
 					return message;
 				}
 			}
@@ -89,6 +99,25 @@ namespace MidiGremlin.Internal
 #else
 			return new SimpleMidiMessage(0,0);
 #endif
+		}
+
+		public EventWaitHandle EmptyWaitHandle => _emptyHandle;
+
+		internal void AddToQueue(IEnumerable<SingleBeat> beats)
+		{
+			lock (_syncRoot)
+			{
+				if (_emptyHandle.WaitOne(0))
+				{
+					_emptyHandle.Reset();
+				}
+				var allTheBeats = beats.ToList();
+				var v = allTheBeats.SelectMany(TransformFunction).ToList();
+				_priorityQueue.AddRange(v);
+				_priorityQueue.Sort(sortSimpleMessages);   //Beat to play next is the last in the list and so on.
+
+				_newDataAdded.Set();
+			}
 		}
 
 		private int GetWaitTimeMs(SimpleMidiMessage message)
@@ -106,24 +135,17 @@ namespace MidiGremlin.Internal
 			return (int) (remaining*msPerBeat);
 		}
 
-
-		internal void AddToQueue(IEnumerable<SingleBeat> beats)
-		{
-			lock (_syncRoot)
-			{
-
-				var allTheBeats = beats.ToList();
-				var v = allTheBeats.SelectMany(TransformFunction).ToList();
-				_priorityQueue.AddRange(v);
-				_priorityQueue.Sort(sortSimpleMessages);   //Beat to play next is the last in the list and so on.
-
-				_newDataAdded.Set();
-			}
-		}
-
 		private int sortSimpleMessages(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
-			return rhs.Timestamp.CompareTo(lhs.Timestamp);
+			int first = rhs.Timestamp.CompareTo(lhs.Timestamp);
+			if (first != 0)
+				return first;
+
+			int lhsType = (lhs.Data & 0xf0) >> 4;
+			int rhsType = (rhs.Data & 0xf0) >> 4;
+
+			int second = lhsType.CompareTo(rhsType);
+			return second;
 		}
 
 		private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeat arg)

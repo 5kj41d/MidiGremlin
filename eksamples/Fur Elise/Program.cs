@@ -1,4 +1,5 @@
-﻿using MidiGremlin;
+﻿using System;
+using MidiGremlin;
 
 namespace Für_Elise
 {
@@ -13,8 +14,7 @@ namespace Für_Elise
         {
             //Like most old western it is played in the A minor scale.
             Scale s = new Scale(Tone.A, Tone.B, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G);
-
-            double eigth = 1 / 8D;
+			double eigth = 1 / 8D;
             byte baseVelocity = 72;
 
             //Creating the right hand:
@@ -23,7 +23,7 @@ namespace Für_Elise
             // so by counting a note's offset from the G 
             // and adding the value corresponding to G in the scale
             // you get the tone you want.
-            int trebleClef = 7;
+            int trebleClef = 5;
 
 			//Making all the six bars:
 
@@ -133,13 +133,16 @@ namespace Für_Elise
             MusicObject furEliseIntro = new ParallelMusicCollection(rightHand, leftHand);
 
             //To play music, first we need an orchestra with access to a player
-            Orchestra o = new Orchestra(new WinmmOut(0, 70));  //Slow but...
+            Orchestra o = new Orchestra(new WinmmOut(0, 30));  //Slow but...
 
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, s, 0);
 
             //And so we just start it.
-            piano.Play(furEliseIntro);
+            piano.Play(2,furEliseIntro);
+
+			o.WaitForFinished();
+	        Console.ReadLine();
         }
     }
 }

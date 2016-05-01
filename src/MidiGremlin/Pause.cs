@@ -34,7 +34,7 @@ namespace MidiGremlin
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
-            yield return new SingleBeat();
+	        yield return new SingleBeat(0, 0xff, 0xff, startTime + Duration, startTime + Duration);
         }
     }
 }

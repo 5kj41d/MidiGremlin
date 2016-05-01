@@ -83,5 +83,13 @@ namespace MidiGremlin
 			double d = _output.CurrentTime();
 	        return d;
         }
+
+		/// <summary>
+		/// Blocks until the underlying IMidiOut have consumed all music
+		/// </summary>
+	    public void WaitForFinished()
+		{
+			_beatScheduler.EmptyWaitHandle.WaitOne();
+		}
     }
 }
