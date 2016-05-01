@@ -13,11 +13,7 @@ namespace MidiGremlin.Internal
 	public class BeatScheduler
 	{
 		private /*const*/ static readonly SimpleMidiMessage EmptyMessage = new SimpleMidiMessage(0,0);
-		private static readonly HashSet<InstrumentType> DrumInstrumentTypes = new HashSet<InstrumentType>()
-		{
-			InstrumentType.AccousticBass
-		}; 
-
+		
 		//TODO: Make this a real concurrent priority queue. Well, this works, but muh performance
 		//Last [Count - 1] is first as it is cheaper to remove / insert there
 		private readonly List<SimpleMidiMessage> _priorityQueue = new List<SimpleMidiMessage>(); 
