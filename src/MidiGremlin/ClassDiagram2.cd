@@ -1,158 +1,158 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="MidiGremlin.Chord">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+  <Class Name="MidiGremlin.Chord" Collapsed="true">
+    <Position X="4.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAACAEAAAQAQAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Chord.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.Instrument">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+  <Class Name="MidiGremlin.Instrument" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAIAAAAAAAAAAAAAgEAAAAAAAAg=</HashCode>
       <FileName>Instrument.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.MusicObject" Collapsed="true">
-    <Position X="2" Y="7" Width="1.5" />
+  <Class Name="MidiGremlin.MusicObject">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>MusicObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.Note" Collapsed="true">
-    <Position X="0.5" Y="8.75" Width="1.5" />
+  <Class Name="MidiGremlin.Note">
+    <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAQAACAEAAAAAAAAAAAAAAQAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAEAAQAACAEAAAAAAAAAAAAAAQAAAAAAAAAAEAAI=</HashCode>
       <FileName>Note.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MidiGremlin.NoteNotFoundException" Collapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
+    <Position X="16.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NoteNotFoundException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.Orchestra">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="MidiGremlin.Orchestra" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAIAAAACAAAAABAAAAAAAAABABAAAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>gAIAAAACAAAAABAAAAQAAAABABAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Orchestra.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="MidiGremlin.ParallelMusicCollection" Collapsed="true">
-    <Position X="9" Y="7.5" Width="2" />
+  <Class Name="MidiGremlin.ParallelMusicCollection">
+    <Position X="10" Y="2.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AEIAAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
+      <HashCode>AEIQAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
       <FileName>ParallelMusicCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MidiGremlin.Pause">
-    <Position X="2.25" Y="9.75" Width="1.5" />
+    <Position X="5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pause.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.Scale">
-    <Position X="5" Y="0.5" Width="1.5" />
+  <Class Name="MidiGremlin.Scale" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAACIAAAAQAAAAAAEAAAAAAAAAQAAA=</HashCode>
       <FileName>Scale.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MidiGremlin.SequentialMusicCollection" Collapsed="true">
-    <Position X="5.25" Y="9.5" Width="2" />
+  <Class Name="MidiGremlin.SequentialMusicCollection">
+    <Position X="7.25" Y="2.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AEIQAEAAAAAAABAQCAAABAQAAAAAQAAECAAAAABQIAA=</HashCode>
       <FileName>SequentialMusicCollection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MidiGremlin.WinmmOut" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="4" Width="1.5" />
+  <Class Name="MidiGremlin.WinmmOut" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAEAAQEGAkAAAAAgCAAAAAAAAAACAAAAAAkAAAAQA=</HashCode>
       <FileName>WinmmOut.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.226" />
+    <Lollipop Position="0.226" Collapsed="true" />
   </Class>
-  <Class Name="MidiGremlin.Internal.ChordInstance" Collapsed="true">
-    <Position X="0.5" Y="7.75" Width="1.5" />
+  <Class Name="MidiGremlin.Internal.ChordInstance">
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>Internal\ChordInstance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MidiGremlin.Internal.Windows_Multi_Media.Winmm" Collapsed="true">
-    <Position X="11" Y="4" Width="1.5" />
+    <Position X="16.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAABAAAAAAAAgAAAAgAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Internal\Windows Multi Media\Winmm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="MidiGremlin.Internal.SingleBeat" Collapsed="true">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="14.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAgAAAAAAAEAAAQAAAAAAQAABAAAA=</HashCode>
       <FileName>Internal\SingleBeat.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="MidiGremlin.Internal.SingleBeatWithChannel" Collapsed="true">
-    <Position X="11" Y="2.5" Width="1.5" />
+    <Position X="16.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAEAgAAAAAAAAAAAAAAAAEAAAQAAAAAAAAABAAAA=</HashCode>
       <FileName>Internal\SingleBeat.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="MidiGremlin.Internal.Windows_Multi_Media.MIDIOUTCAPS" Collapsed="true">
-    <Position X="11" Y="4.75" Width="1.5" />
+    <Position X="13" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAAAAgAAAQQAEAAAAAACAAgAAAIEA=</HashCode>
       <FileName>Internal\Windows Multi Media\MIDIOUTCAPS.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="MidiGremlin.IMidiOut">
-    <Position X="0.5" Y="4.25" Width="1.5" />
+  <Interface Name="MidiGremlin.IMidiOut" Collapsed="true">
+    <Position X="13" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAgAAAAAA=</HashCode>
       <FileName>IMidiOut.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="MidiGremlin.InstrumentType" Collapsed="true">
-    <Position X="7.5" Y="4.25" Width="1.5" />
+    <Position X="14.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAgAQAAAAA=</HashCode>
       <FileName>InstrumentType_Enum.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="MidiGremlin.Tone">
-    <Position X="6.75" Y="5.25" Width="1.5" />
+  <Enum Name="MidiGremlin.Tone" Collapsed="true">
+    <Position X="14.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAACAABAAAAAgAAAABAAAAAAvgEAAAA=</HashCode>
       <FileName>Tone_Enum.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="MidiGremlin.Internal.Windows_Multi_Media.MidiDeviceTechnologyType" Collapsed="true">
-    <Position X="12.75" Y="4.75" Width="1.5" />
+    <Position X="16.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAIAAAABAAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Internal\Windows Multi Media\MIDIOUTCAPS.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="MidiGremlin.Internal.Windows_Multi_Media.dwSupport" Collapsed="true">
-    <Position X="12.75" Y="4" Width="1.5" />
+    <Position X="13" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAARAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Internal\Windows Multi Media\MIDIOUTCAPS.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="MidiGremlin.Internal.Windows_Multi_Media.MMRESULT" Collapsed="true">
-    <Position X="11" Y="5.5" Width="1.5" />
+    <Position X="13" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>MQAAAAACAAAAiQAIgAjAhACAQDAAAgAABACAAACKAAA=</HashCode>
       <FileName>Internal\Windows Multi Media\MMRESULT.cs</FileName>
