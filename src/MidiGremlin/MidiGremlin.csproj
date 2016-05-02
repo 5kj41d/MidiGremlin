@@ -52,6 +52,7 @@
     <Compile Include="Internal\BeatScheduler.cs" />
     <Compile Include="Internal\ChannelAllocator.cs" />
     <Compile Include="Internal\ChordInstance.cs" />
+    <Compile Include="Internal\ArrayExtensions.cs" />
     <Compile Include="Internal\SimpleMidiMessage.cs" />
     <Compile Include="Internal\SingleBeat.cs" />
     <Compile Include="Internal\Windows Multi Media\MIDIOUTCAPS.cs" />

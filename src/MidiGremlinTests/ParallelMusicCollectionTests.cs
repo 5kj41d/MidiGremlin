@@ -40,7 +40,7 @@ namespace MidiGremlin.Tests
 
             ParallelMusicCollection sTestCollection = new ParallelMusicCollection(testObjects);
             IOrchestra testOrc = Substitute.For<IOrchestra>();
-            Instrument i = new Instrument(testOrc, InstrumentType.AccousticBass, new Scale());
+            Instrument i = new Instrument(testOrc, InstrumentType.AcousticBass, new Scale());
             sTestList.AddRange(sTestCollection.GetChildren(i, 1));
 
             bool testBool = true;
