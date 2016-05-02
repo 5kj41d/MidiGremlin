@@ -27,7 +27,7 @@ namespace MidiGremlin
         public Keystroke (Tone tone, double duration, byte velocity = 64)
         {
             OctaveOffset = (int)tone/12;
-            Tone = (int)tone%12;
+            Tone = (Tone)((int)tone%12);
             Duration = duration;
             Velocity = velocity;
 
