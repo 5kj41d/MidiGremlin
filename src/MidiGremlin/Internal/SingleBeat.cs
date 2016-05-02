@@ -82,6 +82,11 @@ namespace MidiGremlin.Internal
         public double ToneStartTime{ get; }
         /// <summary> The time in beats at which the tone end. </summary>
         public double ToneEndTime{ get; }
+
+	    public SingleBeatWithChannel WithChannel(byte usedChannel)
+	    {
+		    return new SingleBeatWithChannel(instrumentType, Tone, ToneVelocity, ToneStartTime, ToneEndTime, usedChannel);
+	    }
     }
     /// <summary>
     /// A Singlebeat that also contains a channel.

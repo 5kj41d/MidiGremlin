@@ -1,5 +1,5 @@
-﻿using MidiGremlin;
-using MidiGremlin.Helpers;
+﻿using System;
+using MidiGremlin;
 
 namespace Für_Elise
 {
@@ -14,8 +14,7 @@ namespace Für_Elise
         {
             //Like most old western it is played in the A minor scale.
             Scale s = new Scale(Tone.A, Tone.B, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G);
-
-            double eigth = 1 / 8D;
+			double eigth = 1 / 8D;
             byte baseVelocity = 72;
 
             //Creating the right hand:
@@ -24,47 +23,52 @@ namespace Für_Elise
             // so by counting a note's offset from the G 
             // and adding the value corresponding to G in the scale
             // you get the tone you want.
-            int trebleClef = 7; 
-            
-            //Making all the six bars:
+            int trebleClef = 5;
 
-	        MusicObject rBar0 = new SequentialHelper()
-		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-		        .Build();
+			//Making all the six bars:
 
-	        MusicObject rBar1 = new SequentialHelper()
-		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[5 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
-		        .Solo(new Keystroke(s[4 + trebleClef], eigth, baseVelocity))
-		        .Solo(new Keystroke(s[3 + trebleClef], eigth, baseVelocity))
-		        .Build();
+			MusicObject rBar0 = new SequentialMusicList
+						(
+							new Note(s[5 + trebleClef], eigth, baseVelocity),
+							new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
+						);
 
-			MusicObject rBar2 = new SequentialHelper()
-                .Solo(new Keystroke(s[1 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-4 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[1 + trebleClef], eigth, baseVelocity))
-		   .Build();
+			MusicObject rBar1 = new SequentialMusicList
+			(
+				new Note(s[5 + trebleClef], eigth, baseVelocity),
+				new Note(s[4 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[5 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[2 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[4 + trebleClef], eigth, baseVelocity),
+				new Note(s[3 + trebleClef], eigth, baseVelocity)
+			);
 
-			MusicObject rBar3 = new SequentialHelper()
-                .Solo(new Keystroke(s[2 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[0 + trebleClef] + 1, eigth, baseVelocity))
-                .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
-		   .Build();
+			MusicObject rBar2 = new SequentialMusicList
+			(
+				new Note(s[1 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-4 + trebleClef], eigth, baseVelocity),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[1 + trebleClef], eigth, baseVelocity)
+			);
 
-			MusicObject rBar4 = new SequentialHelper()
-                .Solo(new Keystroke(s[3 + trebleClef], eigth*2, baseVelocity))
-                .Any(new Pause(eigth))
-                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
-			.Build();
+			MusicObject rBar3 = new SequentialMusicList
+			(
+				new Note(s[2 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[0 + trebleClef] + 1, eigth, baseVelocity),
+				new Note(s[2 + trebleClef] + 1, eigth, baseVelocity)
+			);
+
+			MusicObject rBar4 = new SequentialMusicList
+			(
+				new Note(s[3 + trebleClef], eigth * 2, baseVelocity),
+				new Pause(eigth),
+				new Note(s[-2 + trebleClef], eigth, baseVelocity),
+				new Note(s[5 + trebleClef], eigth, baseVelocity),
+				new Note(s[4 + trebleClef] + 1, eigth, baseVelocity)
+			);
 
 			MusicObject rBar5 = rBar1;
 
@@ -92,25 +96,26 @@ namespace Für_Elise
 
             MusicObject lBar1 = new Pause(eigth*6);
 
-            MusicObject lBar2 = new SequentialHelper()
-                .Solo(new Keystroke(s[-5 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[2 + bassClef], eigth, baseVelocity))
-                .Any(new Pause(eigth))
-                .Any(new Pause(eigth*2))
-				.Build();
+			MusicObject lBar2 = new SequentialMusicList
+			(
+				new Note(s[-5 + bassClef], eigth, baseVelocity),
+				new Note(s[-1 + bassClef], eigth, baseVelocity),
+				new Note(s[2 + bassClef], eigth, baseVelocity),
+				new Pause(eigth),
+				new Pause(eigth * 2)
+			);
+
+			MusicObject lBar3 = new SequentialMusicList
+			(
+				new Note(s[-8 + bassClef], eigth, baseVelocity),
+				new Note(s[-1 + bassClef], eigth, baseVelocity),
+				new Note(s[1 + bassClef] + 1, eigth, baseVelocity),
+				new Pause(eigth),
+				new Pause(eigth * 2)
+			);
 
 
-			MusicObject lBar3 = new SequentialHelper()
-                .Solo(new Keystroke(s[-8 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
-                .Solo(new Keystroke(s[1 + bassClef] + 1, eigth, baseVelocity))
-                .Any(new Pause(eigth))
-                .Any(new Pause(eigth*2))
-				.Build();
-            
-
-            MusicObject lBar4 = lBar2;
+			MusicObject lBar4 = lBar2;
 
             MusicObject lBar5 = lBar1;
 
@@ -128,13 +133,16 @@ namespace Für_Elise
             MusicObject furEliseIntro = new ParallelMusicCollection(rightHand, leftHand);
 
             //To play music, first we need an orchestra with access to a player
-            Orchestra o = new Orchestra(new WinmmOut(0, 70));  //Slow but...
+            Orchestra o = new Orchestra(new WinmmOut(0, 30));  //Slow but...
 
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, s, 0);
 
             //And so we just start it.
-            piano.Play(furEliseIntro);
+            piano.Play(2,furEliseIntro);
+
+			o.WaitForFinished();
+	        Console.ReadLine();
         }
     }
 }

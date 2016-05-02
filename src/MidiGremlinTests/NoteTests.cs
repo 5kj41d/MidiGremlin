@@ -20,7 +20,7 @@ namespace MidiGremlin.Tests
         public void GetChildrenTest(int octave, Tone tone, byte expectedPitch)
         {
             IOrchestra o = Substitute.For<IOrchestra>();
-            Instrument i = new Instrument(o, InstrumentType.AccousticBass, new Scale(), octave);
+            Instrument i = new Instrument(o, InstrumentType.AcousticBass, new Scale(), octave);
 
             Keystroke n = new Keystroke(tone, 22, 33);
 

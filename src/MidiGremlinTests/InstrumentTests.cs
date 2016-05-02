@@ -17,7 +17,7 @@ namespace MidiGremlin.Tests
         public void PlayTest_SimpleNewTone(int octave, Tone tone, int duration, byte velocity, byte expectedToneOffset)
         {
             IOrchestra o = Substitute.For<IOrchestra>();
-            Instrument i = new  Instrument(o, InstrumentType.AccousticBass, new Scale(), octave);
+            Instrument i = new  Instrument(o, InstrumentType.AcousticBass, new Scale(), octave);
             i.Play(tone, duration, velocity);
 
             List<SingleBeat> expected = new List<SingleBeat>

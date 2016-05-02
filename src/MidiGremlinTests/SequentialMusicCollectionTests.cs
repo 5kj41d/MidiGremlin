@@ -39,7 +39,7 @@ namespace MidiGremlin.Tests
 
             SequentialMusicList sTestList = new SequentialMusicList(testObjects);
             IOrchestra testOrc = Substitute.For<IOrchestra>();
-            Instrument i = new Instrument(testOrc, InstrumentType.AccousticBass, new Scale());
+            Instrument i = new Instrument(testOrc, InstrumentType.AcousticBass, new Scale());
             sSBList.AddRange(sTestList.GetChildren(i, 1));
 
             bool testBool = true;
@@ -68,7 +68,7 @@ namespace MidiGremlin.Tests
 
             SequentialMusicList sTestList = new SequentialMusicList(testObjects);
             IOrchestra testOrc = Substitute.For<IOrchestra>();
-            Instrument i = new Instrument(testOrc, InstrumentType.AccousticBass, new Scale());
+            Instrument i = new Instrument(testOrc, InstrumentType.AcousticBass, new Scale());
             sSBList.AddRange(sTestList.GetChildren(i, 1));
 
             int testInt = 0 ;

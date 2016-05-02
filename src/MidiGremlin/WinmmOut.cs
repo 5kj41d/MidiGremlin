@@ -47,7 +47,10 @@ namespace MidiGremlin
 
             _time = Stopwatch.StartNew();
 
-            _workThread = new Thread(ThreadEntryPrt);
+	        _workThread = new Thread(ThreadEntryPrt)
+	        {
+		        IsBackground = true
+	        };
         }
 
         /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>

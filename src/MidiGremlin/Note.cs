@@ -10,7 +10,7 @@ namespace MidiGremlin
     /// <summary>
     /// Contains a <see cref="T:MidiGremlin.Keystroke"/> and a <see cref="T:MidiGremlin.Pause"/>.
     /// </summary>
-    class Note : MusicObject
+    public class Note : MusicObject
     {
         public Keystroke Keystroke;
         public Pause Pause;
