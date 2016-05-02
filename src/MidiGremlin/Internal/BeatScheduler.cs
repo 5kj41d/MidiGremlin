@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -14,16 +13,13 @@ namespace MidiGremlin.Internal
 	{
 		private /*const*/ static readonly SimpleMidiMessage EmptyMessage = new SimpleMidiMessage(0,0);
 		
-		//TODO: Make this a real concurrent priority queue. Well, this works, but muh performance
-		//Last [Count - 1] is first as it is cheaper to remove / insert there
-		private readonly List<SimpleMidiMessage> _priorityQueue = new List<SimpleMidiMessage>(); 
-		//overflow queue of midi commands to play imediatly
 		private readonly object _syncRoot = new object();
 		private readonly EventWaitHandle _newDataAdded = new AutoResetEvent(false);
 		private readonly EventWaitHandle _emptyHandle = new ManualResetEvent(false);
 		private readonly Orchestra _orchestra;
 		private readonly IMidiOut _output;
-		
+		private readonly ChannelAllocator _channelAllocator = new ChannelAllocator();
+
 		internal BeatScheduler(Orchestra orchestra, IMidiOut output)
 		{
 			this._orchestra = orchestra;
@@ -43,28 +39,16 @@ namespace MidiGremlin.Internal
 			//we need recycle our wait if the queue gets new things added while we wait. 
 			//could be while(true) but this way we don't risk an infinite loop
 			//which is bad.
+			//Probably also possible to do a simpler reset but cannot quite see how
 			for (int i = 0; i < 10; i++)
 			{
-				SimpleMidiMessage message;
+				double nextTime;
 				lock (_syncRoot)
 				{
-					if (_priorityQueue.Count != 0)
-					{
-						message = _priorityQueue[_priorityQueue.Count - 1];
-						_priorityQueue.RemoveAt(_priorityQueue.Count - 1);
-					}
-					else
-					{
-						//If the emptyHandle is not set, notify that we have finished everything
-						if (!_emptyHandle.WaitOne(0))
-						{
-							_emptyHandle.Set();  
-						}
-						message = EmptyMessage;
-					}
+					nextTime = _channelAllocator.NextTimeStamp;
 				}
 
-				if (message == EmptyMessage)
+				if (nextTime == ChannelAllocator.NoMessageTime)
 				{
 					if (block)
 					{
@@ -78,10 +62,21 @@ namespace MidiGremlin.Internal
 				}
 
 				//If we was not interupted we assume we arrived at time
-				Console.Write($"{!block} || {GetWaitTimeMs(message):D4}");
-				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(message)))
+				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}");
+				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
 				{
-					Console.WriteLine($"Fin {message}");
+					Console.WriteLine($"Fin {_channelAllocator.NextTimeStamp}");
+					SimpleMidiMessage message =  _channelAllocator.GetNext();
+
+					if (_channelAllocator.Empty)
+					{
+						//If the emptyHandle is not set, notify that we have finished everything
+						if (!_emptyHandle.WaitOne(0))
+						{
+							_emptyHandle.Set();
+						}
+					}
+
 					return message;
 				}
 			}
@@ -91,7 +86,7 @@ namespace MidiGremlin.Internal
 			//but in release we would just as well like it failing silently
 			//This being only a single MIDI event it would not impact the overall piece overmuch
 #if DEBUG
-			throw new TimeoutException("Unable to return anything after too many iterupts. This should never happen");
+			throw new TimeoutException("Unable to return anything after too many iterupts. This should (probably) never happen");
 #else
 			return new SimpleMidiMessage(0,0);
 #endif
@@ -107,19 +102,17 @@ namespace MidiGremlin.Internal
 				{
 					_emptyHandle.Reset();
 				}
-				var allTheBeats = beats.ToList();
-				var v = allTheBeats.SelectMany(TransformFunction).ToList();
-				_priorityQueue.AddRange(v);
-				_priorityQueue.Sort(sortSimpleMessages);   //Beat to play next is the last in the list and so on.
+				
+				_channelAllocator.Add(beats.ToList());
 
 				_newDataAdded.Set();
 			}
 		}
 
-		private int GetWaitTimeMs(SimpleMidiMessage message)
+		private int GetWaitTimeMs(double timestamp)
 		{
 			double current = _orchestra.CurrentTime();
-			double remaining = message.Timestamp - current;
+			double remaining = timestamp - current;
 
 			return remaining < 0 ? 0 : BeatsToMs(remaining);
 		}
