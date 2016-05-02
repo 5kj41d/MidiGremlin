@@ -50,7 +50,7 @@ namespace MidiGremlin
 				music
 				.GetChildren(this, startTime)
 				.Where(x => !(x.ToneVelocity == 0xff && x.Tone == 0xff))
-		        .Select(offsetByOctave)
+		        //.Select(offsetByOctave)
 			);
             _orchestra.CopyToOutput(singleBeats);
         }
