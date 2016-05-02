@@ -23,7 +23,7 @@ namespace MidiGremlin.Internal
 			int smallestIndex = 0;
 			for (int i = 1; i < array.Length; i++)
 			{
-				if (array[smallestIndex].CompareTo(array[i]) < 0)
+				if (array[smallestIndex].CompareTo(array[i]) > 0)
 				{
 					smallestIndex = i;
 				}

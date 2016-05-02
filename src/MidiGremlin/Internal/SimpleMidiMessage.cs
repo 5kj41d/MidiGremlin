@@ -99,7 +99,7 @@ namespace MidiGremlin.Internal
 			" On",
 			" 10",
 			" 11",
-			" 12",
+			" Ch",
 			" 13",
 			" 14",
 			" 15"
