@@ -37,11 +37,11 @@ namespace MidiGremlin
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, double startTime)
         {
-            List<SingleBeat> result = new List<SingleBeat>();
-            result.AddRange(Keystroke.GetChildren(playedBy, startTime));
-            result.AddRange(Pause.GetChildren(playedBy, startTime));
+	        foreach (SingleBeat beat  in Keystroke.GetChildren(playedBy, startTime))
+		        yield return beat;
 
-            return result;
+			foreach (SingleBeat beat in Pause.GetChildren(playedBy, startTime))
+				yield return beat;
         }
     }
 }
