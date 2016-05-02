@@ -1,12 +1,7 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
-using MidiGremlin;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin.Tests
@@ -14,32 +9,24 @@ namespace MidiGremlin.Tests
     [TestFixture()]
     public class InstrumentTests
     {
-        [Test()]
-        public void PlayTest()
-        {
-            IOrchestra orchestra = Substitute.For<IOrchestra>();
-            orchestra.CurrentTime().Returns(0);
-            Instrument i = new Instrument(orchestra, InstrumentType.AccousticGrandPiano, new Scale(), 4);
-            i.Play(Tone.CSharp, 5);
-            
-            orchestra.Received().CopyToOutput(Arg.Any<List<SingleBeat>>());
-            
-        }
-
+        [TestCase(4, Tone.E, 9, 100, 112)]
+        [TestCase(1, Tone.D, 9, 100, 74)]
+        [TestCase(0, Tone.D, 44, 55, 62)]
+        [TestCase(0, Tone.C, 22, 33, 60)]
         [Test]
-        public void PlayTest_1()
+        public void PlayTest_SimpleNewTone(int octave, Tone tone, int duration, byte velocity, byte expectedToneOffset)
         {
-            IOrchestra orchestra = Substitute.For<IOrchestra>();
-            orchestra.CurrentTime().Returns(0);
-            Instrument i = new Instrument(orchestra, InstrumentType.AccousticBass, new Scale(), 4);
-            i.Play(Tone.DSharp, 4);
-            List<SingleBeat> complist = new List<SingleBeat>();
-            
+            IOrchestra o = Substitute.For<IOrchestra>();
+            Instrument i = new  Instrument(o, InstrumentType.AccousticBass, new Scale(), octave);
+            i.Play(tone, duration, velocity);
 
-            complist.Add(new SingleBeat(InstrumentType.AccousticBass,54,64,0,4));
+            List<SingleBeat> expected = new List<SingleBeat>
+            {
+                new SingleBeat(i.InstrumentType, expectedToneOffset, velocity, 0, duration)
+            };
 
-            orchestra.Received().CopyToOutput(Arg.Is<List<SingleBeat>>(value => value.SequenceEqual(complist)));
+            o.Received().CopyToOutput(Arg.Is<List<SingleBeat>>(value => value.SequenceEqual(expected)));
         }
 
-}
+    }
 }

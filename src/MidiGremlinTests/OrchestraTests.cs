@@ -19,7 +19,7 @@ namespace MidiGremlin.Tests
         [TestCase(InstrumentType.Violin, 5)]
         public void AddInstrumentTest(InstrumentType instrumentType, int octave = 3)
         {
-            Orchestra orc = new Orchestra(Substitute.For<IMidiOut>());
+            Orchestra orc = new Orchestra(Substitute.For<IMidiOut>(), 8);
             orc.AddInstrument(instrumentType, octave);
 
             bool test = orc.Instruments.ToList().Exists(item => (item.InstrumentType == instrumentType) && (item.Octave == octave));
@@ -32,7 +32,7 @@ namespace MidiGremlin.Tests
         public void AddInstrumentTest1()
         {
             Scale scale = new Scale(Tone.A, Tone.B, Tone.C);
-            Orchestra orc = new Orchestra(Substitute.For<IMidiOut>());
+            Orchestra orc = new Orchestra(Substitute.For<IMidiOut>(), 8);
             orc.AddInstrument(InstrumentType.Violin, scale, 5);
 
             bool test = orc.Instruments.ToList().Exists(item => (item.InstrumentType == InstrumentType.Violin) && (item.Octave == 5) && (item.Scale == scale));

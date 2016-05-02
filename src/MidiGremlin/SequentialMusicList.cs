@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
     ///<summary>
-    ///The class ParallelMusicCollection inherits from the class MusicObject.
-    ///It consists of a list of MusicObjects that will be played with the same start-time. 
+    ///The class SequentialMusicList inherits from the class MusicObject.
+    ///The class consists of an ordered list of MusicObjects, each played after the last pause of the previous one.
     ///</summary>
-    public class ParallelMusicCollection : MusicObject, IList<MusicObject>
+    public class SequentialMusicList : MusicObject, IList<MusicObject>
     {
-        private List<MusicObject> _children = new List<MusicObject>();
+         List<MusicObject> _children = new List<MusicObject>();
 
         /// <summary>
-        /// Creates a new instance of the ParallelMusicObject class, containing a number of MusicObjects.
+        /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
         /// </summary>
-        /// <param name="children">Any number of MusicObjects. These will start playing at the same time.</param>
-        public ParallelMusicCollection (IEnumerable<MusicObject> children)
+        /// <param name="children">A list of MusicObjects.</param>
+        public SequentialMusicList (IEnumerable<MusicObject> children)
         {
             foreach(MusicObject m in children)
             {
@@ -26,21 +25,23 @@ namespace MidiGremlin
             }
         }
         /// <summary>
-        /// Creates a new instance of the ParallelMusicObject class, containing a number of MusicObjects.
-        /// Should have at least 1 parameter.
+        /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
+        /// Give it at least 1 parameter
         /// </summary>
-        /// <param name="children">A number of MusicObjects. These will start playing at the same time.</param>
-        public ParallelMusicCollection (params MusicObject[] children)
+        /// <param name="children">A number of MusicObjects.</param>
+        public SequentialMusicList (params MusicObject[] children)
         {
             foreach (MusicObject m in children)
             {
                 Add(m);
             }
         }
+
+
         /// <summary>
-        ///  Gets and sets MusicObject from the indicated index.
+        /// Gets and sets MusicObject from the indicated index.
         /// </summary>
-        /// <param name="index">Index where it gets and sets MusicObject.</param>
+        /// <param name="index">Indicated index where it gets and sets MusicObject.</param>
         /// <returns></returns>
         public MusicObject this[int index]
         {
@@ -130,8 +131,8 @@ namespace MidiGremlin
         /// <summary>
         /// Searches  for the specified MusicObject and returns the index of the first occurrence within the list.
         /// </summary>
-        /// <param name="item">The MusicObject which the list is seaching for.</param>
-        /// <returns>The index of the MusicObject searched for.</returns>
+        /// <param name="item">The MusicObject which the list is seaching for</param>
+        /// <returns>The index of the object searched for</returns>
         public int IndexOf (MusicObject item)
         {
             return _children.IndexOf(item);
@@ -151,8 +152,8 @@ namespace MidiGremlin
         /// <summary>
         /// Removes the first occurrence of the object within the list.
         /// </summary>
-        /// <param name="item"> Specified object which should be removed. </param>
-        /// <returns>Returns a list without the spicified object.</returns>
+        /// <param name="item">Specified object which should be removed.</param>
+        /// <returns>A list without the specified object.</returns>
         public bool Remove (MusicObject item)
         {
             return _children.Remove(item);
@@ -178,21 +179,22 @@ namespace MidiGremlin
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
-            List<SingleBeat> sBeats = new List<SingleBeat>();
+            double tempTime = startTime;
             foreach (MusicObject m in _children)
             {
-                foreach (SingleBeat sb in m.GetChildren(playedBy, startTime))
+                if (m is Pause)
                 {
-                    sBeats.Add(sb);
+                    tempTime += ((Pause)m).Duration;
+                }
+                else
+                {
+                    foreach (SingleBeat sb in m.GetChildren(playedBy, tempTime))
+                    {
+                        tempTime = Math.Max(tempTime, sb.ToneStartTime);
+                        yield return sb;
+                    }
                 }
             }
-            sBeats = sBeats.OrderBy(sb => sb.ToneStartTime).ToList();
-
-            foreach (SingleBeat sb in sBeats)
-            {
-                yield return sb;
-            }
-            
         }
 
 

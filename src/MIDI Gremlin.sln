@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiGremlin", "MidiGremlin\MidiGremlin.csproj", "{C2C4C0E1-6AF9-4974-BD4B-D203D65BC621}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidiGremlinTests", "MidiGremlinTests\MidiGremlinTests.csproj", "{1AC365B0-1F47-4004-B6BC-01AFB10BACE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ekamples", "Ekamples", "{777190FA-E2F8-4F72-B345-5267874794B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fur_Elise", "..\eksamples\Fur Elise\Fur_Elise.csproj", "{2F117189-B516-4619-9129-6A3BF55F4461}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,15 @@ Global
 		{1AC365B0-1F47-4004-B6BC-01AFB10BACE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AC365B0-1F47-4004-B6BC-01AFB10BACE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AC365B0-1F47-4004-B6BC-01AFB10BACE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F117189-B516-4619-9129-6A3BF55F4461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F117189-B516-4619-9129-6A3BF55F4461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F117189-B516-4619-9129-6A3BF55F4461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F117189-B516-4619-9129-6A3BF55F4461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F117189-B516-4619-9129-6A3BF55F4461} = {777190FA-E2F8-4F72-B345-5267874794B3}
 	EndGlobalSection
 EndGlobal

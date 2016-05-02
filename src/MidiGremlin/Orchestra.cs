@@ -1,35 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
     ///<summary>
-    ///The Orchestra class creates new instances of the instrument class.
-    ///It works as a compilation for these instruments.
+    ///The Orchestra class creates and mannages new instances of the instrument class.
     ///</summary>
-    class Orchestra : IOrchestra
+   public class Orchestra : IOrchestra
     {
         private readonly IMidiOut _output;
-        private List<Instrument> _instruments = new List<Instrument>();
-        
-        public Scale DefaultScale { get; set; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.GSharp, Tone.GSharp);
-        public IReadOnlyCollection<Instrument> Instruments => _instruments.AsReadOnly();
+        private readonly List<Instrument> _instruments = new List<Instrument>();
+	    private readonly BeatScheduler _beatScheduler;
+	    private IReadOnlyCollection<Instrument> _roInstrumentsCache;
+
+		/// <summary>
+		/// property of the istruments which is readonly
+		/// </summary>
+		public IReadOnlyCollection<Instrument> Instruments => _roInstrumentsCache ?? (_roInstrumentsCache = _instruments.AsReadOnly());
 
 
+	    /// <summary>
+        /// Creates a new instance of the orchestra class. 
+        /// Needs a reference to an output class, which can be acieved by creating a new WinmmOut instance.
+        /// </summary>
+        /// <param name="output"> The output class to send all played music to. </param>
         public Orchestra (IMidiOut output)
         {
             _output = output;
+			_beatScheduler = new BeatScheduler(this, _output);
+			_output.SetSource(_beatScheduler);
         }
 
 
-        public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 3)
+        /// <summary>
+        /// Constructs a new instrument and adds it to the orchestra.
+        /// </summary>
+        /// <param name="instrumentType">Enum that represents an instrument.</param>
+        /// <param name="ocatave">The instruments offset from the base octave. 
+        /// If this number is negative, the instrument will have a deeper sound,
+        ///  and if it is positive it will have a lighter sound. 
+        /// It can be between -5 and 5, but this is outside normal human hearing. </param>
+        /// <returns> Returns an instrument that plays in the chromatic scale. </returns>
+        public Instrument AddInstrument(InstrumentType instrumentType, int ocatave = 0)
         {
-            return AddInstrument(instrumentType, DefaultScale, ocatave);
+            return AddInstrument(instrumentType, Scale.ChromaticScale, ocatave);
         }
+        /// <summary>
+        /// Constructs a new instrument with a specified scale and adds it to the orchestra
+        /// </summary>
+        /// <param name="instrumentType">Enum that represents an instrument</param>
+        /// <param name="scale">In the scale you want the music to be played</param>
+        /// <param name="octave">The instruments offset from the base octave. 
+        /// If this number is negative, the instrument will have a deeper sound,
+        ///  and if it is positive it will have a lighter sound. 
+        /// It can be between -5 and 5, but this is outside normal human hearing. </param>
+        /// <returns> Returns an instrument that plays in the specified scale. </returns>
         public Instrument AddInstrument (InstrumentType instrumentType, Scale scale, int octave=3)
         {
             Instrument instrument = new Instrument(this, instrumentType, scale, octave);
@@ -40,27 +66,22 @@ namespace MidiGremlin
 
         void IOrchestra.CopyToOutput(List<SingleBeat> music)
         {
-            //TODO Allocate channel
-            _output.QueueMusic(music.Select(x => new SingleBeatWithChannel(x.instrumentType, x.ToneOffset, x.ToneVelocity, x.ToneStartTime, x.ToneEndTime, 0)));
+            _beatScheduler.AddToQueue(music);
         }
 
-        public int CurrentTime()
+	    Internal.SimpleMidiMessage IOrchestra.NextToPlay(bool block)
+	    {
+		    return _beatScheduler.GetNextMidiCommand(block);
+	    }
+
+		/// <summary>
+        /// Returns the current time specified by the output class.
+        /// </summary>
+        /// <returns>The current time </returns>
+        public double CurrentTime()
         {
-            return _output.CurrentTime();
+			double d = _output.CurrentTime();
+	        return d;
         }
-
-        public double ConvertBPMToMs(double bpm, double fraction)
-        {
-            double millisecond;
-            millisecond = (60000 / bpm) * fraction;
-            return (int)millisecond;
-        }
-
     }
-
-    internal interface IOrchestra
-	{
-		void CopyToOutput(List<SingleBeat> music);
-		int CurrentTime();
-	}
 }

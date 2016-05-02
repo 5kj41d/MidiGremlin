@@ -1,99 +1,47 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
 {
-    ///<summary>
-    ///The class Note constructs an individual and simpel sound.
-    ///The class consists of duration, tone, velocity and an Octaveoffset which represents the octave which the note is placed at.
-    ///</summary>
-    public class Note : MusicObject
+    /// <summary>
+    /// Contains a <see cref="T:MidiGremlin.Keystroke"/> and a <see cref="T:MidiGremlin.Pause"/>.
+    /// </summary>
+    class Note : MusicObject
     {
-        public Tone Tone { get; set; }
-        public int Duration { get; set; }
-        public byte Velocity { get; set; }
-        public int OctaveOffset { get; set; }
-        
+        public Keystroke Keystroke;
+        public Pause Pause;
 
-        public Note (Tone tone, int duration, byte velocity = 64)
+
+        /// <summary>
+        /// Creates a new instance of the Note class by initializing a <see cref="T:MidiGremlin.Keystroke"/> and a <see cref="T:MidiGremlin.Pause"/> with the same duration.
+        /// </summary>
+        /// <param name="tone"> The tone that the keystroke represents. </param>
+        /// <param name="duration">How long the tone is played in beats, and how long to wait before playing the next MusicObject. </param>
+        /// <param name="velocity"> The severety with which the keystroke is struck. </param>
+        public Note (Tone tone, double duration, byte velocity = 64)
         {
-            OctaveOffset = (int)tone/12;
-            Tone = tone;
-            Duration = duration;
-            Velocity = velocity;
-
+            Keystroke = new Keystroke(tone, duration, velocity);
+            Pause = new Pause(duration);
         }
 
-        public Note OffsetBy(int offset, int? duration = null, byte? velocity = null)
+        /// <summary>
+        /// Returns the full contents of this MusicObject as SingleBeats.
+        /// These are modified by the octave of the instrument that played them.
+        /// </summary>
+        /// <param name="playedBy">The instrument that requests the children.</param>
+        /// <param name="startTime">The time at which the SingleBeats should start playing.</param>
+        /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
+        internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, double startTime)
         {
-            byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
+            List<SingleBeat> result = new List<SingleBeat>();
+            result.AddRange(Keystroke.GetChildren(playedBy, startTime));
+            result.AddRange(Pause.GetChildren(playedBy, startTime));
 
-
-            if (velocity == null)
-            {
-                tempVelocity = Velocity;
-            }
-
-            if (duration == null)
-            {
-                tempDuration = Duration;
-            }
-
-            return new Note(Tone + offset, tempDuration, tempVelocity);
-        }
-            
-        public Note OffsetBy(Scale scale, int offset, int? duration = null, byte? velocity = null)
-        {
-
-            byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
-
-
-            if (velocity == null)
-            {
-                tempVelocity = Velocity;
-            }
-
-            if (duration == null)
-            {
-                tempDuration = Duration;
-            }
-
-            return new Note((Tone)(scale.Interval(Tone) + (int)scale[offset]), tempDuration, tempVelocity);
-        }
-
-        public Note OctaveOffsetBy(Scale scale, int offset, int OctaveOffset, int? duration = null, byte? velocity = null)
-        {
-
-            byte tempVelocity = (byte)velocity;
-            int tempDuration = (int)duration;
-
-
-            if (velocity == null)
-            {
-                tempVelocity = Velocity;
-            }
-
-            if (duration == null)
-            {
-                tempDuration = Duration;
-            }
- 
-            return new Note((Tone)(scale.Interval(Tone) + ((int)scale[offset] * (int)OctaveOffset)), tempDuration, tempVelocity);
-        }
-
-        internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, int startTime)
-        {
-            byte velocity = Math.Min((byte) 127, Velocity);
-
-            int tone = (int) Tone + (playedBy.Octave + OctaveOffset)*12;
-            if (0 > tone || tone > 127)
-                throw new ToneOutOfRangeExceptioin(tone);
-
-            yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
+            return result;
         }
     }
 }

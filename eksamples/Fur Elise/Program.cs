@@ -1,0 +1,140 @@
+﻿using MidiGremlin;
+using MidiGremlin.Helpers;
+
+namespace Für_Elise
+{
+    class Program
+    {
+
+        /// <summary>
+        /// Plays the first bit of Für Elise, read from
+        /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
+        /// </summary>
+        static void Main ()
+        {
+            //Like most old western it is played in the A minor scale.
+            Scale s = new Scale(Tone.A, Tone.B, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G);
+
+            double eigth = 1 / 8D;
+            byte baseVelocity = 72;
+
+            //Creating the right hand:
+
+            //The treble clef shows the position of the G
+            // so by counting a note's offset from the G 
+            // and adding the value corresponding to G in the scale
+            // you get the tone you want.
+            int trebleClef = 7; 
+            
+            //Making all the six bars:
+
+	        MusicObject rBar0 = new SequentialHelper()
+		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
+		        .Build();
+
+	        MusicObject rBar1 = new SequentialHelper()
+		        .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Keystroke(s[5 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
+		        .Solo(new Keystroke(s[4 + trebleClef], eigth, baseVelocity))
+		        .Solo(new Keystroke(s[3 + trebleClef], eigth, baseVelocity))
+		        .Build();
+
+			MusicObject rBar2 = new SequentialHelper()
+                .Solo(new Keystroke(s[1 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Keystroke(s[-4 + trebleClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[1 + trebleClef], eigth, baseVelocity))
+		   .Build();
+
+			MusicObject rBar3 = new SequentialHelper()
+                .Solo(new Keystroke(s[2 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[0 + trebleClef] + 1, eigth, baseVelocity))
+                .Solo(new Keystroke(s[2 + trebleClef] + 1, eigth, baseVelocity))
+		   .Build();
+
+			MusicObject rBar4 = new SequentialHelper()
+                .Solo(new Keystroke(s[3 + trebleClef], eigth*2, baseVelocity))
+                .Any(new Pause(eigth))
+                .Solo(new Keystroke(s[-2 + trebleClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[5 + trebleClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[4 + trebleClef] + 1, eigth, baseVelocity))
+			.Build();
+
+			MusicObject rBar5 = rBar1;
+
+            //The whole right hand.
+            MusicObject rightHand = new SequentialMusicList(
+                rBar0,
+                rBar1,
+                rBar2,
+                rBar3,
+                rBar4,
+                rBar5
+            );
+
+            //Creating the left hand:
+
+            //The bass clef shows the position of the F
+            // so by counting a note's offset from the F 
+            // and adding the value corresponding to F in the scale
+            // you get the tone you want.
+            int bassClef = 6;
+
+            //Making all six bars:
+
+            MusicObject lBar0 = new Pause(eigth*2);
+
+            MusicObject lBar1 = new Pause(eigth*6);
+
+            MusicObject lBar2 = new SequentialHelper()
+                .Solo(new Keystroke(s[-5 + bassClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[2 + bassClef], eigth, baseVelocity))
+                .Any(new Pause(eigth))
+                .Any(new Pause(eigth*2))
+				.Build();
+
+
+			MusicObject lBar3 = new SequentialHelper()
+                .Solo(new Keystroke(s[-8 + bassClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[-1 + bassClef], eigth, baseVelocity))
+                .Solo(new Keystroke(s[1 + bassClef] + 1, eigth, baseVelocity))
+                .Any(new Pause(eigth))
+                .Any(new Pause(eigth*2))
+				.Build();
+            
+
+            MusicObject lBar4 = lBar2;
+
+            MusicObject lBar5 = lBar1;
+
+            //The whole left hand.
+            MusicObject leftHand = new SequentialMusicList(
+                lBar0,
+                lBar1,
+                lBar2,
+                lBar3,
+                lBar4,
+                lBar5
+             );
+
+            //Both hands:
+            MusicObject furEliseIntro = new ParallelMusicCollection(rightHand, leftHand);
+
+            //To play music, first we need an orchestra with access to a player
+            Orchestra o = new Orchestra(new WinmmOut(0, 70));  //Slow but...
+
+            //It should be played on a grand piano. Let's just get one.
+            Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, s, 0);
+
+            //And so we just start it.
+            piano.Play(furEliseIntro);
+        }
+    }
+}

@@ -1,11 +1,5 @@
 ﻿using NUnit.Framework;
-using MidiGremlin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MidiGremlin.Tests
 {
@@ -15,7 +9,7 @@ namespace MidiGremlin.Tests
         [Test()]
         public void WinmmOutTest ()
         {
-            new WinmmOut(0);
+            new WinmmOut(0, 60);
             Thread.Sleep(1000);
             Assert.Pass();
         }
@@ -31,7 +25,7 @@ namespace MidiGremlin.Tests
         public void QueueMusicTest ()
         {
             Orchestra o = new Orchestra(new WinmmOut(0));
-			Note n = new Note(Tone.C,  1000);
+			Keystroke n = new Keystroke(Tone.C,  1000);
 	        Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
 
 			i.Play(n);
