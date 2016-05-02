@@ -9,7 +9,18 @@ namespace MidiGremlin.Internal
     /// </summary>
     public struct SingleBeat
     {
-        /// <summary>
+	    /// <summary>
+	    /// Returns the fully qualified type name of this instance.
+	    /// </summary>
+	    /// <returns>
+	    /// A <see cref="T:System.String"/> containing a fully qualified type name.
+	    /// </returns>
+	    public override string ToString()
+	    {
+		    return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({instrumentType})";
+	    }
+
+	    /// <summary>
         /// Creates a new instance of SingleBeat with the specified properties.
         /// </summary>
         /// <param name="instrumentType">The type of instrument that should be playing the music</param>
@@ -26,8 +37,7 @@ namespace MidiGremlin.Internal
             ToneEndTime = toneEndTime;
         }
 
-
-        /// <summary>
+		/// <summary>
         /// Indicates whether this instance and a specified object are equal.
         /// </summary>
         /// <returns>
@@ -70,8 +80,7 @@ namespace MidiGremlin.Internal
                 return hashCode;
             }
         }
-
-
+		
         /// <summary> The type of instrument the tone is played with.  </summary>
         public InstrumentType instrumentType{ get; }
         /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
@@ -112,8 +121,13 @@ namespace MidiGremlin.Internal
             Channel = channel;
         }
 
-        /// <summary> The type of instrument the tone is played with.  </summary>
-        public InstrumentType instrumentType { get; }
+		public override string ToString()
+		{
+			return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({Channel}) ({instrumentType})";
+		}
+
+		/// <summary> The type of instrument the tone is played with.  </summary>
+		public InstrumentType instrumentType { get; }
         /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone { get; }
         /// <summary> The velocity of the tone. </summary>

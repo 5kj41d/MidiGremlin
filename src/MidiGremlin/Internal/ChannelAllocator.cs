@@ -23,7 +23,7 @@ namespace MidiGremlin.Internal
 				return new SimpleMidiMessage();  //TODO: Can be done better? Throw OutOfStuffException?
 			}
 
-			if (_storage.Count == 0 || _progressQueue.LastItem().Timestamp < _storage.LastItem().ToneStartTime)
+			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.LastItem().Timestamp <= _storage.LastItem().ToneStartTime))
 			{
 				return _progressQueue.PopLast();
 			}
@@ -34,13 +34,13 @@ namespace MidiGremlin.Internal
 				if (beatWithChannel.instrumentType == _channelInstruments[beatWithChannel.Channel])
 				{
 					//X, Y reverse order as list should be in that order
-					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), (x, y) => y.Timestamp.CompareTo(x.Timestamp));
+					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return StartMidiMessage(beatWithChannel);
 				}
 				else
 				{
-					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), (x, y) => y.Timestamp.CompareTo(x.Timestamp));
-					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), (x, y) => y.Timestamp.CompareTo(x.Timestamp));
+					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
+					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return ChangeChannelMidiMessage(beatWithChannel);
 				}
 			}
@@ -110,6 +110,19 @@ namespace MidiGremlin.Internal
 		}
 
 		public bool Empty => _progressQueue.Count == 0 && _storage.Count == 0;
+
+		private int CompareSimpleMidi(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
+		{
+			int first = lhs.Timestamp.CompareTo(rhs.Timestamp);
+			if (first != 0)
+				return first;
+
+			int lhsType = (lhs.Data & 0xf0) >> 4;
+			int rhsType = (rhs.Data & 0xf0) >> 4;
+
+			int second = lhsType.CompareTo(rhsType);
+			return second;
+		}
 
 		private double[] CreateFinishTimesArray()
 		{

@@ -46,9 +46,12 @@ namespace MidiGremlin
         /// <param name="music">The music to play. </param>
         public void Play (double startTime, MusicObject music)
         {
-            List<SingleBeat> singleBeats = new List<SingleBeat>(music.GetChildren(this, startTime))
-                .Select(offsetByOctave)
-                .ToList();
+	        List<SingleBeat> singleBeats = new List<SingleBeat>(
+				music
+				.GetChildren(this, startTime)
+				.Where(x => !(x.ToneVelocity == 0xff && x.Tone == 0xff))
+		        .Select(offsetByOctave)
+			);
             _orchestra.CopyToOutput(singleBeats);
         }
 

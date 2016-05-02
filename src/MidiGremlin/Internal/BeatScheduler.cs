@@ -65,8 +65,8 @@ namespace MidiGremlin.Internal
 				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}");
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
 				{
-					Console.WriteLine($"Fin {_channelAllocator.NextTimeStamp}");
-					SimpleMidiMessage message =  _channelAllocator.GetNext();
+					SimpleMidiMessage message = _channelAllocator.GetNext();
+					Console.WriteLine($"Fin {message}");
 
 					if (_channelAllocator.Empty)
 					{
@@ -94,7 +94,7 @@ namespace MidiGremlin.Internal
 
 		public EventWaitHandle EmptyWaitHandle => _emptyHandle;
 
-		internal void AddToQueue(IEnumerable<SingleBeat> beats)
+		internal void AddToQueue(List<SingleBeat> beats)
 		{
 			lock (_syncRoot)
 			{
@@ -103,7 +103,7 @@ namespace MidiGremlin.Internal
 					_emptyHandle.Reset();
 				}
 				
-				_channelAllocator.Add(beats.ToList());
+				_channelAllocator.Add(beats);
 
 				_newDataAdded.Set();
 			}
@@ -123,39 +123,9 @@ namespace MidiGremlin.Internal
 
 			return (int) (remaining*msPerBeat);
 		}
+	}
 
-		private int sortSimpleMessages(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
-		{
-			int first = rhs.Timestamp.CompareTo(lhs.Timestamp);
-			if (first != 0)
-				return first;
-
-			int lhsType = (lhs.Data & 0xf0) >> 4;
-			int rhsType = (rhs.Data & 0xf0) >> 4;
-
-			int second = lhsType.CompareTo(rhsType);
-			return second;
-		}
-
-		private IEnumerable<SimpleMidiMessage> TransformFunction(SingleBeat arg)
-		{
-			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x9, 0, arg.Tone, arg.ToneVelocity), arg.ToneStartTime);  //Key down.
-
-			yield return new SimpleMidiMessage(
-				MakeMidiEvent(0x8, 0, arg.Tone, arg.ToneVelocity), arg.ToneEndTime); //Key up.
-		}
-
-		private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
-		{
-			int data = 0;
-
-			data |= channel << 0;
-			data |= midiEventType << 4;
-			data |= tone << 8;
-			data |= toneVelocity << 16;
-
-			return data;
-		}
+	class ThisShouldNeverHapppenException : Exception
+	{
 	}
 }

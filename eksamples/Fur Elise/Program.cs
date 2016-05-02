@@ -133,7 +133,7 @@ namespace Für_Elise
             MusicObject furEliseIntro = new ParallelMusicCollection(rightHand, leftHand);
 
             //To play music, first we need an orchestra with access to a player
-            Orchestra o = new Orchestra(new WinmmOut(0, 30));  //Slow but...
+            Orchestra o = new Orchestra(new WinmmOut(0, 70));  //Slow but...
 
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, s, 0);

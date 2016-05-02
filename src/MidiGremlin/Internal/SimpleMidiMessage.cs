@@ -118,7 +118,7 @@ namespace MidiGremlin.Internal
 			int pitch =    (Data & 0x0000ff00) >> 8;
 			int velocity = (Data & 0x00ff0000) >> 16;
 
-			return $"{Timestamp:F} {types[type]} Channel:{channel:D2} V:{velocity} P:{pitch}";
+			return $"{Timestamp.ToString("F")} {types[type]} Channel:{channel.ToString().PadRight(2)} V:{velocity} P:{pitch}";
 		}
 	}
 }

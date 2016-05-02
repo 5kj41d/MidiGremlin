@@ -192,6 +192,8 @@ namespace MidiGremlin
 					yield return sb;
 	            }
             }
+
+			yield return new SingleBeat(0, 0xff, 0xff, tempTime, tempTime);
         }
 
 
