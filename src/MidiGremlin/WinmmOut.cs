@@ -17,8 +17,9 @@ namespace MidiGremlin
         /// <summary> The ID of the device to use. 
         /// If the device is not found, the default(ID 0) Windows virtual synthesizer will be used.</summary>
         public uint DeviceID { get; }
-        
-        private const int UpdateFrequency = 20;
+
+	    private const int UpdateFrequency = 20;
+		private double _oldTime = 0;
         private IntPtr _handle;
         private bool _disposed = false;
         private Stopwatch _time;
@@ -38,23 +39,38 @@ namespace MidiGremlin
         /// If left at 60, a beat will be the same as a second.</param>
         public WinmmOut (uint deviceID, int beatsPerMinutes=60)
         {
-            BeatsPerMinute = beatsPerMinutes;
+			_time = new Stopwatch();
+			BeatsPerMinute = beatsPerMinutes;
 
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
             DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
             if(0!= Winmm.midiOutOpen(out _handle, DeviceID, IntPtr.Zero, IntPtr.Zero, 0))
                 throw new Exception("Opening MIDI device unsuccessful.");
 
-            _time = Stopwatch.StartNew();
-
+            
 	        _workThread = new Thread(ThreadEntryPrt)
 	        {
 		        IsBackground = true
 	        };
+			
         }
 
-        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
-        public int BeatsPerMinute { get; set; }
+	    private int _beatsPerMinute;
+
+	    /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
+	    public int BeatsPerMinute
+	    {
+		    get { return _beatsPerMinute; }
+		    set
+		    {
+			    if (_beatsPerMinute != value)
+			    {
+				    _oldTime += CurrentScaleTime();
+					_time.Restart();
+				    _beatsPerMinute = value;
+			    }
+		    }
+	    }
 
 	    private BeatScheduler _source;
 
@@ -83,7 +99,7 @@ namespace MidiGremlin
         public void Dispose()
         {
             Winmm.midiOutClose(_handle);
-            _disposed = true;
+			_disposed = true;
         }
 
 	    /// <summary>
@@ -92,8 +108,13 @@ namespace MidiGremlin
 	    /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
 	    public double CurrentTime()
         {
-            return  _time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds;
+            return  _oldTime + CurrentScaleTime();
         }
+
+	    private double CurrentScaleTime()
+	    {
+		    return _time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds;
+	    }
 
 	    void IMidiOut.SetSource(BeatScheduler source)
 	    {
@@ -103,6 +124,7 @@ namespace MidiGremlin
 			    {
 					_source = source;
 					_workThread.Start();
+					_time.Start();
 				}
 			    else
 			    {
