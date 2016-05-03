@@ -62,7 +62,7 @@ namespace MidiGremlin.Internal
 				}
 
 				//If we was not interupted we assume we arrived at time
-				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}");
+				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
 				{
 					SimpleMidiMessage message = _channelAllocator.GetNext();

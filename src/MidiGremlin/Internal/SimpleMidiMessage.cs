@@ -34,12 +34,12 @@ namespace MidiGremlin.Internal
 		{
 			get { return (byte) (Data & 0x0000000f); }
 		}
-		public byte Velocity
+		public byte Pitch
 		{
 			get { return (byte) ((Data & 0x0000ff00) >> 8); }
 		}
-		public byte Pitch
-		{
+		public byte Velocity
+        {
 			get { return (byte) ((Data & 0x00ff0000) >> 16); }
 		}
 
