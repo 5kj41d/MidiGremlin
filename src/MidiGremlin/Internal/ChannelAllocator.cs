@@ -39,6 +39,7 @@ namespace MidiGremlin.Internal
 				}
 				else
 				{
+					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.instrumentType;
 					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
 					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return ChangeChannelMidiMessage(beatWithChannel);
@@ -54,9 +55,10 @@ namespace MidiGremlin.Internal
 			double[] finishTimes = CreateFinishTimesArray();
 			int storageProgress = 0;
 
-			foreach (SingleBeat singleBeat in input)
+			for (int index = input.Count - 1; index >= 0; index--)
 			{
-				//Find the element in _storage that comes just before us
+				SingleBeat singleBeat = input[index];
+//Find the element in _storage that comes just before us
 				while (_storage.Count > storageProgress && _storage[storageProgress].ToneStartTime > singleBeat.ToneStartTime)
 				{
 					int channel = _storage[storageProgress].Channel;
@@ -66,7 +68,7 @@ namespace MidiGremlin.Internal
 				}
 
 				int usedChannel = lastUsedInstruments.IndexOf(singleBeat.instrumentType);
-				if (usedChannel == -1)  //If no free channel is found, find one or die
+				if (usedChannel == -1) //If no free channel is found, find one or die
 				{
 					int maybeFreeChannel = finishTimes.IndexOfSmallest();
 					if (finishTimes[maybeFreeChannel] > singleBeat.ToneStartTime)
@@ -80,9 +82,9 @@ namespace MidiGremlin.Internal
 						lastUsedInstruments[usedChannel] = singleBeat.instrumentType;
 					}
 				}
-				
+
 				finishTimes[usedChannel] = Math.Max(singleBeat.ToneEndTime, finishTimes[usedChannel]);
-				_storage.Insert(storageProgress, singleBeat.WithChannel((byte)usedChannel));
+				_storage.Insert(storageProgress, singleBeat.WithChannel((byte) usedChannel));
 			}
 		}
 
