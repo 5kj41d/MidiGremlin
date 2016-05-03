@@ -61,7 +61,6 @@
     <Compile Include="Internal\Windows Multi Media\Winmm.cs" />
     <Compile Include="IOrchestra.cs" />
     <Compile Include="MusicObject.cs" />
-    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Keystroke.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="ToneNotFoundException.cs" />
