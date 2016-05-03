@@ -74,7 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scale.cs" />
     <Compile Include="SequentialMusicList.cs" />
-    <Compile Include="ToneOutOfRangeExceptioin.cs" />
+    <Compile Include="ToneOutOfRangeException.cs" />
     <Compile Include="Tone.cs" />
     <Compile Include="WinmmOut.cs" />
   </ItemGroup>
