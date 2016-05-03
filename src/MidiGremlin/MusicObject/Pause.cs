@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -35,6 +36,23 @@ namespace MidiGremlin
         internal override IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime)
         {
 	        yield return new SingleBeat(0, 0xff, 0xff, startTime + Duration, startTime + Duration);
+        }
+
+
+        /// <summary>
+        /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+        /// </summary>
+        /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            Pause result = new Pause(Duration);
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
         }
     }
 }

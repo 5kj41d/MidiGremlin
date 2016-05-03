@@ -79,16 +79,5 @@ namespace MidiGremlin
             Keystroke keystroke = new Keystroke(tone, duration, velocity);
             Play(startTime, keystroke);
         }
-
-        
-        private SingleBeat offsetByOctave (SingleBeat arg)
-        {
-            return new SingleBeat
-                (arg.instrumentType
-                , (byte) (arg.Tone + Octave*12)   //The important part.
-                , arg.ToneVelocity
-                , arg.ToneStartTime
-                , arg.ToneEndTime);
-        }
     }
 }

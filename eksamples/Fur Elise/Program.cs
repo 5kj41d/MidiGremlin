@@ -26,16 +26,22 @@ namespace Für_Elise
             return new SequentialMusicList(result);
         } 
 
+
+
         /// <summary>
         /// Plays the first bit of Für Elise, read from
         /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
+        /// Please take a look if you wish to follow the explanations given by the comments.
+        /// For a full reference on note notaition, please refer to the most convenient university degree on the subject.
         /// </summary>
         static void Main ()
         {
-            //Like most old western music it is played in the A minor scale.
-            Scale majorScale = new Scale(Tone.A-12, Tone.B-12, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G);
+            //Like most old western music, this is played in the A minor scale.
+            //Note that as the tone enum starts at C, tones A and B are part of the lower octave.
+            Tone[] majorScaleTones = {Tone.A - 12, Tone.B - 12, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G};
+            Scale majorScale = new Scale(majorScaleTones); 
             //The left hand is lowered by 1 octave.
-            Scale loweredMajorScale = new Scale(Tone.A - 12*2, Tone.B - 12*2, Tone.C-12, Tone.D-12, Tone.E-12, Tone.F-12, Tone.G-12);
+            Scale loweredMajorScale = new Scale(majorScaleTones.Select(x => x - 12).ToArray());
             double eigth = 1 / 8D;
             byte baseVelocity = 50;
 
@@ -55,7 +61,7 @@ namespace Für_Elise
                     majorScale[5 + trebleClef],
                     majorScale[4 + trebleClef] + 1);
 
-            MusicObject rBar1and5 =
+            MusicObject rBar1And5 =
                 SimilarNotes(eigth, baseVelocity,
                     majorScale[5 + trebleClef],
                     majorScale[4 + trebleClef] + 1,
@@ -97,7 +103,7 @@ namespace Für_Elise
 			//rBar5 is already accounted for
 
             //The whole right hand.
-            MusicObject rightHand = new SequentialMusicList(rBar0, rBar1and5, rBar2, rBar3, rBar4, rBar1and5);
+            MusicObject rightHand = new SequentialMusicList(rBar0, rBar1And5, rBar2, rBar3, rBar4, rBar1And5);
 
             //Creating the left hand:
 
@@ -112,9 +118,9 @@ namespace Für_Elise
 
             MusicObject lBar0 = new Pause(eigth*2);
 
-            MusicObject lBar1 = new Pause(eigth*6);
+            MusicObject lBar1And5 = new Pause(eigth*6);
 
-            MusicObject lBar2 = new SequentialMusicList
+            MusicObject lBar2And4 = new SequentialMusicList
                 (
                 SimilarNotes(eigth, baseVelocity,
                     loweredMajorScale[-5 + bassClef],
@@ -135,15 +141,14 @@ namespace Für_Elise
                 );
 
 
-			MusicObject lBar4 = lBar2;
+			//lBar4 is already accounted for.
 
-            MusicObject lBar5 = lBar1;
+            //lBar5 is already accounted for.
 
             //The whole left hand.
-            MusicObject leftHand = new SequentialMusicList(lBar0, lBar1, lBar2, lBar3, lBar4, lBar5);
+            MusicObject leftHand = new SequentialMusicList(lBar0, lBar1And5, lBar2And4, lBar3, lBar2And4, lBar1And5);
 
-            //Both hands:
-            MusicObject furEliseIntro = new ParallelMusicCollection(leftHand, rightHand);
+            MusicObject leftHand2 = leftHand.Select<Note>(x => x);
 
             //To play music, first we need an orchestra with access to a player
             Orchestra o = new Orchestra(new WinmmOut(0, bpm));
@@ -152,7 +157,8 @@ namespace Für_Elise
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, majorScale, 0);
 
             //And so we just start it.
-            piano.Play(furEliseIntro);
+            piano.Play(leftHand2);
+            piano.Play(rightHand);
 
 			o.WaitForFinished();
 	        Console.ReadLine();

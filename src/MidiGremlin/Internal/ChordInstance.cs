@@ -1,10 +1,15 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MidiGremlin.Internal
 {
     internal class ChordInstance : MusicObject
     {
-        List<Keystroke> _notes = new List<Keystroke>();
+        private int[] _toneSteps;
+        private double _duration;
+        private Tone _rootTone;
+        private byte _velocity;
 
         /// <summary>
         /// A chord consisting of a root tone and the tone-steps from the root-tone.
@@ -15,12 +20,9 @@ namespace MidiGremlin.Internal
         /// <param name="toneSteps">The tones that the chord contains.</param>
         internal ChordInstance (Tone tone, double duration, int[] toneSteps)
         {
-            //The root tone is not implicit.
-            foreach(int i in toneSteps)
-            {
-                int interval = i - 1;   //The root tone is defined as having interval 1. So if i is 1, the tone should be shifted 0 intervals etc.
-                _notes.Add(new Keystroke(tone + interval, duration));
-            }
+            _rootTone = tone;
+            _duration = duration;
+            _toneSteps = toneSteps;
         }
         /// <summary>
         /// A chord consisting of a root tone and the tone-steps from the root-tone.
@@ -32,12 +34,10 @@ namespace MidiGremlin.Internal
         /// <param name="toneSteps">The tones that the chord contains.</param>
         internal ChordInstance (Tone tone, double duration, byte velocity, int[] toneSteps)
         {
-            //The root tone is not implicit.
-            foreach (int i in toneSteps)
-            {
-                int interval = i - 1; //The root tone is defined as having interval 1.
-                _notes.Add(new Keystroke(tone + interval, duration, velocity));
-            }
+            _rootTone = tone;
+            _duration = duration;
+            _velocity = velocity;
+            _toneSteps = toneSteps;
         }
 
         /// <summary>
@@ -49,12 +49,32 @@ namespace MidiGremlin.Internal
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal override IEnumerable<SingleBeat> GetChildren(Instrument playedBy, double startTime)
         {
-            foreach (Keystroke n in _notes)
+            Scale scale = playedBy.Scale;
+
+            foreach (int t in _toneSteps)
             {
-                int tone = (int)n.Tone + (playedBy.Octave + n.OctaveOffset) * 12;
-                yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, n.Velocity, startTime, startTime + n.Duration);
+                int offset = t - 1; //Chords are defined with 1 being the first element. Not very programmer-like, I know.
+
+                //New Keystroke with correct tone.
+                Keystroke k = new Keystroke
+                    (
+                    scale[scale.Interval(_rootTone) + offset],
+                    _duration, _velocity
+                    );
+
+                yield return k.GetChildren(playedBy, startTime)   //Tone conversion handled by Keystroke class.
+                    .First();   //Keystroke is a leaf so there will only be one element in the list. Only want that.
             }
         }
 
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            Keystroke result = new Keystroke(_rootTone, _duration, _velocity);
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
+        }
     }
 }

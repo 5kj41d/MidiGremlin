@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -24,6 +25,15 @@ namespace MidiGremlin
         /// <param name="startTime">The time at which the SingleBeats should start playing.</param>
         /// <returns>The full contents of this MusicObject as SingleBeats.</returns>
         internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime);
+
+
+        /// <summary>
+        /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+        /// </summary>
+        /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+        public abstract MusicObject Select<T>(Func<T, T> selector) where T : MusicObject;
     }
 
 }
