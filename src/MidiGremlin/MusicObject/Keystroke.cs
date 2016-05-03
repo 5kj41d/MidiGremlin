@@ -164,7 +164,7 @@ namespace MidiGremlin
                     OctaveOffset //Apply OctaveOffset of the keystroke's tone.
                 )*12;   //1 octave is 12 tone steps.
             if (0 > pitch || pitch > 127)
-                throw new ToneOutOfRangeExceptioin(pitch);
+                throw new ToneOutOfRangeException(pitch);
 
             return pitch;
         }

@@ -5,7 +5,7 @@ using MidiGremlin.Internal;
 namespace MidiGremlin
 {
     ///<summary>
-    ///The Orchestra class creates and mannages new instances of the instrument class.
+    ///The Orchestra class creates and manages new instances of the instrument class.
     ///</summary>
    public class Orchestra : IOrchestra
     {
@@ -15,14 +15,14 @@ namespace MidiGremlin
 	    private IReadOnlyCollection<Instrument> _roInstrumentsCache;
 
 		/// <summary>
-		/// property of the istruments which is readonly
+		/// property of the instruments which is readonly
 		/// </summary>
 		public IReadOnlyCollection<Instrument> Instruments => _roInstrumentsCache ?? (_roInstrumentsCache = _instruments.AsReadOnly());
 
 
 	    /// <summary>
         /// Creates a new instance of the orchestra class. 
-        /// Needs a reference to an output class, which can be acieved by creating a new WinmmOut instance.
+        /// Needs a reference to an output class, which can be achieved by creating a new WinmmOut instance.
         /// </summary>
         /// <param name="output"> The output class to send all played music to. </param>
         public Orchestra (IMidiOut output)

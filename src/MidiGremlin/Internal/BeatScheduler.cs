@@ -7,7 +7,7 @@ namespace MidiGremlin.Internal
 {
 	/// <summary>
 	/// The BeatScheduler is responsible for scheduling MIDI events to the 16 MIDI channels and the handling of 
-	/// the acctual timing of when to play 
+	/// the actual timing of when to play 
 	/// </summary>
 	public class BeatScheduler
 	{
@@ -30,7 +30,7 @@ namespace MidiGremlin.Internal
 		/// Returns the next simple midi event to be played from the queue. 
 		/// Can either block until it is time to actually play it or return the current next imediatly
 		/// </summary>
-		/// <param name="block">Force the BeatScheduler to return imediatly</param>
+		/// <param name="block">Force the BeatScheduler to return immediately</param>
 		/// <returns>A simple MIDI event and a timestamp. If nothing exists in the queue, it either 
 		/// returns an empty message or blocks until one is available</returns>
 		public SimpleMidiMessage GetNextMidiCommand(bool block = true)
@@ -61,12 +61,13 @@ namespace MidiGremlin.Internal
 					}
 				}
 
-				//If we was not interupted we assume we arrived at time
+				//If we was not interrupted we assume we arrived at time
 				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
+
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
 				{
 					SimpleMidiMessage message = _channelAllocator.GetNext();
-					Console.WriteLine($"Fin {message}");
+					//Console.WriteLine($"Fin {message}");
 
 					if (_channelAllocator.Empty)
 					{
@@ -82,7 +83,7 @@ namespace MidiGremlin.Internal
 			}
 
 
-			//If working in debug mode knowing that something went wrong is probably perfeable
+			//If working in debug mode knowing that something went wrong is probably preferable
 			//but in release we would just as well like it failing silently
 			//This being only a single MIDI event it would not impact the overall piece overmuch
 #if DEBUG
@@ -123,9 +124,5 @@ namespace MidiGremlin.Internal
 
 			return (int) (remaining*msPerBeat);
 		}
-	}
-
-	class ThisShouldNeverHapppenException : Exception
-	{
 	}
 }
