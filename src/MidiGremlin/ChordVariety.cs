@@ -8,10 +8,10 @@ namespace MidiGremlin
     ///</summary>
     public class ChordVariety
     {
-        int[] _toneSteps;
+        private readonly int[] _toneSteps;
 
         /// <summary> The default duration used when creating chord instances from index. </summary>
-        public double DefaultDuration = 1;
+        public double DefaultDuration { get; set; } = 1;
 
 	    /// <summary>
         /// Initialises a new ChordVariety defined by the tone steps.
@@ -59,7 +59,21 @@ namespace MidiGremlin
             return new ChordInstance(tone, duration, _toneSteps);
         }
 
-		public static ChordVariety Major { get; } = new ChordVariety(1, 3, 5);
-
+        /// <summary>
+        /// A recipe for an augmented chord with three tones. 
+        /// </summary>
+        public static ChordVariety Augmented { get; } = new ChordVariety(1, 5, 9);
+        /// <summary>
+        /// A recipe for an diminished chord with three tones.
+        /// </summary>
+        public static ChordVariety Diminished { get; } = new ChordVariety(1, 4, 7);
+        /// <summary>
+        /// A recipe for an major chord with three tones.
+        /// </summary>
+        public static ChordVariety Major { get; } = new ChordVariety(1, 5, 8);
+        /// <summary>
+        /// A recipe for an minor chord with three tones.
+        /// </summary>
+        public static ChordVariety Minor { get; } = new ChordVariety(1, 4, 8);
 	}
 }
