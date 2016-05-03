@@ -62,11 +62,11 @@ namespace MidiGremlin.Internal
 				}
 
 				//If we was not interupted we assume we arrived at time
-				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}");
+				//Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
 				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
 				{
 					SimpleMidiMessage message = _channelAllocator.GetNext();
-					Console.WriteLine($"Fin {message}");
+					//Console.WriteLine($"Fin {message}");
 
 					if (_channelAllocator.Empty)
 					{
@@ -123,9 +123,5 @@ namespace MidiGremlin.Internal
 
 			return (int) (remaining*msPerBeat);
 		}
-	}
-
-	class ThisShouldNeverHapppenException : Exception
-	{
 	}
 }

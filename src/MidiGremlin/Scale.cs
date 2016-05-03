@@ -93,7 +93,8 @@ namespace MidiGremlin
                     octaveOffset -= 1;  //Negative intervals start at offset -1.
                 }
 
-                return _tones[index] + (octaveOffset * _numberOfTones);
+                Tone result =  _tones[index] + (octaveOffset * _numberOfTones);
+                return result;
             }
         }
     }

@@ -14,13 +14,14 @@ namespace MidiGremlin.Internal
 		private readonly List<SimpleMidiMessage> _progressQueue = new List<SimpleMidiMessage>();  
 		//What instrument are active on each channel
 		private readonly InstrumentType[] _channelInstruments = new InstrumentType[16];
+		private const int DRUM_CHANNEL = 9;
 		public const double NoMessageTime = double.MaxValue;
 
 		public SimpleMidiMessage GetNext()
 		{
 			if (Empty)
 			{
-				return new SimpleMidiMessage();  //TODO: Can be done better? Throw OutOfStuffException?
+				throw new NoMoreMusicException();
 			}
 
 			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.LastItem().Timestamp <= _storage.LastItem().ToneStartTime))
@@ -58,7 +59,7 @@ namespace MidiGremlin.Internal
 			for (int index = input.Count - 1; index >= 0; index--)
 			{
 				SingleBeat singleBeat = input[index];
-//Find the element in _storage that comes just before us
+				//Find the element in _storage that comes just before us
 				while (_storage.Count > storageProgress && _storage[storageProgress].ToneStartTime > singleBeat.ToneStartTime)
 				{
 					int channel = _storage[storageProgress].Channel;
@@ -70,15 +71,20 @@ namespace MidiGremlin.Internal
 				int usedChannel = lastUsedInstruments.IndexOf(singleBeat.instrumentType);
 				if (usedChannel == -1) //If no free channel is found, find one or die
 				{
-					int maybeFreeChannel = finishTimes.IndexOfSmallest();
-					if (finishTimes[maybeFreeChannel] > singleBeat.ToneStartTime)
+					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
+
+					int result = finishTimes.Select((x, y) => y)
+							.Where(x => test(x) && finishTimes[x] < singleBeat.ToneStartTime)
+							.Select(x => x + 1).FirstOrDefault();
+
+					if (result == default(int))
 					{
 						//won't be free, do whatever
 						throw new OutOfChannelsException();
 					}
 					else
 					{
-						usedChannel = maybeFreeChannel;
+						usedChannel = result - 1;
 						lastUsedInstruments[usedChannel] = singleBeat.instrumentType;
 					}
 				}
@@ -164,9 +170,5 @@ namespace MidiGremlin.Internal
 		{
 			return new SimpleMidiMessage(MakeMidiEvent(0x8, beatWithChannel.Channel, beatWithChannel.Tone, beatWithChannel.ToneVelocity), beatWithChannel.ToneEndTime);
 		}
-	}
-
-	internal class OutOfChannelsException : Exception
-	{
 	}
 }
