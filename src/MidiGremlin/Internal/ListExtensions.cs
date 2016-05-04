@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MidiGremlin.Internal
 {
-	static class ListExtensions
+	internal static class ListExtensions
 	{
 		//Should probably be an extension method, insert an item into a sorted list keeping the list sorted
 		public static void MergeInsert<T>(this List<T> list, T item, Comparison<T> comparison)

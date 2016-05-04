@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +16,5 @@ namespace MidiGremlin.Internal
 
 			return -1;
 		}
-
-		public static int IndexOfSmallest<T>(this T[] array) where T : IComparable<T>
-		{
-			int smallestIndex = 0;
-			for (int i = 1; i < array.Length; i++)
-			{
-				if (array[smallestIndex].CompareTo(array[i]) > 0)
-				{
-					smallestIndex = i;
-				}
-			}
-
-			return smallestIndex;
-		} 
 	}
 }

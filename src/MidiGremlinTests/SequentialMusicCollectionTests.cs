@@ -42,18 +42,16 @@ namespace MidiGremlin.Tests
             Instrument i = new Instrument(testOrc, InstrumentType.AcousticBass, new Scale());
             sSBList.AddRange(sTestList.GetChildren(i, 1));
 
-            bool testBool = true;
+            
             double testDouble = 0;
             foreach (SingleBeat sb in sSBList)
             {
-                if (!(sb.ToneStartTime > testDouble))
+                if (!(sb.ToneStartTime >= testDouble))
                 {
-                    testBool = false;
+                    Assert.Fail();
                 }
                 testDouble = sb.ToneStartTime;
             }
-
-            Assert.IsTrue(testBool);
         }
         [Test]
         public void SequentialGetChildrenTest2()
