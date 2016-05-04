@@ -54,7 +54,6 @@ namespace MidiGremlin
         {
             return OffsetBy(scale, offset, 0);
         }
-
         /// <summary>
         /// Offsets the keystroke by both an interval and an octave.
         /// </summary>
