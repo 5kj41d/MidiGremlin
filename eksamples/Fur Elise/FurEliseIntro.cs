@@ -5,7 +5,7 @@ using MidiGremlin;
 
 namespace Für_Elise
 {
-    class Program
+    class FurEliseIntro
     {
         private const int bpm = 30;
 
@@ -15,16 +15,30 @@ namespace Für_Elise
         /// </summary>
         /// <param name="duration">The duration of all the notes. </param>
         /// <param name="velocity">The velocity of all the notes.</param>
+        /// <param name="sustainFor"> Values not 0 causes behavior similar to pressing the sustain pedal for that many beats.</param>
         /// <param name="tones">The tones, in the order they should appear in the list.</param>
         /// <returns>A list of notes that all have the same duration and velocity.</returns>
-        private static SequentialMusicList SimilarNotes(double duration, byte velocity, params Tone[] tones)
+        private static SequentialMusicList SimilarNotes(double duration, byte velocity, double sustainFor, params Tone[] tones)
         {
-            List<MusicObject> result = new List<MusicObject>(tones.Length);
+            List<Note> result = new List<Note>(tones.Length);
             result.AddRange(tones
                 .Select(tone => new Note(tone, duration, velocity)));
+            
+            if (sustainFor != 0)
+            {
+                double timeLeftToSustain = sustainFor;  //Each note starts 1 duration sooner than the last.
+                foreach (Note note in result)
+                {
+                    note.Keystroke.Duration += timeLeftToSustain;
+
+                    timeLeftToSustain -= duration;  //Each note's duration should be 1 'duration' less than the last.
+                    if (timeLeftToSustain < 0)
+                        timeLeftToSustain = 0;
+                }
+            }
 
             return new SequentialMusicList(result);
-        } 
+        }
 
 
 
@@ -45,7 +59,9 @@ namespace Für_Elise
             double eigth = 1 / 8D;
             byte baseVelocity = 50;
 
-            //Creating the right hand:
+            //----------------------------
+            //   Creating the right hand:
+            //----------------------------
 
             //The treble clef shows the position of the G
             //(which has index 6 in majorScale)
@@ -56,15 +72,16 @@ namespace Für_Elise
 
 			//Making all the six bars:
 
-            MusicObject rBar0 =
-                SimilarNotes(eigth, baseVelocity,
+            MusicObject rBar0 = //Strangely, the first bar is only two eigths long.
+                //The two notes have the same duration and velocity, so we are using a helper class.(The zero means the sustain pedal is not used.)
+                SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[5 + trebleClef],
                     majorScale[4 + trebleClef] + 1);
 
             MusicObject rBar1And5 =
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[5 + trebleClef],
-                    majorScale[4 + trebleClef] + 1,
+                    majorScale[4 + trebleClef] + 1, //The ♯ elevates all tones on the line with 1 until cancelled by a ♮ or the bar ends.
                     majorScale[5 + trebleClef],
                     majorScale[2 + trebleClef],
                     majorScale[4 + trebleClef],
@@ -74,7 +91,7 @@ namespace Für_Elise
                 (
                 new Note(majorScale[1 + trebleClef], eigth*2, baseVelocity),
                 new Pause(eigth),
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[-4 + trebleClef],
                     majorScale[-2 + trebleClef],
                     majorScale[1 + trebleClef])
@@ -84,7 +101,7 @@ namespace Für_Elise
                 (
                 new Note(majorScale[2 + trebleClef], eigth*2, baseVelocity),
                 new Pause(eigth),
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[-2 + trebleClef],
                     majorScale[0 + trebleClef] + 1,
                     majorScale[2 + trebleClef])
@@ -94,7 +111,7 @@ namespace Für_Elise
                 (
                 new Note(majorScale[3 + trebleClef], eigth*2, baseVelocity),
                 new Pause(eigth),
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[-2 + trebleClef],
                     majorScale[5 + trebleClef],
                     majorScale[4 + trebleClef] + 1)
@@ -105,7 +122,9 @@ namespace Für_Elise
             //The whole right hand.
             MusicObject rightHand = new SequentialMusicList(rBar0, rBar1And5, rBar2, rBar3, rBar4, rBar1And5);
 
-            //Creating the left hand:
+            //----------------------------
+            //   Creating the left hand:
+            //----------------------------
 
             //The bass clef shows the position of the F
             //(which has index 5 in majorScale)
@@ -122,7 +141,7 @@ namespace Für_Elise
 
             MusicObject lBar2And4 = new SequentialMusicList
                 (
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 6,    //These notes should be sustained for the rest of the bar.
                     loweredMajorScale[-5 + bassClef],
                     loweredMajorScale[-1 + bassClef],
                     loweredMajorScale[2 + bassClef]),
@@ -132,7 +151,7 @@ namespace Für_Elise
 
             MusicObject lBar3 = new SequentialMusicList
                 (
-                SimilarNotes(eigth, baseVelocity,
+                SimilarNotes(eigth, baseVelocity, 6,    //These notes should be sustained for the rest of the bar.
                     loweredMajorScale[-8 + bassClef],
                     loweredMajorScale[-1 + bassClef],
                     loweredMajorScale[1 + bassClef] + 1),
@@ -148,16 +167,18 @@ namespace Für_Elise
             //The whole left hand.
             MusicObject leftHand = new SequentialMusicList(lBar0, lBar1And5, lBar2And4, lBar3, lBar2And4, lBar1And5);
 
-            MusicObject leftHand2 = leftHand.Select<Note>(x => x);
+            //----------------------------
+            //   Ready to play:
+            //----------------------------
 
-            //To play music, first we need an orchestra with access to a player
+            //To play music, first we need an orchestra with access to an output.
             Orchestra o = new Orchestra(new WinmmOut(0, bpm));
 
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, majorScale, 0);
 
-            //And so we just start it.
-            piano.Play(leftHand2);
+            //And then we just start it.
+            piano.Play(leftHand);
             piano.Play(rightHand);
 
 			o.WaitForFinished();
