@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -12,7 +9,9 @@ namespace MidiGremlin
     /// </summary>
     public class Note : MusicObject
     {
+        /// <summary> The actual sound in the note. </summary>
         public Keystroke Keystroke;
+        /// <summary> Ensures that there is a wait time before the next note is played. </summary>
         public Pause Pause;
 
 
@@ -42,6 +41,25 @@ namespace MidiGremlin
 
 			foreach (SingleBeat beat in Pause.GetChildren(playedBy, startTime))
 				yield return beat;
+        }
+
+
+        /// <summary>
+        /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+        /// </summary>
+        /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            Note result = new Note(Keystroke.Tone, Pause.Duration, Keystroke.Velocity);
+            result.Keystroke.Select(selector);
+            result.Pause.Select(selector);
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
         }
     }
 }

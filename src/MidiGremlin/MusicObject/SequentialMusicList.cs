@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -194,6 +195,19 @@ namespace MidiGremlin
             }
 
 			yield return new SingleBeat(0, 0xff, 0xff, tempTime, tempTime);
+        }
+
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            List<MusicObject> resultChildren = _children
+                .Select(x => x.Select(selector))    //Make sure to call this function(MusicObject.Select) on all composite children also.
+                .ToList();
+            SequentialMusicList result = new SequentialMusicList(resultChildren);
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
         }
 
 

@@ -28,7 +28,7 @@
         A,
         /// <summary> A♯ </summary>
         ASharp,
-        /// <summary> B(Or H in european notation.) </summary>
+        /// <summary> B(Or H in northern european notation.) </summary>
         B
     }
 }

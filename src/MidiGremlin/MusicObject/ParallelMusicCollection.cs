@@ -37,6 +37,8 @@ namespace MidiGremlin
                 Add(m);
             }
         }
+
+
         /// <summary>
         ///  Gets and sets MusicObject from the indicated index.
         /// </summary>
@@ -193,6 +195,26 @@ namespace MidiGremlin
                 yield return sb;
             }
             
+        }
+
+
+        /// <summary>
+        /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+        /// </summary>
+        /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            List<MusicObject> resultChildren = _children
+                .Select(x => x.Select(selector))    //Make sure to call MusicObject's Select on all composite children also.
+                .ToList();
+            ParallelMusicCollection result = new ParallelMusicCollection(resultChildren);
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
         }
 
 

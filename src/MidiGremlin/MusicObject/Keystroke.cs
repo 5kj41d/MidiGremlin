@@ -67,6 +67,7 @@ namespace MidiGremlin
         /// <param name="duration"> Changes how long the keystroke is played. In beats</param>
         /// <param name="velocity"> Changes how hard the keystroke is played. </param>
         /// <returns> Returns a new keystroke that has been offset within the scale. </returns>
+        /// <exception cref="ToneNotFoundException">If the Keystroke's Tone is not part of the scale.</exception>
         public Keystroke OffsetBy(Scale scale, int offset, double? duration = null, byte? velocity = null)
         {
             byte tempVelocity = Velocity;
@@ -128,6 +129,27 @@ namespace MidiGremlin
             int tone = MidiPitchFromTone(Tone, playedBy.Octave);
 
             yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
+        }
+
+
+        /// <summary>
+        /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+        /// </summary>
+        /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+        /// <param name="selector">A transform function to apply to each element.</param>
+        /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+        public override MusicObject Select<T>(Func<T, T> selector)
+        {
+            Keystroke result = new Keystroke(Tone, Duration, Velocity)
+            {
+                Tone = Tone,
+                OctaveOffset = OctaveOffset
+            };  //Tone and OctaveOffset must be copied directly because of the weird conversion in the constructor.
+
+            if (this is T)
+                return selector(result as T);
+            else
+                return result;
         }
 
 
