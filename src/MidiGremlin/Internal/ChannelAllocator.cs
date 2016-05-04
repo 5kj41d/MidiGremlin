@@ -24,7 +24,7 @@ namespace MidiGremlin.Internal
 				throw new NoMoreMusicException();
 			}
 
-			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.LastItem().Timestamp <= _storage.LastItem().ToneStartTime))
+			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
 			{
 				return _progressQueue.PopLast();
 			}
