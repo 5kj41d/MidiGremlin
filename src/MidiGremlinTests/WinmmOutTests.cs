@@ -9,30 +9,32 @@ namespace MidiGremlin.Tests
         [Test()]
         public void WinmmOutTest ()
         {
-            new WinmmOut(0, 60);
-            Thread.Sleep(1000);
-            Assert.Pass();
+
+            Assert.DoesNotThrow(() => { var o = new WinmmOut(0, 60); o.Dispose();});
+
+			
         }
 
 
-        [Test()]
-        public void CurrentTimeTest ()
-        {
-            Assert.Fail();
-        }
+        //[Test()]
+        //public void CurrentTimeTest ()
+        //{
+        //    Assert.Fail();
+        //}
 
         [Test()]
         public void QueueMusicTest ()
         {
-            Orchestra o = new Orchestra(new WinmmOut(0));
-			Keystroke n = new Keystroke(Tone.C,  1000);
-	        Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
+	        using (WinmmOut winMM = new WinmmOut(0))
+	        {
+				Orchestra o = new Orchestra(winMM);
+				Keystroke n = new Keystroke(Tone.C, 1000);
+				Instrument i = o.AddInstrument(InstrumentType.AccousticGrandPiano);
 
-			i.Play(n);
+				i.Play(n);
 
-			Thread.Sleep(5000);
-
-			Assert.Pass();
+				Thread.Sleep(5000);
+			}
         }
     }
 }

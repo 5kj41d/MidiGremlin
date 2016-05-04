@@ -113,7 +113,7 @@ namespace MidiGremlin.Internal
         /// <param name="channel">The channel to play from.</param>
         public SingleBeatWithChannel (InstrumentType instrumentType, byte tone, byte toneVelocity, double toneStartTime, double toneEndTime, byte channel)
         {
-            this.instrumentType = instrumentType;
+            this.InstrumentType = instrumentType;
             Tone = tone;
             ToneVelocity = toneVelocity;
             ToneStartTime = toneStartTime;
@@ -123,11 +123,11 @@ namespace MidiGremlin.Internal
 
 		public override string ToString()
 		{
-			return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({Channel}) ({instrumentType})";
+			return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({Channel}) ({InstrumentType})";
 		}
 
 		/// <summary> The type of instrument the tone is played with.  </summary>
-		public InstrumentType instrumentType { get; }
+		public InstrumentType InstrumentType { get; }
         /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone { get; }
         /// <summary> The velocity of the tone. </summary>
