@@ -45,6 +45,54 @@ namespace MidiGremlin
 
 
         /// <summary>
+        /// Offsets the keystroke by an interval.
+        /// </summary>
+        /// <param name="offset"> Moves by intevals/tonesteps. </param>
+        /// <returns> Returns a new keystroke that has been offset. </returns>
+        public Note OffsetBy (int offset)
+        {
+            return OffsetBy(Scale.ChromaticScale, offset);
+        }
+        /// <summary>
+        /// Offsets the keystroke in a specified scale.
+        /// </summary>
+        /// <param name="scale">The scale you want to offset by</param>
+        /// <param name="offset"> Moves by intevals/tonesteps. </param>
+        /// <returns> Returns a new keystroke that has been offset within the scale. </returns>
+        /// <exception cref="ToneNotFoundException">If the Keystroke's Tone is not part of the scale.</exception>
+        public Note OffsetBy (Scale scale, int offset)
+        {
+            return OffsetBy(scale, offset, 0);
+        }
+
+
+        /// <summary>
+        /// Offsets the keystroke by both an interval and an octave.
+        /// </summary>
+        /// <param name="offset"> Moves by intevals/tonesteps. </param>
+        /// <param name="octaveOffset"> Moves by octave. </param>
+        /// <returns> Returns a new keystroke that has been offset within the scale. </returns>
+        public Note OffsetBy (int offset, int octaveOffset)
+        {
+            return OffsetBy(Scale.ChromaticScale, offset, octaveOffset);
+        }
+        /// <summary>
+        /// Offsets the keystroke by both an interval and an octave.
+        /// </summary>
+        /// <param name="scale">The scale you want to offset by</param>
+        /// <param name="offset"> Moves by intevals/tonesteps. </param>
+        /// <param name="octaveOffset"> Moves by octave. </param>
+        /// <returns> Returns a new keystroke that has been offset within the scale. </returns>
+        public Note OffsetBy (Scale scale, int offset, int octaveOffset)
+        {
+            Note result = new Note(Keystroke.Tone, Pause.Duration, Keystroke.Velocity);
+            result.Keystroke.OffsetBy(scale, offset, octaveOffset);
+
+            return result;
+        }
+
+
+        /// <summary>
         /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
         /// </summary>
         /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>

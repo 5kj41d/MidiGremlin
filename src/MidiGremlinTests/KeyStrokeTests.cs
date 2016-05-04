@@ -29,5 +29,37 @@ namespace MidiGremlin.Tests
 			SingleBeat expected = new SingleBeat(i.InstrumentType, expectedPitch, n.Velocity, 0, n.Duration);
 			Assert.AreEqual(actual, expected);
 		}
-	}
+
+
+        [TestCase(Tone.B, 1, 0, Tone.C + 12)]
+        [TestCase(Tone.C, 0, 1, Tone.C + 12)]
+        [TestCase(Tone.B, 1, 1, Tone.C + 12 * 2)]
+        [TestCase(Tone.B, 0, 99, Tone.B + 12 * 99)]
+        [TestCase(Tone.C, 12, 0, Tone.C + 12)]
+        [TestCase(Tone.C, 14, 0, Tone.D + 12)]
+        [Test]
+        public void OffsetTest (Tone startTone, int offset, int octaveOffset, Tone expectedTone)
+        {
+            Keystroke k = new Keystroke(startTone, 1);            
+            Keystroke expected = new Keystroke(expectedTone, 1);
+            Keystroke result = k.OffsetBy(offset, octaveOffset);            
+            Assert.AreEqual(expected.Tone, result.Tone);
+        }
+
+        [TestCase(Tone.B, 1, 0, Tone.C + 12)]
+        [TestCase(Tone.D, 1, 0, Tone.B)]
+        [TestCase(Tone.B, 0, 1, Tone.B + 12)]
+        [TestCase(Tone.C, 4, 0, Tone.D)]
+        [Test]
+        public void OffsetInScaleTest (Tone startTone, int offset, int octaveOffset, Tone expectedTone)
+        {
+            Scale scale = new Scale(Tone.C, Tone.D, Tone.B);
+            Keystroke k = new Keystroke(startTone, 1);
+
+            Keystroke expected = new Keystroke(expectedTone, 1);
+            Keystroke result = k.OffsetBy(scale, offset, octaveOffset);
+
+            Assert.AreEqual(expected.Tone, result.Tone);
+        }
+    }
 }
