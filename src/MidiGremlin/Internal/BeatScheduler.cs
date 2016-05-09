@@ -28,7 +28,7 @@ namespace MidiGremlin.Internal
 		
 		/// <summary>
 		/// Returns the next simple midi event to be played from the queue. 
-		/// Can either block until it is time to actually play it or return the current next imediatly
+		/// It can either block it until it is time to actually play it or return the current timestamp immediately
 		/// </summary>
 		/// <param name="block">Force the BeatScheduler to return immediately</param>
 		/// <returns>A simple MIDI event and a timestamp. If nothing exists in the queue, it either 
