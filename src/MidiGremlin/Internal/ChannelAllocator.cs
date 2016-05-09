@@ -24,7 +24,7 @@ namespace MidiGremlin.Internal
 				throw new NoMoreMusicException();
 			}
 
-			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.LastItem().Timestamp <= _storage.LastItem().ToneStartTime))
+			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
 			{
 				return _progressQueue.PopLast();
 			}
@@ -32,7 +32,7 @@ namespace MidiGremlin.Internal
 			{
 				SingleBeatWithChannel beatWithChannel = _storage.PopLast();
 
-				if (beatWithChannel.instrumentType == _channelInstruments[beatWithChannel.Channel])
+				if (beatWithChannel.InstrumentType == _channelInstruments[beatWithChannel.Channel])
 				{
 					//X, Y reverse order as list should be in that order
 					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
@@ -40,7 +40,7 @@ namespace MidiGremlin.Internal
 				}
 				else
 				{
-					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.instrumentType;
+					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.InstrumentType;
 					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
 					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return ChangeChannelMidiMessage(beatWithChannel);
@@ -64,7 +64,7 @@ namespace MidiGremlin.Internal
 				{
 					int channel = _storage[storageProgress].Channel;
 					finishTimes[channel] = Math.Max(_storage[storageProgress].ToneEndTime, finishTimes[channel]);
-					lastUsedInstruments[channel] = _storage[storageProgress].instrumentType;
+					lastUsedInstruments[channel] = _storage[storageProgress].InstrumentType;
 					storageProgress++;
 				}
 
@@ -158,7 +158,7 @@ namespace MidiGremlin.Internal
 
 		private SimpleMidiMessage ChangeChannelMidiMessage(SingleBeatWithChannel beatWithChannel)
 		{
-			return new SimpleMidiMessage(MakeMidiEvent(0xC, beatWithChannel.Channel, (byte)((int)beatWithChannel.instrumentType & 0x7F), 0), beatWithChannel.ToneStartTime);
+			return new SimpleMidiMessage(MakeMidiEvent(0xC, beatWithChannel.Channel, (byte)((int)beatWithChannel.InstrumentType & 0x7F), 0), beatWithChannel.ToneStartTime);
 		}
 
 		private SimpleMidiMessage StartMidiMessage(SingleBeatWithChannel beatWithChannel)

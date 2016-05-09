@@ -18,13 +18,9 @@ namespace MidiGremlin.Internal
         /// <param name="tone">The root tone of the chord.</param>
         /// <param name="duration">The duration of the chord.</param>
         /// <param name="toneSteps">The tones that the chord contains.</param>
-        internal ChordInstance (Tone tone, double duration, int[] toneSteps)
-        {
-            _rootTone = tone;
-            _duration = duration;
-            _toneSteps = toneSteps;
-        }
-        /// <summary>
+        internal ChordInstance (Tone tone, double duration, int[] toneSteps) : this(tone, duration, 64, toneSteps) { }
+        
+		/// <summary>
         /// A chord consisting of a root tone and the tone-steps from the root-tone.
         /// The tone steps are indicated by intervals(Always on the full 12-tone scale). NB: The root tone has interval 1 and is not implicit.
         /// </summary>

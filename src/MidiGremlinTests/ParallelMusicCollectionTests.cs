@@ -43,17 +43,15 @@ namespace MidiGremlin.Tests
             Instrument i = new Instrument(testOrc, InstrumentType.AcousticBass, new Scale());
             sTestList.AddRange(sTestCollection.GetChildren(i, 1));
 
-            bool testBool = true;
+            
             double testDouble = 1;
             foreach (SingleBeat sb in sTestList)
             {
-                if ((sb.ToneStartTime != testDouble))
+                if (sb.ToneStartTime != testDouble && (sb.ToneVelocity != 0xff && sb.Tone != 0xff))
                 {
-                    testBool = false;
+                    Assert.Fail();
                 }
             }
-
-            Assert.IsTrue(testBool);
         }
 
         
