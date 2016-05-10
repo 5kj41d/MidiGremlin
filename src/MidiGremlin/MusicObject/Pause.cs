@@ -16,6 +16,7 @@ namespace MidiGremlin
         public double Duration { get; set; }
 
 
+
         /// <summary>
         /// Creates a new instance of the Pause class.
         /// </summary>
@@ -24,6 +25,7 @@ namespace MidiGremlin
         {
             Duration = duration;
         }
+
 
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace MidiGremlin
         {
 	        yield return new SingleBeat(0, 0xff, 0xff, startTime + Duration, startTime + Duration);
         }
+
 
 
         /// <summary>

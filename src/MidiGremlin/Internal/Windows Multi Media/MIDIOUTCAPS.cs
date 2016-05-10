@@ -23,6 +23,8 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         public uint dwSupport;
     }
 
+
+
     // values for wTechnology field of MIDIOUTCAPS structure
     enum MidiDeviceTechnologyType : ushort
     {
@@ -34,6 +36,8 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         MOD_WAVETABLE = 6,  // hardware wavetable synth
         MOD_SWSYNTH = 7     // software synth
     }
+
+
 
     // flags for dwSupport field of MIDIOUTCAPS structure
     [Flags]

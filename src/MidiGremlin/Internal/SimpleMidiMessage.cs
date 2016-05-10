@@ -8,13 +8,17 @@ namespace MidiGremlin.Internal
 		public readonly double Timestamp;
 		public readonly int Data;
 
-		public SimpleMidiMessage(int data, double timestamp)
+
+
+        public SimpleMidiMessage(int data, double timestamp)
 		{
 			//if((data & 0x808000) != 0) throw new ArgumentOutOfRangeException();
 			//if ((data & 0x000080) == 0) throw new ArgumentOutOfRangeException();
 			this.Data = data;
 			this.Timestamp = timestamp;
 		}
+
+
 
 		public SimpleMidiMessage WithChannel(byte channel)
 		{
@@ -26,6 +30,8 @@ namespace MidiGremlin.Internal
 			return new SimpleMidiMessage(data, this.Timestamp);
 		}
 		
+
+
 		public byte Type
 		{
 			get { return (byte) ((Data & 0x000000f0) >> 4); }
@@ -48,6 +54,8 @@ namespace MidiGremlin.Internal
 			return Timestamp == other.Timestamp && Data == other.Data;
 		}
 
+
+
 		/// <summary>
 		/// Returns the hash code for this instance.
 		/// </summary>
@@ -62,6 +70,8 @@ namespace MidiGremlin.Internal
 			}
 		}
 
+
+
 		/// <summary>
 		/// Indicates whether this instance and a specified object are equal.
 		/// </summary>
@@ -74,18 +84,24 @@ namespace MidiGremlin.Internal
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is SimpleMidiMessage && Equals((SimpleMidiMessage) obj);
 		}
-		
-		public static bool operator ==(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
+
+
+
+        public static bool operator ==(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
 			return lhs.Equals(rhs);
 		}
 
-		public static bool operator !=(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
+
+
+        public static bool operator !=(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
 			return !lhs.Equals(rhs);
 		}
 
-		private static string[] types =
+
+
+        private static string[] types =
 		{
 			"  0",
 			"  1",
@@ -104,6 +120,8 @@ namespace MidiGremlin.Internal
 			" 14",
 			" 15"
 		};
+
+
 
 		/// <summary>
 		/// Returns the fully qualified type name of this instance.

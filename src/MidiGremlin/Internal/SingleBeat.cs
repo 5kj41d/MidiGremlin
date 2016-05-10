@@ -20,6 +20,8 @@ namespace MidiGremlin.Internal
 		    return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({instrumentType})";
 	    }
 
+
+
 	    /// <summary>
         /// Creates a new instance of SingleBeat with the specified properties.
         /// </summary>
@@ -36,6 +38,8 @@ namespace MidiGremlin.Internal
             ToneStartTime = toneStartTime;
             ToneEndTime = toneEndTime;
         }
+
+
 
 		/// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -61,6 +65,8 @@ namespace MidiGremlin.Internal
             return false;
         }
 
+
+
         /// <summary>
         /// Returns the hash code for this instance.
         /// </summary>
@@ -83,20 +89,29 @@ namespace MidiGremlin.Internal
 		
         /// <summary> The type of instrument the tone is played with.  </summary>
         public InstrumentType instrumentType{ get; }
+        
         /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone{ get; }
+        
         /// <summary> The velocity of the tone. </summary>
         public byte ToneVelocity{ get; }
+        
         /// <summary> The time in beats at which the tone starts. </summary>
         public double ToneStartTime{ get; }
+        
         /// <summary> The time in beats at which the tone end. </summary>
         public double ToneEndTime{ get; }
+
+
 
 	    public SingleBeatWithChannel WithChannel(byte usedChannel)
 	    {
 		    return new SingleBeatWithChannel(instrumentType, Tone, ToneVelocity, ToneStartTime, ToneEndTime, usedChannel);
 	    }
     }
+
+
+
     /// <summary>
     /// A Singlebeat that also contains a channel.
     /// </summary>
@@ -121,21 +136,30 @@ namespace MidiGremlin.Internal
             Channel = channel;
         }
 
+
+
 		public override string ToString()
 		{
 			return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({Channel}) ({InstrumentType})";
 		}
 
+
+
 		/// <summary> The type of instrument the tone is played with.  </summary>
 		public InstrumentType InstrumentType { get; }
+        
         /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone { get; }
+        
         /// <summary> The velocity of the tone. </summary>
         public byte ToneVelocity { get; }
+        
         /// <summary> The time in beats at which the tone starts. </summary>
         public double ToneStartTime { get; }
+        
         /// <summary> The time in beats at which the tone end. </summary>
         public double ToneEndTime { get; }
+        
         /// <summary> The channel to play from. </summary>
         public  byte Channel { get; }
     }

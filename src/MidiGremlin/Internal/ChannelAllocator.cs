@@ -48,6 +48,8 @@ namespace MidiGremlin.Internal
 			}
 		}
 		
+
+
 		public void Add(List<SingleBeat> input)
 		{
 			InstrumentType[] lastUsedInstruments = new InstrumentType[16];
@@ -94,6 +96,8 @@ namespace MidiGremlin.Internal
 			}
 		}
 
+
+
 		public double NextTimeStamp
 		{
 			get
@@ -117,6 +121,8 @@ namespace MidiGremlin.Internal
 			}
 		}
 
+
+
 		public bool Empty => _progressQueue.Count == 0 && _storage.Count == 0;
 
 		private int CompareSimpleMidi(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
@@ -132,7 +138,9 @@ namespace MidiGremlin.Internal
 			return second;
 		}
 
-		private double[] CreateFinishTimesArray()
+
+
+        private double[] CreateFinishTimesArray()
 		{
 			double[] ret = new double[16];
 
@@ -144,7 +152,9 @@ namespace MidiGremlin.Internal
 			return ret;
 		}
 
-		private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
+
+
+        private int MakeMidiEvent(byte midiEventType, byte channel, byte tone, byte toneVelocity)
 		{
 			int data = 0;
 
@@ -156,17 +166,23 @@ namespace MidiGremlin.Internal
 			return data;
 		}
 
-		private SimpleMidiMessage ChangeChannelMidiMessage(SingleBeatWithChannel beatWithChannel)
+
+
+        private SimpleMidiMessage ChangeChannelMidiMessage(SingleBeatWithChannel beatWithChannel)
 		{
 			return new SimpleMidiMessage(MakeMidiEvent(0xC, beatWithChannel.Channel, (byte)((int)beatWithChannel.InstrumentType & 0x7F), 0), beatWithChannel.ToneStartTime);
 		}
 
-		private SimpleMidiMessage StartMidiMessage(SingleBeatWithChannel beatWithChannel)
+
+
+        private SimpleMidiMessage StartMidiMessage(SingleBeatWithChannel beatWithChannel)
 		{
 			return new SimpleMidiMessage(MakeMidiEvent(0x9, beatWithChannel.Channel, beatWithChannel.Tone, beatWithChannel.ToneVelocity), beatWithChannel.ToneStartTime);
 		}
 
-		private SimpleMidiMessage StopMidiMessage(SingleBeatWithChannel beatWithChannel)
+
+
+        private SimpleMidiMessage StopMidiMessage(SingleBeatWithChannel beatWithChannel)
 		{
 			return new SimpleMidiMessage(MakeMidiEvent(0x8, beatWithChannel.Channel, beatWithChannel.Tone, beatWithChannel.ToneVelocity), beatWithChannel.ToneEndTime);
 		}

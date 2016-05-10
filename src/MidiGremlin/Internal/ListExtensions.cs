@@ -20,7 +20,9 @@ namespace MidiGremlin.Internal
 			list.Insert(i, item);
 		}
 
-		public static T PopLast<T>(this List<T> list)
+
+
+        public static T PopLast<T>(this List<T> list)
 		{
 			T t = list[list.Count - 1];
 			list.RemoveAt(list.Count - 1);

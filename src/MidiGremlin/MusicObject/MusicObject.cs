@@ -27,6 +27,7 @@ namespace MidiGremlin
         internal abstract IEnumerable<SingleBeat> GetChildren (Instrument playedBy, double startTime);
 
 
+
         /// <summary>
         /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
         /// </summary>

@@ -14,6 +14,7 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         public static extern uint midiOutGetNumDevs ();
 
 
+
         /// <summary>
         /// Device capabilities.
         /// http://pinvoke.net/default.aspx/winmm/midiOutGetDevCaps.html
@@ -23,6 +24,7 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         /// <returns>Method call status.</returns>
         [DllImport("winmm.dll", SetLastError = true)]
         public static extern MMRESULT midiOutGetDevCaps (UIntPtr uDeviceID, ref MIDIOUTCAPS lpMidiOutCaps, uint cbMidiOutCaps);
+
 
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         public static extern uint midiOutOpen (out IntPtr lphMidiOut, uint uDeviceID, IntPtr dwCallback, IntPtr dwInstance, uint dwFlags);
 
 
+
         /// <summary>
         /// Closes the MIDI output device.
         /// http://pinvoke.net/default.aspx/winmm/midiOutClose.html
@@ -44,6 +47,7 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         /// <returns>Method call status.</returns>
         [DllImport("winmm.dll")]
         public static extern uint midiOutClose (IntPtr hMidiOut);
+
 
 
         /// <summary>

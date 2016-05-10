@@ -10,8 +10,12 @@ namespace MidiGremlin
     {
         private readonly int[] _toneSteps;
 
+        
+        
         /// <summary> The default duration used when creating chord instances from index. </summary>
         public double DefaultDuration { get; set; } = 1;
+
+
 
 	    /// <summary>
         /// Initialises a new ChordVariety defined by the tone steps.
@@ -22,6 +26,7 @@ namespace MidiGremlin
         {
             _toneSteps = toneSteps;
         }
+
 
 
         /// <summary>
@@ -37,6 +42,8 @@ namespace MidiGremlin
             }
         }
 
+
+
 	    /// <summary>
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
@@ -48,6 +55,9 @@ namespace MidiGremlin
         {
             return new ChordInstance(tone, duration, velocity, _toneSteps);
         }
+        
+        
+        
         /// <summary>
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
@@ -59,18 +69,29 @@ namespace MidiGremlin
             return new ChordInstance(tone, duration, _toneSteps);
         }
 
+
+
         /// <summary>
         /// A recipe for an augmented chord with three tones. 
         /// </summary>
         public static ChordVariety Augmented { get; } = new ChordVariety(1, 5, 9);
+        
+        
+        
         /// <summary>
         /// A recipe for an diminished chord with three tones.
         /// </summary>
         public static ChordVariety Diminished { get; } = new ChordVariety(1, 4, 7);
+        
+        
+        
         /// <summary>
         /// A recipe for an major chord with three tones.
         /// </summary>
         public static ChordVariety Major { get; } = new ChordVariety(1, 5, 8);
+        
+        
+        
         /// <summary>
         /// A recipe for an minor chord with three tones.
         /// </summary>

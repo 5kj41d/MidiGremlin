@@ -26,6 +26,8 @@ namespace MidiGremlin.Internal
 			_output = output;
 		}
 		
+
+
 		/// <summary>
 		/// Returns the next simple midi event to be played from the queue. 
 		/// It can either block it until it is time to actually play it or return the current timestamp immediately
@@ -61,6 +63,8 @@ namespace MidiGremlin.Internal
 					}
 				}
 
+
+
 				//If we was not interrupted we assume we arrived at time
 				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
 
@@ -81,6 +85,7 @@ namespace MidiGremlin.Internal
 					return message;
 				}
 			}
+
 
 
 			//If working in debug mode knowing that something went wrong is probably preferable
@@ -110,6 +115,8 @@ namespace MidiGremlin.Internal
 			}
 		}
 
+
+
 		private int GetWaitTimeMs(double timestamp)
 		{
 			double current = _orchestra.CurrentTime();
@@ -117,6 +124,8 @@ namespace MidiGremlin.Internal
 
 			return remaining < 0 ? 0 : BeatsToMs(remaining);
 		}
+
+
 
 		private int BeatsToMs(double remaining)
 		{

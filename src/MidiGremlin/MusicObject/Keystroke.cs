@@ -11,12 +11,17 @@ namespace MidiGremlin
     {
         ///<summary> The tone that the keystroke represents. </summary>
         public Tone Tone { get; set; }
+       
         ///<summary> The duration of the keystroke. </summary>
         public double Duration { get; set; }
+        
         ///<summary> The severety with which the keystroke is struck. </summary>
         public byte Velocity { get; set; }
+        
         ///<summary> The keystroke's offset from the middle octave. </summary>
         public int OctaveOffset { get; set; }
+
+
 
         /// <summary>
         /// Creates a new instance of the Keystroke class.
@@ -34,6 +39,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Offsets the keystroke by an interval.
         /// </summary>
@@ -43,6 +49,9 @@ namespace MidiGremlin
         {
             return OffsetBy(Scale.ChromaticScale, offset);
         }
+        
+        
+        
         /// <summary>
         /// Offsets the keystroke in a specified scale.
         /// </summary>
@@ -54,6 +63,9 @@ namespace MidiGremlin
         {
             return OffsetBy(scale, offset, 0);
         }
+        
+        
+        
         /// <summary>
         /// Offsets the keystroke by both an interval and an octave.
         /// </summary>
@@ -64,6 +76,9 @@ namespace MidiGremlin
         {
             return OffsetBy(Scale.ChromaticScale, offset, octaveOffset);
         }
+        
+        
+        
         /// <summary>
         /// Offsets the keystroke by both an interval and an octave.
         /// </summary>
@@ -77,6 +92,7 @@ namespace MidiGremlin
 
             return new Keystroke(newTone, Duration, Velocity);
         }
+
 
 
         /// <summary>
@@ -94,6 +110,7 @@ namespace MidiGremlin
 
             yield return new SingleBeat(playedBy.InstrumentType, (byte)tone, velocity, startTime, startTime + Duration);
         }
+
 
 
         /// <summary>
@@ -115,6 +132,7 @@ namespace MidiGremlin
             else
                 return result;
         }
+
 
 
         /// <summary>

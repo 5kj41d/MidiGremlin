@@ -17,6 +17,8 @@ namespace MidiGremlin
         /// </summary>
         public int Tone { get; }
 
+        
+        
         /// <summary>
         /// Creates a new exception of this type.
         /// </summary>

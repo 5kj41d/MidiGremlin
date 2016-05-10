@@ -15,6 +15,7 @@ namespace MidiGremlin
         public Pause Pause;
 
 
+
         /// <summary>
         /// Creates a new instance of the Note class by initializing a <see cref="T:MidiGremlin.Keystroke"/> and a <see cref="T:MidiGremlin.Pause"/> with the same duration.
         /// </summary>
@@ -26,6 +27,8 @@ namespace MidiGremlin
             Keystroke = new Keystroke(tone, duration, velocity);
             Pause = new Pause(duration);
         }
+
+
 
         /// <summary>
         /// Returns the full contents of this MusicObject as SingleBeats.
@@ -44,6 +47,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Offsets the keystroke by an interval.
         /// </summary>
@@ -53,6 +57,9 @@ namespace MidiGremlin
         {
             return OffsetBy(Scale.ChromaticScale, offset);
         }
+        
+        
+        
         /// <summary>
         /// Offsets the keystroke in a specified scale.
         /// </summary>
@@ -66,6 +73,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Offsets the keystroke by both an interval and an octave.
         /// </summary>
@@ -76,6 +84,9 @@ namespace MidiGremlin
         {
             return OffsetBy(Scale.ChromaticScale, offset, octaveOffset);
         }
+        
+        
+        
         /// <summary>
         /// Offsets the keystroke by both an interval and an octave.
         /// </summary>
@@ -90,6 +101,7 @@ namespace MidiGremlin
 
             return result;
         }
+
 
 
         /// <summary>
