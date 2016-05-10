@@ -15,7 +15,7 @@
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.5.2</FrameworkVersion>
     <OutputPath>..\Documentation\</OutputPath>
-    <HtmlHelpName>MidiGremlin</HtmlHelpName>
+    <HtmlHelpName>Midi__Gremlin</HtmlHelpName>
     <Language>en-US</Language>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\src\MidiGremlin\MidiGremlin.csproj" xmlns="" />
@@ -32,11 +32,11 @@
     <NamespaceGrouping>False</NamespaceGrouping>
     <SyntaxFilters>Standard</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
     <PresentationStyle>VS2013</PresentationStyle>
     <Preliminary>False</Preliminary>
     <NamingMethod>Guid</NamingMethod>
-    <HelpTitle>A Sandcastle Documented Class Library</HelpTitle>
+    <HelpTitle>Midi Gremlin Documentation</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <TocParentId>-1</TocParentId>
     <TocParentVersion>100</TocParentVersion>
@@ -65,14 +65,28 @@ The MidiGremlin library has been established by the group A311b  from the univer
 The purpose of the library is, to give the programmer an easy way to implement and creat their own music. MidiGremlin is a benchmark from an exicting popular library named MIDI.net. The idee behind the MidiGremlin structure is based on the MIDI.net, but unlike MIDI.net´s confusing format and structure is this new library quite more simpler. MidiGremlin is an abstraction from MIDI.net. The abstraction makes the notations and syntaxes a lot easier for the programmer. 
 
 Enjoy the library &amp; have fun.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="MidiGremlin.Helpers" isDocumented="False" />
-      <NamespaceSummaryItem name="MidiGremlin.Internal.Windows_Multi_Media" isDocumented="False" />
-      <NamespaceSummaryItem name="MidiGremlin.Internal" isDocumented="False">Introductions guide for MidiGremlin
+<NamespaceSummaryItem name="MidiGremlin.Helpers" isDocumented="False" />
+<NamespaceSummaryItem name="MidiGremlin.Internal.Windows_Multi_Media" isDocumented="False" />
+<NamespaceSummaryItem name="MidiGremlin.Internal" isDocumented="False">Introductions guide for MidiGremlin
 
 The MidiGremlin library has been established by the group A311b  from the universsity of AAlborg. The purpose of the library is, to give the programmer an easy way to implement and creat their own music. MidiGremlin is a benchmark from an exicting popular library named MIDI.net. The idee behind the MidiGremlin structure is based on the MIDI.net, but unlike MIDI.net´s confusing format and structure is this new library quite more simpler. MidiGremlin is an abstraction from MIDI.net. The abstraction makes the notations and syntaxes a lot easier for the programmer. 
 
 Enjoy the library &amp; have fun.</NamespaceSummaryItem>
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="(global)" isDocumented="True">Testy test</NamespaceSummaryItem></NamespaceSummaries>
+    <ProjectSummary>This is the documentation for &amp;lt%3ba href=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bMidi Gremlin&amp;lt%3b/a&amp;gt%3b.  For the latest version visit &amp;lt%3ba herf=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bhttps://github.com/joha4270/MIDIGremlin&amp;lt%3b/a&amp;gt%3b</ProjectSummary>
+    <RootNamespaceTitle>Midi Gremlin</RootNamespaceTitle>
+    <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2006-2016, Johannes Elgaard, Asger Horn Brorholt, Christian Gundersen Holmgaard, Emil Jensen, Ibrahim Kohistani, Kennet N&amp;#248%3brgaard Larsen, Nicklas H&amp;#248%3bjgaard Sneftrup, All rights reserved</CopyrightText>
+    <CopyrightHref>https://github.com/joha4270/MidiGremlin</CopyrightHref>
+    <ApiFilter>
+      <Filter entryType="Namespace" fullName="MidiGremlin.Internal" isExposed="False" xmlns="">
+  <Filter entryType="Class" fullName="MidiGremlin.Internal.BeatScheduler" filterName="BeatScheduler" isExposed="True" />
+  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SimpleMidiMessage" filterName="SimpleMidiMessage" isExposed="True" />
+  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeat" filterName="SingleBeat" isExposed="True" />
+  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeatWithChannel" filterName="SingleBeatWithChannel" isExposed="True" />
+</Filter>
+    </ApiFilter>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
@@ -104,6 +118,7 @@ Enjoy the library &amp; have fun.</NamespaceSummaryItem>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Guides\" />
     <Folder Include="icons\" />
   </ItemGroup>
   <ItemGroup>
@@ -118,8 +133,15 @@ Enjoy the library &amp; have fun.</NamespaceSummaryItem>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Guides\getting_started.aml">
+      <ImageId>getting_started</ImageId>
+      <AlternateText>getting started</AlternateText>
+    </None>
     <None Include="icons\Thumbs.db" />
     <None Include="icons\GremlinIcon.svg" />
     <None Include="icons\Gremlin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="MIDIGremlin.content" />
   </ItemGroup>
 </Project>

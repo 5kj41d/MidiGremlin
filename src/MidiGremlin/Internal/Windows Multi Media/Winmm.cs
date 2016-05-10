@@ -14,7 +14,7 @@ namespace MidiGremlin.Internal.Windows_Multi_Media
         public static extern uint midiOutGetNumDevs ();
 
 
-	    /// <summary>
+	    /// <summary> 
 	    /// Device capabilities.
 	    /// http://pinvoke.net/default.aspx/winmm/midiOutGetDevCaps.html
 	    /// </summary>
