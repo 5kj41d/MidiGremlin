@@ -12,16 +12,19 @@ namespace MidiGremlin
         private const int _numberOfTones = 12;
 
 
+
         /// <summary>
         /// The Chromatic Scale, which contains all 12 tones starting at A.
         /// </summary>
         public static Scale ChromaticScale { get; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.G, Tone.GSharp);
         
 
+
         /// <summary>
         /// The amount of tones the scale contains.
         /// </summary>
         public int Count => _tones.Length;
+
 
 
         /// <summary>
@@ -30,6 +33,9 @@ namespace MidiGremlin
         public Scale() : this(ChromaticScale._tones)
         {
         }
+        
+        
+        
         /// <summary>
         /// Creates a new instance of the Scale class.
         /// </summary>
@@ -38,6 +44,7 @@ namespace MidiGremlin
         {
             _tones = tones;
         }
+
 
 
         /// <summary>
@@ -49,6 +56,7 @@ namespace MidiGremlin
         {
             return _tones.Any(x => ((int)x % _numberOfTones) == ((int)tone % _numberOfTones));
         }
+
 
 
         /// <summary>
@@ -73,6 +81,7 @@ namespace MidiGremlin
 
             throw new ToneNotFoundException(tone);
         }
+
 
 
         /// <summary>

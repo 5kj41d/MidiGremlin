@@ -18,7 +18,8 @@ namespace MidiGremlin
         /// If the device is not found, the default(ID 0) Windows virtual synthesizer will be used.</summary>
         public uint DeviceID { get; }
 
-	    private const int UpdateFrequency = 20;
+
+        private const int UpdateFrequency = 20;
 		private double _oldTime = 0;
         private IntPtr _handle;
         private bool _disposed = false;
@@ -27,6 +28,7 @@ namespace MidiGremlin
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
         private bool _running = true;
+
 
 
         /// <summary>
@@ -55,9 +57,12 @@ namespace MidiGremlin
 			
         }
 
+
 	    private int _beatsPerMinute;
 
-	    /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
+	    
+        
+        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
 	    public int BeatsPerMinute
 	    {
 		    get { return _beatsPerMinute; }
@@ -74,8 +79,10 @@ namespace MidiGremlin
 
 	    private BeatScheduler _source;
 
+        
         /// <summary> Conversion constant between minutes and milliseconds. </summary>
         private static double _minutesToMilliseconds = 60000;
+
 
         
         /// <summary>
@@ -93,6 +100,7 @@ namespace MidiGremlin
         }
 
 
+        
         /// <summary>
         /// Closes the WinmmOut instance safely.
         /// </summary>
@@ -102,7 +110,9 @@ namespace MidiGremlin
 			_disposed = true;
         }
 
-	    /// <summary>
+
+	    
+        /// <summary>
 	    /// The amount of beats that have passed since this class was instantiated.
 	    /// </summary>
 	    /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
@@ -111,12 +121,16 @@ namespace MidiGremlin
             return  _oldTime + CurrentScaleTime();
         }
 
-	    private double CurrentScaleTime()
+
+
+        private double CurrentScaleTime()
 	    {
 		    return _time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds;
 	    }
 
-	    void IMidiOut.SetSource(BeatScheduler source)
+
+
+        void IMidiOut.SetSource(BeatScheduler source)
 	    {
 		    lock (_sync)
 		    {
@@ -133,7 +147,9 @@ namespace MidiGremlin
 		    }
 	    }
 
-	    private void ThreadEntryPrt()
+
+
+        private void ThreadEntryPrt()
         {
             SimpleMidiMessage next;
 

@@ -14,6 +14,8 @@ namespace MidiGremlin
     {
          List<MusicObject> _children = new List<MusicObject>();
 
+
+
         /// <summary>
         /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
         /// </summary>
@@ -25,6 +27,9 @@ namespace MidiGremlin
                 Add(m);
             }
         }
+        
+        
+        
         /// <summary>
         /// Creates a new instance of the SequentialMusicList class containg a number of MusicObjects.
         /// Give it at least 1 parameter
@@ -37,6 +42,7 @@ namespace MidiGremlin
                 Add(m);
             }
         }
+
 
 
         /// <summary>
@@ -58,6 +64,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </summary>
@@ -67,10 +74,12 @@ namespace MidiGremlin
         public int Count => _children.Count;
 
 
+
         /// <summary>
         /// Indicates that the list is not read-only.
         /// </summary>
         public bool IsReadOnly => false;
+
 
 
         /// <summary>
@@ -83,6 +92,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </summary>
@@ -91,6 +101,7 @@ namespace MidiGremlin
         {
             _children.Clear();
         }
+
 
 
         /// <summary>
@@ -106,6 +117,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
         /// </summary>
@@ -114,6 +126,7 @@ namespace MidiGremlin
         {
             _children.CopyTo(array, arrayIndex);
         }
+
 
 
         /// <summary>
@@ -129,6 +142,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Searches  for the specified MusicObject and returns the index of the first occurrence within the list.
         /// </summary>
@@ -140,6 +154,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Inserts an item to the <see cref="T:System.Collections.Generic.IList`1"/> at the specified index.
         /// </summary>
@@ -148,6 +163,7 @@ namespace MidiGremlin
         {
             _children.Insert(index, item);
         }
+
 
 
         /// <summary>
@@ -161,6 +177,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Removes the element at a specified index.
         /// </summary>
@@ -169,6 +186,7 @@ namespace MidiGremlin
         {
             _children.RemoveAt(index);
         }
+
 
 
         /// <summary>
@@ -215,6 +233,7 @@ namespace MidiGremlin
             else
                 return result;
         }
+
 
 
         /// <summary>

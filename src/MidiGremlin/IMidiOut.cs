@@ -21,6 +21,7 @@ namespace MidiGremlin
 	    int BeatsPerMinute { get; set; }
 
 
+
         /// <summary>
         /// The number of beats elapsed since this instance was created.
         /// </summary>

@@ -14,13 +14,16 @@ namespace MidiGremlin
 	    private readonly BeatScheduler _beatScheduler;
 	    private IReadOnlyCollection<Instrument> _roInstrumentsCache;
 
-		/// <summary>
+		
+        
+        /// <summary>
 		/// property of the instruments which is readonly
 		/// </summary>
 		public IReadOnlyCollection<Instrument> Instruments => _roInstrumentsCache ?? (_roInstrumentsCache = _instruments.AsReadOnly());
 
 
-	    /// <summary>
+	    
+        /// <summary>
         /// Creates a new instance of the orchestra class. 
         /// Needs a reference to an output class, which can be achieved by creating a new WinmmOut instance.
         /// </summary>
@@ -33,6 +36,7 @@ namespace MidiGremlin
         }
 
 
+        
         /// <summary>
         /// Constructs a new instrument and adds it to the orchestra.
         /// </summary>
@@ -46,6 +50,9 @@ namespace MidiGremlin
         {
             return AddInstrument(instrumentType, Scale.ChromaticScale, ocatave);
         }
+        
+        
+        
         /// <summary>
         /// Constructs a new instrument with a specified scale and adds it to the orchestra
         /// </summary>
@@ -64,17 +71,23 @@ namespace MidiGremlin
             return instrument;
         }
 
+
+
         void IOrchestra.CopyToOutput(List<SingleBeat> music)
         {
             _beatScheduler.AddToQueue(music);
         }
 
-	    Internal.SimpleMidiMessage IOrchestra.NextToPlay(bool block)
+
+
+        Internal.SimpleMidiMessage IOrchestra.NextToPlay(bool block)
 	    {
 		    return _beatScheduler.GetNextMidiCommand(block);
 	    }
 
-		/// <summary>
+		
+        
+        /// <summary>
         /// Returns the current time specified by the output class.
         /// </summary>
         /// <returns>The current time </returns>
@@ -84,7 +97,9 @@ namespace MidiGremlin
 	        return d;
         }
 
-		/// <summary>
+		
+        
+        /// <summary>
 		/// Blocks until the underlying IMidiOut have consumed all music
 		/// </summary>
 	    public void WaitForFinished()

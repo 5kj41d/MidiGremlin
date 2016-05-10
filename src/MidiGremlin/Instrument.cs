@@ -12,13 +12,19 @@ namespace MidiGremlin
         /// <summary> The scale that the instrument plays in. This is only used by MIDI Gremlin when playing chords. </summary>
         public Scale Scale { get; set; }
 
+       
+        
         /// <summary> The octave(from the middle octave) that the instrument plays in. </summary>
         public int Octave { get; set; }
 
+        
+        
         /// <summary> The instrument sound that will be used when playing MusicObjects from this instance. </summary>
         public InstrumentType InstrumentType { get; }
 
+
         private IOrchestra _orchestra;
+
 
         
         internal Instrument (IOrchestra orchestra, InstrumentType instrumentType, Scale scale, int octave = 0)
@@ -30,6 +36,7 @@ namespace MidiGremlin
         }
 
         
+
         /// <summary>
         /// Plays the MusicObject using this instrument.
         /// </summary>
@@ -38,6 +45,9 @@ namespace MidiGremlin
         {
             Play(_orchestra.CurrentTime(), music);
         }
+        
+        
+        
         /// <summary>
         /// Plays the MusicObject at the given start time, using this instrument.
         /// Start time is measured in beats from the start of the music. Get the curent time by calling CurrentTime from the orchestra.
@@ -56,6 +66,7 @@ namespace MidiGremlin
         }
 
 
+
         /// <summary>
         /// Plays a tone with duration and velocity specified.
         /// </summary>
@@ -66,6 +77,9 @@ namespace MidiGremlin
         {
             Play(_orchestra.CurrentTime(), tone, duration,  velocity);
         }
+        
+        
+        
         /// <summary>
         /// Plays a tone with duration, velocity and start-time specified.
         /// Time is measured in beats from the start of the music. Get the curent time by calling CurrentTime from the orchestra.

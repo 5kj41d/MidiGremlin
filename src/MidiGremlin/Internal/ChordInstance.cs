@@ -19,7 +19,9 @@ namespace MidiGremlin.Internal
         /// <param name="duration">The duration of the chord.</param>
         /// <param name="toneSteps">The tones that the chord contains.</param>
         internal ChordInstance (Tone tone, double duration, int[] toneSteps) : this(tone, duration, 64, toneSteps) { }
+     
         
+           
 		/// <summary>
         /// A chord consisting of a root tone and the tone-steps from the root-tone.
         /// The tone steps are indicated by intervals(Always on the full 12-tone scale). NB: The root tone has interval 1 and is not implicit.
@@ -35,6 +37,8 @@ namespace MidiGremlin.Internal
             _velocity = velocity;
             _toneSteps = toneSteps;
         }
+
+
 
         /// <summary>
         /// Returns the full contents of this MusicObject as SingleBeats.
@@ -62,6 +66,8 @@ namespace MidiGremlin.Internal
                     .First();   //Keystroke is a leaf so there will only be one element in the list. Only want that.
             }
         }
+
+
 
         public override MusicObject Select<T>(Func<T, T> selector)
         {

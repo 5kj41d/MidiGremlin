@@ -10,6 +10,8 @@ namespace MidiGremlin
         /// <summary> The tone that was requested but not found. </summary>
         public Tone Tone { get; }
 
+        
+        
         /// <summary>
         /// Creates a new exception of this type.
         /// </summary>
