@@ -93,6 +93,9 @@ namespace MidiGremlin.Internal
 #endif
 		}
 
+		/// <summary>
+		/// A wait handle that is set once the underlying collection is empty. It will remain set until new content is added to the queue.
+		/// </summary>
 		public EventWaitHandle EmptyWaitHandle => _emptyHandle;
 
 		internal void AddToQueue(List<SingleBeat> beats)

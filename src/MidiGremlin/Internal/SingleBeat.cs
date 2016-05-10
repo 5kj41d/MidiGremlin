@@ -81,17 +81,32 @@ namespace MidiGremlin.Internal
             }
         }
 		
-        /// <summary> The type of instrument the tone is played with.  </summary>
+        
+		/// <summary> The type of instrument the tone is played with.  </summary>
         public InstrumentType instrumentType{ get; }
-        /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
+        
+		
+		/// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone{ get; }
-        /// <summary> The velocity of the tone. </summary>
+        
+		
+		/// <summary> The velocity of the tone. </summary>
         public byte ToneVelocity{ get; }
-        /// <summary> The time in beats at which the tone starts. </summary>
+        
+		
+		/// <summary> The time in beats at which the tone starts. </summary>
         public double ToneStartTime{ get; }
-        /// <summary> The time in beats at which the tone end. </summary>
+        
+		
+		/// <summary> The time in beats at which the tone end. </summary>
         public double ToneEndTime{ get; }
 
+
+		/// <summary>
+		/// Returns a <see cref="SingleBeatWithChannel"/> that is based on this <see cref="SingleBeat"/> using <paramref name="usedChannel"/> as channel.
+		/// </summary>
+		/// <param name="usedChannel">A MIDI channel to use.</param>
+		/// <returns>A new <see cref="SingleBeatWithChannel"/> constructed using <paramref name="usedChannel"/> and this</returns>
 	    public SingleBeatWithChannel WithChannel(byte usedChannel)
 	    {
 		    return new SingleBeatWithChannel(instrumentType, Tone, ToneVelocity, ToneStartTime, ToneEndTime, usedChannel);
@@ -121,22 +136,35 @@ namespace MidiGremlin.Internal
             Channel = channel;
         }
 
-		public override string ToString()
-		{
+	    
+		/// <summary>Returns the fully qualified type name of this instance.</summary>
+	    /// <returns>A <see cref="T:System.String" /> containing a fully qualified type name.</returns>
+	    public override string ToString()
+		{ 
 			return $"{ToneStartTime.ToString().PadRight(7)} -> {ToneEndTime.ToString().PadRight(7)} ({Tone}, {ToneVelocity}) ({Channel}) ({InstrumentType})";
 		}
 
 		/// <summary> The type of instrument the tone is played with.  </summary>
 		public InstrumentType InstrumentType { get; }
-        /// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
+        
+		
+		/// <summary> Represents the tone as it is saved in the MIDI standard. http://www.tonalsoft.com/pub/news/pitch-bend.aspx  </summary>
         public byte Tone { get; }
-        /// <summary> The velocity of the tone. </summary>
+        
+		
+		/// <summary> The velocity of the tone. </summary>
         public byte ToneVelocity { get; }
-        /// <summary> The time in beats at which the tone starts. </summary>
+        
+		
+		/// <summary> The time in beats at which the tone starts. </summary>
         public double ToneStartTime { get; }
-        /// <summary> The time in beats at which the tone end. </summary>
+        
+		
+		/// <summary> The time in beats at which the tone end. </summary>
         public double ToneEndTime { get; }
-        /// <summary> The channel to play from. </summary>
+        
+		
+		/// <summary> The channel to play from. </summary>
         public  byte Channel { get; }
     }
 }

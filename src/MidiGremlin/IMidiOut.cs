@@ -9,7 +9,15 @@ namespace MidiGremlin
     ///</summary>
     public interface IMidiOut : IDisposable
     {
+		/// <summary>
+		/// Sets the BeatScheduler that is responsible for feeding this IMidiOut with MIDI messages. Setting this multiple times is an error.
+		/// </summary>
+		/// <param name="source">The BeatScheduler</param>
         void SetSource(BeatScheduler source);
+
+		/// <summary>
+		/// Music speed in Beats per Minute. Setting this to sixty should make one beat take one secon.
+		/// </summary>
 	    int BeatsPerMinute { get; set; }
 
 
