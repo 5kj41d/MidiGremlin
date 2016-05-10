@@ -26,10 +26,5 @@ namespace MidiGremlin.Internal
 			list.RemoveAt(list.Count - 1);
 			return t;
 		}
-
-		public static T LastItem<T>(this List<T> list)
-		{
-			return list[list.Count - 1];
-		}
 	}
 }

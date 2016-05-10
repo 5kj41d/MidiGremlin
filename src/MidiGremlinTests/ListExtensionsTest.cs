@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin.Tests
@@ -41,7 +42,7 @@ namespace MidiGremlin.Tests
 		{
 			List<int> orginalList = new List<int> { 2, 4, 6, 9 };
 
-			Assert.AreEqual(9, orginalList.LastItem());
+			Assert.AreEqual(9, orginalList.Last());
 		}
 	}
 }
