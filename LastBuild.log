@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2016.4.9.0" projectFile="D:\Data\Documents\AAU\MidiGremlin\doc\MIDI Gremlin.shfbproj" started="29/04/2016 09:56:36">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2016.4.9.0" projectFile="D:\Data\Documents\AAU\MidiGremlin\doc\MIDI Gremlin.shfbproj" started="10/05/2016 14:40:53">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -7,7 +7,7 @@ Locating components in the following folder(s):
     D:\Data\Documents\AAU\MidiGremlin\doc
     C:\ProgramData\EWSoftware\Sandcastle Help File Builder\Components and Plug-Ins\
     D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\
-Using framework reflection data for &#39;.NET Framework 4.5&#39; located in &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework&#39;
+Using framework reflection data for &#39;.NET Framework 4.5.2&#39; located in &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework&#39;
 Using presentation style &#39;VS2013&#39; located in &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013&#39;
 Loading and initializing plug-ins...
 Lightweight Website Style Version 2016.4.9.0
@@ -22,28 +22,27 @@ Source: D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\MidiGremlin.csproj
     Found project &#39;D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\MidiGremlin.csproj&#39;
 
 Parsing project files
-    Found assembly &#39;D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\bin\Debug\MidiGremlin.dll&#39;
-SHFB: Warning BE0007: A project with a different or higher framework version was found.  Changing project FrameworkVersion property from &#39;.NET Framework 4.5&#39; to &#39;.NET Framework 4.5.2&#39; for the build.
+    Found assembly &#39;D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\bin\Release\MidiGremlin.dll&#39;
 
 References to include (excluding framework assemblies):
     nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL
 
 Copying XML comments files
-    D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\bin\Debug\MidiGremlin.XML -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\MidiGremlin.XML
+    D:\Data\Documents\AAU\MidiGremlin\src\MidiGremlin\bin\Release\MidiGremlin.XML -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\MidiGremlin.XML
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0140
+</plugIn>    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0010
+    Last step completed in 00:00:00.0090
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - GenerateRefInfo.proj]
-Build started 29/04/2016 09:56:37.
+Build started 10/05/2016 14:40:54.
 The target &quot;_ConvertPdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,37)&quot; does not exist in the project, and will be ignored.
 The target &quot;_CollectPdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,70)&quot; does not exist in the project, and will be ignored.
 The target &quot;_CollectMdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (40,38)&quot; does not exist in the project, and will be ignored.
@@ -56,7 +55,7 @@ GenerateRefInfo:
   Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   Loaded 1 assemblies for reflection and 2 dependency assemblies.
-  Wrote information on 4 namespaces, 20 types, and 142 members
+  Wrote information on 2 namespaces, 21 types, and 315 members
   Copying file from &quot;reflection.org&quot; to &quot;reflection.all&quot;.
   XslTransform (v2016.4.9.0)
   Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
@@ -66,13 +65,13 @@ Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Work
 
 Build succeeded.
 
-Time Elapsed 00:00:01.20
-    Last step completed in 00:00:01.3864
+Time Elapsed 00:00:01.72
+    Last step completed in 00:00:01.8968
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - TransformManifest.proj]
-Build started 29/04/2016 09:56:38.
+Build started 10/05/2016 14:40:55.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
   XslTransform (v2016.4.9.0)
@@ -92,12 +91,31 @@ Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Work
 
 Build succeeded.
 
-Time Elapsed 00:00:00.54
-    Last step completed in 00:00:00.7017
+Time Elapsed 00:00:00.58
+    Last step completed in 00:00:00.7275
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0205
+    Last step completed in 00:00:00.0125
+</buildStep>
+<buildStep step="CopyConceptualContent">
+Copying conceptual content...
+Copying standard token shared content file...
+Checking for other token files...
+Checking for code snippets files...
+Copying images and creating the media map file...
+    D:\Data\Documents\AAU\MidiGremlin\doc\icons\GremlinIcon.png -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\media\GremlinIcon.png
+Generating conceptual topic files
+    Parsing topic file &#39;D:\Data\Documents\AAU\MidiGremlin\doc\Guides\getting_started.aml&#39;
+    D:\Data\Documents\AAU\MidiGremlin\doc\Guides\getting_started.aml -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\ddueXml\1fa61ad2-5eb3-43b3-b032-c2a26aa46d34.xml
+    Last step completed in 00:00:00.0240
+</buildStep>
+<buildStep step="CreateConceptualTopicConfigs">
+Creating conceptual topic configuration files...
+    Companion files
+    _ContentMetadata_.xml
+    Merging topic IDs into manifest.xml
+    Last step completed in 00:00:00.0155
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
@@ -106,12 +124,12 @@ D:\Data\Documents\AAU\MidiGremlin\doc\icons\Gremlin.png -&gt; D:\Data\Documents\
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0035
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 29/04/2016 09:56:39.
+Build started 10/05/2016 14:40:56.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
   XslTransform (v2016.4.9.0)
@@ -122,26 +140,27 @@ Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Work
 
 Build succeeded.
 
-Time Elapsed 00:00:00.14
+Time Elapsed 00:00:01.01
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.3242
+    Last step completed in 00:00:01.2713
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.3563
+    Last step completed in 00:00:00.2562
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\sandcastle.config
   Updating reference topic configurations.
-  No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0160
+  Updating conceptual topic configurations.
+    Removing unused ExampleComponent.
+    Last step completed in 00:00:00.0100
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - BuildTopics.proj]
-Build started 29/04/2016 09:56:39.
+Build started 10/05/2016 14:40:58.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj&quot; on node 1 (default targets).
 BuildTopics:
   BuildAssembler (v2016.4.9.0)
@@ -149,62 +168,25 @@ BuildTopics:
   Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
   Loading configuration...
   Processing topics...
-BuildAssembler : warning : ShowMissingComponent: [P:MidiGremlin.ChordVariety.Major] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [P:MidiGremlin.IMidiOut.BeatsPerMinute] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.IMidiOut.SetSource(MidiGremlin.Internal.BeatScheduler)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.IMidiOut.SetSource(MidiGremlin.Internal.BeatScheduler)] Missing &lt;param name=&quot;source&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.NoteNotFoundException.#ctor(MidiGremlin.Tone)] Missing &lt;param name=&quot;tone&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [P:MidiGremlin.NoteNotFoundException.Tone] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Orchestra.#ctor(MidiGremlin.IMidiOut)] Missing &lt;param name=&quot;output&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Orchestra.AddInstrument(MidiGremlin.InstrumentType,MidiGremlin.Scale,System.Int32)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.ParallelMusicCollection.Contains(MidiGremlin.MusicObject)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [P:MidiGremlin.Scale.Count] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.SequentialMusicCollection.Contains(MidiGremlin.MusicObject)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.SequentialMusicCollection.GetEnumerator] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [P:MidiGremlin.WinmmOut.DeviceID] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [N:MidiGremlin.Helpers] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:MidiGremlin.Helpers.SequentialHelper] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Any(MidiGremlin.MusicObject)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Any(MidiGremlin.MusicObject)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Any(MidiGremlin.MusicObject)] Missing &lt;param name=&quot;any&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Build] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Build] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Solo(MidiGremlin.Note)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Solo(MidiGremlin.Note)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Helpers.SequentialHelper.Solo(MidiGremlin.Note)] Missing &lt;param name=&quot;note&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.InstrumentTypeExtensions.IsDrum(MidiGremlin.InstrumentType)] Missing &lt;param name=&quot;instrumentType&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:MidiGremlin.Internal] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:MidiGremlin.Internal.SimpleMidiMessage] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.#ctor(System.Int32,System.Double)] Missing &lt;param name=&quot;data&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.#ctor(System.Int32,System.Double)] Missing &lt;param name=&quot;timestamp&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [F:MidiGremlin.Internal.SimpleMidiMessage.Data] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.Equals(MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.Equals(MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.Equals(MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;param name=&quot;other&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Equality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Equality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Equality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;param name=&quot;lhs&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Equality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;param name=&quot;rhs&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Inequality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Inequality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;returns&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Inequality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;param name=&quot;lhs&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.Internal.SimpleMidiMessage.op_Inequality(MidiGremlin.Internal.SimpleMidiMessage,MidiGremlin.Internal.SimpleMidiMessage)] Missing &lt;param name=&quot;rhs&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [F:MidiGremlin.Internal.SimpleMidiMessage.Timestamp] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [N:MidiGremlin.Internal.Windows_Multi_Media] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-  Processed 169 topic(s)
-  41 warning(s)
-  CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 4 of 15.
-  CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 3 of 30.
-  SaveComponent: Waiting for the document writer task to finish (66 Website API file(s) remaining)...
+  Processed 205 topic(s)
+  2 warning(s)
+  CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
+  ResolveArtLinksComponent: Copying media files...
+  CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 5 of 15.
+  CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 2 of 30.
+  SaveComponent: Waiting for the document writer task to finish (87 Website API file(s) remaining)...
 Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:10.84
-    Last step completed in 00:00:11.0768
+Time Elapsed 00:00:12.45
+    Last step completed in 00:00:12.6441
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0020
+    Last step completed in 00:00:00.0140
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -216,11 +198,11 @@ E-Mail: Eric@EWoodruff.us
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing website files in D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website
-Processed 169 HTML files
+Processed 205 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\WebKI.xml
 Saving website table of contents to D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\WebTOC.xml
-    Last step completed in 00:00:01.3551
+    Last step completed in 00:00:01.1012
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -299,32 +281,32 @@ D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\icons\TocOpen.gif -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\icons\TocOpen.gif
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\scripts\branding-Website.js
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-1.11.0.min.js -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\scripts\jquery-1.11.0.min.js
-    Last step completed in 00:00:00.1707
+    Last step completed in 00:00:00.3170
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0005
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:01.1851
+</plugIn>    Last step completed in 00:00:01.7572
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
-Copied 327 files for the website content
-    Last step completed in 00:00:00.5633
+Copied 382 files for the website content
+    Last step completed in 00:00:00.6411
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1292
+    Last step completed in 00:00:00.1548
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 29/04/2016 09:56:54.  Total time: 00:00:17.8713
+Build completed successfully at 10/05/2016 14:41:14.  Total time: 00:00:21.5841
 
 </buildStep>
 </shfbBuild>

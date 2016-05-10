@@ -1,62 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpKI>
   <HelpKINode Title="A enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
-  <HelpKINode Title="AccousticBass enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Accordion enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="AccousticGrandPiano enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AcousticBass enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AcousticBassDrum enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AcousticGuitar_Nylon enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AcousticGuitar_Steel enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AcousticSnare enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Add method">
     <HelpKINode Title="ParallelMusicCollection.Add Method " Url="html/72a33077-6f0e-70fe-2dc9-81d8b1b69166.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Add Method " Url="html/ca5fd9dd-88db-4e69-9ee8-70970c4f5ccc.htm" />
+    <HelpKINode Title="SequentialMusicList.Add Method " Url="html/514b19dc-ee2d-69df-5d6f-b7ad73882350.htm" />
   </HelpKINode>
   <HelpKINode Title="AddInstrument method" Url="html/356a240c-d4b1-b4ce-7876-7e945896db65.htm" />
-  <HelpKINode Title="Any method" Url="html/210f6b21-d213-697e-bd93-9c84861c304e.htm" />
+  <HelpKINode Title="Agogo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="AltoSax enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Applause enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="ASharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="Augmented property" Url="html/b895703a-2aae-bd16-7095-8c463d94f4f8.htm" />
   <HelpKINode Title="B enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="BagPipe enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Banjo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BaritonaSax enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BassDrum1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Bassoon enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="BeatDuratinInMilliseconds property" Url="html/502f8d4b-97ac-6140-2780-53f5f5cd5737.htm" />
   <HelpKINode Title="BeatScheduler class">
     <HelpKINode Title="BeatScheduler Class" Url="html/f5465234-d683-5622-f691-f82013d20c4c.htm" />
     <HelpKINode Title="about BeatScheduler class" Url="html/f5465234-d683-5622-f691-f82013d20c4c.htm" />
     <HelpKINode Title="methods" Url="html/6e0b7862-2f5c-0506-78f5-7bc71a9d91e7.htm" />
+    <HelpKINode Title="properties" Url="html/e1cd0ed3-de44-55ae-70c5-65741c49ae03.htm" />
   </HelpKINode>
+  <HelpKINode Title="BeatScheduler.EmptyWaitHandle property" Url="html/769d503a-5615-62c9-a39f-2f1473c709af.htm" />
   <HelpKINode Title="BeatScheduler.GetNextMidiCommand method" Url="html/bde9f760-4430-aaed-a2c3-98b6b745f167.htm" />
   <HelpKINode Title="BeatsPerMinute property">
     <HelpKINode Title="IMidiOut.BeatsPerMinute Property " Url="html/29395919-7f6e-955b-a65e-161717b9621f.htm" />
     <HelpKINode Title="WinmmOut.BeatsPerMinute Property " Url="html/38c21383-5805-f444-b19a-9da767fa289f.htm" />
   </HelpKINode>
-  <HelpKINode Title="Build method" Url="html/d85fed47-be57-da83-5cd4-9b5eeab73f84.htm" />
+  <HelpKINode Title="BirdTweet enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BlownBottle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BrassSection enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BreathNoise enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="BrightAcousticPiano enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="C enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
-  <HelpKINode Title="Channel property" Url="html/903c5e3d-dc28-d93a-3dfb-fd55b41948f1.htm" />
+  <HelpKINode Title="Cabasa enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Celesta enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Cello enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Channel property">
+    <HelpKINode Title="SimpleMidiMessage.Channel Property " Url="html/6e4c02a0-5b46-ee9c-5a09-18972d8f93b6.htm" />
+    <HelpKINode Title="SingleBeatWithChannel.Channel Property " Url="html/903c5e3d-dc28-d93a-3dfb-fd55b41948f1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChineseCymbal enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ChoirAahs enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="ChordVariety class">
     <HelpKINode Title="ChordVariety Class" Url="html/8eb16113-9855-d1c9-24ae-2b4cfd079d3d.htm" />
     <HelpKINode Title="about ChordVariety class" Url="html/8eb16113-9855-d1c9-24ae-2b4cfd079d3d.htm" />
     <HelpKINode Title="constructor" Url="html/e0103457-0dd3-989b-5512-f3b452bb6995.htm" />
-    <HelpKINode Title="fields" Url="html/42a31c66-08e2-d285-7945-5150da9dbfaa.htm" />
     <HelpKINode Title="methods" Url="html/0612ece5-b405-a49f-0194-fbb935f09c4c.htm" />
     <HelpKINode Title="properties" Url="html/4a6dd35c-7bc6-9cd0-cf99-b79796bdf2af.htm" />
   </HelpKINode>
+  <HelpKINode Title="ChordVariety.Augmented property" Url="html/b895703a-2aae-bd16-7095-8c463d94f4f8.htm" />
   <HelpKINode Title="ChordVariety.ChordVariety constructor" Url="html/e0103457-0dd3-989b-5512-f3b452bb6995.htm" />
-  <HelpKINode Title="ChordVariety.DefaultDuration field" Url="html/696b2e8f-ac97-6fbe-d9fd-a2651f5e7263.htm" />
+  <HelpKINode Title="ChordVariety.DefaultDuration property" Url="html/d41c4c75-afca-5291-78b3-e73899c7f545.htm" />
+  <HelpKINode Title="ChordVariety.Diminished property" Url="html/6983f6bb-13e2-1296-999b-7ced1f136d54.htm" />
   <HelpKINode Title="ChordVariety.Item property" Url="html/5f5b75e5-5e59-0f82-7085-15e87f7040fe.htm" />
   <HelpKINode Title="ChordVariety.Major property" Url="html/2667bd3f-9f3a-75ac-3044-30549b7b6b3d.htm" />
+  <HelpKINode Title="ChordVariety.Minor property" Url="html/944e35a5-3969-e69a-1484-5764699bb548.htm" />
   <HelpKINode Title="ChordVariety.WithBaseTone method" Url="html/49d07fe5-560a-a806-5945-8c12b47a0cd8.htm" />
   <HelpKINode Title="ChromaticScale property" Url="html/dd298317-d2ab-72cd-26d4-2d7e18535591.htm" />
+  <HelpKINode Title="Clarinet enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Claves enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Clavi enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Clear method">
     <HelpKINode Title="ParallelMusicCollection.Clear Method " Url="html/8e682e3a-6567-3d3b-37b1-b8f72ed4cd1d.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Clear Method " Url="html/ad7cde3e-e07a-08c4-0658-9c62a9da10f8.htm" />
+    <HelpKINode Title="SequentialMusicList.Clear Method " Url="html/d418f981-100e-b49f-00f5-240700bde086.htm" />
   </HelpKINode>
+  <HelpKINode Title="ClosedHiHat enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Contains method">
     <HelpKINode Title="ParallelMusicCollection.Contains Method " Url="html/bc790e19-81d0-9805-4c9f-1d39e26dfffb.htm" />
     <HelpKINode Title="Scale.Contains Method " Url="html/43200918-495c-9801-3007-062eed8c5c43.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Contains Method " Url="html/82a91862-5e0c-5f01-c0e4-70fb6f63a165.htm" />
+    <HelpKINode Title="SequentialMusicList.Contains Method " Url="html/f34fc2a9-381e-c263-a3fe-6c470f358b9d.htm" />
   </HelpKINode>
+  <HelpKINode Title="ContraBass enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="CopyTo method">
     <HelpKINode Title="ParallelMusicCollection.CopyTo Method " Url="html/b47d806c-2115-609a-f6fa-6a8b5911e1de.htm" />
-    <HelpKINode Title="SequentialMusicCollection.CopyTo Method " Url="html/accae099-b8ac-66de-1066-ea993d45021a.htm" />
+    <HelpKINode Title="SequentialMusicList.CopyTo Method " Url="html/5cd75920-28d4-915e-36da-aade2286eb53.htm" />
   </HelpKINode>
   <HelpKINode Title="Count property">
     <HelpKINode Title="ParallelMusicCollection.Count Property " Url="html/5c636c24-849a-1d6f-fc0f-4053aa6689e2.htm" />
     <HelpKINode Title="Scale.Count Property " Url="html/361379f3-da10-ccea-69a9-1662e14932db.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Count Property " Url="html/bcdad43b-7b28-e6b3-0da4-443295769bc6.htm" />
+    <HelpKINode Title="SequentialMusicList.Count Property " Url="html/5b967a6f-df87-34fa-df40-35719696062f.htm" />
   </HelpKINode>
+  <HelpKINode Title="Cowbell enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="CrashCybal2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="CrashCymbal1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="CSharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
   <HelpKINode Title="CurrentTime method">
     <HelpKINode Title="IMidiOut.CurrentTime Method " Url="html/5c90189b-0a74-9d58-b27d-fe7987600cd9.htm" />
@@ -65,33 +102,75 @@
   </HelpKINode>
   <HelpKINode Title="D enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
   <HelpKINode Title="Data field" Url="html/592e17c3-37b0-62b2-8831-beeeeb8aaf03.htm" />
-  <HelpKINode Title="DefaultDuration field" Url="html/696b2e8f-ac97-6fbe-d9fd-a2651f5e7263.htm" />
+  <HelpKINode Title="DefaultDuration property" Url="html/d41c4c75-afca-5291-78b3-e73899c7f545.htm" />
   <HelpKINode Title="DeviceID property" Url="html/ffd80ae3-d869-70c1-beff-d0d72d48e15a.htm" />
+  <HelpKINode Title="Diminished property" Url="html/6983f6bb-13e2-1296-999b-7ced1f136d54.htm" />
   <HelpKINode Title="Dispose method" Url="html/1282156e-bd69-63d8-cd31-759d1c49c3de.htm" />
+  <HelpKINode Title="DistortionGuitar enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="DrawbarOrgan enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="DSharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="Dulcimer enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Duration property">
-    <HelpKINode Title="Note.Duration Property " Url="html/8733f35f-a073-2d9f-b138-ee232bc3d966.htm" />
+    <HelpKINode Title="Keystroke.Duration Property " Url="html/bc1bbbf8-0ea8-000e-004c-94b8dfa6cc82.htm" />
     <HelpKINode Title="Pause.Duration Property " Url="html/ba6c9218-df52-3d36-b57f-1da9d73cd530.htm" />
   </HelpKINode>
   <HelpKINode Title="E enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="ElectricBass_Finger enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricBass_Pick enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricGrandPiano enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricGuitar_Clean enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricGuitar_Jazz enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricGuitar_Muted enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricPiano1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricPiano2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ElectricSnare enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="EmptyWaitHandle property" Url="html/769d503a-5615-62c9-a39f-2f1473c709af.htm" />
+  <HelpKINode Title="EnglishHorn enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Equality operator" Url="html/f997d11a-73af-a939-ead7-4441d57b1ff4.htm" />
   <HelpKINode Title="Equals method">
     <HelpKINode Title="SimpleMidiMessage.Equals Method " Url="html/b1cae5ea-ec2b-3de0-832a-c6ace81278c6.htm" />
     <HelpKINode Title="SingleBeat.Equals Method " Url="html/072e1944-89ac-28d2-4770-da9aee5eec31.htm" />
   </HelpKINode>
   <HelpKINode Title="F enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="Fiddle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Flute enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FrenchHorn enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FretlessBass enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="FSharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="FX1_Rain enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX2_Soundtrack enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX3_Crystal enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX4_Atmosphere enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX5_Brightness enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX6_Goblins enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX7_Echoes enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="FX8_SciFi enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="G enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
   <HelpKINode Title="GetEnumerator method">
     <HelpKINode Title="ParallelMusicCollection.GetEnumerator Method " Url="html/5c411cae-a216-cee9-081f-2372fcb12a88.htm" />
-    <HelpKINode Title="SequentialMusicCollection.GetEnumerator Method " Url="html/e44c6d7c-d5fa-f9f5-1bf8-51b91231cc4b.htm" />
+    <HelpKINode Title="SequentialMusicList.GetEnumerator Method " Url="html/572d5551-d678-77ff-2cb1-c681305e7439.htm" />
   </HelpKINode>
   <HelpKINode Title="GetHashCode method">
     <HelpKINode Title="SimpleMidiMessage.GetHashCode Method " Url="html/0635195b-4834-a843-1446-d65e0a5692df.htm" />
     <HelpKINode Title="SingleBeat.GetHashCode Method " Url="html/1df67d6e-7a32-7bfb-57dc-7c66612e7cd2.htm" />
   </HelpKINode>
   <HelpKINode Title="GetNextMidiCommand method" Url="html/bde9f760-4430-aaed-a2c3-98b6b745f167.htm" />
+  <HelpKINode Title="GlockenSpiel enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="GSharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="GuitarFretNoise enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="GuitarHarmonics enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Gunshot enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HandClap enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Harmonica enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Harpsichord enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HiBongo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HighAgogo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HighFloorTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HighTimbale enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HighTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HiMidTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HiWoodBlock enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="HonkeyTonkPiano enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="IMidiOut interface">
     <HelpKINode Title="IMidiOut Interface" Url="html/1e0de45c-5363-b39a-e739-e8cf22353cba.htm" />
     <HelpKINode Title="about IMidiOut interface" Url="html/1e0de45c-5363-b39a-e739-e8cf22353cba.htm" />
@@ -103,12 +182,12 @@
   <HelpKINode Title="IMidiOut.SetSource method" Url="html/f6156cc8-205e-3e26-91c6-95f40c64cecf.htm" />
   <HelpKINode Title="IndexOf method">
     <HelpKINode Title="ParallelMusicCollection.IndexOf Method " Url="html/e8e65d74-5197-7fc7-faf3-39cfb9def928.htm" />
-    <HelpKINode Title="SequentialMusicCollection.IndexOf Method " Url="html/3699cc7a-a02a-6ffe-f013-15330b5c48f3.htm" />
+    <HelpKINode Title="SequentialMusicList.IndexOf Method " Url="html/d7e80513-504b-0c52-9091-11ec1acf4afa.htm" />
   </HelpKINode>
   <HelpKINode Title="Inequality operator" Url="html/08cf0b02-3af3-00cb-fb0e-27dc5fe7846d.htm" />
   <HelpKINode Title="Insert method">
     <HelpKINode Title="ParallelMusicCollection.Insert Method " Url="html/26f075de-7c7d-a4d0-f074-cdae2697223a.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Insert Method " Url="html/dee53a28-0c7c-c81b-f145-7196dc3b5c61.htm" />
+    <HelpKINode Title="SequentialMusicList.Insert Method " Url="html/a58fc332-9ac1-b787-3c00-8601fd2ffae5.htm" />
   </HelpKINode>
   <HelpKINode Title="Instrument class">
     <HelpKINode Title="Instrument Class" Url="html/bf179790-4d7c-76dc-ef1d-79c769198c0d.htm" />
@@ -122,69 +201,93 @@
   <HelpKINode Title="Instrument.Scale property" Url="html/4bffdbd0-3b66-df52-f237-b4406edf4769.htm" />
   <HelpKINode Title="Instruments property" Url="html/d1d893e2-211d-950b-bb87-432f0d953421.htm" />
   <HelpKINode Title="InstrumentType enumeration" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
-  <HelpKINode Title="InstrumentType property" Url="html/f91ec65e-967b-e907-aa56-919835fc4469.htm" />
-  <HelpKINode Title="instrumentType property">
-    <HelpKINode Title="SingleBeat.instrumentType Property " Url="html/1b4690cb-ab3a-ce8b-70f6-f1ea492b37f3.htm" />
-    <HelpKINode Title="SingleBeatWithChannel.instrumentType Property " Url="html/19a21312-6992-9b2e-2b95-4db8befad2be.htm" />
+  <HelpKINode Title="instrumentType property" Url="html/1b4690cb-ab3a-ce8b-70f6-f1ea492b37f3.htm" />
+  <HelpKINode Title="InstrumentType property">
+    <HelpKINode Title="Instrument.InstrumentType Property " Url="html/f91ec65e-967b-e907-aa56-919835fc4469.htm" />
+    <HelpKINode Title="SingleBeatWithChannel.InstrumentType Property " Url="html/da02c295-35d2-96cb-0908-0eb3f5421256.htm" />
   </HelpKINode>
+  <HelpKINode Title="InstrumentTypeExtensions class">
+    <HelpKINode Title="InstrumentTypeExtensions Class" Url="html/69ddfe9e-7c83-0ea8-76b7-c4b079d514f8.htm" />
+    <HelpKINode Title="about InstrumentTypeExtensions class" Url="html/69ddfe9e-7c83-0ea8-76b7-c4b079d514f8.htm" />
+    <HelpKINode Title="methods" Url="html/dadadfdc-4f1e-6e19-86be-a1646fbc12b7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InstrumentTypeExtensions.IsDrum method" Url="html/12797355-918b-6bc8-45ff-36ada01fee39.htm" />
   <HelpKINode Title="Interval method" Url="html/345bafe5-5407-c3da-b4fd-3939823c5550.htm" />
+  <HelpKINode Title="IsDrum method" Url="html/12797355-918b-6bc8-45ff-36ada01fee39.htm" />
   <HelpKINode Title="IsReadOnly property">
     <HelpKINode Title="ParallelMusicCollection.IsReadOnly Property " Url="html/410fe8c5-f639-029d-8bae-b6a0f80126f8.htm" />
-    <HelpKINode Title="SequentialMusicCollection.IsReadOnly Property " Url="html/a6c8853a-5c48-d5b7-be1f-4d47b0f3cd9c.htm" />
+    <HelpKINode Title="SequentialMusicList.IsReadOnly Property " Url="html/d4bcec4a-50d9-f7d7-8beb-cd9eb28ef6f9.htm" />
   </HelpKINode>
   <HelpKINode Title="Item property">
     <HelpKINode Title="ChordVariety.Item Property " Url="html/5f5b75e5-5e59-0f82-7085-15e87f7040fe.htm" />
     <HelpKINode Title="ParallelMusicCollection.Item Property " Url="html/304be419-ed69-8ccc-5314-df57607f1203.htm" />
     <HelpKINode Title="Scale.Item Property " Url="html/105dadc1-0eb0-d7a4-c1a2-ef58360579d1.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Item Property " Url="html/9c7ddefd-bf05-c75c-9285-b0ff9fb86b28.htm" />
+    <HelpKINode Title="SequentialMusicList.Item Property " Url="html/ed2540a9-e3ce-a8c4-9ae1-25be8e471d43.htm" />
   </HelpKINode>
+  <HelpKINode Title="Kalimba enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Keystroke class">
+    <HelpKINode Title="Keystroke Class" Url="html/40ab4ca0-0831-7e45-12f6-a2f8cc7cec76.htm" />
+    <HelpKINode Title="about Keystroke class" Url="html/40ab4ca0-0831-7e45-12f6-a2f8cc7cec76.htm" />
+    <HelpKINode Title="constructor" Url="html/0263b74b-9e2e-1569-a9aa-1f1a74a017a4.htm" />
+    <HelpKINode Title="methods" Url="html/fe363ac9-fb30-e05f-7fc4-7b0e24403d2a.htm" />
+    <HelpKINode Title="properties" Url="html/2364350e-8d55-0461-ad35-3812087c1207.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Keystroke field" Url="html/208241f9-d9bf-d086-9933-ff74064cdd17.htm" />
+  <HelpKINode Title="Keystroke.Duration property" Url="html/bc1bbbf8-0ea8-000e-004c-94b8dfa6cc82.htm" />
+  <HelpKINode Title="Keystroke.Keystroke constructor" Url="html/0263b74b-9e2e-1569-a9aa-1f1a74a017a4.htm" />
+  <HelpKINode Title="Keystroke.OctaveOffset property" Url="html/a9a0e95f-19f4-5a8b-3179-ff9487a6f51d.htm" />
+  <HelpKINode Title="Keystroke.OffsetBy method" Url="html/a08fc0db-85ca-9355-5307-42de3cf9f70f.htm" />
+  <HelpKINode Title="Keystroke.Select method" Url="html/60773ed4-9567-b168-9281-e3bfa87b24fb.htm" />
+  <HelpKINode Title="Keystroke.Tone property" Url="html/9f205631-4456-fc53-6b5c-3cc1af3e0e8e.htm" />
+  <HelpKINode Title="Keystroke.Velocity property" Url="html/1c826908-a5a7-576b-4d57-7ecb8addf8ae.htm" />
+  <HelpKINode Title="Koto enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead1_Square enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead2_Sawtooth enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead3_Calliope enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead4_Chiff enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead5_Charang enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead6_Voice enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead7_Fifths enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Lead8_BassAndLead enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LongGuiro enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LongWhistle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowAgogo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowBongo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowConga enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowFloorTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowMidTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowTimbale enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="LowWodBlock enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Major property" Url="html/2667bd3f-9f3a-75ac-3044-30549b7b6b3d.htm" />
+  <HelpKINode Title="Maracas enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Marimba enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="MelodicTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="MidiGremlin namespace" Url="html/9f58322b-7f6f-d860-cb18-70e598b9b666.htm" />
   <HelpKINode Title="MidiGremlin.ChordVariety class" Url="html/8eb16113-9855-d1c9-24ae-2b4cfd079d3d.htm" />
-  <HelpKINode Title="MidiGremlin.Helpers namespace" Url="html/c2738ec8-21c9-c240-5db2-96faf014d64d.htm" />
-  <HelpKINode Title="MidiGremlin.Helpers.SequentialHelper class" Url="html/63ac421a-c3bd-8cc5-cdd9-c3ca54d1f383.htm" />
   <HelpKINode Title="MidiGremlin.IMidiOut interface" Url="html/1e0de45c-5363-b39a-e739-e8cf22353cba.htm" />
   <HelpKINode Title="MidiGremlin.Instrument class" Url="html/bf179790-4d7c-76dc-ef1d-79c769198c0d.htm" />
   <HelpKINode Title="MidiGremlin.InstrumentType enumeration" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="MidiGremlin.InstrumentTypeExtensions class" Url="html/69ddfe9e-7c83-0ea8-76b7-c4b079d514f8.htm" />
   <HelpKINode Title="MidiGremlin.Internal namespace" Url="html/b39fe29a-2eb2-8e87-7d56-3ff53e189d41.htm" />
   <HelpKINode Title="MidiGremlin.Internal.BeatScheduler class" Url="html/f5465234-d683-5622-f691-f82013d20c4c.htm" />
   <HelpKINode Title="MidiGremlin.Internal.SimpleMidiMessage structure" Url="html/5a2626c2-8248-ba3f-b257-1b7a785df97e.htm" />
   <HelpKINode Title="MidiGremlin.Internal.SingleBeat structure" Url="html/3ccc164d-33ea-ad65-dd3d-8aaf21a86be1.htm" />
   <HelpKINode Title="MidiGremlin.Internal.SingleBeatWithChannel structure" Url="html/45b7f916-c722-1535-c34c-83e05cf4a15f.htm" />
-  <HelpKINode Title="MidiGremlin.Internal.Windows_Multi_Media namespace" Url="html/ecea226a-b669-8bf9-4355-65881d175b37.htm" />
-  <HelpKINode Title="MidiGremlin.Internal.Windows_Multi_Media.MMRESULT enumeration" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
+  <HelpKINode Title="MidiGremlin.Keystroke class" Url="html/40ab4ca0-0831-7e45-12f6-a2f8cc7cec76.htm" />
   <HelpKINode Title="MidiGremlin.MusicObject class" Url="html/3cb38fa1-c1f0-1579-b0be-620ccc550ab6.htm" />
   <HelpKINode Title="MidiGremlin.Note class" Url="html/af71b68b-fb78-ae0a-3cd6-6527e067d6a9.htm" />
-  <HelpKINode Title="MidiGremlin.NoteNotFoundException class" Url="html/4bffc829-8ae3-18f7-3f73-15dea70e7ba0.htm" />
   <HelpKINode Title="MidiGremlin.Orchestra class" Url="html/b497ebdb-e441-6dd9-3f10-b496b735f28e.htm" />
   <HelpKINode Title="MidiGremlin.ParallelMusicCollection class" Url="html/efc13110-f320-4c6f-3642-95a8227fddc4.htm" />
   <HelpKINode Title="MidiGremlin.Pause class" Url="html/14c94af4-9922-cd13-c113-4f359b88d48f.htm" />
   <HelpKINode Title="MidiGremlin.Scale class" Url="html/94ff2325-67b9-bd63-2dac-b88791475d3c.htm" />
-  <HelpKINode Title="MidiGremlin.SequentialMusicCollection class" Url="html/99863a5c-15aa-8444-284e-30a4eb4e0650.htm" />
+  <HelpKINode Title="MidiGremlin.SequentialMusicList class" Url="html/9eaa4c10-be65-60d8-d039-aebd6d74e1a1.htm" />
   <HelpKINode Title="MidiGremlin.Tone enumeration" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
+  <HelpKINode Title="MidiGremlin.ToneNotFoundException class" Url="html/88e7ecc0-6ef7-9313-d3e6-79ddcb5bf9b4.htm" />
+  <HelpKINode Title="MidiGremlin.ToneOutOfRangeException class" Url="html/86919f5d-3dad-952b-51ea-4a5b1155c49e.htm" />
   <HelpKINode Title="MidiGremlin.WinmmOut class" Url="html/9ccfeb1c-4251-e2c8-5167-90c66b82fe76.htm" />
-  <HelpKINode Title="MMRESULT enumeration" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_ALLOCATED enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_BADDB enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_BADDEVICEID enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_BADERRNUM enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_DELETEERROR enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_ERROR enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_HANDLEBUSY enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_INVALFLAG enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_INVALHANDLE enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_INVALIDALIAS enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_INVALPARAM enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_KEYNOTFOUND enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NODRIVER enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NODRIVERCB enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NOERROR enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NOMEM enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NOTENABLED enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_NOTSUPPORTED enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_READERROR enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_VALNOTFOUND enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="MMSYSERR_WRITEERROR enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
+  <HelpKINode Title="Minor property" Url="html/944e35a5-3969-e69a-1484-5764699bb548.htm" />
+  <HelpKINode Title="MusicBox enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="MusicObject class">
     <HelpKINode Title="MusicObject Class" Url="html/3cb38fa1-c1f0-1579-b0be-620ccc550ab6.htm" />
     <HelpKINode Title="about MusicObject class" Url="html/3cb38fa1-c1f0-1579-b0be-620ccc550ab6.htm" />
@@ -192,34 +295,36 @@
     <HelpKINode Title="methods" Url="html/895c4996-1f44-b28c-ddf5-25b40798ed33.htm" />
   </HelpKINode>
   <HelpKINode Title="MusicObject.MusicObject constructor" Url="html/0d5688f6-71c3-188d-1892-bdcc8a1ec22d.htm" />
+  <HelpKINode Title="MusicObject.Select(Of T) method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
+  <HelpKINode Title="MusicObject.Select&lt;T&gt; method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
+  <HelpKINode Title="MuteCuica enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="MutedTrupet enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="MuteHiConga enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="MuteTriangle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Note class">
     <HelpKINode Title="Note Class" Url="html/af71b68b-fb78-ae0a-3cd6-6527e067d6a9.htm" />
     <HelpKINode Title="about Note class" Url="html/af71b68b-fb78-ae0a-3cd6-6527e067d6a9.htm" />
     <HelpKINode Title="constructor" Url="html/ad53c604-3c7a-c0a4-4276-23509fc3ebe4.htm" />
+    <HelpKINode Title="fields" Url="html/6c55e3b4-a4e2-d552-5600-9e267555d47f.htm" />
     <HelpKINode Title="methods" Url="html/3c3919e1-459f-9aa4-d032-52446e242bdb.htm" />
-    <HelpKINode Title="properties" Url="html/754e8b60-46f3-03c2-6986-8c3bb1961dd9.htm" />
   </HelpKINode>
-  <HelpKINode Title="Note.Duration property" Url="html/8733f35f-a073-2d9f-b138-ee232bc3d966.htm" />
+  <HelpKINode Title="Note.Keystroke field" Url="html/208241f9-d9bf-d086-9933-ff74064cdd17.htm" />
   <HelpKINode Title="Note.Note constructor" Url="html/ad53c604-3c7a-c0a4-4276-23509fc3ebe4.htm" />
-  <HelpKINode Title="Note.OctaveOffset property" Url="html/eb435ded-346f-023a-fb99-da64092806af.htm" />
-  <HelpKINode Title="Note.OctaveOffsetBy method" Url="html/d70fc352-aaa6-483f-362a-6093e0a8ad0a.htm" />
   <HelpKINode Title="Note.OffsetBy method" Url="html/b1f3ad44-9967-a3be-9d6b-543bf8934585.htm" />
-  <HelpKINode Title="Note.Tone property" Url="html/7beb13cd-cb6c-eace-35fe-0b5d14c2afee.htm" />
-  <HelpKINode Title="Note.Velocity property" Url="html/af8a28f4-f25b-88ac-7062-ef83b6b9cf7a.htm" />
-  <HelpKINode Title="NoteNotFoundException class">
-    <HelpKINode Title="NoteNotFoundException Class" Url="html/4bffc829-8ae3-18f7-3f73-15dea70e7ba0.htm" />
-    <HelpKINode Title="about NoteNotFoundException class" Url="html/4bffc829-8ae3-18f7-3f73-15dea70e7ba0.htm" />
-    <HelpKINode Title="constructor" Url="html/8b05a9fb-3173-7490-07af-384aa2f2711a.htm" />
-    <HelpKINode Title="events" Url="html/df3cda15-bc99-0d7f-2395-776884c878ae.htm" />
-    <HelpKINode Title="methods" Url="html/4e5a028c-4f46-ba44-13ed-4a50698eb068.htm" />
-    <HelpKINode Title="properties" Url="html/63674d87-f4ab-b6c0-6165-4a5cf1684676.htm" />
-  </HelpKINode>
-  <HelpKINode Title="NoteNotFoundException.NoteNotFoundException constructor" Url="html/8b05a9fb-3173-7490-07af-384aa2f2711a.htm" />
-  <HelpKINode Title="NoteNotFoundException.Tone property" Url="html/7c1bac34-f64e-d9eb-2034-859619efa432.htm" />
+  <HelpKINode Title="Note.Pause field" Url="html/423a349d-51ad-b509-4283-c000c2b80932.htm" />
+  <HelpKINode Title="Note.Select method" Url="html/4d24fb43-2219-b619-e6c1-e442d44a3bdd.htm" />
+  <HelpKINode Title="Oboe enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Ocarina enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Octave property" Url="html/1e59f7b0-80ee-9570-988e-8ad77e0fb738.htm" />
-  <HelpKINode Title="OctaveOffset property" Url="html/eb435ded-346f-023a-fb99-da64092806af.htm" />
-  <HelpKINode Title="OctaveOffsetBy method" Url="html/d70fc352-aaa6-483f-362a-6093e0a8ad0a.htm" />
-  <HelpKINode Title="OffsetBy method" Url="html/b1f3ad44-9967-a3be-9d6b-543bf8934585.htm" />
+  <HelpKINode Title="OctaveOffset property" Url="html/a9a0e95f-19f4-5a8b-3179-ff9487a6f51d.htm" />
+  <HelpKINode Title="OffsetBy method">
+    <HelpKINode Title="Keystroke.OffsetBy Method " Url="html/a08fc0db-85ca-9355-5307-42de3cf9f70f.htm" />
+    <HelpKINode Title="Note.OffsetBy Method " Url="html/b1f3ad44-9967-a3be-9d6b-543bf8934585.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OpenCuica enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="OpenHiConga enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="OpenHiHat enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="OpenTriangle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Orchestra class">
     <HelpKINode Title="Orchestra Class" Url="html/b497ebdb-e441-6dd9-3f10-b496b735f28e.htm" />
     <HelpKINode Title="about Orchestra class" Url="html/b497ebdb-e441-6dd9-3f10-b496b735f28e.htm" />
@@ -231,6 +336,19 @@
   <HelpKINode Title="Orchestra.CurrentTime method" Url="html/709d85d0-787a-96fd-cc92-eaef1ca57423.htm" />
   <HelpKINode Title="Orchestra.Instruments property" Url="html/d1d893e2-211d-950b-bb87-432f0d953421.htm" />
   <HelpKINode Title="Orchestra.Orchestra constructor" Url="html/e18539c0-8bb1-3746-e7c7-7fa288e2c5f4.htm" />
+  <HelpKINode Title="Orchestra.WaitForFinished method" Url="html/17dc82aa-c946-21e7-b30c-fe12624df463.htm" />
+  <HelpKINode Title="OrchestraHit enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="OrchestralHarp enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="OverdrivenGuitar enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad1_NewAge enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad2_Warm enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad3_Polysynth enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad4_Choir enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad5_Bowed enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad6_Metallic enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad7_Halo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pad8_Sweep enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="PanFlute enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="ParallelMusicCollection class">
     <HelpKINode Title="ParallelMusicCollection Class" Url="html/efc13110-f320-4c6f-3642-95a8227fddc4.htm" />
     <HelpKINode Title="about ParallelMusicCollection class" Url="html/efc13110-f320-4c6f-3642-95a8227fddc4.htm" />
@@ -251,6 +369,7 @@
   <HelpKINode Title="ParallelMusicCollection.ParallelMusicCollection constructor" Url="html/6b6ecc7f-927a-cb5c-dd5a-79be8f6c7225.htm" />
   <HelpKINode Title="ParallelMusicCollection.Remove method" Url="html/0ec7c650-febf-34b8-a024-17aa2095e156.htm" />
   <HelpKINode Title="ParallelMusicCollection.RemoveAt method" Url="html/66d6333c-2aad-bc7c-bc44-9d016d1c7ac9.htm" />
+  <HelpKINode Title="ParallelMusicCollection.Select method" Url="html/7a20f485-087e-8486-dfe6-5494c76beeef.htm" />
   <HelpKINode Title="Pause class">
     <HelpKINode Title="Pause Class" Url="html/14c94af4-9922-cd13-c113-4f359b88d48f.htm" />
     <HelpKINode Title="about Pause class" Url="html/14c94af4-9922-cd13-c113-4f359b88d48f.htm" />
@@ -258,17 +377,31 @@
     <HelpKINode Title="methods" Url="html/08fc5649-6128-89fa-633c-dbd948f619c4.htm" />
     <HelpKINode Title="properties" Url="html/d2be25a4-ffd9-482b-d182-2da274d6b4ab.htm" />
   </HelpKINode>
+  <HelpKINode Title="Pause field" Url="html/423a349d-51ad-b509-4283-c000c2b80932.htm" />
   <HelpKINode Title="Pause.Duration property" Url="html/ba6c9218-df52-3d36-b57f-1da9d73cd530.htm" />
   <HelpKINode Title="Pause.Pause constructor" Url="html/9a5dae70-9d85-6551-f766-ef3ff570e5ec.htm" />
+  <HelpKINode Title="Pause.Select method" Url="html/4ba4a377-aaa2-d0c3-0fe2-9ce667f9d993.htm" />
+  <HelpKINode Title="PedalHiHat enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="PercussiveOrgan enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Piccolo enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Pitch property" Url="html/e7fe866d-c5d7-7ee0-8e84-7108af887b0e.htm" />
+  <HelpKINode Title="PizzicatoStrings enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Play method" Url="html/cc2989a1-58f6-7932-892c-2a5d7b6b24fb.htm" />
+  <HelpKINode Title="Recorder enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ReedOrgan enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Remove method">
     <HelpKINode Title="ParallelMusicCollection.Remove Method " Url="html/0ec7c650-febf-34b8-a024-17aa2095e156.htm" />
-    <HelpKINode Title="SequentialMusicCollection.Remove Method " Url="html/2f640818-4c70-832d-10be-c6e45380defb.htm" />
+    <HelpKINode Title="SequentialMusicList.Remove Method " Url="html/00ab23a9-19db-96d2-d349-2d07b57dea41.htm" />
   </HelpKINode>
   <HelpKINode Title="RemoveAt method">
     <HelpKINode Title="ParallelMusicCollection.RemoveAt Method " Url="html/66d6333c-2aad-bc7c-bc44-9d016d1c7ac9.htm" />
-    <HelpKINode Title="SequentialMusicCollection.RemoveAt Method " Url="html/e9356e84-383c-f5d4-3706-e4a1b7184f2b.htm" />
+    <HelpKINode Title="SequentialMusicList.RemoveAt Method " Url="html/2f3a9ce3-399d-2eac-776b-b0e7428530e8.htm" />
   </HelpKINode>
+  <HelpKINode Title="ReverseCymbal enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="RideBell enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="RideCymbal1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="RideCymbal2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="RockOrgan enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Scale class">
     <HelpKINode Title="Scale Class" Url="html/94ff2325-67b9-bd63-2dac-b88791475d3c.htm" />
     <HelpKINode Title="about Scale class" Url="html/94ff2325-67b9-bd63-2dac-b88791475d3c.htm" />
@@ -283,37 +416,44 @@
   <HelpKINode Title="Scale.Interval method" Url="html/345bafe5-5407-c3da-b4fd-3939823c5550.htm" />
   <HelpKINode Title="Scale.Item property" Url="html/105dadc1-0eb0-d7a4-c1a2-ef58360579d1.htm" />
   <HelpKINode Title="Scale.Scale constructor" Url="html/1fd1c238-5354-7893-dc83-af82481ba650.htm" />
-  <HelpKINode Title="SequentialHelper class">
-    <HelpKINode Title="SequentialHelper Class" Url="html/63ac421a-c3bd-8cc5-cdd9-c3ca54d1f383.htm" />
-    <HelpKINode Title="about SequentialHelper class" Url="html/63ac421a-c3bd-8cc5-cdd9-c3ca54d1f383.htm" />
-    <HelpKINode Title="constructor" Url="html/de277fd4-a147-ca4b-33ad-5b0b1ef886d0.htm" />
-    <HelpKINode Title="methods" Url="html/c4891025-5e3c-85ce-9410-62cd2b00301e.htm" />
+  <HelpKINode Title="Seashore enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Select method">
+    <HelpKINode Title="Keystroke.Select Method " Url="html/60773ed4-9567-b168-9281-e3bfa87b24fb.htm" />
+    <HelpKINode Title="Note.Select Method " Url="html/4d24fb43-2219-b619-e6c1-e442d44a3bdd.htm" />
+    <HelpKINode Title="ParallelMusicCollection.Select Method " Url="html/7a20f485-087e-8486-dfe6-5494c76beeef.htm" />
+    <HelpKINode Title="Pause.Select Method " Url="html/4ba4a377-aaa2-d0c3-0fe2-9ce667f9d993.htm" />
+    <HelpKINode Title="SequentialMusicList.Select Method " Url="html/c037566a-2560-7541-337c-41f68ee95ba1.htm" />
   </HelpKINode>
-  <HelpKINode Title="SequentialHelper.Any method" Url="html/210f6b21-d213-697e-bd93-9c84861c304e.htm" />
-  <HelpKINode Title="SequentialHelper.Build method" Url="html/d85fed47-be57-da83-5cd4-9b5eeab73f84.htm" />
-  <HelpKINode Title="SequentialHelper.SequentialHelper constructor" Url="html/de277fd4-a147-ca4b-33ad-5b0b1ef886d0.htm" />
-  <HelpKINode Title="SequentialHelper.Solo method" Url="html/2c71391f-a8c0-6065-10da-2a3563b848c3.htm" />
-  <HelpKINode Title="SequentialMusicCollection class">
-    <HelpKINode Title="SequentialMusicCollection Class" Url="html/99863a5c-15aa-8444-284e-30a4eb4e0650.htm" />
-    <HelpKINode Title="about SequentialMusicCollection class" Url="html/99863a5c-15aa-8444-284e-30a4eb4e0650.htm" />
-    <HelpKINode Title="constructor" Url="html/1451a551-2e1d-bd66-6977-b301514ac3eb.htm" />
-    <HelpKINode Title="methods" Url="html/3137cf01-dbb8-d66a-f304-a6cbd5b02a51.htm" />
-    <HelpKINode Title="properties" Url="html/3c7bce8a-24bc-36b9-9070-e372b0fb0451.htm" />
+  <HelpKINode Title="Select(Of T) method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
+  <HelpKINode Title="Select&lt;T&gt; method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
+  <HelpKINode Title="SequentialMusicList class">
+    <HelpKINode Title="SequentialMusicList Class" Url="html/9eaa4c10-be65-60d8-d039-aebd6d74e1a1.htm" />
+    <HelpKINode Title="about SequentialMusicList class" Url="html/9eaa4c10-be65-60d8-d039-aebd6d74e1a1.htm" />
+    <HelpKINode Title="constructor" Url="html/26386788-56d7-8c75-956b-1193a812ccda.htm" />
+    <HelpKINode Title="methods" Url="html/36a3641e-1e8e-b445-8596-bb1d38fec56a.htm" />
+    <HelpKINode Title="properties" Url="html/ccbcacc8-5fd2-f071-3b64-66acc3d80f76.htm" />
   </HelpKINode>
-  <HelpKINode Title="SequentialMusicCollection.Add method" Url="html/ca5fd9dd-88db-4e69-9ee8-70970c4f5ccc.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Clear method" Url="html/ad7cde3e-e07a-08c4-0658-9c62a9da10f8.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Contains method" Url="html/82a91862-5e0c-5f01-c0e4-70fb6f63a165.htm" />
-  <HelpKINode Title="SequentialMusicCollection.CopyTo method" Url="html/accae099-b8ac-66de-1066-ea993d45021a.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Count property" Url="html/bcdad43b-7b28-e6b3-0da4-443295769bc6.htm" />
-  <HelpKINode Title="SequentialMusicCollection.GetEnumerator method" Url="html/e44c6d7c-d5fa-f9f5-1bf8-51b91231cc4b.htm" />
-  <HelpKINode Title="SequentialMusicCollection.IndexOf method" Url="html/3699cc7a-a02a-6ffe-f013-15330b5c48f3.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Insert method" Url="html/dee53a28-0c7c-c81b-f145-7196dc3b5c61.htm" />
-  <HelpKINode Title="SequentialMusicCollection.IsReadOnly property" Url="html/a6c8853a-5c48-d5b7-be1f-4d47b0f3cd9c.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Item property" Url="html/9c7ddefd-bf05-c75c-9285-b0ff9fb86b28.htm" />
-  <HelpKINode Title="SequentialMusicCollection.Remove method" Url="html/2f640818-4c70-832d-10be-c6e45380defb.htm" />
-  <HelpKINode Title="SequentialMusicCollection.RemoveAt method" Url="html/e9356e84-383c-f5d4-3706-e4a1b7184f2b.htm" />
-  <HelpKINode Title="SequentialMusicCollection.SequentialMusicCollection constructor" Url="html/1451a551-2e1d-bd66-6977-b301514ac3eb.htm" />
+  <HelpKINode Title="SequentialMusicList.Add method" Url="html/514b19dc-ee2d-69df-5d6f-b7ad73882350.htm" />
+  <HelpKINode Title="SequentialMusicList.Clear method" Url="html/d418f981-100e-b49f-00f5-240700bde086.htm" />
+  <HelpKINode Title="SequentialMusicList.Contains method" Url="html/f34fc2a9-381e-c263-a3fe-6c470f358b9d.htm" />
+  <HelpKINode Title="SequentialMusicList.CopyTo method" Url="html/5cd75920-28d4-915e-36da-aade2286eb53.htm" />
+  <HelpKINode Title="SequentialMusicList.Count property" Url="html/5b967a6f-df87-34fa-df40-35719696062f.htm" />
+  <HelpKINode Title="SequentialMusicList.GetEnumerator method" Url="html/572d5551-d678-77ff-2cb1-c681305e7439.htm" />
+  <HelpKINode Title="SequentialMusicList.IndexOf method" Url="html/d7e80513-504b-0c52-9091-11ec1acf4afa.htm" />
+  <HelpKINode Title="SequentialMusicList.Insert method" Url="html/a58fc332-9ac1-b787-3c00-8601fd2ffae5.htm" />
+  <HelpKINode Title="SequentialMusicList.IsReadOnly property" Url="html/d4bcec4a-50d9-f7d7-8beb-cd9eb28ef6f9.htm" />
+  <HelpKINode Title="SequentialMusicList.Item property" Url="html/ed2540a9-e3ce-a8c4-9ae1-25be8e471d43.htm" />
+  <HelpKINode Title="SequentialMusicList.Remove method" Url="html/00ab23a9-19db-96d2-d349-2d07b57dea41.htm" />
+  <HelpKINode Title="SequentialMusicList.RemoveAt method" Url="html/2f3a9ce3-399d-2eac-776b-b0e7428530e8.htm" />
+  <HelpKINode Title="SequentialMusicList.Select method" Url="html/c037566a-2560-7541-337c-41f68ee95ba1.htm" />
+  <HelpKINode Title="SequentialMusicList.SequentialMusicList constructor" Url="html/26386788-56d7-8c75-956b-1193a812ccda.htm" />
   <HelpKINode Title="SetSource method" Url="html/f6156cc8-205e-3e26-91c6-95f40c64cecf.htm" />
+  <HelpKINode Title="Shakuhachi enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Shamisen enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Shanai enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ShortGuiro enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="ShortWhistle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SideStick enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="SimpleMidiMessage structure">
     <HelpKINode Title="SimpleMidiMessage Structure" Url="html/5a2626c2-8248-ba3f-b257-1b7a785df97e.htm" />
     <HelpKINode Title="about SimpleMidiMessage structure" Url="html/5a2626c2-8248-ba3f-b257-1b7a785df97e.htm" />
@@ -321,14 +461,21 @@
     <HelpKINode Title="fields" Url="html/f4ce1fad-07ca-f278-45d0-a288950abb9a.htm" />
     <HelpKINode Title="methods" Url="html/072f8a6e-cbe6-1fcd-d1ee-d4df092822b9.htm" />
     <HelpKINode Title="operators" Url="html/e1755726-dc8b-a73a-4774-a43b444318e4.htm" />
+    <HelpKINode Title="properties" Url="html/6584d940-1dc8-ce91-f91e-ded2ba4d85d1.htm" />
   </HelpKINode>
+  <HelpKINode Title="SimpleMidiMessage.Channel property" Url="html/6e4c02a0-5b46-ee9c-5a09-18972d8f93b6.htm" />
   <HelpKINode Title="SimpleMidiMessage.Data field" Url="html/592e17c3-37b0-62b2-8831-beeeeb8aaf03.htm" />
   <HelpKINode Title="SimpleMidiMessage.Equality operator" Url="html/f997d11a-73af-a939-ead7-4441d57b1ff4.htm" />
   <HelpKINode Title="SimpleMidiMessage.Equals method" Url="html/b1cae5ea-ec2b-3de0-832a-c6ace81278c6.htm" />
   <HelpKINode Title="SimpleMidiMessage.GetHashCode method" Url="html/0635195b-4834-a843-1446-d65e0a5692df.htm" />
   <HelpKINode Title="SimpleMidiMessage.Inequality operator" Url="html/08cf0b02-3af3-00cb-fb0e-27dc5fe7846d.htm" />
+  <HelpKINode Title="SimpleMidiMessage.Pitch property" Url="html/e7fe866d-c5d7-7ee0-8e84-7108af887b0e.htm" />
   <HelpKINode Title="SimpleMidiMessage.SimpleMidiMessage constructor" Url="html/f86bfdb5-34e6-0e73-8330-83e1e4537727.htm" />
   <HelpKINode Title="SimpleMidiMessage.Timestamp field" Url="html/f77d9107-cdce-796f-dcaf-24e542a435b6.htm" />
+  <HelpKINode Title="SimpleMidiMessage.ToString method" Url="html/51504edf-7fa0-cea5-8130-d7567559add0.htm" />
+  <HelpKINode Title="SimpleMidiMessage.Type property" Url="html/e0a07304-b395-4e44-f96c-6be6fc57f647.htm" />
+  <HelpKINode Title="SimpleMidiMessage.Velocity property" Url="html/258141aa-e221-26cc-ba20-cbdb1ab4f15a.htm" />
+  <HelpKINode Title="SimpleMidiMessage.WithChannel method" Url="html/b85f27c4-297c-3423-6c69-e2f66426f0e4.htm" />
   <HelpKINode Title="SingleBeat structure">
     <HelpKINode Title="SingleBeat Structure" Url="html/3ccc164d-33ea-ad65-dd3d-8aaf21a86be1.htm" />
     <HelpKINode Title="about SingleBeat structure" Url="html/3ccc164d-33ea-ad65-dd3d-8aaf21a86be1.htm" />
@@ -344,6 +491,8 @@
   <HelpKINode Title="SingleBeat.ToneEndTime property" Url="html/8a48ab4e-e1de-a5fa-61b1-0abda3873b94.htm" />
   <HelpKINode Title="SingleBeat.ToneStartTime property" Url="html/a053418f-da68-175d-a2bb-9bbbad532bb1.htm" />
   <HelpKINode Title="SingleBeat.ToneVelocity property" Url="html/9c2d77dc-01e0-721d-c16b-8f90c871ee41.htm" />
+  <HelpKINode Title="SingleBeat.ToString method" Url="html/b5c81269-5eb6-c9dd-d547-91fb012aa81a.htm" />
+  <HelpKINode Title="SingleBeat.WithChannel method" Url="html/590aa7af-efda-4b3d-0280-09ed19d9c522.htm" />
   <HelpKINode Title="SingleBeatWithChannel structure">
     <HelpKINode Title="SingleBeatWithChannel Structure" Url="html/45b7f916-c722-1535-c34c-83e05cf4a15f.htm" />
     <HelpKINode Title="about SingleBeatWithChannel structure" Url="html/45b7f916-c722-1535-c34c-83e05cf4a15f.htm" />
@@ -352,25 +501,65 @@
     <HelpKINode Title="properties" Url="html/5ab545ca-85cf-14bd-a439-4fca7f3add39.htm" />
   </HelpKINode>
   <HelpKINode Title="SingleBeatWithChannel.Channel property" Url="html/903c5e3d-dc28-d93a-3dfb-fd55b41948f1.htm" />
-  <HelpKINode Title="SingleBeatWithChannel.instrumentType property" Url="html/19a21312-6992-9b2e-2b95-4db8befad2be.htm" />
+  <HelpKINode Title="SingleBeatWithChannel.InstrumentType property" Url="html/da02c295-35d2-96cb-0908-0eb3f5421256.htm" />
   <HelpKINode Title="SingleBeatWithChannel.SingleBeatWithChannel constructor" Url="html/8120fa3d-eb8e-7004-a0f3-e9891b4cd433.htm" />
   <HelpKINode Title="SingleBeatWithChannel.Tone property" Url="html/7685f269-cd4e-d5f9-bb2e-66db7c007a53.htm" />
   <HelpKINode Title="SingleBeatWithChannel.ToneEndTime property" Url="html/a2e584dc-643d-66ae-c9ca-407304e16b25.htm" />
   <HelpKINode Title="SingleBeatWithChannel.ToneStartTime property" Url="html/35f81227-fc2d-cce0-b9d0-091aa84f391f.htm" />
   <HelpKINode Title="SingleBeatWithChannel.ToneVelocity property" Url="html/7e011c61-b462-9c37-9fc0-de7da297c22e.htm" />
-  <HelpKINode Title="Solo method" Url="html/2c71391f-a8c0-6065-10da-2a3563b848c3.htm" />
+  <HelpKINode Title="SingleBeatWithChannel.ToString method" Url="html/20f8d238-e3fc-a40a-ae1e-dab1f8f0a8d5.htm" />
+  <HelpKINode Title="Sitar enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SlapBass1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SlapBass2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SopranoSax enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SplashCymbal enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SteelDrums enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="StringEnsemble1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="StringEnsemble2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthBass1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthBass2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthBrass1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthBrass2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthDrum enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthStrings1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthStrings2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="SynthVoice enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TaikoDrum enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Tambourine enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TangoAccordion enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TelephoneRing enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TenorSax enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Timestamp field" Url="html/f77d9107-cdce-796f-dcaf-24e542a435b6.htm" />
+  <HelpKINode Title="Timpani enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TinkleBell enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Tone enumeration" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
   <HelpKINode Title="Tone property">
-    <HelpKINode Title="Note.Tone Property " Url="html/7beb13cd-cb6c-eace-35fe-0b5d14c2afee.htm" />
-    <HelpKINode Title="NoteNotFoundException.Tone Property " Url="html/7c1bac34-f64e-d9eb-2034-859619efa432.htm" />
+    <HelpKINode Title="Keystroke.Tone Property " Url="html/9f205631-4456-fc53-6b5c-3cc1af3e0e8e.htm" />
     <HelpKINode Title="SingleBeat.Tone Property " Url="html/5cca71d3-fc62-bcce-5467-161577f2db9c.htm" />
     <HelpKINode Title="SingleBeatWithChannel.Tone Property " Url="html/7685f269-cd4e-d5f9-bb2e-66db7c007a53.htm" />
+    <HelpKINode Title="ToneNotFoundException.Tone Property " Url="html/a345c789-00dc-3fca-1343-2a2b19eaa7aa.htm" />
+    <HelpKINode Title="ToneOutOfRangeException.Tone Property " Url="html/3bb42615-6677-4719-2960-400dfe3f34cf.htm" />
   </HelpKINode>
   <HelpKINode Title="ToneEndTime property">
     <HelpKINode Title="SingleBeat.ToneEndTime Property " Url="html/8a48ab4e-e1de-a5fa-61b1-0abda3873b94.htm" />
     <HelpKINode Title="SingleBeatWithChannel.ToneEndTime Property " Url="html/a2e584dc-643d-66ae-c9ca-407304e16b25.htm" />
   </HelpKINode>
+  <HelpKINode Title="ToneNotFoundException class">
+    <HelpKINode Title="ToneNotFoundException Class" Url="html/88e7ecc0-6ef7-9313-d3e6-79ddcb5bf9b4.htm" />
+    <HelpKINode Title="about ToneNotFoundException class" Url="html/88e7ecc0-6ef7-9313-d3e6-79ddcb5bf9b4.htm" />
+    <HelpKINode Title="constructor" Url="html/5460cc00-04b4-2a7c-56d1-058e74629793.htm" />
+    <HelpKINode Title="properties" Url="html/ab245b1a-020f-67a1-885f-8c1f1cff4282.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToneNotFoundException.Tone property" Url="html/a345c789-00dc-3fca-1343-2a2b19eaa7aa.htm" />
+  <HelpKINode Title="ToneNotFoundException.ToneNotFoundException constructor" Url="html/5460cc00-04b4-2a7c-56d1-058e74629793.htm" />
+  <HelpKINode Title="ToneOutOfRangeException class">
+    <HelpKINode Title="ToneOutOfRangeException Class" Url="html/86919f5d-3dad-952b-51ea-4a5b1155c49e.htm" />
+    <HelpKINode Title="about ToneOutOfRangeException class" Url="html/86919f5d-3dad-952b-51ea-4a5b1155c49e.htm" />
+    <HelpKINode Title="constructor" Url="html/3a2f7ba4-42f5-743d-f061-4c7e45090455.htm" />
+    <HelpKINode Title="properties" Url="html/752cfa4b-efe6-2df3-cf96-573607b7b3d7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToneOutOfRangeException.Tone property" Url="html/3bb42615-6677-4719-2960-400dfe3f34cf.htm" />
+  <HelpKINode Title="ToneOutOfRangeException.ToneOutOfRangeException constructor" Url="html/3a2f7ba4-42f5-743d-f061-4c7e45090455.htm" />
   <HelpKINode Title="ToneStartTime property">
     <HelpKINode Title="SingleBeat.ToneStartTime Property " Url="html/a053418f-da68-175d-a2bb-9bbbad532bb1.htm" />
     <HelpKINode Title="SingleBeatWithChannel.ToneStartTime Property " Url="html/35f81227-fc2d-cce0-b9d0-091aa84f391f.htm" />
@@ -379,11 +568,28 @@
     <HelpKINode Title="SingleBeat.ToneVelocity Property " Url="html/9c2d77dc-01e0-721d-c16b-8f90c871ee41.htm" />
     <HelpKINode Title="SingleBeatWithChannel.ToneVelocity Property " Url="html/7e011c61-b462-9c37-9fc0-de7da297c22e.htm" />
   </HelpKINode>
-  <HelpKINode Title="Velocity property" Url="html/af8a28f4-f25b-88ac-7062-ef83b6b9cf7a.htm" />
+  <HelpKINode Title="ToString method">
+    <HelpKINode Title="SimpleMidiMessage.ToString Method " Url="html/51504edf-7fa0-cea5-8130-d7567559add0.htm" />
+    <HelpKINode Title="SingleBeat.ToString Method " Url="html/b5c81269-5eb6-c9dd-d547-91fb012aa81a.htm" />
+    <HelpKINode Title="SingleBeatWithChannel.ToString Method " Url="html/20f8d238-e3fc-a40a-ae1e-dab1f8f0a8d5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TremoloStrings enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Trombone enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Trumpet enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Tuba enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="TubularBells enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Type property" Url="html/e0a07304-b395-4e44-f96c-6be6fc57f647.htm" />
+  <HelpKINode Title="Velocity property">
+    <HelpKINode Title="Keystroke.Velocity Property " Url="html/1c826908-a5a7-576b-4d57-7ecb8addf8ae.htm" />
+    <HelpKINode Title="SimpleMidiMessage.Velocity Property " Url="html/258141aa-e221-26cc-ba20-cbdb1ab4f15a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Vibraphone enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Vibraslap enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Viola enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Violin enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
-  <HelpKINode Title="WAVERR_BADFORMAT enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="WAVERR_STILLPLAYING enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
-  <HelpKINode Title="WAVERR_UNPREPARED enumeration member" Url="html/fd31fa4b-a0e3-f1c2-07f8-4ff099cd5267.htm" />
+  <HelpKINode Title="VoiceOohs enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="WaitForFinished method" Url="html/17dc82aa-c946-21e7-b30c-fe12624df463.htm" />
+  <HelpKINode Title="Whistle enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="WinmmOut class">
     <HelpKINode Title="WinmmOut Class" Url="html/9ccfeb1c-4251-e2c8-5167-90c66b82fe76.htm" />
     <HelpKINode Title="about WinmmOut class" Url="html/9ccfeb1c-4251-e2c8-5167-90c66b82fe76.htm" />
@@ -398,4 +604,10 @@
   <HelpKINode Title="WinmmOut.Dispose method" Url="html/1282156e-bd69-63d8-cd31-759d1c49c3de.htm" />
   <HelpKINode Title="WinmmOut.WinmmOut constructor" Url="html/f428d601-b019-f977-7bf4-82664390f32b.htm" />
   <HelpKINode Title="WithBaseTone method" Url="html/49d07fe5-560a-a806-5945-8c12b47a0cd8.htm" />
+  <HelpKINode Title="WithChannel method">
+    <HelpKINode Title="SimpleMidiMessage.WithChannel Method " Url="html/b85f27c4-297c-3423-6c69-e2f66426f0e4.htm" />
+    <HelpKINode Title="SingleBeat.WithChannel Method " Url="html/590aa7af-efda-4b3d-0280-09ed19d9c522.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Woodblock enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
+  <HelpKINode Title="Xylophone enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
 </HelpKI>
