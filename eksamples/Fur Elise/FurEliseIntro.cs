@@ -5,28 +5,39 @@ using MidiGremlin;
 
 namespace Für_Elise
 {
+
+    /// <summary>
+    /// Static method Main plays the first bit of Für Elise, read from
+    /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
+    /// Please take a look if you wish to follow the explanations given by the comments.
+    /// For a full reference on note notaition, please refer to the most convenient university degree on the subject.
+    /// </summary>
     class FurEliseIntro
     {
-        private const int bpm = 30;
+        private const int bpm = 30; //Beats per minute.
 
         /// <summary>
+        /// Helping class.
         /// Creates a list of notes that all have the same duration and velocity.
         /// This can be used to make notation simpler when reading from a note-sheet full of barred notes.
         /// </summary>
         /// <param name="duration">The duration of all the notes. </param>
         /// <param name="velocity">The velocity of all the notes.</param>
-        /// <param name="sustainFor"> Values not 0 causes behavior similar to pressing the sustain pedal for that many beats.</param>
+        /// <param name="keepSustainedFor"> Values not 0 causes behavior similar to pressing the sustain pedal for that many beats.</param>
         /// <param name="tones">The tones, in the order they should appear in the list.</param>
         /// <returns>A list of notes that all have the same duration and velocity.</returns>
-        private static SequentialMusicList SimilarNotes(double duration, byte velocity, double sustainFor, params Tone[] tones)
+        private static SequentialMusicList SimilarNotes(double duration, byte velocity, double keepSustainedFor, params Tone[] tones)
         {
             List<Note> result = new List<Note>(tones.Length);
             result.AddRange(tones
                 .Select(tone => new Note(tone, duration, velocity)));
             
-            if (sustainFor != 0)
+            //Mimics the effect of keeping the Sustainment Pedal pressed on a piano.
+            //Tones are normally cut off when a key on a piano is released, but this is not the case
+            // as long as the sustain key is pressed.
+            if (keepSustainedFor != 0)
             {
-                double timeLeftToSustain = sustainFor;  //Each note starts 1 duration sooner than the last.
+                double timeLeftToSustain = keepSustainedFor;  //Each note starts 1 duration sooner than the last.
                 foreach (Note note in result)
                 {
                     note.Keystroke.Duration += timeLeftToSustain;
@@ -177,9 +188,11 @@ namespace Für_Elise
             //It should be played on a grand piano. Let's just get one.
             Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, majorScale, 0);
 
+            //The two hands should start playing at the same time:
+            ParallelMusicCollection FurEliseIntro = new ParallelMusicCollection(leftHand, rightHand);
+
             //And then we just start it.
-            piano.Play(leftHand);
-            piano.Play(rightHand);
+            piano.Play(FurEliseIntro);
 
 			o.WaitForFinished();
 	        Console.ReadLine();
