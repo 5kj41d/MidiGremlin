@@ -11,49 +11,63 @@
            titles.  Specify a numeric value as the inner text to limit it to
            a specific number of sub-topics when creating the outline.  Specify
            zero (0) to limit it to top-level sections only.  -->
-      <!-- <autoOutline /> -->
-      <para>Required introduction</para>
+	  <autoOutline>0</autoOutline>
+      <para>This guide will give a gentle introduction to how to start creating music with MIDI Gremlin. </para>
+	  <alert class="tip">
+		<para>This guide goes somewhat in dept, not only explaining how, but also the what and why. If you just want to get started creating music, you can read <link xlink:href="8c0c97d0-c968-4c15-9fe9-e8f3a443c50a" /> for a crash course.</para>
+	  </alert>
     </introduction>
-    <!-- <prerequisites><content>Optional prerequisites info</content></prerequisites> -->
-    <!-- One or more procedure or section with procedure -->
-    <procedure>
-      <title>Procedure title</title>
-      <steps class="ordered">
-        <step>
-          <content>
-            <para>First step</para>
-          </content>
-        </step>
-        <step>
-          <content>
-            <para>Second step</para>
-          </content>
-        </step>
-      </steps>
-      <!-- <conclusion>Optional conclusion</conclusion> -->
-    </procedure>
-    <!-- Optional additional procedure or section with procedure -->
-    <section address="Section1">
-      <title>Optional section title</title>
+    <section address="Creating an Orchestra and an Instrument">
+      <title>Creating an Orchestra and an Instrument</title>
       <content>
-        <procedure>
-          <title>Procedure #2</title>
-          <steps class="ordered">
-            <step>
-              <content>
-                <para>First step</para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>Second step</para>
-              </content>
-            </step>
-          </steps>
-          <!-- <conclusion>Optional conclusion</conclusion> -->
-        </procedure>
+        <para>The first step to playing music is creating an <codeEntityReference qualifyHint="true" linkText="Orchestra">T:MidiGremlin.Orchestra</codeEntityReference > and an <codeEntityReference qualifyHint="true" linkText="Instrument">T:MidiGremlin.Instrument</codeEntityReference >.</para>
+		<para>All <codeEntityReference qualifyHint="true" linkText="Orchestra">
+		T:MidiGremlin.Orchestra</codeEntityReference > requires an <codeEntityReference qualifyHint="true" linkText="IMidiOut">T:MidiGremlin.IMidiOut</codeEntityReference > interface. This interface is in most cases a 
+		<codeEntityReference qualifyHint="true" linkText="WinmmOut">T:MidiGremlin.WinmmOut
+		</codeEntityReference > that plays MIDI commands over <externalLink>
+			<linkUri>https://msdn.microsoft.com/en-us/library/dd743883(v=vs.85).aspx</linkUri>
+			<linkText>Windows Multi Media</linkText>
+		</externalLink> dll, but it is possible to substitute it with something else</para>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="Orchestra"/>
+		<para>Once you have created an __Instrument__ we can test it by playing a single sound. If you are using __WinmmOut__ and not another implementation of __IMidiOut__ that sound should come out of your speakers. If it dosen't, check your audio setup.</para>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="SingleSound"/>
+		<para>Normally you won't be giving sending __Tone__'s directly to an __Instrumet__ but it is the quickest way to get started.</para>
       </content>
     </section>
+	
+	<section address="Creating your first MusicObject">
+      <title>Creating your first MusicObject</title>
+      <content>
+        <para>Now that we have a connection to your speakers, we can start creating some simple __MusicObject__'s. __MusicObject__ are composite objects building a tree structure of music.</para>
+		<para>The first __MusicObject__ we are going to use is the __Note__ class. A __Note__ is one of the fundemental __MusicObject__ representing a single keypress.</para>
+		<alert class="tip">
+			<para>That was a lie. A __Note__ contains a __Keystroke__ and a __Pause__. For more details, see __Note__ documentation. For our pourposes it is true though.</para>
+		</alert>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="MusicObjects"/>
+		<para>Once we have some pieces of music, we are going to collect them in larger pieces. This can be build as large as you wish.</para>
+		<alert class="caution">
+			<para>Make sure not to add a MusicObject somewhere in its parts. MidiGremlin <bold>does not</bold> detect this and is going to cause a _@StackoverflowException@_ if you try to play or transform it.</para>
+		</alert>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="LargeMusicObject"/>
+		
+      </content>
+    </section>
+	
+	<section address="Creating larger pieces">
+      <title>Creating larger pieces</title>
+      <content>
+        <para>TODO: this</para>
+      </content>
+    </section>
+	
+	<section address="Using transformations to create variations">
+      <title>Using transformations to create variations</title>
+      <content>
+        <para>TODO: this</para>
+      </content>
+    </section>
+	
+	
     <!-- Optional next steps info
     <nextSteps>
       <content><para>Next steps info goes here</para></content>
