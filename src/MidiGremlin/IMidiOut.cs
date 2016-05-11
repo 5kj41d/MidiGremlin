@@ -16,7 +16,7 @@ namespace MidiGremlin
         void SetSource(BeatScheduler source);
 
 		/// <summary>
-		/// Music speed in Beats per Minute. Setting this to sixty should make one beat take one secon.
+		/// Music speed in Beats per Minute. Setting this to sixty should make one beat take one second.
 		/// </summary>
 	    int BeatsPerMinute { get; set; }
 
