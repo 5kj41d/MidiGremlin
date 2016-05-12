@@ -73,7 +73,11 @@ namespace MidiGremlin
 
             for (int i = 0; i < _tones.Length; i++)
             {
-                if (_tones[i] == rawTone)
+                Tone toneInScale = (Tone) ((int) _tones[i]%_numberOfTones);
+                if (toneInScale < 0)
+                    toneInScale += _numberOfTones;
+
+                if (toneInScale == rawTone)
                 {
                     return i + (octaveDelta * _numberOfTones); // TODO this isn't should be tone.length?? 
                 }
