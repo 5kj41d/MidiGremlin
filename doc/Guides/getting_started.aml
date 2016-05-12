@@ -29,44 +29,57 @@
 			<linkText>Windows Multi Media</linkText>
 		</externalLink> dll, but it is possible to substitute it with something else</para>
 		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="Orchestra"/>
-		<para>Once you have created an __Instrument__ we can test it by playing a single sound. If you are using __WinmmOut__ and not another implementation of __IMidiOut__ that sound should come out of your speakers. If it dosen't, check your audio setup.</para>
+		<para>Once you have created an <codeEntityReference qualifyHint="true" linkText="Instrument">T:MidiGremlin.Instrument</codeEntityReference> we can test it by playing a single sound. If you are using <codeEntityReference qualifyHint="true" linkText="WinmmOut">T:MidiGremlin.WinmmOut</codeEntityReference> and not another implementation of <codeEntityReference qualifyHint="true" linkText="IMidiOut">T:MidiGremlin.IMidiOut</codeEntityReference> that sound should come out of your speakers. If it dosen't, check your audio setup.</para>
 		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="SingleSound"/>
-		<para>Normally you won't be giving sending __Tone__'s directly to an __Instrumet__ but it is the quickest way to get started.</para>
+		<para>Normally you won't be giving sending <codeEntityReference qualifyHint="true" linkText="Tone">T:MidiGremlin.Tone</codeEntityReference>'s directly to an <codeEntityReference qualifyHint="true" linkText="Instrument">T:MidiGremlin.Instrument</codeEntityReference> but it is the quickest way to get started.</para>
       </content>
     </section>
 	
 	<section address="Creating your first MusicObject">
       <title>Creating your first MusicObject</title>
       <content>
-        <para>Now that we have a connection to your speakers, we can start creating some simple __MusicObject__'s. __MusicObject__ are composite objects building a tree structure of music.</para>
-		<para>The first __MusicObject__ we are going to use is the __Note__ class. A __Note__ is one of the fundemental __MusicObject__ representing a single keypress.</para>
+        <para>Now that we have a connection to your speakers, we can start creating some simple <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference>'s. <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> are composite objects building a tree structure of music.</para>
+		<para>The first <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> we are going to use is the <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> class. A <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> is one of the fundemental <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> representing a single keypress.</para>
 		<alert class="tip">
-			<para>That was a lie. A __Note__ contains a __Keystroke__ and a __Pause__. For more details, see __Note__ documentation. For our pourposes it is true though.</para>
+			<para>That was a lie. A <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> contains a <codeEntityReference qualifyHint="true" linkText="Keystroke">T:MidiGremlin.Keystroke</codeEntityReference> and a <codeEntityReference qualifyHint="true" linkText="Pause">T:MidiGremlin.Pause</codeEntityReference>. For more details, see <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> documentation. For our pourposes it is true though.</para>
 		</alert>
 		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="MusicObjects"/>
 		<para>Once we have some pieces of music, we are going to collect them in larger pieces. This can be build as large as you wish.</para>
 		<alert class="caution">
-			<para>Make sure not to add a MusicObject somewhere in its parts. MidiGremlin <bold>does not</bold> detect this and is going to cause a _@StackoverflowException@_ if you try to play or transform it.</para>
+			<para>Make sure not add a <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> to any of its children. MidiGremlin <bold>does not</bold> detect this and parsing is going to cause a <codeEntityReference qualifyHint="true">T:System.StackoverflowException</codeEntityReference> if you try to play or transform it.</para>
 		</alert>
 		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="LargeMusicObject"/>
 		
       </content>
     </section>
 	
-	<section address="Creating larger pieces">
-      <title>Creating larger pieces</title>
-      <content>
-        <para>TODO: this</para>
-      </content>
-    </section>
 	
 	<section address="Using transformations to create variations">
       <title>Using transformations to create variations</title>
       <content>
-        <para>TODO: this</para>
+        <para>Finally we are going to look at transformations. Transformations allows you to copy a <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> where you apply a function to all children of a specified type.</para>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="Transformation"/>
+		
       </content>
     </section>
 	
+	<section address="Using another Instrument">
+      <title>Using another Instrument</title>
+      <content>
+        <para>If a piano is not your cup of tea, playing on an other instrument is as creating it and telling it to play.</para>
+		<alert class="caution">
+			<para>Due to the limitations of the MIDI standart, playing more than 15 normal instruments and 1 drum <bold>at the same time</bold> is going to result in an error.</para>
+		</alert>
+		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="OtherInstrument"/>
+      </content>
+    </section>
+	
+	<section>
+	  <title>All code used in this article</title>
+	  <content>
+	    <code language="Csharp" source="..\src\GettingStarted\Program.cs" />
+	  </content>
+	</section>
 	
     <!-- Optional next steps info
     <nextSteps>
@@ -97,7 +110,6 @@
           <linkUri>https://GitHub.com/EWSoftware/SHFB</linkUri>
       </externalLink>
 
-      <codeEntityReference>T:TestDoc.TestClass</codeEntityReference>
       <codeEntityReference>P:TestDoc.TestClass.SomeProperty</codeEntityReference>
       <codeEntityReference>M:TestDoc.TestClass.#ctor</codeEntityReference>
       <codeEntityReference>M:TestDoc.TestClass.#ctor(System.String,System.Int32)</codeEntityReference>
@@ -105,6 +117,13 @@
       <codeEntityReference>M:TestDoc.TestClass.FirstMethod</codeEntityReference>
       <codeEntityReference>M:TestDoc.TestClass.SecondMethod(System.Int32,System.String)</codeEntityReference>
       -->
+	  <codeEntityReference qualifyHint="true">T:MidiGremlin.Orchestra</codeEntityReference>
+	  <codeEntityReference qualifyHint="true">T:MidiGremlin.Instrument</codeEntityReference>
+	  <codeEntityReference qualifyHint="true">T:MidiGremlin.Note</codeEntityReference>
+	  <codeEntityReference qualifyHint="true">T:MidiGremlin.SequentialMusicList</codeEntityReference>
+	  <codeEntityReference qualifyHint="true">M:MidiGremlin.MusicObject.Select``1(System.Func{``0,``0})</codeEntityReference>
+	  
+      
     </relatedTopics>
   </developerWalkthroughDocument>
 </topic>

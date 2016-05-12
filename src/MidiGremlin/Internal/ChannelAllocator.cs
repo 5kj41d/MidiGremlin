@@ -75,9 +75,9 @@ namespace MidiGremlin.Internal
 				{
 					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
 
-					int result = finishTimes.Select((x, y) => y)
-							.Where(x => test(x) && finishTimes[x] < singleBeat.ToneStartTime)
-							.Select(x => x + 1).FirstOrDefault();
+					int result = finishTimes.Select((x, y) => new { i = y, val = x})
+							.Where(x => test(x.i) && x.val < singleBeat.ToneStartTime)
+							.Select(x => x.i + 1).FirstOrDefault();
 
 					if (result == default(int))
 					{

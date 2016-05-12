@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MidiGremlin.Internal;
 
 namespace MidiGremlin
@@ -7,6 +8,7 @@ namespace MidiGremlin
     /// <summary>
     /// Contains a <see cref="T:MidiGremlin.Keystroke"/> and a <see cref="T:MidiGremlin.Pause"/>.
     /// </summary>
+    [DebuggerDisplay("{Keystroke.Tone} {Pause.Duration}")]
     public class Note : MusicObject
     {
         /// <summary> The actual sound in the note. </summary>
@@ -96,10 +98,10 @@ namespace MidiGremlin
         /// <returns> Returns a new keystroke that has been offset within the scale. </returns>
         public Note OffsetBy (Scale scale, int offset, int octaveOffset)
         {
-            Note result = new Note(Keystroke.Tone, Pause.Duration, Keystroke.Velocity);
-            result.Keystroke.OffsetBy(scale, offset, octaveOffset);
-
-            return result;
+            
+            Keystroke k = Keystroke.OffsetBy(scale, offset, octaveOffset);
+			Note result = new Note(k.Tone, Pause.Duration, k.Velocity);
+			return result;
         }
 
 
