@@ -127,28 +127,8 @@ namespace ConwaysGameOfLife
 
         private void Draw()
         {
-            Console.Clear();
-            Console.SetWindowSize(80, 43);
-            Console.SetBufferSize(100, 100);
-
-            for (int y = 0; y < _xValue; y++)
-            {
-                Console.WriteLine();
-                for (int x = 0; x < _xValue; x++)
-                {
-                    if (Cells[x, y])
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.Write("██");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write("██");
-                    }
-                }
-
-            }
+            DirectRender1 render = new DirectRender1(_xValue, _yValue);
+            render.Update(Cells);
         }
         
         internal bool IsAlive(int xValue, int yValue)

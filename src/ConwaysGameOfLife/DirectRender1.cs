@@ -7,8 +7,21 @@ using Microsoft.Win32.SafeHandles;
 
 namespace ConwaysGameOfLife
 {
-    class DirectRender
+    class DirectRender1
     {
+        internal int ConsoleSizeXValue;
+        internal int ConsoleSizeYValue;
+
+        [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern SafeFileHandle CreateFile(
+            string fileName,
+            [MarshalAs(UnmanagedType.U4)] uint fileAccess,
+            [MarshalAs(UnmanagedType.U4)] uint fileShare,
+            IntPtr securityAttributes,
+            [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
+            [MarshalAs(UnmanagedType.U4)] int flags,
+            IntPtr template);
+
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool WriteConsoleOutput(
           SafeFileHandle hConsoleOutput,
@@ -39,7 +52,54 @@ namespace ConwaysGameOfLife
             public short Bottom;
         }
 
+        protected SafeFileHandle Handle;
         protected CharInfo[] Buffer;
+
+        public DirectRender1(int xSize, int ySize) 
+        {
+            //Create file handle to the console buffer
+            //Basicaly lets us writes bytes to the console buffer, accces is
+            //trough a file handle
+            Handle = CreateFile("CONOUT$", 0x40000000, 2, IntPtr.Zero, FileMode.Open, 0, IntPtr.Zero);
+            Buffer = new CharInfo[xSize * ySize];
+            ConsoleSizeXValue = xSize;
+            ConsoleSizeYValue = ySize;
+        }
+
+        public int Update(bool[,] array, bool forceAll = false)
+        {
+            if (!Handle.IsInvalid)
+            {
+                Console.SetWindowSize(ConsoleSizeXValue, ConsoleSizeYValue);
+                for (int x = 0; x < ConsoleSizeXValue; x++)
+                {
+                    for (int y = 0; y < ConsoleSizeYValue; y++)
+                    {
+                        ConsoleColor tempColor = array[x, y] ? ConsoleColor.Blue : ConsoleColor.Black;
+                        Buffer[x + (y * ConsoleSizeXValue)] = new CharInfo('■', tempColor, ConsoleColor.Black);
+                    }
+                }
+
+                SmallRect rect = new SmallRect() { Bottom = 37, Left = 0, Right = 79, Top = 0 };
+                bool Success = WriteConsoleOutput(Handle, Buffer,
+                    new Coord((short)ConsoleSizeXValue, (short)ConsoleSizeYValue),
+                    new Coord(0, 0),
+                    ref rect);
+
+                if (!Success)
+                {
+                    Trace.WriteLine("Error drawing console");
+                }
+
+            }
+            else
+            {
+                Trace.WriteLine("Console handle invalid");
+                throw new Exception();
+            }
+
+            return 79 * 37;
+        }
     }
 
     [StructLayout(LayoutKind.Explicit)]
