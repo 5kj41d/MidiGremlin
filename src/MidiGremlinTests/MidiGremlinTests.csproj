@@ -61,7 +61,6 @@
     <Compile Include="InstrumentTypeExtensionsTests.cs" />
     <Compile Include="ListExtensionsTest.cs" />
     <Compile Include="KeyStrokeTests.cs" />
-    <Compile Include="MusicObjectTest.cs" />
     <Compile Include="MusicObject\NoteTests.cs" />
     <Compile Include="ParallelMusicCollectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
