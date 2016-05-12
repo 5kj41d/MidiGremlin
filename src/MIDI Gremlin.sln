@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
@@ -10,6 +9,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Eksamples", "Eksamples", "{777190FA-E2F8-4F72-B345-5267874794B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fur_Elise", "..\eksamples\Fur Elise\Fur_Elise.csproj", "{2F117189-B516-4619-9129-6A3BF55F4461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwaysGameOfLife", "ConwaysGameOfLife\ConwaysGameOfLife.csproj", "{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted", "GettingStarted\GettingStarted.csproj", "{647534FE-C0CC-4319-A5A9-231F4944883E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,11 +32,21 @@ Global
 		{2F117189-B516-4619-9129-6A3BF55F4461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F117189-B516-4619-9129-6A3BF55F4461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F117189-B516-4619-9129-6A3BF55F4461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{647534FE-C0CC-4319-A5A9-231F4944883E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647534FE-C0CC-4319-A5A9-231F4944883E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{647534FE-C0CC-4319-A5A9-231F4944883E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{647534FE-C0CC-4319-A5A9-231F4944883E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2F117189-B516-4619-9129-6A3BF55F4461} = {777190FA-E2F8-4F72-B345-5267874794B3}
+		{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4} = {777190FA-E2F8-4F72-B345-5267874794B3}
+		{647534FE-C0CC-4319-A5A9-231F4944883E} = {777190FA-E2F8-4F72-B345-5267874794B3}
 	EndGlobalSection
 EndGlobal

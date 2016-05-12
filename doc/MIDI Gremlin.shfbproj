@@ -15,7 +15,7 @@
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.5.2</FrameworkVersion>
     <OutputPath>..\Documentation\</OutputPath>
-    <HtmlHelpName>Midi__Gremlin</HtmlHelpName>
+    <HtmlHelpName>MidiGremlin</HtmlHelpName>
     <Language>en-US</Language>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\src\MidiGremlin\MidiGremlin.csproj" xmlns="" />
@@ -74,7 +74,7 @@ The MidiGremlin library has been established by the group A311b  from the univer
 Enjoy the library &amp; have fun.</NamespaceSummaryItem>
 <NamespaceSummaryItem name="(global)" isDocumented="True">Testy test</NamespaceSummaryItem></NamespaceSummaries>
     <ProjectSummary>This is the documentation for &amp;lt%3ba href=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bMidi Gremlin&amp;lt%3b/a&amp;gt%3b.  For the latest version visit &amp;lt%3ba herf=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bhttps://github.com/joha4270/MIDIGremlin&amp;lt%3b/a&amp;gt%3b</ProjectSummary>
-    <RootNamespaceTitle>Midi Gremlin</RootNamespaceTitle>
+    <RootNamespaceTitle>Midi Gremlin Namespaces</RootNamespaceTitle>
     <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2006-2016, Johannes Elgaard, Asger Horn Brorholt, Christian Gundersen Holmgaard, Emil Jensen, Ibrahim Kohistani, Kennet N&amp;#248%3brgaard Larsen, Nicklas H&amp;#248%3bjgaard Sneftrup, All rights reserved</CopyrightText>
     <CopyrightHref>https://github.com/joha4270/MidiGremlin</CopyrightHref>
     <ApiFilter>
