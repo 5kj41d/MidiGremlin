@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Eksamples", "Eksamples", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fur_Elise", "..\eksamples\Fur Elise\Fur_Elise.csproj", "{2F117189-B516-4619-9129-6A3BF55F4461}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwaysGameOfLife", "ConwaysGameOfLife\ConwaysGameOfLife.csproj", "{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwaysGameOfLife", "..\eksamples\ConwaysGameOfLife\ConwaysGameOfLife.csproj", "{559693F0-2D3C-4CE8-A4E1-BB49D09C49D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted", "GettingStarted\GettingStarted.csproj", "{647534FE-C0CC-4319-A5A9-231F4944883E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted", "..\eksamples\GettingStarted\GettingStarted.csproj", "{647534FE-C0CC-4319-A5A9-231F4944883E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

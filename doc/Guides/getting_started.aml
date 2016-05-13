@@ -28,9 +28,9 @@
 			<linkUri>https://msdn.microsoft.com/en-us/library/dd743883(v=vs.85).aspx</linkUri>
 			<linkText>Windows Multi Media</linkText>
 		</externalLink> dll, but it is possible to substitute it with something else</para>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="Orchestra"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="Orchestra"/>
 		<para>Once you have created an <codeEntityReference qualifyHint="true" linkText="Instrument">T:MidiGremlin.Instrument</codeEntityReference> we can test it by playing a single sound. If you are using <codeEntityReference qualifyHint="true" linkText="WinmmOut">T:MidiGremlin.WinmmOut</codeEntityReference> and not another implementation of <codeEntityReference qualifyHint="true" linkText="IMidiOut">T:MidiGremlin.IMidiOut</codeEntityReference> that sound should come out of your speakers. If it dosen't, check your audio setup.</para>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="SingleSound"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="SingleSound"/>
 		<para>Normally you won't be giving sending <codeEntityReference qualifyHint="true" linkText="Tone">T:MidiGremlin.Tone</codeEntityReference>'s directly to an <codeEntityReference qualifyHint="true" linkText="Instrument">T:MidiGremlin.Instrument</codeEntityReference> but it is the quickest way to get started.</para>
       </content>
     </section>
@@ -43,12 +43,12 @@
 		<alert class="tip">
 			<para>That was a lie. A <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> contains a <codeEntityReference qualifyHint="true" linkText="Keystroke">T:MidiGremlin.Keystroke</codeEntityReference> and a <codeEntityReference qualifyHint="true" linkText="Pause">T:MidiGremlin.Pause</codeEntityReference>. For more details, see <codeEntityReference qualifyHint="true" linkText="Note">T:MidiGremlin.Note</codeEntityReference> documentation. For our pourposes it is true though.</para>
 		</alert>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="MusicObjects"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="MusicObjects"/>
 		<para>Once we have some pieces of music, we are going to collect them in larger pieces. This can be build as large as you wish.</para>
 		<alert class="caution">
 			<para>Make sure not add a <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> to any of its children. MidiGremlin <bold>does not</bold> detect this and parsing is going to cause a <codeEntityReference qualifyHint="true">T:System.StackoverflowException</codeEntityReference> if you try to play or transform it.</para>
 		</alert>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="LargeMusicObject"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="LargeMusicObject"/>
 		
       </content>
     </section>
@@ -58,7 +58,7 @@
       <title>Using transformations to create variations</title>
       <content>
         <para>Finally we are going to look at transformations. Transformations allows you to copy a <codeEntityReference qualifyHint="true" linkText="MusicObject">T:MidiGremlin.MusicObject</codeEntityReference> where you apply a function to all children of a specified type.</para>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="Transformation"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="Transformation"/>
 		
       </content>
     </section>
@@ -70,14 +70,14 @@
 		<alert class="caution">
 			<para>Due to the limitations of the MIDI standart, playing more than 15 normal instruments and 1 drum <bold>at the same time</bold> is going to result in an error.</para>
 		</alert>
-		<code language="Csharp" source="..\src\GettingStarted\Program.cs" region="OtherInstrument"/>
+		<code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" region="OtherInstrument"/>
       </content>
     </section>
 	
 	<section>
 	  <title>All code used in this article</title>
 	  <content>
-	    <code language="Csharp" source="..\src\GettingStarted\Program.cs" />
+	    <code language="Csharp" source="..\eksamples\GettingStarted\Program.cs" />
 	  </content>
 	</section>
 	
