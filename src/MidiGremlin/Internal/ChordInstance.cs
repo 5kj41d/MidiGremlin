@@ -53,7 +53,7 @@ namespace MidiGremlin.Internal
 
             foreach (int t in _toneSteps)
             {
-                int offset = t - 1; //Chords are defined with 1 being the first element. Not very programmer-like, I know.
+                int offset = t - 1; //Chords are defined with 1 being the first element. Not very programmer-like, we know.
 
                 //New Keystroke with correct tone.
                 Keystroke k = new Keystroke
