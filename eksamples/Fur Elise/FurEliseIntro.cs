@@ -5,7 +5,6 @@ using MidiGremlin;
 
 namespace Für_Elise
 {
-
     /// <summary>
     /// Static method Main plays the first bit of Für Elise, read from
     /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
@@ -14,8 +13,6 @@ namespace Für_Elise
     /// </summary>
     class FurEliseIntro
     {
-        private const int bpm = 30; //Beats per minute.
-
         /// <summary>
         /// Helping class.
         /// Creates a list of notes that all have the same duration and velocity.
@@ -29,8 +26,8 @@ namespace Für_Elise
         private static SequentialMusicList SimilarNotes(double duration, byte velocity, double keepSustainedFor, params Tone[] tones)
         {
             List<Note> result = new List<Note>(tones.Length);
-            result.AddRange(tones
-                .Select(tone => new Note(tone, duration, velocity)));
+            foreach (Tone tone in tones)
+                result.Add(new Note(tone, duration, velocity));
             
             //Mimics the effect of keeping the Sustainment Pedal pressed on a piano.
             //Tones are normally cut off when a key on a piano is released, but this is not the case
@@ -53,22 +50,25 @@ namespace Für_Elise
 
 
 
-        /// <summary>
-        /// Plays the first bit of Für Elise, read from
-        /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
-        /// Please take a look if you wish to follow the explanations given by the comments.
-        /// For a full reference on note notaition, please refer to the most convenient university degree on the subject.
-        /// </summary>
         static void Main ()
         {
+            int bpm = 30; //Tempo of the music. Beats per minute.
+
             //Like most old western music, this is played in the A minor scale.
             //Note that as the tone enum starts at C, tones A and B are part of the lower octave.
             Tone[] majorScaleTones = {Tone.A - 12, Tone.B - 12, Tone.C, Tone.D, Tone.E, Tone.F, Tone.G};
             Scale majorScale = new Scale(majorScaleTones); 
             //The left hand is lowered by 1 octave.
             Scale loweredMajorScale = new Scale(majorScaleTones.Select(x => x - 12).ToArray());
-            double eigth = 1 / 8D;
+
+            //We will be using these constants a lot.
+            double eigth = 1 / 8.0;
             byte baseVelocity = 50;
+
+            //To play music, first we need an orchestra with access to an output.
+            Orchestra o = new Orchestra(new WinmmOut(0, bpm));
+            //The piece should be played on a grand piano. Let's just get one.
+            Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, majorScale, 0);
 
             //----------------------------
             //   Creating the right hand:
@@ -79,20 +79,20 @@ namespace Für_Elise
             // so by counting a note's offset from the G 
             // and adding the value corresponding to G in the scale
             // you get the tone you want.
-            int trebleClef = 6;
+            int trebleClef = majorScale.Interval(Tone.G);
 
-			//Making all the six bars:
+			//Making all six bars:
 
-            MusicObject rBar0 = //Strangely, the first bar is only two eigths long.
+            MusicObject rBar0 = //It seems, the first bar is only two eigths long.
                 //The two notes have the same duration and velocity, so we are using a helper class.(The zero means the sustain pedal is not used.)
                 SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[5 + trebleClef],
-                    majorScale[4 + trebleClef] + 1);
+                    majorScale[4 + trebleClef] + 1); //The ♯ elevates all tones on the line with 1 until cancelled by a ♮ or the bar ends.
 
             MusicObject rBar1And5 =
                 SimilarNotes(eigth, baseVelocity, 0,
                     majorScale[5 + trebleClef],
-                    majorScale[4 + trebleClef] + 1, //The ♯ elevates all tones on the line with 1 until cancelled by a ♮ or the bar ends.
+                    majorScale[4 + trebleClef] + 1, 
                     majorScale[5 + trebleClef],
                     majorScale[2 + trebleClef],
                     majorScale[4 + trebleClef],
@@ -142,7 +142,7 @@ namespace Für_Elise
             // so by counting a note's offset from the F 
             // and adding the value corresponding to F in the scale
             // you get the tone you want.
-            int bassClef = 5;
+            int bassClef = loweredMajorScale.Interval(Tone.F);
 
             //Making all six bars:
 
@@ -181,12 +181,6 @@ namespace Für_Elise
             //----------------------------
             //   Ready to play:
             //----------------------------
-
-            //To play music, first we need an orchestra with access to an output.
-            Orchestra o = new Orchestra(new WinmmOut(0, bpm));
-
-            //It should be played on a grand piano. Let's just get one.
-            Instrument piano = o.AddInstrument(InstrumentType.AccousticGrandPiano, majorScale, 0);
 
             //The two hands should start playing at the same time:
             ParallelMusicCollection FurEliseIntro = new ParallelMusicCollection(leftHand, rightHand);

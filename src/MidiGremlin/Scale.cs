@@ -28,8 +28,7 @@ namespace MidiGremlin
 		/// The amount of tones the scale contains.
 		/// </summary>
 		public int Count => _tones.Length;
-
-
+		
 
         /// <summary>
         /// Uses the chromatic scale.
@@ -58,7 +57,18 @@ namespace MidiGremlin
         /// <returns>true if the tone is in the scale; false otherwise.</returns>
         public bool Contains(Tone tone)
         {
-            return _tones.Any(x => ((int)x % _numberOfTones) == ((int)tone % _numberOfTones));
+            Tone baseToneToCheck = (Tone) ((int) tone%_numberOfTones);
+            if (baseToneToCheck < 0)
+                baseToneToCheck += _numberOfTones;
+            foreach (Tone t in _tones)
+            {
+                Tone baseToneInScale = (Tone) ((int) t%_numberOfTones);
+                if (baseToneInScale < 0)
+                    baseToneInScale += _numberOfTones;
+                if (baseToneInScale == baseToneToCheck)
+                    return true;
+            }
+            return false;
         }
 
 
@@ -72,14 +82,21 @@ namespace MidiGremlin
         /// <exception cref="ToneNotFoundException"> Thrown if the tone does not exist in the scale. </exception>
         public int Interval(Tone tone)
         {
-            int octaveDelta = (int)tone / _numberOfTones;
-            Tone rawTone = (Tone)((int)tone % _numberOfTones);
+            Tone baseToneToCheck = (Tone)((int)tone % _numberOfTones);
+            if (baseToneToCheck < 0)
+                baseToneToCheck += _numberOfTones;
 
             for (int i = 0; i < _tones.Length; i++)
             {
-                if (_tones[i] == rawTone)
+                Tone baseToneInScale = (Tone) ((int) _tones[i]%_numberOfTones);
+                if (baseToneInScale < 0)
+                    baseToneInScale += _numberOfTones;
+
+                if (baseToneInScale == baseToneToCheck)
                 {
-                    return i + (octaveDelta * _numberOfTones); // TODO this isn't should be tone.length?? 
+                    //a = b + (a-b)
+                    int octaveDelta = (tone - _tones[i])/_numberOfTones;
+                    return i + (octaveDelta * _tones.Length);
                 }
             }
 

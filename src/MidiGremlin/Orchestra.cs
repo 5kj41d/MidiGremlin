@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿    using System.Collections.Generic;
 using System.Linq;
 using MidiGremlin.Internal;
 
@@ -25,7 +25,7 @@ namespace MidiGremlin
 	    
         /// <summary>
         /// Creates a new instance of the orchestra class. 
-        /// Needs a reference to an output class, which can be achieved by creating a new WinmmOut instance.
+        /// Needs a reference to an output class, which you can get by creating a new WinmmOut instance.
         /// </summary>
         /// <param name="output"> The output class to send all played music to. </param>
         public Orchestra (IMidiOut output)
@@ -93,7 +93,7 @@ namespace MidiGremlin
         /// <returns>The current time </returns>
         public double CurrentTime()
         {
-			double d = _output.CurrentTime();
+			double d = _output.CurrentTime;
 	        return d;
         }
 

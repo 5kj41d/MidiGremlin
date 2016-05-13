@@ -60,6 +60,7 @@
     <Compile Include="Internal\OutOfChannelsException.cs" />
     <Compile Include="Internal\SimpleMidiMessage.cs" />
     <Compile Include="Internal\SingleBeat.cs" />
+    <Compile Include="Internal\VariableBpmCounter.cs" />
     <Compile Include="Internal\Windows Multi Media\MIDIOUTCAPS.cs" />
     <Compile Include="Internal\Windows Multi Media\MMRESULT.cs" />
     <Compile Include="Internal\Windows Multi Media\Winmm.cs" />

@@ -29,21 +29,6 @@ namespace MidiGremlin
 
 
 
-        /// <summary>
-        /// Creates a new instance of the chord using DefaultDuration and a standard velocity , using tone as the root.
-        /// </summary>
-        /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
-        /// <returns></returns>
-        public MusicObject this[Tone tone]
-        {
-            get
-            {
-                return WithBaseTone(tone, DefaultDuration);
-            }
-        }
-
-
-
 	    /// <summary>
         /// Creates a new muisc object which represents a chord with a given duration and velocity, using a tone as the value of the root.
         /// </summary>
@@ -72,29 +57,30 @@ namespace MidiGremlin
 
 
         /// <summary>
-        /// A recipe for an augmented chord with three tones. 
+        /// Creates a new instance of the chord using DefaultDuration and a standard velocity , using tone as the root.
         /// </summary>
+        /// <param name="tone">A Tone enum value depicting the root of the chord.</param>
+        /// <returns></returns>
+        public MusicObject this[Tone tone]
+        {
+            get
+            {
+                return WithBaseTone(tone, DefaultDuration);
+            }
+        }
+
+
+
+        /// <summary> An augmented chord with three tones.  </summary>
         public static ChordVariety Augmented { get; } = new ChordVariety(1, 5, 9);
         
-        
-        
-        /// <summary>
-        /// A recipe for an diminished chord with three tones.
-        /// </summary>
+        /// <summary> A diminished chord with three tones. </summary>
         public static ChordVariety Diminished { get; } = new ChordVariety(1, 4, 7);
         
-        
-        
-        /// <summary>
-        /// A recipe for an major chord with three tones.
-        /// </summary>
+        /// <summary> A major chord with three tones. </summary>
         public static ChordVariety Major { get; } = new ChordVariety(1, 5, 8);
         
-        
-        
-        /// <summary>
-        /// A recipe for an minor chord with three tones.
-        /// </summary>
+        /// <summary> A minor chord with three tones. </summary>
         public static ChordVariety Minor { get; } = new ChordVariety(1, 4, 8);
 	}
 }
