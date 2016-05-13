@@ -10,7 +10,7 @@ namespace MidiGremlin
     public interface IMidiOut : IDisposable
     {
 		/// <summary>
-		/// Sets the BeatScheduler that is responsible for feeding this IMidiOut with MIDI messages. Setting this multiple times is an error.
+		/// Sets the BeatScheduler that is responsible for feeding this IMidiOut with MIDI messages. Setting this multiple times causes an error.
 		/// </summary>
 		/// <param name="source">The BeatScheduler</param>
         void SetSource(BeatScheduler source);
@@ -26,6 +26,6 @@ namespace MidiGremlin
         /// The number of beats elapsed since this instance was created.
         /// </summary>
         /// <returns>The number of beats elapsed since this instance was created.</returns>
-        double CurrentTime ();
+        double CurrentTime { get; }
     }
 }

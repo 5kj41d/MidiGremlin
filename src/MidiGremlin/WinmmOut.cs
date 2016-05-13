@@ -18,12 +18,10 @@ namespace MidiGremlin
         /// If the device is not found, the default(ID 0) Windows virtual synthesizer will be used.</summary>
         public uint DeviceID { get; }
 
-
+        private VariableBpmCounter timeMannager;
         private const int UpdateFrequency = 20;
-		private double _oldTime = 0;
         private IntPtr _handle;
         private bool _disposed = false;
-        private Stopwatch _time;
         private Thread _workThread;
         private readonly object _sync = new object();
         private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
@@ -41,111 +39,67 @@ namespace MidiGremlin
         /// If left at 60, a beat will be the same as a second.</param>
         public WinmmOut (uint deviceID, int beatsPerMinutes=60)
         {
-			_time = new Stopwatch();
+            timeMannager = new VariableBpmCounter();
 			BeatsPerMinute = beatsPerMinutes;
 
             uint numberOfDevices =  Winmm.midiOutGetNumDevs();
             DeviceID = numberOfDevices < deviceID ? 0 : deviceID;
             if(0!= Winmm.midiOutOpen(out _handle, DeviceID, IntPtr.Zero, IntPtr.Zero, 0))
-                throw new Exception("Opening MIDI device unsuccessful.");
+                throw new Exception("Opening MIDI device unsuccessful. Is the device already open somwhere else?");
 
             
 	        _workThread = new Thread(ThreadEntryPrt)
 	        {
 		        IsBackground = true
 	        };
-			
+        }
+
+        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
+        public int BeatsPerMinute
+        {
+            get { return timeMannager.BeatsPerMinute; }
+            set { timeMannager.BeatsPerMinute = value; }
         }
 
 
-	    private int _beatsPerMinute;
 
-	    
-        
-        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
-	    public int BeatsPerMinute
-	    {
-		    get { return _beatsPerMinute; }
-		    set
-		    {
-			    if (_beatsPerMinute != value)
-			    {
-				    _oldTime += CurrentScaleTime();
-					_time.Restart();
-				    _beatsPerMinute = value;
-			    }
-		    }
-	    }
-
-	    private BeatScheduler _source;
-
-        
-        /// <summary> Conversion constant between minutes and milliseconds. </summary>
-        private static double _minutesToMilliseconds = 60000;
-
-
-        
         /// <summary>
         /// The duration of 1 beat in milliseconds.
         /// </summary>
         /// <returns>The duration of 1 beat in milliseconds.</returns>
-        public double BeatDuratinInMilliseconds
+        public double BeatDuratinInMilliseconds => timeMannager.BeatDuratinInMilliseconds;
+
+
+        /// <summary>
+        /// The amount of beats that have passed since this class was instantiated.
+        /// </summary>
+        /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
+        public double CurrentTime => timeMannager.CurrentTime;
+
+        private BeatScheduler _source;
+
+        /// <summary>
+        /// Sets the BeatScheduler that is responsible for feeding this IMidiOut with MIDI messages. Setting this multiple times causes an error.
+        /// </summary>
+        /// <param name="source">The BeatScheduler</param>
+        void IMidiOut.SetSource (BeatScheduler source)
         {
-            get
+            lock (_sync)
             {
-                double durationInMinutes = 1.0/BeatsPerMinute;
-                double durationInMilliseconds = durationInMinutes * _minutesToMilliseconds;
-                return durationInMilliseconds;
+                if (_source == null)
+                {
+                    _source = source;
+                    _workThread.Start();
+                    timeMannager.Start();
+                } else
+                {
+                    throw new InvalidOperationException("This IMidiOut is already in use");
+                }
             }
         }
 
 
         
-        /// <summary>
-        /// Closes the WinmmOut instance safely.
-        /// </summary>
-        public void Dispose()
-        {
-            Winmm.midiOutClose(_handle);
-			_disposed = true;
-        }
-
-
-	    
-        /// <summary>
-	    /// The amount of beats that have passed since this class was instantiated.
-	    /// </summary>
-	    /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
-	    public double CurrentTime()
-        {
-            return  _oldTime + CurrentScaleTime();
-        }
-
-
-
-        private double CurrentScaleTime()
-	    {
-		    return _time.Elapsed.TotalMilliseconds / BeatDuratinInMilliseconds;
-	    }
-
-
-
-        void IMidiOut.SetSource(BeatScheduler source)
-	    {
-		    lock (_sync)
-		    {
-			    if (_source == null)
-			    {
-					_source = source;
-					_workThread.Start();
-					_time.Start();
-				}
-			    else
-			    {
-				    throw new InvalidOperationException("This IMidiOut is already in use");
-			    }
-		    }
-	    }
 
 
 
@@ -159,6 +113,17 @@ namespace MidiGremlin
 
 	            Winmm.midiOutShortMsg(_handle, next.Data);
             }
+        }
+
+
+
+        /// <summary>
+        /// Closes the WinmmOut instance safely.
+        /// </summary>
+        public void Dispose ()
+        {
+            Winmm.midiOutClose(_handle);
+            _disposed = true;
         }
     }
 }

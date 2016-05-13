@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿    using System.Collections.Generic;
 using System.Linq;
 using MidiGremlin.Internal;
 
@@ -93,7 +93,7 @@ namespace MidiGremlin
         /// <returns>The current time </returns>
         public double CurrentTime()
         {
-			double d = _output.CurrentTime();
+			double d = _output.CurrentTime;
 	        return d;
         }
 
