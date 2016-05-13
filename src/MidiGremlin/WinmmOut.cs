@@ -29,6 +29,31 @@ namespace MidiGremlin
 
 
 
+        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
+        public int BeatsPerMinute
+        {
+            get { return timeMannager.BeatsPerMinute; }
+            set { timeMannager.BeatsPerMinute = value; }
+        }
+
+
+
+        /// <summary>
+        /// The duration of 1 beat in milliseconds.
+        /// </summary>
+        /// <returns>The duration of 1 beat in milliseconds.</returns>
+        public double BeatDuratinInMilliseconds => timeMannager.BeatDuratinInMilliseconds;
+
+
+
+        /// <summary>
+        /// The amount of beats that have passed since this class was instantiated.
+        /// </summary>
+        /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
+        public double CurrentTime => timeMannager.CurrentTime;
+
+
+
         /// <summary>
         /// Creates a new instance of the WinmmOut class which opens a MIDI port at the specified device ID.
         /// </summary>
@@ -54,27 +79,7 @@ namespace MidiGremlin
 	        };
         }
 
-        /// <summary> How many beats corresponds to 60 seconds. If the value is set to 60, 1 beat will be the same as 1 second. </summary>
-        public int BeatsPerMinute
-        {
-            get { return timeMannager.BeatsPerMinute; }
-            set { timeMannager.BeatsPerMinute = value; }
-        }
 
-
-
-        /// <summary>
-        /// The duration of 1 beat in milliseconds.
-        /// </summary>
-        /// <returns>The duration of 1 beat in milliseconds.</returns>
-        public double BeatDuratinInMilliseconds => timeMannager.BeatDuratinInMilliseconds;
-
-
-        /// <summary>
-        /// The amount of beats that have passed since this class was instantiated.
-        /// </summary>
-        /// <returns>The amount of beats that have passed since this class was instantiated.</returns>
-        public double CurrentTime => timeMannager.CurrentTime;
 
         private BeatScheduler _source;
 
@@ -97,9 +102,6 @@ namespace MidiGremlin
                 }
             }
         }
-
-
-        
 
 
 

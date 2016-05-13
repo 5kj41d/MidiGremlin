@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace MidiGremlin.Internal
 {
-    class VariableBpmCounter
+    /// <summary>
+    /// Class responsible for managing a bpm that might change at any time. This is used by WinmmOut to ensure correct time measurement.
+    /// </summary>
+    internal class VariableBpmCounter
     {
-        /// <summary> IThe amount of beats that have passed until last time bpm was changed. </summary>
+        /// <summary> The amount of beats that have passed until last time bpm was changed. </summary>
         private double _oldTime = 0;
         private Stopwatch _time;
 
