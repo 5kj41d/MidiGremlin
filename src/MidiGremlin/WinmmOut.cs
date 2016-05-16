@@ -18,14 +18,19 @@ namespace MidiGremlin
         /// If the device is not found, the default(ID 0) Windows virtual synthesizer will be used.</summary>
         public uint DeviceID { get; }
 
+        /// <summary> Helper class that handles all time calculations. </summary>
         private VariableBpmCounter timeMannager;
-        private const int UpdateFrequency = 20;
+        /// <summary> Handle of the MIDI output device. </summary>
         private IntPtr _handle;
+        /// <summary> True after Dispose has completed </summary>
         private bool _disposed = false;
+        /// <summary> Thread responsible for playing music in real time. </summary>
         private Thread _workThread;
-        private readonly object _sync = new object();
-        private List<SimpleMidiMessage> toPlay = new List<SimpleMidiMessage>();
+        /// <summary> Should ThreadEntryPrt be running? </summary>
         private bool _running = true;
+        /// <summary> Class responsible for feeding this class MIDI messages. </summary>
+        private BeatScheduler _source;
+        private readonly object _sync = new object();
 
 
 
@@ -79,9 +84,7 @@ namespace MidiGremlin
 	        };
         }
 
-
-
-        private BeatScheduler _source;
+        
 
         /// <summary>
         /// Sets the BeatScheduler that is responsible for feeding this IMidiOut with MIDI messages. Setting this multiple times causes an error.
@@ -105,15 +108,15 @@ namespace MidiGremlin
 
 
 
+        /// <summary> This is the background thread responsible for playing the SingleBeats. </summary>
         private void ThreadEntryPrt()
         {
-            SimpleMidiMessage next;
-
             while (_running)
             {
-	            next = _source.GetNextMidiCommand(block: true);
+                //Get next MIDI Command, waiting until it is time to play it.
+                SimpleMidiMessage next = _source.GetNextMidiCommand(block: true); 
 
-	            Winmm.midiOutShortMsg(_handle, next.Data);
+	            Winmm.midiOutShortMsg(_handle, next.Data);  //Send MIDI Comand to winmm
             }
         }
 

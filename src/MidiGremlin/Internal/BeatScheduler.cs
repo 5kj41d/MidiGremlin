@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace MidiGremlin.Internal
 {
-	/// <summary>
-	/// The BeatScheduler is responsible for scheduling MIDI events to the 16 MIDI channels and the handling of 
-	/// the actual timing of when to play 
-	/// </summary>
-	public class BeatScheduler
+    /// <summary>
+    /// The BeatScheduler is responsible for scheduling MIDI events to the 16 MIDI channels 
+    /// and the handling of the actual timing of when to play 
+    /// </summary>
+    public class BeatScheduler
 	{
 		private /*const*/ static readonly SimpleMidiMessage EmptyMessage = new SimpleMidiMessage(0,0);
 		
@@ -19,6 +18,8 @@ namespace MidiGremlin.Internal
 		private readonly Orchestra _orchestra;
 		private readonly IMidiOut _output;
 		private readonly ChannelAllocator _channelAllocator = new ChannelAllocator();
+
+
 
 		internal BeatScheduler(Orchestra orchestra, IMidiOut output)
 		{
@@ -30,11 +31,11 @@ namespace MidiGremlin.Internal
 
 		/// <summary>
 		/// Returns the next simple midi event to be played from the queue. 
-		/// It can either block it until it is time to actually play it or return the current timestamp immediately
+		/// It can either block it until it is time to actually play it, or return the current timestamp immediately.
 		/// </summary>
 		/// <param name="block">Force the BeatScheduler to return immediately</param>
 		/// <returns>A simple MIDI event and a timestamp. If nothing exists in the queue, it either 
-		/// returns an empty message or blocks until one is available</returns>
+		/// returns an empty message or blocks until one is available.</returns>
 		public SimpleMidiMessage GetNextMidiCommand(bool block = true)
 		{
 			//Try to find a new tone 10 times. Should only run once in most conditions, but
@@ -65,28 +66,27 @@ namespace MidiGremlin.Internal
 
 
 
-				//If we was not interrupted we assume we arrived at time
+				//If we were not interrupted, we assume we arrived in time
 				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
 
-				if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
-				{
-					SimpleMidiMessage message = _channelAllocator.GetNext();
-					//Console.WriteLine($"Fin {message}");
+                //If not set to block or if no new data arrives
+			    if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))
+			    {
+			        SimpleMidiMessage message = _channelAllocator.GetNext();
+			        //Console.WriteLine($"Fin {message}");
 
-					if (_channelAllocator.Empty)
-					{
-						//If the emptyHandle is not set, notify that we have finished everything
-						if (!_emptyHandle.WaitOne(0))
-						{
-							_emptyHandle.Set();
-						}
-					}
+			        if (_channelAllocator.Empty)
+			        {
+			            //If the emptyHandle is not set, notify that we have finished everything
+			            if (!_emptyHandle.WaitOne(0))
+			            {
+			                _emptyHandle.Set();
+			            }
+			        }
 
-					return message;
-				}
+			        return message;
+			    }
 			}
-
-
 
 			//If working in debug mode knowing that something went wrong is probably preferable
 			//but in release we would just as well like it failing silently
@@ -98,10 +98,14 @@ namespace MidiGremlin.Internal
 #endif
 		}
 
+
+
 		/// <summary>
 		/// A wait handle that is set once the underlying collection is empty. It will remain set until new content is added to the queue.
 		/// </summary>
 		public EventWaitHandle EmptyWaitHandle => _emptyHandle;
+
+
 
 		internal void AddToQueue(List<SingleBeat> beats)
 		{

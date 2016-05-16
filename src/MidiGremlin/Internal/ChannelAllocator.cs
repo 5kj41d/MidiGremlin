@@ -19,26 +19,29 @@ namespace MidiGremlin.Internal
 
 		public SimpleMidiMessage GetNext()
 		{
+            //If both lists are empty.
 			if (Empty)
 			{
 				throw new NoMoreMusicException();
 			}
 
+			//If _storage is empty or if the next object to play is in progressQueque.
 			if (_storage.Count == 0 || (_partialQueue.Count != 0 && _partialQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
 			{
 				return _partialQueue.PopLast();
 			}
-			else
+			else    //Get new message from _storage.
 			{
 				SingleBeatWithChannel beatWithChannel = _storage.PopLast();
 
+                //If the right channel is already assigned.
 				if (beatWithChannel.InstrumentType == _channelInstruments[beatWithChannel.Channel])
 				{
 					//X, Y reverse order as list should be in that order
 					_partialQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return StartMidiMessage(beatWithChannel);
 				}
-				else
+				else    //If a channel needs to be allocated before playing.
 				{
 					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.InstrumentType;
 					_partialQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
@@ -49,22 +52,24 @@ namespace MidiGremlin.Internal
 		}
 		
 
-
+        /// <summary>
+        /// Add SingleBeats to list of SingleBeats to play, and assign the channel that it might play on.
+        /// </summary>
+        /// <param name="input"></param>
 		public void Add(List<SingleBeat> input)
 		{
 			InstrumentType[] lastUsedInstruments = new InstrumentType[16];
 			Array.Copy(_channelInstruments, lastUsedInstruments, 16);
 
+            //Array containing the time that the corresponding channel will be free.
 			double[] finishTimes = CreateFinishTimesArray();
+
 			int storageProgress = _storage.Count;
 
 			for (int index= 0; index < input.Count; index++)
-			//{
-				
-			//}
-			//for (int index = input.Count - 1; index >= 0; index--)
 			{
 				SingleBeat singleBeat = input[index];
+
 				//Find the element in _storage that comes just before us
 				while (0 < storageProgress && _storage[storageProgress - 1].ToneStartTime < singleBeat.ToneStartTime)
 				{
@@ -82,9 +87,9 @@ namespace MidiGremlin.Internal
 
 					int result = finishTimes.Select((x, y) => new { i = y, val = x})
 							.Where(x => test(x.i) && x.val <= singleBeat.ToneStartTime)
-							.Select(x => x.i + 1).FirstOrDefault();
+							.Select(x => x.i + 1).FirstOrDefault();//Int default is 0, so 1 is added to distinguish between this and the first channel.
 
-					if (result == default(int))
+                    if (result == default(int))
 					{
 						//won't be free, do whatever
 						throw new OutOfChannelsException();
@@ -130,6 +135,8 @@ namespace MidiGremlin.Internal
 
 		public bool Empty => _partialQueue.Count == 0 && _storage.Count == 0;
 
+
+
 		private int CompareSimpleMidi(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
 			int first = lhs.Timestamp.CompareTo(rhs.Timestamp);
@@ -145,6 +152,8 @@ namespace MidiGremlin.Internal
 
 
 
+        /// <summary> Returns an array where each element represents the time that the corresponding channel will be free. (looks at _progressQueue only) </summary>
+        /// <returns> An array where each element represents the time that the corresponding channel will be free. </returns>
         private double[] CreateFinishTimesArray()
 		{
 			double[] ret = new double[16];
