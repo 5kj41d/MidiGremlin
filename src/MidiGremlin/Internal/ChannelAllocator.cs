@@ -11,7 +11,7 @@ namespace MidiGremlin.Internal
 		//Music in storage, not ready to be played yet. A queue with last to exit first in index to make modification to end fast
 		private readonly List<SingleBeatWithChannel> _storage = new List<SingleBeatWithChannel>();
 		//Music in storage that have begun playing but requires more events in the near future
-		private readonly List<SimpleMidiMessage> _progressQueue = new List<SimpleMidiMessage>();  
+		private readonly List<SimpleMidiMessage> _partialQueue = new List<SimpleMidiMessage>();  
 		//What instrument are active on each channel
 		private readonly InstrumentType[] _channelInstruments = new InstrumentType[16];
 		private const int DRUM_CHANNEL = 9;
@@ -24,9 +24,9 @@ namespace MidiGremlin.Internal
 				throw new NoMoreMusicException();
 			}
 
-			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
+			if (_storage.Count == 0 || (_partialQueue.Count != 0 && _partialQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
 			{
-				return _progressQueue.PopLast();
+				return _partialQueue.PopLast();
 			}
 			else
 			{
@@ -35,14 +35,14 @@ namespace MidiGremlin.Internal
 				if (beatWithChannel.InstrumentType == _channelInstruments[beatWithChannel.Channel])
 				{
 					//X, Y reverse order as list should be in that order
-					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
+					_partialQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return StartMidiMessage(beatWithChannel);
 				}
 				else
 				{
 					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.InstrumentType;
-					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
-					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
+					_partialQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
+					_partialQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return ChangeChannelMidiMessage(beatWithChannel);
 				}
 			}
@@ -56,18 +56,23 @@ namespace MidiGremlin.Internal
 			Array.Copy(_channelInstruments, lastUsedInstruments, 16);
 
 			double[] finishTimes = CreateFinishTimesArray();
-			int storageProgress = 0;
+			int storageProgress = _storage.Count;
 
-			for (int index = input.Count - 1; index >= 0; index--)
+			for (int index= 0; index < input.Count; index++)
+			//{
+				
+			//}
+			//for (int index = input.Count - 1; index >= 0; index--)
 			{
 				SingleBeat singleBeat = input[index];
 				//Find the element in _storage that comes just before us
-				while (_storage.Count > storageProgress && _storage[storageProgress].ToneStartTime > singleBeat.ToneStartTime)
+				while (0 < storageProgress && _storage[storageProgress - 1].ToneStartTime < singleBeat.ToneStartTime)
 				{
+					storageProgress--;
 					int channel = _storage[storageProgress].Channel;
 					finishTimes[channel] = Math.Max(_storage[storageProgress].ToneEndTime, finishTimes[channel]);
 					lastUsedInstruments[channel] = _storage[storageProgress].InstrumentType;
-					storageProgress++;
+					
 				}
 
 				int usedChannel = lastUsedInstruments.IndexOf(singleBeat.instrumentType);
@@ -76,7 +81,7 @@ namespace MidiGremlin.Internal
 					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
 
 					int result = finishTimes.Select((x, y) => new { i = y, val = x})
-							.Where(x => test(x.i) && x.val < singleBeat.ToneStartTime)
+							.Where(x => test(x.i) && x.val <= singleBeat.ToneStartTime)
 							.Select(x => x.i + 1).FirstOrDefault();
 
 					if (result == default(int))
@@ -109,21 +114,21 @@ namespace MidiGremlin.Internal
 
 				if (_storage.Count == 0)
 				{
-					return _progressQueue[_progressQueue.Count - 1].Timestamp;
+					return _partialQueue[_partialQueue.Count - 1].Timestamp;
 				}
 
-				if (_progressQueue.Count == 0)
+				if (_partialQueue.Count == 0)
 				{
 					return _storage[_storage.Count - 1].ToneStartTime;
 				}
 
-				return Math.Min(_storage[_storage.Count - 1].ToneStartTime, _progressQueue[_progressQueue.Count - 1].Timestamp);
+				return Math.Min(_storage[_storage.Count - 1].ToneStartTime, _partialQueue[_partialQueue.Count - 1].Timestamp);
 			}
 		}
 
 
 
-		public bool Empty => _progressQueue.Count == 0 && _storage.Count == 0;
+		public bool Empty => _partialQueue.Count == 0 && _storage.Count == 0;
 
 		private int CompareSimpleMidi(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
@@ -144,7 +149,7 @@ namespace MidiGremlin.Internal
 		{
 			double[] ret = new double[16];
 
-			foreach (SimpleMidiMessage message in _progressQueue)
+			foreach (SimpleMidiMessage message in _partialQueue)
 			{
 				ret[message.Channel] = Math.Max(ret[message.Channel], message.Timestamp);
 			}
