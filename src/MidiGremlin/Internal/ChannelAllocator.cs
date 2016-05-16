@@ -52,20 +52,24 @@ namespace MidiGremlin.Internal
 		}
 		
 
-
+        /// <summary>
+        /// Add SingleBeats to list of SingleBeats to play, and assign the channel that it might play on.
+        /// </summary>
+        /// <param name="input"></param>
 		public void Add(List<SingleBeat> input)
 		{
 			InstrumentType[] lastUsedInstruments = new InstrumentType[16];
 			Array.Copy(_channelInstruments, lastUsedInstruments, 16);
 
+            //Array containing the time that the corresponding channel will be free.
 			double[] finishTimes = CreateFinishTimesArray();
-			int storageProgress = 0;
 
 			for (int index = input.Count - 1; index >= 0; index--)
 			{
 				SingleBeat singleBeat = input[index];
-				//Find the element in _storage that comes just before us
-				while (_storage.Count > storageProgress && _storage[storageProgress].ToneStartTime > singleBeat.ToneStartTime)
+                //Find the element in _storage that comes just before us
+                int storageProgress = 0;
+                while (_storage.Count > storageProgress && _storage[storageProgress].ToneStartTime > singleBeat.ToneStartTime)
 				{
 					int channel = _storage[storageProgress].Channel;
 					finishTimes[channel] = Math.Max(_storage[storageProgress].ToneEndTime, finishTimes[channel]);
@@ -128,6 +132,8 @@ namespace MidiGremlin.Internal
 
 		public bool Empty => _progressQueue.Count == 0 && _storage.Count == 0;
 
+
+
 		private int CompareSimpleMidi(SimpleMidiMessage lhs, SimpleMidiMessage rhs)
 		{
 			int first = lhs.Timestamp.CompareTo(rhs.Timestamp);
@@ -140,6 +146,7 @@ namespace MidiGremlin.Internal
 			int second = lhsType.CompareTo(rhsType);
 			return second;
 		}
+
 
 
         /// <summary> Returns an array where each element represents the time that the corresponding channel will be free. (looks at _progressQueue only) </summary>
