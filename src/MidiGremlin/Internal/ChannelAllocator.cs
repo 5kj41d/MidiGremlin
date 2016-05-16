@@ -19,26 +19,29 @@ namespace MidiGremlin.Internal
 
 		public SimpleMidiMessage GetNext()
 		{
+            //If both lists are empty.
 			if (Empty)
 			{
 				throw new NoMoreMusicException();
 			}
 
+            //If _storage is empty or if the next object to play is in progressQueque.
 			if (_storage.Count == 0 || (_progressQueue.Count != 0 && _progressQueue.Last().Timestamp <= _storage.Last().ToneStartTime))
 			{
 				return _progressQueue.PopLast();
 			}
-			else
+			else    //Get new message from _storage.
 			{
 				SingleBeatWithChannel beatWithChannel = _storage.PopLast();
 
+                //If the right channel is already assigned.
 				if (beatWithChannel.InstrumentType == _channelInstruments[beatWithChannel.Channel])
 				{
 					//X, Y reverse order as list should be in that order
 					_progressQueue.MergeInsert(StopMidiMessage(beatWithChannel), CompareSimpleMidi);
 					return StartMidiMessage(beatWithChannel);
 				}
-				else
+				else    //If a channel needs to be allocated before playing.
 				{
 					_channelInstruments[beatWithChannel.Channel] = beatWithChannel.InstrumentType;
 					_progressQueue.MergeInsert(StartMidiMessage(beatWithChannel), CompareSimpleMidi);
@@ -75,9 +78,9 @@ namespace MidiGremlin.Internal
 				{
 					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
 
-					int result = finishTimes.Select((x, y) => y)
-							.Where(x => test(x) && finishTimes[x] < singleBeat.ToneStartTime)
-							.Select(x => x + 1).FirstOrDefault();
+					int result = finishTimes.Select((x, i) => i)
+							.Where(i => test(i) && finishTimes[i] < singleBeat.ToneStartTime)
+							.Select(x => x + 1).FirstOrDefault();       //Int default is 0, so 1 is added to distinguish between this and the first channel.
 
 					if (result == default(int))
 					{
@@ -139,7 +142,8 @@ namespace MidiGremlin.Internal
 		}
 
 
-
+        /// <summary> Returns an array where each element represents the time that the corresponding channel will be free. (looks at _progressQueue only) </summary>
+        /// <returns> An array where each element represents the time that the corresponding channel will be free. </returns>
         private double[] CreateFinishTimesArray()
 		{
 			double[] ret = new double[16];
