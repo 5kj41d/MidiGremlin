@@ -78,11 +78,11 @@ namespace MidiGremlin.Internal
 				{
 					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
 
-					int result = finishTimes.Select((x, i) => i)
-							.Where(i => test(i) && finishTimes[i] < singleBeat.ToneStartTime)
-							.Select(x => x + 1).FirstOrDefault();       //Int default is 0, so 1 is added to distinguish between this and the first channel.
+					int result = finishTimes.Select((x, y) => new { i = y, val = x})
+							.Where(x => test(x.i) && x.val < singleBeat.ToneStartTime)
+							.Select(x => x.i + 1).FirstOrDefault(); //Int default is 0, so 1 is added to distinguish between this and the first channel.
 
-					if (result == default(int))
+                    if (result == default(int))
 					{
 						//won't be free, do whatever
 						throw new OutOfChannelsException();

@@ -35,6 +35,37 @@ namespace MidiGremlin
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
         public abstract MusicObject Select<T>(Func<T, T> selector) where T : MusicObject;
+
+
+		/// <summary>
+		/// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
+		/// </summary>
+		/// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
+		/// <param name="selector">A transform function to apply to each element with an optional count of how many objects have been transformed</param>
+		/// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
+		public MusicObject Select<T>(Func<T, int, T> selector) where T : MusicObject
+	    {
+		    IndexedSelectHelper<T> indexedSelectHelper = new IndexedSelectHelper<T>(selector);
+
+		    return Select<T>(indexedSelectHelper.SelectMethod);
+	    }
+
+	    private class IndexedSelectHelper<T>
+	    {
+		    private readonly Func<T, int, T> _selectorFunction;
+		    private int _count;
+		    internal IndexedSelectHelper(Func<T, int, T> selectorFunction)
+		    {
+			    _selectorFunction = selectorFunction;
+		    }
+
+		    internal T SelectMethod(T input)
+		    {
+			    T temporary = _selectorFunction(input, _count);
+			    _count++;
+			    return temporary;
+		    }
+	    }
     }
 
 }

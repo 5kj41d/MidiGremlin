@@ -13,13 +13,22 @@ namespace MidiGremlin
 
 
 
-        /// <summary> The Chromatic Scale, which contains all 12 tones starting at A. </summary>
-        public static Scale ChromaticScale { get; } = new Scale(Tone.A, Tone.ASharp, Tone.B, Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.G, Tone.GSharp);
+        /// <summary>
+        /// The Chromatic Scale, which contains all 12 tones starting at C.
+        /// </summary>
+        public static Scale ChromaticScale { get; } = new Scale(Tone.C, Tone.CSharp, Tone.D, Tone.DSharp, Tone.E, Tone.F, Tone.FSharp, Tone.G, Tone.GSharp, Tone.A, Tone.ASharp, Tone.B);
 
-        /// <summary> The amount of tones the scale contains. </summary>
-        public int Count => _tones.Length;
+		/// <summary>
+		/// The Major Scale, which contains all the whole tones, starting at C.
+		/// </summary>
+		public static Scale MajorScale { get; } = new Scale(Tone.C, Tone.D, Tone.E, Tone.F, Tone.G, Tone.A, Tone.B);
 
 
+		/// <summary>
+		/// The amount of tones the scale contains.
+		/// </summary>
+		public int Count => _tones.Length;
+		
 
         /// <summary>
         /// Uses the chromatic scale.

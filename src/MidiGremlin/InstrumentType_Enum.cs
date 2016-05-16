@@ -8,7 +8,7 @@
 		///<summary>
 		///Representing a Accoustic Grand Piano  Instrument
 		///</summary>
-		AccousticGrandPiano = 00,
+		AccousticGrandPiano = 01,
 
 		///<summary>
 		///Representing a Bright Acoustic Piano  Instrument
