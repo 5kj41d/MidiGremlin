@@ -55,6 +55,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ChannelAllocatorTest.cs" />
     <Compile Include="ChordTests.cs" />
     <Compile Include="ExceptionTests.cs" />
     <Compile Include="InstrumentTests.cs" />
@@ -62,10 +63,12 @@
     <Compile Include="ListExtensionsTest.cs" />
     <Compile Include="KeyStrokeTests.cs" />
     <Compile Include="MusicObject\NoteTests.cs" />
+    <Compile Include="MusicObject\SelectNullTests.cs" />
     <Compile Include="ParallelMusicCollectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScaleTests.cs" />
     <Compile Include="SequentialMusicCollectionTests.cs" />
+    <Compile Include="TestHelpers.cs" />
     <Compile Include="WinmmOutTests.cs" />
   </ItemGroup>
   <ItemGroup>
