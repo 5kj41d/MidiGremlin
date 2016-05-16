@@ -65,25 +65,26 @@ The MidiGremlin library has been established by the group A311b  from the univer
 The purpose of the library is, to give the programmer an easy way to implement and creat their own music. MidiGremlin is a benchmark from an exicting popular library named MIDI.net. The idee behind the MidiGremlin structure is based on the MIDI.net, but unlike MIDI.net´s confusing format and structure is this new library quite more simpler. MidiGremlin is an abstraction from MIDI.net. The abstraction makes the notations and syntaxes a lot easier for the programmer. 
 
 Enjoy the library &amp; have fun.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="MidiGremlin.Helpers" isDocumented="False" />
-<NamespaceSummaryItem name="MidiGremlin.Internal.Windows_Multi_Media" isDocumented="False" />
-<NamespaceSummaryItem name="MidiGremlin.Internal" isDocumented="False">Introductions guide for MidiGremlin
+      <NamespaceSummaryItem name="MidiGremlin.Helpers" isDocumented="False" />
+      <NamespaceSummaryItem name="MidiGremlin.Internal.Windows_Multi_Media" isDocumented="False" />
+      <NamespaceSummaryItem name="MidiGremlin.Internal" isDocumented="False">Introductions guide for MidiGremlin
 
 The MidiGremlin library has been established by the group A311b  from the universsity of AAlborg. The purpose of the library is, to give the programmer an easy way to implement and creat their own music. MidiGremlin is a benchmark from an exicting popular library named MIDI.net. The idee behind the MidiGremlin structure is based on the MIDI.net, but unlike MIDI.net´s confusing format and structure is this new library quite more simpler. MidiGremlin is an abstraction from MIDI.net. The abstraction makes the notations and syntaxes a lot easier for the programmer. 
 
 Enjoy the library &amp; have fun.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="(global)" isDocumented="True">Testy test</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="True">Testy test</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <ProjectSummary>This is the documentation for &amp;lt%3ba href=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bMidi Gremlin&amp;lt%3b/a&amp;gt%3b.  For the latest version visit &amp;lt%3ba herf=&amp;quot%3bhttps://github.com/joha4270/MIDIGremlin&amp;quot%3b&amp;gt%3bhttps://github.com/joha4270/MIDIGremlin&amp;lt%3b/a&amp;gt%3b</ProjectSummary>
     <RootNamespaceTitle>Midi Gremlin Namespaces</RootNamespaceTitle>
     <CopyrightText>[v{%40HelpFileVersion}] Copyright \xA9 2006-2016, Johannes Elgaard, Asger Horn Brorholt, Christian Gundersen Holmgaard, Emil Jensen, Ibrahim Kohistani, Kennet N&amp;#248%3brgaard Larsen, Nicklas H&amp;#248%3bjgaard Sneftrup, All rights reserved</CopyrightText>
     <CopyrightHref>https://github.com/joha4270/MidiGremlin</CopyrightHref>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="MidiGremlin.Internal" isExposed="False" xmlns="">
-  <Filter entryType="Class" fullName="MidiGremlin.Internal.BeatScheduler" filterName="BeatScheduler" isExposed="True" />
-  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SimpleMidiMessage" filterName="SimpleMidiMessage" isExposed="True" />
-  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeat" filterName="SingleBeat" isExposed="True" />
-  <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeatWithChannel" filterName="SingleBeatWithChannel" isExposed="True" />
-</Filter>
+        <Filter entryType="Class" fullName="MidiGremlin.Internal.BeatScheduler" filterName="BeatScheduler" isExposed="True" />
+        <Filter entryType="Structure" fullName="MidiGremlin.Internal.SimpleMidiMessage" filterName="SimpleMidiMessage" isExposed="True" />
+        <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeat" filterName="SingleBeat" isExposed="True" />
+        <Filter entryType="Structure" fullName="MidiGremlin.Internal.SingleBeatWithChannel" filterName="SingleBeatWithChannel" isExposed="True" />
+      </Filter>
     </ApiFilter>
     <PlugInConfigurations>
     </PlugInConfigurations>
@@ -133,6 +134,8 @@ Enjoy the library &amp; have fun.</NamespaceSummaryItem>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Guides\how_to_crash_course.aml" />
+    <None Include="Guides\how_to_guids.aml" />
     <None Include="Guides\getting_started.aml">
       <ImageId>getting_started</ImageId>
       <AlternateText>getting started</AlternateText>

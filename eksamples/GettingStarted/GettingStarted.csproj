@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MidiGremlin\MidiGremlin.csproj">
+    <ProjectReference Include="..\..\src\MidiGremlin\MidiGremlin.csproj">
       <Project>{c2c4c0e1-6af9-4974-bd4b-d203d65bc621}</Project>
       <Name>MidiGremlin</Name>
     </ProjectReference>
