@@ -10,8 +10,8 @@ namespace GettingStarted
 
 			
 			#region Orchestra
-			const int midiDeviceId = 0; //Most computers will only have one
-			const int beatsPerSecond = 60; //Speed of the music
+			const int midiDeviceId = 0; //Most computers will only have this one.
+			const int beatsPerSecond = 60; //Tempo of the music. 60 beats per second 1 one beat equals 1 second.
 			IMidiOut output = new WinmmOut(midiDeviceId, beatsPerSecond);
 			Orchestra orchestra = new Orchestra(output);
 
@@ -62,7 +62,7 @@ namespace GettingStarted
 			#endregion
 
 			#region Transformation
-			//Make the #1th object a little lower on the scale, using a transform
+			//Make the 1st object a little lower on the scale, using a transform
 			int[] offsets = { 0, -3, -3, -2 };
 			bigMusicObject[1] = bigMusicObject[1].Select<Note>((x,y) => x.OffsetBy(Scale.MajorScale, offsets[y]));
 
