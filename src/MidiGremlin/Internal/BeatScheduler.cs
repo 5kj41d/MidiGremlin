@@ -67,7 +67,7 @@ namespace MidiGremlin.Internal
 
 
 				//If we were not interrupted, we assume we arrived in time
-				Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
+				//Console.Write($"{!block} || {GetWaitTimeMs(_channelAllocator.NextTimeStamp):D4}  ~  ");
 
                 //If not set to block or if no new data arrives
 			    if (!block || !_newDataAdded.WaitOne(GetWaitTimeMs(_channelAllocator.NextTimeStamp)))

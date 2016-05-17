@@ -28,6 +28,7 @@ namespace ConwaysGameOfLife
         private int _musicCounter = 0;
 
 
+        #region Constructor
         internal GameOfLife(bool[,] gameGrid)
         {
             // This represents each generation of the cells.
@@ -42,8 +43,9 @@ namespace ConwaysGameOfLife
             // This timer represents how often the update method is called.
             _timer = new Timer(UpdateMethod, null, TimeSpan.Zero, TimeSpan.FromSeconds(0.75));
         }
+        #endregion
 
-        
+        #region MusicSetup
         // This method initiates the music components.
         internal void MusicSetup()
         {
@@ -57,7 +59,9 @@ namespace ConwaysGameOfLife
             _instrument = _o.AddInstrument(InstrumentType.ChoirAahs, Scale.ChromaticScale, 0);
             _isPlaying = true;
         }
+        #endregion
 
+        #region UpdateMethod
         private void UpdateMethod(object state)
         {
             // When IsDrawing is true, the Game will be drawn.
@@ -84,7 +88,9 @@ namespace ConwaysGameOfLife
             // This method simply copies all values from one multidimensional array to another.
             CopyCells();
         }
+        #endregion
 
+        #region PlayMidiMusic
         // This method plays different sounds at different times based on the coordinates of all living cells in the game.
         // The x coordinates decides which tones are used.
         // The y-coordinates decides when sounds are played.
@@ -113,6 +119,7 @@ namespace ConwaysGameOfLife
             if(sMusic.Count != 0)
                 _instrument?.Play(sMusic);
         }
+        #endregion
 
         private void CopyCells()
         {
@@ -127,7 +134,7 @@ namespace ConwaysGameOfLife
 
         private void Draw()
         {
-            DirectRender1 render = new DirectRender1(_xValue, _yValue);
+            DirectRender render = new DirectRender(_xValue, _yValue);
             render.Update(Cells);
         }
         

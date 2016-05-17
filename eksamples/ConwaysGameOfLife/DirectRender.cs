@@ -1,119 +1,199 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 
 namespace ConwaysGameOfLife
 {
     class DirectRender
     {
-        //The thread we draw at, need to keep a reference when comparing. Also theoretically disposing it later.
-        private readonly Thread _drawThread;
+        internal int ConsoleSizeXValue;
+        internal int ConsoleSizeYValue;
 
-        //Queue of actions to perform on drawthread. Rarely used.
-        private readonly ConcurrentQueue<Action> _queue = new ConcurrentQueue<Action>();
+        [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern SafeFileHandle CreateFile(
+            string fileName,
+            [MarshalAs(UnmanagedType.U4)] uint fileAccess,
+            [MarshalAs(UnmanagedType.U4)] uint fileShare,
+            IntPtr securityAttributes,
+            [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
+            [MarshalAs(UnmanagedType.U4)] int flags,
+            IntPtr template);
 
-        //List of every fucking box
-        private readonly bool[] _cells;
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool WriteConsoleOutput(
+          SafeFileHandle hConsoleOutput,
+          CharInfo[] lpBuffer,
+          Coord dwBufferSize,
+          Coord dwBufferCoord,
+          ref SmallRect lpWriteRegion);
 
-        //Height/width of the bitmap
-        private readonly int _height;
-
-        //px * px of a square
-        private readonly int _sizeOfSqure;
-
-        //Number of elements per side
-        private readonly int _nbrElementsX;
-        private readonly int _nbrElementsY;
-
-        //The bitmap it is all written to
-        private readonly WriteableBitmap _image;
-
-
-        internal DirectRender(int elementSize, int nbrElementsX, int nbrElementsY)
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Coord
         {
-            _nbrElementsX = nbrElementsX;
-            _nbrElementsY = nbrElementsY;
-            _image = new WriteableBitmap(_height * nbrElementsX, _height * nbrElementsY, 96, 96, PixelFormats.Bgr32, null);
-        }
+            public short X;
+            public short Y;
 
-        private int MakeColor(byte red, byte green, byte blue)
-        {
-            int colorData = red << 16; // R
-            colorData |= green << 8;   // G
-            colorData |= blue << 0;   // B
-
-            return colorData;
-        }
-
-        //Drawthread starts here
-        internal void Draw(bool[,] cells)
-        {
-            IntPtr pointer = IntPtr.Zero;
-            int stride = 0;
-            bool gotLock = false;
-            Application.Current?.Dispatcher?.Invoke(() =>
+            public Coord(short X, short Y)
             {
-                gotLock = _image.TryLock(new Duration(TimeSpan.FromMilliseconds(100)));
-
-                pointer = _image.BackBuffer;
-                stride = _image.BackBufferStride;
-            });
-
-            for (int x = 0; x < _nbrElementsX; x++)
-            {
-                for (int y = 0; y < _nbrElementsY; y++)
-                {
-                    int tempColor = cells[x, y] ? MakeColor(0, 0, 150) : MakeColor(0, 0, 0);
-                    Render(pointer, stride, tempColor, x, y);
-                }
+                this.X = X;
+                this.Y = Y;
             }
+        };
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SmallRect
+        {
+            public short Left;
+            public short Top;
+            public short Right;
+            public short Bottom;
         }
 
-        private void Render(IntPtr pointer, int stride, int color, int xValue, int yValue)
+        protected SafeFileHandle Handle;
+        protected CharInfo[] Buffer;
+
+        public DirectRender(int xSize, int ySize) 
         {
-            //Calculate the size of upper and lower half. One full sized one double can always cover the entire arear
-            Int32Rect render = new Int32Rect(xValue, yValue,_sizeOfSqure,_sizeOfSqure);
-
-            //Make boxes smaller (by 1 px in all directions)
-            render.Height -= 2;
-            render.Width -= 2;
-            render.X += 1;
-            render.Y += 1;
-
-            //Fill em
-            FillSquare(pointer, stride, render, color);
+            //Create file handle to the console buffer
+            //Basicaly lets us writes bytes to the console buffer, accces is
+            //trough a file handle
+            Handle = CreateFile("CONOUT$", 0x40000000, 2, IntPtr.Zero, FileMode.Open, 0, IntPtr.Zero);
+            Buffer = new CharInfo[xSize * ySize];
+            ConsoleSizeXValue = xSize;
+            ConsoleSizeYValue = ySize;
         }
 
-        //Fill a square
-        private void FillSquare(IntPtr pointer, int stride, Int32Rect arear, int color)
+        public int Update(bool[,] array, bool forceAll = false)
         {
-            if (arear.X < 0) throw new ArgumentOutOfRangeException();
-            if (arear.Y < 0) throw new ArgumentOutOfRangeException();
-
-            if (arear.X + arear.Width > _height) throw new ArgumentOutOfRangeException();
-            if (arear.Y + arear.Height > _height) throw new ArgumentOutOfRangeException();
-
-            unsafe  //unsafe = AWESOME
+            if (!Handle.IsInvalid)
             {
-                int pBackbuffer = (int)pointer;
-
-                for (int y = arear.Y; y < arear.Y + arear.Height; y++)
+                Console.SetWindowSize(ConsoleSizeXValue, ConsoleSizeYValue);
+                for (int x = 0; x < ConsoleSizeXValue; x++)
                 {
-                    //x in inner loop is theoretically easier on the cache, no observable real world impact
-                    for (int x = arear.X; x < arear.X + arear.Width; x++)
+                    for (int y = 0; y < ConsoleSizeYValue; y++)
                     {
-                        int offset = y * stride;  //calc point and do magic, ect ect
-                        offset += x * 4;
-
-                        *((int*)(pBackbuffer + offset)) = color;
+                        ConsoleColor tempColor = array[x, y] ? ConsoleColor.Blue : ConsoleColor.Black;
+                        Buffer[x + (y * ConsoleSizeXValue)] = new CharInfo('█', tempColor, ConsoleColor.Black);
                     }
                 }
+
+                SmallRect rect = new SmallRect() { Bottom = 37, Left = 0, Right = 79, Top = 0 };
+                bool Success = WriteConsoleOutput(Handle, Buffer,
+                    new Coord((short)ConsoleSizeXValue, (short)ConsoleSizeYValue),
+                    new Coord(0, 0),
+                    ref rect);
+
+                if (!Success)
+                {
+                    Trace.WriteLine("Error drawing console");
+                }
+
+            }
+            else
+            {
+                Trace.WriteLine("Console handle invalid");
+                throw new Exception();
+            }
+
+            return 79 * 37;
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct CharInfo
+    {
+        const String HexStr = "0123456789ABCDEF";
+
+        [FieldOffset(0)]
+        public CharUnion Char;
+        [FieldOffset(2)]
+        public short Attributes;
+
+
+        public ConsoleColor ForegroundColor
+        {
+            get { return (ConsoleColor)(Attributes & 0xF); }
+            set
+            {
+                SetForeground(value);
             }
         }
+        public ConsoleColor BackgroundColor
+        {
+            get { return (ConsoleColor)((Attributes & 0xF0) >> 4); }
+            set
+            {
+                SetBackground(value);
+            }
+        }
+
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1}{2}", Char.UnicodeChar, HexStr[(int)Attributes & 0xF], HexStr[((int)Attributes & 0xF0) >> 4]);
+        }
+
+        public CharInfo(char c)
+        {
+            Char.AsciiChar = 0;
+            Char.UnicodeChar = c;
+            Attributes = 0;
+
+        }
+        public CharInfo(char c, ConsoleColor fg, ConsoleColor bg)
+        {
+            Attributes = 0;
+            Char.AsciiChar = 0;
+            Char.UnicodeChar = c;
+            SetForeground(fg);
+            SetBackground(bg);
+        }
+
+        public CharInfo(char c, short attrib)
+        {
+            Attributes = attrib;
+            Char.AsciiChar = 0;
+            Char.UnicodeChar = c;
+        }
+
+        public CharInfo(byte c, short attrib)
+        {
+            Char.UnicodeChar = ' ';
+            Char.AsciiChar = c;
+            Attributes = attrib;
+        }
+
+        private void SetBackground(ConsoleColor bg)
+        {
+            short existing = (short)(Attributes & 0xFF0F);
+            short newAtrib = (short)(((int)bg << 4) & 0x00F0);
+
+            Attributes = (short)(existing | newAtrib);
+        }
+
+        private void SetForeground(ConsoleColor fg)
+        {
+            short existing = (short)(Attributes & 0xFFF0);
+            short newAtrib = (short)((int)fg & 0x000F);
+
+            Attributes = (short)(existing | newAtrib);
+        }
+
+        public static implicit operator char(CharInfo t)
+        {
+            return t.Char.UnicodeChar;
+        }
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct CharUnion
+    {
+        [FieldOffset(0)]
+        public char UnicodeChar;
+        [FieldOffset(0)]
+        public byte AsciiChar;
     }
 }

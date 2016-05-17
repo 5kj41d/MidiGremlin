@@ -134,6 +134,7 @@ Enjoy the library &amp; have fun.</NamespaceSummaryItem>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Guides\conways_game_of_life.aml" />
     <None Include="Guides\how_to_crash_course.aml" />
     <None Include="Guides\how_to_guids.aml" />
     <None Include="Guides\getting_started.aml">

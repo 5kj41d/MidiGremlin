@@ -13,14 +13,20 @@ namespace ConwaysGameOfLife
             bool[,] grid = new bool[40,40];
             // Setup some start values
 
-            // Glider 1
-            grid[2, 1] = true;
+            // Glider 1 : depicted as followed
+            // 0 1 0
+            // 0 0 1
+            // 1 1 1
+            grid[2, 1] = true;  
             grid[3, 2] = true;
             grid[3, 3] = true;
             grid[2, 3] = true;
             grid[1, 3] = true;
 
             // Glider 2
+            // 1 1 1
+            // 0 0 1
+            // 0 1 0
             grid[12, 13] = true;
             grid[11, 11] = true;
             grid[12, 11] = true;

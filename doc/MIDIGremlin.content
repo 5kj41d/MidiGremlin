@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="1fa61ad2-5eb3-43b3-b032-c2a26aa46d34" visible="True" isSelected="true" apiParentMode="InsertAfter" title="Getting started" tocTitle="Getting started with MIDI Gremlin" />
+  <Topic id="1fa61ad2-5eb3-43b3-b032-c2a26aa46d34" visible="True" apiParentMode="InsertAfter" title="Getting started" tocTitle="Getting started with MIDI Gremlin" />
+  <Topic id="fda06c87-3c98-4ebd-81ba-ca03ff28d18c" visible="True" isSelected="true" title="Example: Conway's Game of Life" tocTitle="Example: Creating music with Conway's Game of Life" />
 </Topics>
