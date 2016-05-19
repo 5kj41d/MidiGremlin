@@ -9,7 +9,7 @@ namespace Für_Elise
     /// Static method Main plays the first bit of Für Elise, read from
     /// https://upload.wikimedia.org/wikipedia/commons/6/6b/Für_Elise_preview.svg
     /// Please take a look if you wish to follow the explanations given by the comments.
-    /// For a full reference on note notaition, please refer to the most convenient university degree on the subject.
+    /// For a full reference on note notation, please refer to the most convenient university degree on the subject.
     /// </summary>
     class FurEliseIntro
     {
