@@ -34,7 +34,7 @@ namespace MidiGremlin
         /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
-        public abstract MusicObject Select<T>(Func<T, T> selector) where T : MusicObject;
+        public abstract MusicObject Select<T>(Func<T, MusicObject> selector) where T : MusicObject;
 
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace MidiGremlin
 		/// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
 		/// <param name="selector">A transform function to apply to each element with an optional count of how many objects have been transformed</param>
 		/// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
-		public MusicObject Select<T>(Func<T, int, T> selector) where T : MusicObject
+		public MusicObject Select<T>(Func<T, int, MusicObject> selector) where T : MusicObject
 	    {
 		    IndexedSelectHelper<T> indexedSelectHelper = new IndexedSelectHelper<T>(selector);
 
@@ -52,16 +52,16 @@ namespace MidiGremlin
 
 	    private class IndexedSelectHelper<T>
 	    {
-		    private readonly Func<T, int, T> _selectorFunction;
+		    private readonly Func<T, int, MusicObject> _selectorFunction;
 		    private int _count;
-		    internal IndexedSelectHelper(Func<T, int, T> selectorFunction)
+		    internal IndexedSelectHelper(Func<T, int, MusicObject> selectorFunction)
 		    {
 			    _selectorFunction = selectorFunction;
 		    }
 
-		    internal T SelectMethod(T input)
+		    internal MusicObject SelectMethod(T input)
 		    {
-			    T temporary = _selectorFunction(input, _count);
+			    MusicObject temporary = _selectorFunction(input, _count);
 			    _count++;
 			    return temporary;
 		    }

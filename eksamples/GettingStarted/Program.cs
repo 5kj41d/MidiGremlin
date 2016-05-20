@@ -22,7 +22,7 @@ namespace GettingStarted
 
 			//Play a single sound
 			piano.Play(Tone.C, 1);
-			orchestra.WaitForFinished();
+		    orchestra.WaitForFinished();
 
 			#endregion
 
@@ -56,8 +56,8 @@ namespace GettingStarted
 			//We can play any of those on an instrument if we wish
 			Console.WriteLine("Press enter to play a longer sequence of sound");
 			Console.ReadLine();
-			//piano.Play(bigMusicObject);
-			//orchestra.WaitForFinished();
+			piano.Play(bigMusicObject);
+			orchestra.WaitForFinished();
 
 			#endregion
 
@@ -84,9 +84,23 @@ namespace GettingStarted
 
 			Console.WriteLine("Press enter to play \"Drømte mig en drøm i nat\" on a flute");
 			Console.ReadLine();
-			flute.Play(bigMusicObject);
-			orchestra.WaitForFinished();
-			#endregion
+			//flute.Play(bigMusicObject);
+			//orchestra.WaitForFinished();
+            #endregion
+
+            #region TransformToChords
+            //Using Select<>() it's also possible to change the type of a MusicObject.
+		    ChordVariety minor = ChordVariety.Minor;
+		    MusicObject asChords = bigMusicObject.Select<Note>(n => minor.WithBaseTone(n.Keystroke.Tone, n.Pause.Duration));
+
+            Console.WriteLine("Press enter to play \"Drømte mig en drøm i nat\" as minor.");
+            Console.ReadLine();
+
+            piano.Play(asChords);
+
+            orchestra.WaitForFinished();
+		    #endregion
+
 
 
 		}

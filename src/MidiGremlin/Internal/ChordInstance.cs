@@ -65,11 +65,13 @@ namespace MidiGremlin.Internal
                 yield return k.GetChildren(playedBy, startTime)   //Tone conversion handled by Keystroke class.
                     .First();   //Keystroke is a leaf so there will only be one element in the list. Only want that.
             }
+
+            yield return new Pause(_duration).GetChildren(playedBy, startTime).First(); //Pause only returns one child, we only want that
         }
 
 
 
-        public override MusicObject Select<T>(Func<T, T> selector)
+        public override MusicObject Select<T>(Func<T, MusicObject> selector)
         {
             Keystroke result = new Keystroke(_rootTone, _duration, _velocity);
 

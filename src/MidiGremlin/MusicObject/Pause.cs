@@ -41,14 +41,13 @@ namespace MidiGremlin
         }
 
 
-
         /// <summary>
         /// Projects all music objects of specified type into a <see cref="MusicObject"/> of the same structure.
         /// </summary>
         /// <typeparam name="T">The MusicObject subtype to modify.</typeparam>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>A <see cref="MusicObject"/> of identical structure that is the result of invoking the transform function of all elements of type T.</returns>
-        public override MusicObject Select<T>(Func<T, T> selector)
+        public override MusicObject Select<T>(Func<T, MusicObject> selector)
         {
             Pause result = new Pause(Duration);
 

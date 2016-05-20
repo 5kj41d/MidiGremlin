@@ -55,7 +55,7 @@ namespace MidiGremlin.Internal
         /// <summary>
         /// Add SingleBeats to list of SingleBeats to play, and assign the channel that it might play on.
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">List of SingleBeats sorted by start-time.</param>
 		public void Add(List<SingleBeat> input)
 		{
 			InstrumentType[] lastUsedInstruments = new InstrumentType[16];
@@ -66,43 +66,48 @@ namespace MidiGremlin.Internal
 
 			int storageProgress = _storage.Count;
 
-			for (int index= 0; index < input.Count; index++)
+			foreach (SingleBeat toAdd in input)
 			{
-				SingleBeat singleBeat = input[index];
+			    //Find the element in _storage that comes just before us
+			    while (0 < storageProgress && _storage[storageProgress - 1].ToneStartTime < toAdd.ToneStartTime)
+			    {
+			        storageProgress--;
+			        int channel = _storage[storageProgress].Channel;
+			        finishTimes[channel] = Math.Max(_storage[storageProgress].ToneEndTime, finishTimes[channel]);
+			        lastUsedInstruments[channel] = _storage[storageProgress].InstrumentType;
+			    }
 
-				//Find the element in _storage that comes just before us
-				while (0 < storageProgress && _storage[storageProgress - 1].ToneStartTime < singleBeat.ToneStartTime)
-				{
-					storageProgress--;
-					int channel = _storage[storageProgress].Channel;
-					finishTimes[channel] = Math.Max(_storage[storageProgress].ToneEndTime, finishTimes[channel]);
-					lastUsedInstruments[channel] = _storage[storageProgress].InstrumentType;
-					
-				}
+			    int usedChannel = lastUsedInstruments.IndexOf(toAdd.instrumentType);
+			    if (usedChannel == -1) //If no free channel is found, find one or die
+			    {
+                    //If this is a drum, only DRUM_CHANNEL can be used.
+                    //Otherwise, everything but DRUM_CHANNEL can be used.
+                    Func<int, bool> correctChannelType;
+			        if (toAdd.instrumentType.IsDrum())
+                        correctChannelType = (i => i == DRUM_CHANNEL);
+			        else
+                        correctChannelType = (i => i != DRUM_CHANNEL);
+                    
+			        int result = finishTimes
+                        .Select((value, index) => new { index, value})
+			            .Where(x => correctChannelType(x.index) && x.value <= toAdd.ToneStartTime)
+                        //Int default is 0, so 1 is added to distinguish between this and the first channel.
+                        .Select(x => x.index + 1).FirstOrDefault();
 
-				int usedChannel = lastUsedInstruments.IndexOf(singleBeat.instrumentType);
-				if (usedChannel == -1) //If no free channel is found, find one or die
-				{
-					Func<int, bool> test = singleBeat.instrumentType.IsDrum() ? (Func<int, bool>) (i => i == DRUM_CHANNEL) : (i => i != DRUM_CHANNEL);
+			        if (result == default(int))
+			        {
+			            //won't be free, do whatever
+			            throw new OutOfChannelsException();
+			        }
+			        else
+			        {
+			            usedChannel = result - 1;
+			            lastUsedInstruments[usedChannel] = toAdd.instrumentType;
+			        }
+			    }
 
-					int result = finishTimes.Select((x, y) => new { i = y, val = x})
-							.Where(x => test(x.i) && x.val <= singleBeat.ToneStartTime)
-							.Select(x => x.i + 1).FirstOrDefault();//Int default is 0, so 1 is added to distinguish between this and the first channel.
-
-                    if (result == default(int))
-					{
-						//won't be free, do whatever
-						throw new OutOfChannelsException();
-					}
-					else
-					{
-						usedChannel = result - 1;
-						lastUsedInstruments[usedChannel] = singleBeat.instrumentType;
-					}
-				}
-
-				finishTimes[usedChannel] = Math.Max(singleBeat.ToneEndTime, finishTimes[usedChannel]);
-				_storage.Insert(storageProgress, singleBeat.WithChannel((byte) usedChannel));
+			    finishTimes[usedChannel] = Math.Max(toAdd.ToneEndTime, finishTimes[usedChannel]);
+			    _storage.Insert(storageProgress, toAdd.WithChannel((byte) usedChannel));
 			}
 		}
 
