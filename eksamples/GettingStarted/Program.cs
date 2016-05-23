@@ -84,8 +84,8 @@ namespace GettingStarted
 
 			Console.WriteLine("Press enter to play \"Drømte mig en drøm i nat\" on a flute");
 			Console.ReadLine();
-			//flute.Play(bigMusicObject);
-			//orchestra.WaitForFinished();
+			flute.Play(bigMusicObject);
+			orchestra.WaitForFinished();
             #endregion
 
             #region TransformToChords

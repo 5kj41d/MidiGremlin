@@ -76,7 +76,7 @@ namespace ConwaysGameOfLife
                     for (int y = 0; y < ConsoleSizeYValue; y++)
                     {
                         ConsoleColor tempColor = array[x, y] ? ConsoleColor.Blue : ConsoleColor.Black;
-                        Buffer[x + (y * ConsoleSizeXValue)] = new CharInfo('█', tempColor, ConsoleColor.Black);
+                        Buffer[x + (y * ConsoleSizeXValue)] = new CharInfo('#', tempColor, ConsoleColor.Black);
                     }
                 }
 
