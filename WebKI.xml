@@ -95,10 +95,10 @@
   <HelpKINode Title="CrashCybal2 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="CrashCymbal1 enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="CSharp enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
-  <HelpKINode Title="CurrentTime method">
-    <HelpKINode Title="IMidiOut.CurrentTime Method " Url="html/5c90189b-0a74-9d58-b27d-fe7987600cd9.htm" />
-    <HelpKINode Title="Orchestra.CurrentTime Method " Url="html/709d85d0-787a-96fd-cc92-eaef1ca57423.htm" />
-    <HelpKINode Title="WinmmOut.CurrentTime Method " Url="html/8a7dcfac-2ec5-de7d-b70f-8c365d65eb64.htm" />
+  <HelpKINode Title="CurrentTime method" Url="html/709d85d0-787a-96fd-cc92-eaef1ca57423.htm" />
+  <HelpKINode Title="CurrentTime property">
+    <HelpKINode Title="IMidiOut.CurrentTime Property " Url="html/8dbd94e2-e3a7-13ed-8de6-713929fc7dbd.htm" />
+    <HelpKINode Title="WinmmOut.CurrentTime Property " Url="html/01bc9134-34f0-1611-eedc-9c9995cb893a.htm" />
   </HelpKINode>
   <HelpKINode Title="D enumeration member" Url="html/3c13fd0e-0e5e-3bff-d6b9-d3348730f86d.htm" />
   <HelpKINode Title="Data field" Url="html/592e17c3-37b0-62b2-8831-beeeeb8aaf03.htm" />
@@ -178,7 +178,7 @@
     <HelpKINode Title="properties" Url="html/5859e042-c7f5-ff69-d45a-35d1abbced7f.htm" />
   </HelpKINode>
   <HelpKINode Title="IMidiOut.BeatsPerMinute property" Url="html/29395919-7f6e-955b-a65e-161717b9621f.htm" />
-  <HelpKINode Title="IMidiOut.CurrentTime method" Url="html/5c90189b-0a74-9d58-b27d-fe7987600cd9.htm" />
+  <HelpKINode Title="IMidiOut.CurrentTime property" Url="html/8dbd94e2-e3a7-13ed-8de6-713929fc7dbd.htm" />
   <HelpKINode Title="IMidiOut.SetSource method" Url="html/f6156cc8-205e-3e26-91c6-95f40c64cecf.htm" />
   <HelpKINode Title="IndexOf method">
     <HelpKINode Title="ParallelMusicCollection.IndexOf Method " Url="html/e8e65d74-5197-7fc7-faf3-39cfb9def928.htm" />
@@ -260,6 +260,7 @@
   <HelpKINode Title="LowTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="LowWodBlock enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Major property" Url="html/2667bd3f-9f3a-75ac-3044-30549b7b6b3d.htm" />
+  <HelpKINode Title="MajorScale property" Url="html/06150fab-efa1-523b-2b46-bbf738af5ba6.htm" />
   <HelpKINode Title="Maracas enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Marimba enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="MelodicTom enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
@@ -295,8 +296,7 @@
     <HelpKINode Title="methods" Url="html/895c4996-1f44-b28c-ddf5-25b40798ed33.htm" />
   </HelpKINode>
   <HelpKINode Title="MusicObject.MusicObject constructor" Url="html/0d5688f6-71c3-188d-1892-bdcc8a1ec22d.htm" />
-  <HelpKINode Title="MusicObject.Select(Of T) method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
-  <HelpKINode Title="MusicObject.Select&lt;T&gt; method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
+  <HelpKINode Title="MusicObject.Select method" Url="html/28e66227-2c98-c5ce-c474-70641a9c9caf.htm" />
   <HelpKINode Title="MuteCuica enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="MutedTrupet enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="MuteHiConga enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
@@ -415,17 +415,17 @@
   <HelpKINode Title="Scale.Count property" Url="html/361379f3-da10-ccea-69a9-1662e14932db.htm" />
   <HelpKINode Title="Scale.Interval method" Url="html/345bafe5-5407-c3da-b4fd-3939823c5550.htm" />
   <HelpKINode Title="Scale.Item property" Url="html/105dadc1-0eb0-d7a4-c1a2-ef58360579d1.htm" />
+  <HelpKINode Title="Scale.MajorScale property" Url="html/06150fab-efa1-523b-2b46-bbf738af5ba6.htm" />
   <HelpKINode Title="Scale.Scale constructor" Url="html/1fd1c238-5354-7893-dc83-af82481ba650.htm" />
   <HelpKINode Title="Seashore enumeration member" Url="html/0156a3b3-4fc1-157a-8978-6686d00166e3.htm" />
   <HelpKINode Title="Select method">
     <HelpKINode Title="Keystroke.Select Method " Url="html/60773ed4-9567-b168-9281-e3bfa87b24fb.htm" />
+    <HelpKINode Title="MusicObject.Select Method " Url="html/28e66227-2c98-c5ce-c474-70641a9c9caf.htm" />
     <HelpKINode Title="Note.Select Method " Url="html/4d24fb43-2219-b619-e6c1-e442d44a3bdd.htm" />
     <HelpKINode Title="ParallelMusicCollection.Select Method " Url="html/7a20f485-087e-8486-dfe6-5494c76beeef.htm" />
     <HelpKINode Title="Pause.Select Method " Url="html/4ba4a377-aaa2-d0c3-0fe2-9ce667f9d993.htm" />
     <HelpKINode Title="SequentialMusicList.Select Method " Url="html/c037566a-2560-7541-337c-41f68ee95ba1.htm" />
   </HelpKINode>
-  <HelpKINode Title="Select(Of T) method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
-  <HelpKINode Title="Select&lt;T&gt; method" Url="html/ceade970-acae-4dc0-4518-335b61627dcf.htm" />
   <HelpKINode Title="SequentialMusicList class">
     <HelpKINode Title="SequentialMusicList Class" Url="html/9eaa4c10-be65-60d8-d039-aebd6d74e1a1.htm" />
     <HelpKINode Title="about SequentialMusicList class" Url="html/9eaa4c10-be65-60d8-d039-aebd6d74e1a1.htm" />
@@ -599,7 +599,7 @@
   </HelpKINode>
   <HelpKINode Title="WinmmOut.BeatDuratinInMilliseconds property" Url="html/502f8d4b-97ac-6140-2780-53f5f5cd5737.htm" />
   <HelpKINode Title="WinmmOut.BeatsPerMinute property" Url="html/38c21383-5805-f444-b19a-9da767fa289f.htm" />
-  <HelpKINode Title="WinmmOut.CurrentTime method" Url="html/8a7dcfac-2ec5-de7d-b70f-8c365d65eb64.htm" />
+  <HelpKINode Title="WinmmOut.CurrentTime property" Url="html/01bc9134-34f0-1611-eedc-9c9995cb893a.htm" />
   <HelpKINode Title="WinmmOut.DeviceID property" Url="html/ffd80ae3-d869-70c1-beff-d0d72d48e15a.htm" />
   <HelpKINode Title="WinmmOut.Dispose method" Url="html/1282156e-bd69-63d8-cd31-759d1c49c3de.htm" />
   <HelpKINode Title="WinmmOut.WinmmOut constructor" Url="html/f428d601-b019-f977-7bf4-82664390f32b.htm" />

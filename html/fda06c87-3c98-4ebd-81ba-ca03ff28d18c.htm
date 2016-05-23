@@ -1,0 +1,332 @@
+﻿<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" /><link rel="shortcut icon" href="../icons/favicon.ico" /><link rel="stylesheet" type="text/css" href="../styles/branding.css" /><link rel="stylesheet" type="text/css" href="../styles/branding-en-US.css" /><script type="text/javascript" src="../scripts/branding.js"> </script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Example: Conway's Game of Life</title><meta name="Language" content="en-us" /><meta name="Microsoft.Help.Id" content="fda06c87-3c98-4ebd-81ba-ca03ff28d18c" /><meta name="Description" content="This example will use the concept of Conway's Game of Life to create sound. The sound will be made using MIDI Gremlin." /><meta name="Microsoft.Help.ContentType" content="Concepts" /><meta name="BrandingAware" content="true" /><link type="text/css" rel="stylesheet" href="../styles/highlight.css" /><script type="text/javascript" src="../scripts/highlight.js"> </script><link rel="stylesheet" type="text/css" href="../styles/branding-Website.css" /><script type="text/javascript" src="../scripts/jquery-1.11.0.min.js"></script><script type="text/javascript" src="../scripts/branding-Website.js"></script></head><body onload="OnLoad('cs')"><input type="hidden" id="userDataCache" class="userDataStyle" /><div class="pageHeader" id="PageHeader">Midi Gremlin Documentation<form id="SearchForm" method="get" action="#" onsubmit="javascript:TransferToSearchPage(); return false;"><input id="SearchTextBox" type="text" maxlength="200" /><button id="SearchButton" type="submit"></button></form></div><div class="pageBody"><div class="leftNav" id="leftNav"><div id="tocNav"><div class="toclevel0" data-toclevel="0" data-childrenloaded="true"><a class="tocExpanded" onclick="javascript: Toggle(this);" href="#!" /><a data-tochassubtree="true" href="1fa61ad2-5eb3-43b3-b032-c2a26aa46d34.htm" title="Midi Gremlin Documentation" tocid="roottoc">Midi Gremlin Documentation</a></div><div class="toclevel1" data-toclevel="1"><a data-tochassubtree="false" href="1fa61ad2-5eb3-43b3-b032-c2a26aa46d34.htm" title="Getting started with MIDI Gremlin" tocid="1fa61ad2-5eb3-43b3-b032-c2a26aa46d34">Getting started with MIDI Gremlin</a></div><div class="toclevel1" data-toclevel="1"><a class="tocCollapsed" onclick="javascript: Toggle(this);" href="#!" /><a data-tochassubtree="true" href="7494f5ca-8811-4bde-577d-449d562fe3c1.htm" title="Midi Gremlin Namespaces" tocid="7494f5ca-8811-4bde-577d-449d562fe3c1">Midi Gremlin Namespaces</a></div><div class="toclevel1 current" data-toclevel="1"><a data-tochassubtree="false" href="fda06c87-3c98-4ebd-81ba-ca03ff28d18c.htm" title="Example: Creating music with Conway's Game of Life" tocid="fda06c87-3c98-4ebd-81ba-ca03ff28d18c">Example: Creating music with Conway's Game of Life</a></div></div><div id="tocResizableEW" onmousedown="OnMouseDown(event);"></div><div id="TocResize" class="tocResize"><img id="ResizeImageIncrease" src="../icons/TocOpen.gif" onclick="OnIncreaseToc()" alt="Click or drag to resize" title="Click or drag to resize" /><img id="ResizeImageReset" src="../icons/TocClose.gif" style="display:none" onclick="OnResetToc()" alt="Click or drag to resize" title="Click or drag to resize" /></div></div><div class="topicContent" id="TopicContent"><table class="titleTable"><tr><td class="logoColumn"><img width="250" height="150" src="../icons/Gremlin.png" /></td><td class="titleColumn">Example: Conway's Game of Life</td></tr></table><span class="introStyle"></span><div class="introduction"><p>This example will use the concept of Conway's Game of Life to create sound.
+      The sound will be made using MIDI Gremlin.</p><p>The example is seperated into three parts: "Program", "GameOfLife" and "DirectRender".
+      The Program part is used as a setup class for GameOfLife.
+      The GameOfLife contains all the calculations of the project.</p><p>This topic contains the following sections:</p><ul class="autoOutline"><li class="outlineSectionEntry"><a href="#Section1">Game of Life music</a></li><ul class="autoOutline"><li class="outlineSectionEntry"><a href="#SubSection0">Game of Life constructor</a></li><li class="outlineSectionEntry"><a href="#SubSection1">UpdateMethod</a></li><li class="outlineSectionEntry"><a href="#SubSection2">MusicSetup-method</a></li><li class="outlineSectionEntry"><a href="#SubSection3">PlayMidiMusic-Method</a></li></ul><li class="outlineSectionEntry"><a href="#Section2">Program: Setup values</a></li><li class="outlineSectionEntry"><a href="#Section3">Game of Life class code.</a></li></ul><p>The DirectRender class will not be described in this example but can be found in the sourcecode. 
+      It is simply a class used for rendering the graphics.</p></div><div class="collapsibleAreaRegion" id="Section1"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID1RB')" onkeypress="SectionExpandCollapse_CheckKey('ID1RB', event)" tabindex="0"><img id="ID1RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Game of Life music</span></div><div id="ID1RBSection" class="collapsibleSection"><p>This section will describe the methods from the "GameOfLife" class that are used to create music.</p><h4 class="subHeading" id="SubSection0">Game of Life constructor</h4><div class="subsection"><p>The constructor sets creates a grid for the values used in the game of life, as well as a grid for the temporary values used between each generation.
+		      	The constructor also starts a timer that calls the update method every 0.75 seconds.</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAAADADAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAAADADAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAAADADAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAAADADAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-keyword">internal</span> GameOfLife(<span class="highlight-keyword">bool</span>[,] gameGrid)
+{
+    <span class="highlight-comment">// This represents each generation of the cells.</span>
+    Cells = gameGrid;
+    <span class="highlight-comment">// This represents the stage in between each generation.</span>
+    _cellsTemporaryState = <span class="highlight-keyword">new</span> <span class="highlight-keyword">bool</span>[gameGrid.GetLength(<span class="highlight-number">0</span>), gameGrid.GetLength(<span class="highlight-number">1</span>)];
+
+    <span class="highlight-comment">// These represent the max values of the x an y values in the grid.</span>
+    _xValue = gameGrid.GetLength(<span class="highlight-number">0</span>);
+    _yValue = gameGrid.GetLength(<span class="highlight-number">1</span>);
+
+    <span class="highlight-comment">// This timer represents how often the update method is called.</span>
+    _timer = <span class="highlight-keyword">new</span> Timer(UpdateMethod, <span class="highlight-keyword">null</span>, TimeSpan.Zero, TimeSpan.FromSeconds(<span class="highlight-number">0.75</span>));
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAAADADAAA");</script></div><h4 class="subHeading" id="SubSection1">UpdateMethod</h4><div class="subsection"><p>The update method is the method used for calling the drawing and music methods, as well as updating all values in the grid.</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAAACADAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAAACADAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAAACADAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAAACADAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> UpdateMethod(<span class="highlight-keyword">object</span> state)
+{
+    <span class="highlight-comment">// When IsDrawing is true, the Game will be drawn.</span>
+    <span class="highlight-keyword">if</span> (IsDrawing)
+        Draw();
+
+    <span class="highlight-comment">// When the player has asked for the game to play music this will call the PlayMidiMusic method.</span>
+    <span class="highlight-comment">// We set this method to be called every fifth iteration to prevent too much overlap in the music.</span>
+    _musicCounter++;
+    <span class="highlight-keyword">if</span> (_isPlaying &amp;&amp; _musicCounter == <span class="highlight-number">5</span>)
+    {
+        PlayMidiMusic();
+        _musicCounter = <span class="highlight-number">0</span>;
+    }
+
+    <span class="highlight-comment">// This part updates the values of each cell.</span>
+    <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> y = <span class="highlight-number">0</span>; y &lt; _yValue; y++)
+    {
+        <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> x = <span class="highlight-number">0</span>; x &lt; _xValue; x++)
+        {
+            _cellsTemporaryState[x, y] = IsAlive(x, y);
+        }
+    }
+    <span class="highlight-comment">// This method simply copies all values from one multidimensional array to another.</span>
+    CopyCells();
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAAACADAAA");</script></div><h4 class="subHeading" id="SubSection2">MusicSetup-method</h4><div class="subsection"><p>The MusicSetup method enables the music to be played.
+		      	This method is called from outside the class, and is required before the game will play any music.</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAAABADAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAAABADAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAAABADAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAAABADAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-comment">// This method initiates the music components.</span>
+<span class="highlight-keyword">internal</span> <span class="highlight-keyword">void</span> MusicSetup()
+{
+    <span class="highlight-comment">// bpm is a constant deciding the tempo of the music.</span>
+    <span class="highlight-comment">// when bpm is set to 60, one beat will last 1 second. 120 for half a second and so forth.</span>
+    <span class="highlight-keyword">const</span> <span class="highlight-keyword">int</span> bpm = <span class="highlight-number">60</span>;
+    <span class="highlight-comment">// Here we create a new orchestra using the output type WinmmOut which plays to the MIDI player in windows.</span>
+    _o = <span class="highlight-keyword">new</span> Orchestra(<span class="highlight-keyword">new</span> WinmmOut(<span class="highlight-number">0</span>, bpm));
+    <span class="highlight-comment">// Here we use the orchestra to create a new Instrument, in this case a choir.</span>
+    <span class="highlight-comment">// We chose to use the chromatic scale from the Scale class, it is however unneccesary since it uses this scale by default.</span>
+    _instrument = _o.AddInstrument(InstrumentType.ChoirAahs, Scale.ChromaticScale, <span class="highlight-number">0</span>);
+    _isPlaying = <span class="highlight-keyword">true</span>;
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAAABADAAA");</script></div><h4 class="subHeading" id="SubSection3">PlayMidiMusic-Method</h4><div class="subsection"><p>The PlayMidiMusic method plays the music when called.
+		      	The sounds that are played is decided by the values in the grid.
+		      	Each true value plays a sound decided by where the value lies on the grid's x-axis.
+		      	The y-axis instead decides when values are played. A higher y-value means a longer delay before the sound is played.
+		      	</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAAAAADAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAAAAADAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAAAAADAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAAAAADAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-comment">// This method plays different sounds at different times based on the coordinates of all living cells in the game.</span>
+<span class="highlight-comment">// The x coordinates decides which tones are used.</span>
+<span class="highlight-comment">// The y-coordinates decides when sounds are played.</span>
+<span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> PlayMidiMusic()
+{
+    SequentialMusicList sMusic = <span class="highlight-keyword">new</span> SequentialMusicList();
+    <span class="highlight-keyword">int</span> localInt;
+
+    <span class="highlight-comment">// This nested for-loop iterates over all cells in the game.</span>
+    <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> y = <span class="highlight-number">0</span>; y &lt; _yValue; y++)
+    {
+        <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> x = <span class="highlight-number">0</span>; x &lt; _xValue; x++)
+        {
+            <span class="highlight-comment">// This if statement checks whether a cell is still alive</span>
+            <span class="highlight-keyword">if</span> (Cells[x, y])
+            {
+                localInt = x &lt; _xValue/<span class="highlight-number">2</span> ? x : _xValue - x;
+                <span class="highlight-comment">// This creates a new keystroke with an offset based on where in the grid the cell is, and adds it to the SequentailMusicList.</span>
+                sMusic.Add(<span class="highlight-keyword">new</span> Keystroke(Tone.C, <span class="highlight-number">1</span>).OffsetBy(_quintScale, localInt));
+            }
+        }
+        <span class="highlight-comment">// We add a pause here to play sounds later if they have a greater y-coordinate.</span>
+        sMusic.Add(<span class="highlight-keyword">new</span> Pause(<span class="highlight-number">1</span>));
+    }
+    <span class="highlight-comment">// This plays all the sounds in the list, as longs it contains any ,and as long as the instrument isn't null.</span>
+    <span class="highlight-keyword">if</span>(sMusic.Count != <span class="highlight-number">0</span>)
+        _instrument?.Play(sMusic);
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAAAAADAAA");</script></div></div><div class="collapsibleAreaRegion" id="Section2"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID2RB')" onkeypress="SectionExpandCollapse_CheckKey('ID2RB', event)" tabindex="0"><img id="ID2RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Program: Setup values</span></div><div id="ID2RBSection" class="collapsibleSection"><p>These are the intitial values put used to start the game as well as the visual rendering and music.
+      	The two "Gliders" are put into a grid, and this grid is then used to start a new Game of life.
+      	After the game is started, the drawing is turned on, and the MusicSetupMethod is called to enable music playing.
+      	</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAABCAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAABCAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAABCAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAABCAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-keyword">using</span> System;
+
+<span class="highlight-keyword">namespace</span> ConwaysGameOfLife
+{
+    <span class="highlight-keyword">internal</span> <span class="highlight-keyword">class</span> Program
+    {
+        <span class="highlight-comment">/*
+            This example will use the concept of Conway's Game of Life to create sound.
+            The sound will be made using MIDI Gremlin.
+        */</span>
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">static</span> <span class="highlight-keyword">void</span> Main(<span class="highlight-keyword">string</span>[] args)
+        {
+            <span class="highlight-keyword">bool</span>[,] grid = <span class="highlight-keyword">new</span> <span class="highlight-keyword">bool</span>[<span class="highlight-number">40</span>,<span class="highlight-number">40</span>];
+            <span class="highlight-comment">// Setup some start values</span>
+
+            <span class="highlight-comment">// Glider 1 : depicted as followed</span>
+            <span class="highlight-comment">// 0 1 0</span>
+            <span class="highlight-comment">// 0 0 1</span>
+            <span class="highlight-comment">// 1 1 1</span>
+            grid[<span class="highlight-number">2</span>, <span class="highlight-number">1</span>] = <span class="highlight-keyword">true</span>;  
+            grid[<span class="highlight-number">3</span>, <span class="highlight-number">2</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">3</span>, <span class="highlight-number">3</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">2</span>, <span class="highlight-number">3</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">1</span>, <span class="highlight-number">3</span>] = <span class="highlight-keyword">true</span>;
+
+            <span class="highlight-comment">// Glider 2</span>
+            <span class="highlight-comment">// 1 1 1</span>
+            <span class="highlight-comment">// 0 0 1</span>
+            <span class="highlight-comment">// 0 1 0</span>
+            grid[<span class="highlight-number">12</span>, <span class="highlight-number">13</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">11</span>, <span class="highlight-number">11</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">12</span>, <span class="highlight-number">11</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">13</span>, <span class="highlight-number">11</span>] = <span class="highlight-keyword">true</span>;
+            grid[<span class="highlight-number">13</span>, <span class="highlight-number">12</span>] = <span class="highlight-keyword">true</span>;
+
+
+            <span class="highlight-comment">// Start The Game of Life</span>
+            GameOfLife gol = <span class="highlight-keyword">new</span> GameOfLife(grid);
+
+            <span class="highlight-comment">// Start Drawing</span>
+            gol.IsDrawing = <span class="highlight-keyword">true</span>;
+
+            <span class="highlight-comment">// Play sounds using the Game of Life</span>
+            gol.MusicSetup();
+
+            Console.ReadKey();
+        }
+    }
+
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAABCAAA");</script></div><div class="collapsibleAreaRegion" id="Section3"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('ID3RB')" onkeypress="SectionExpandCollapse_CheckKey('ID3RB', event)" tabindex="0"><img id="ID3RBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Game of Life class code.</span></div><div id="ID3RBSection" class="collapsibleSection"><p>This is the entire code from the GameOfLife class.</p><div class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="ID0EAAABAAA_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="ID0EAAABAAA_copyCode" href="#" onclick="javascript:CopyToClipboard('ID0EAAABAAA');return false;" title="Copy">Copy</a></div></div><div id="ID0EAAABAAA_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-keyword">using</span> System;
+<span class="highlight-keyword">using</span> System.Collections.Generic;
+<span class="highlight-keyword">using</span> System.Linq;
+<span class="highlight-keyword">using</span> System.Text;
+<span class="highlight-keyword">using</span> System.Threading;
+<span class="highlight-keyword">using</span> System.Threading.Tasks;
+<span class="highlight-keyword">using</span> MidiGremlin;
+
+<span class="highlight-keyword">namespace</span> ConwaysGameOfLife
+{
+
+    <span class="highlight-keyword">internal</span> <span class="highlight-keyword">class</span> GameOfLife
+    {
+        <span class="highlight-comment">//MIDI Gremlin Variables</span>
+        <span class="highlight-keyword">private</span> Orchestra _o;
+        <span class="highlight-keyword">private</span> Instrument _instrument;
+        <span class="highlight-comment">// A scale representing tones that harmonize well with eachother</span>
+        <span class="highlight-keyword">private</span> Scale _quintScale = <span class="highlight-keyword">new</span> Scale(Tone.C, Tone.G, Tone.D, Tone.A, Tone.E, Tone.B, Tone.FSharp);
+
+        <span class="highlight-comment">// Class-specific valuables</span>
+        <span class="highlight-keyword">public</span> <span class="highlight-keyword">bool</span>[,] Cells { <span class="highlight-keyword">get</span>; <span class="highlight-keyword">private</span> <span class="highlight-keyword">set</span>; }
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">bool</span>[,] _cellsTemporaryState;
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">readonly</span> <span class="highlight-keyword">int</span> _xValue;
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">readonly</span> <span class="highlight-keyword">int</span> _yValue;
+        <span class="highlight-keyword">private</span> Timer _timer;
+        <span class="highlight-keyword">internal</span> <span class="highlight-keyword">bool</span> IsDrawing;
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">bool</span> _isPlaying;
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">int</span> _musicCounter = <span class="highlight-number">0</span>;
+
+
+        <span class="highlight-preprocessor">#region</span> Constructor
+        <span class="highlight-keyword">internal</span> GameOfLife(<span class="highlight-keyword">bool</span>[,] gameGrid)
+        {
+            <span class="highlight-comment">// This represents each generation of the cells.</span>
+            Cells = gameGrid;
+            <span class="highlight-comment">// This represents the stage in between each generation.</span>
+            _cellsTemporaryState = <span class="highlight-keyword">new</span> <span class="highlight-keyword">bool</span>[gameGrid.GetLength(<span class="highlight-number">0</span>), gameGrid.GetLength(<span class="highlight-number">1</span>)];
+
+            <span class="highlight-comment">// These represent the max values of the x an y values in the grid.</span>
+            _xValue = gameGrid.GetLength(<span class="highlight-number">0</span>);
+            _yValue = gameGrid.GetLength(<span class="highlight-number">1</span>);
+
+            <span class="highlight-comment">// This timer represents how often the update method is called.</span>
+            _timer = <span class="highlight-keyword">new</span> Timer(UpdateMethod, <span class="highlight-keyword">null</span>, TimeSpan.Zero, TimeSpan.FromSeconds(<span class="highlight-number">0.75</span>));
+        }
+        <span class="highlight-preprocessor">#endregion</span>
+
+        <span class="highlight-preprocessor">#region</span> MusicSetup
+        <span class="highlight-comment">// This method initiates the music components.</span>
+        <span class="highlight-keyword">internal</span> <span class="highlight-keyword">void</span> MusicSetup()
+        {
+            <span class="highlight-comment">// bpm is a constant deciding the tempo of the music.</span>
+            <span class="highlight-comment">// when bpm is set to 60, one beat will last 1 second. 120 for half a second and so forth.</span>
+            <span class="highlight-keyword">const</span> <span class="highlight-keyword">int</span> bpm = <span class="highlight-number">60</span>;
+            <span class="highlight-comment">// Here we create a new orchestra using the output type WinmmOut which plays to the MIDI player in windows.</span>
+            _o = <span class="highlight-keyword">new</span> Orchestra(<span class="highlight-keyword">new</span> WinmmOut(<span class="highlight-number">0</span>, bpm));
+            <span class="highlight-comment">// Here we use the orchestra to create a new Instrument, in this case a choir.</span>
+            <span class="highlight-comment">// We chose to use the chromatic scale from the Scale class, it is however unneccesary since it uses this scale by default.</span>
+            _instrument = _o.AddInstrument(InstrumentType.ChoirAahs, Scale.ChromaticScale, <span class="highlight-number">0</span>);
+            _isPlaying = <span class="highlight-keyword">true</span>;
+        }
+        <span class="highlight-preprocessor">#endregion</span>
+
+        <span class="highlight-preprocessor">#region</span> UpdateMethod
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> UpdateMethod(<span class="highlight-keyword">object</span> state)
+        {
+            <span class="highlight-comment">// When IsDrawing is true, the Game will be drawn.</span>
+            <span class="highlight-keyword">if</span> (IsDrawing)
+                Draw();
+
+            <span class="highlight-comment">// When the player has asked for the game to play music this will call the PlayMidiMusic method.</span>
+            <span class="highlight-comment">// We set this method to be called every fifth iteration to prevent too much overlap in the music.</span>
+            _musicCounter++;
+            <span class="highlight-keyword">if</span> (_isPlaying &amp;&amp; _musicCounter == <span class="highlight-number">5</span>)
+            {
+                PlayMidiMusic();
+                _musicCounter = <span class="highlight-number">0</span>;
+            }
+
+            <span class="highlight-comment">// This part updates the values of each cell.</span>
+            <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> y = <span class="highlight-number">0</span>; y &lt; _yValue; y++)
+            {
+                <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> x = <span class="highlight-number">0</span>; x &lt; _xValue; x++)
+                {
+                    _cellsTemporaryState[x, y] = IsAlive(x, y);
+                }
+            }
+            <span class="highlight-comment">// This method simply copies all values from one multidimensional array to another.</span>
+            CopyCells();
+        }
+        <span class="highlight-preprocessor">#endregion</span>
+
+        <span class="highlight-preprocessor">#region</span> PlayMidiMusic
+        <span class="highlight-comment">// This method plays different sounds at different times based on the coordinates of all living cells in the game.</span>
+        <span class="highlight-comment">// The x coordinates decides which tones are used.</span>
+        <span class="highlight-comment">// The y-coordinates decides when sounds are played.</span>
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> PlayMidiMusic()
+        {
+            SequentialMusicList sMusic = <span class="highlight-keyword">new</span> SequentialMusicList();
+            <span class="highlight-keyword">int</span> localInt;
+
+            <span class="highlight-comment">// This nested for-loop iterates over all cells in the game.</span>
+            <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> y = <span class="highlight-number">0</span>; y &lt; _yValue; y++)
+            {
+                <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> x = <span class="highlight-number">0</span>; x &lt; _xValue; x++)
+                {
+                    <span class="highlight-comment">// This if statement checks whether a cell is still alive</span>
+                    <span class="highlight-keyword">if</span> (Cells[x, y])
+                    {
+                        localInt = x &lt; _xValue/<span class="highlight-number">2</span> ? x : _xValue - x;
+                        <span class="highlight-comment">// This creates a new keystroke with an offset based on where in the grid the cell is, and adds it to the SequentailMusicList.</span>
+                        sMusic.Add(<span class="highlight-keyword">new</span> Keystroke(Tone.C, <span class="highlight-number">1</span>).OffsetBy(_quintScale, localInt));
+                    }
+                }
+                <span class="highlight-comment">// We add a pause here to play sounds later if they have a greater y-coordinate.</span>
+                sMusic.Add(<span class="highlight-keyword">new</span> Pause(<span class="highlight-number">1</span>));
+            }
+            <span class="highlight-comment">// This plays all the sounds in the list, as longs it contains any ,and as long as the instrument isn't null.</span>
+            <span class="highlight-keyword">if</span>(sMusic.Count != <span class="highlight-number">0</span>)
+                _instrument?.Play(sMusic);
+        }
+        <span class="highlight-preprocessor">#endregion</span>
+
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> CopyCells()
+        {
+            <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> y = <span class="highlight-number">0</span>; y &lt; _cellsTemporaryState.GetLength(<span class="highlight-number">1</span>); y++)
+            {
+                <span class="highlight-keyword">for</span> (<span class="highlight-keyword">int</span> x = <span class="highlight-number">0</span>; x &lt; _cellsTemporaryState.GetLength(<span class="highlight-number">0</span>); x++)
+                {
+                    Cells[x, y] = _cellsTemporaryState[x, y];
+                }
+            }
+        }
+
+        <span class="highlight-keyword">private</span> <span class="highlight-keyword">void</span> Draw()
+        {
+            DirectRender render = <span class="highlight-keyword">new</span> DirectRender(_xValue, _yValue);
+            render.Update(Cells);
+        }
+
+        <span class="highlight-keyword">internal</span> <span class="highlight-keyword">bool</span> IsAlive(<span class="highlight-keyword">int</span> xValue, <span class="highlight-keyword">int</span> yValue)
+        {
+            <span class="highlight-comment">// This value depicts the x-value 1 lower than that of the cell being operated on. </span>
+            <span class="highlight-comment">// If the cell being operated has an x-value of 0, this will instead become the highest possible x-value.</span>
+            <span class="highlight-keyword">int</span> xValueIfLow = xValue == <span class="highlight-number">0</span> ? _xValue - <span class="highlight-number">1</span> : xValue - <span class="highlight-number">1</span>;
+
+            <span class="highlight-comment">// This value depicts the x-value 1 higher than that of the cell being operated on. </span>
+            <span class="highlight-comment">//If the cell being operated has the highest possible x-value , this will instead become 0.</span>
+            <span class="highlight-keyword">int</span> xValueIfHigh = xValue == _xValue - <span class="highlight-number">1</span> ? <span class="highlight-number">0</span> : xValue + <span class="highlight-number">1</span>;
+
+            <span class="highlight-comment">// This value depicts the y-value 1 lower than that of the cell being operated on. </span>
+            <span class="highlight-comment">//If the cell being operated has an y-value of 0, this will instead become the highest possible y-value.</span>
+            <span class="highlight-keyword">int</span> yValueIfLow = yValue == <span class="highlight-number">0</span> ? _yValue - <span class="highlight-number">1</span> : yValue - <span class="highlight-number">1</span>;
+
+            <span class="highlight-comment">// This value depicts the y-value 1 higher than that of the cell being operated on. </span>
+            <span class="highlight-comment">//If the cell being operated has the highest possible y-value , this will instead become 0.</span>
+            <span class="highlight-keyword">int</span> yValueIfHigh = yValue == _yValue - <span class="highlight-number">1</span> ? <span class="highlight-number">0</span> : yValue + <span class="highlight-number">1</span>;
+
+            <span class="highlight-comment">/*
+                The code is depicted excectly like this
+                x  x  x
+                x  o  x
+                x  x  x
+                where o is the point we are working on, and x is the points surrounding it.
+            */</span>
+            <span class="highlight-keyword">bool</span>[] neighBours =
+            {
+                Cells[ xValueIfLow, yValueIfLow],  Cells[xValue, yValueIfLow],  Cells[xValueIfHigh, yValueIfLow],
+                Cells[ xValueIfLow, yValue],                                    Cells[xValueIfHigh, yValue],
+                Cells[ xValueIfLow, yValueIfHigh], Cells[xValue, yValueIfHigh], Cells[xValueIfHigh, yValueIfHigh]
+            };
+
+            <span class="highlight-keyword">int</span> liveNeighBours = neighBours.Count(b =&gt; b);
+
+            <span class="highlight-keyword">bool</span> isAlive = Cells[xValue, yValue];
+            <span class="highlight-keyword">if</span> (liveNeighBours &lt; <span class="highlight-number">2</span> &amp;&amp; isAlive) <span class="highlight-comment">// Any live cell with fewer than two live neighbours dies, as if caused by under-population.</span>
+            {
+                isAlive = <span class="highlight-keyword">false</span>;
+            }
+            <span class="highlight-keyword">else</span> <span class="highlight-keyword">if</span> ((liveNeighBours == <span class="highlight-number">2</span> || liveNeighBours == <span class="highlight-number">3</span>) &amp;&amp; isAlive) <span class="highlight-comment">// Any live cell with two or three live neighbours lives on to the next generation.</span>
+            { }
+            <span class="highlight-keyword">else</span> <span class="highlight-keyword">if</span> (liveNeighBours &gt; <span class="highlight-number">3</span> &amp;&amp; isAlive) <span class="highlight-comment">// Any live cell with more than three live neighbours dies, as if by over-population.</span>
+            {
+                isAlive = <span class="highlight-keyword">false</span>;
+            }
+            <span class="highlight-keyword">else</span> <span class="highlight-keyword">if</span> (liveNeighBours == <span class="highlight-number">3</span> &amp;&amp; !isAlive) <span class="highlight-comment">// Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</span>
+            {
+                isAlive = <span class="highlight-keyword">true</span>;
+            }
+            <span class="highlight-keyword">return</span> isAlive;
+        }
+    }
+}</pre></div></div></div><script type="text/javascript">AddLanguageTabSet("ID0EAAABAAA");</script></div></div></div><div id="pageFooter" class="pageFooter"><p><a href="https://github.com/joha4270/MidiGremlin" target="_blank">[v1.0.0.0] Copyright © 2006-2016, Johannes Elgaard, Asger Horn Brorholt, Christian Gundersen Holmgaard, Emil Jensen, Ibrahim Kohistani, Kennet Nørgaard Larsen, Nicklas Højgaard Sneftrup, All rights reserved</a></p></div></body></html>

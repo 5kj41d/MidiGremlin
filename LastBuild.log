@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2016.4.9.0" projectFile="D:\Data\Documents\AAU\MidiGremlin\doc\MIDI Gremlin.shfbproj" started="10/05/2016 14:40:53">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2016.4.9.0" projectFile="D:\Data\Documents\AAU\MidiGremlin\doc\MIDI Gremlin.shfbproj" started="23/05/2016 14:55:29">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -33,16 +33,16 @@ Copying XML comments files
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0050
+</plugIn>    Last step completed in 00:00:00.0336
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0090
+    Last step completed in 00:00:00.0160
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - GenerateRefInfo.proj]
-Build started 10/05/2016 14:40:54.
+Build started 23/05/2016 14:55:31.
 The target &quot;_ConvertPdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,37)&quot; does not exist in the project, and will be ignored.
 The target &quot;_CollectPdbFiles&quot; listed in an AfterTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (34,70)&quot; does not exist in the project, and will be ignored.
 The target &quot;_CollectMdbFiles&quot; listed in a BeforeTargets attribute at &quot;C:\Program Files (x86)\MSBuild\4.0\Microsoft.Common.targets\ImportAfter\Xamarin.Common.targets (40,38)&quot; does not exist in the project, and will be ignored.
@@ -52,51 +52,51 @@ PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
   MRefBuilder (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Loaded 1 assemblies for reflection and 2 dependency assemblies.
-  Wrote information on 2 namespaces, 21 types, and 315 members
+  Wrote information on 2 namespaces, 21 types, and 317 members
   Copying file from &quot;reflection.org&quot; to &quot;reflection.all&quot;.
   XslTransform (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
 Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\GenerateRefInfo.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.72
-    Last step completed in 00:00:01.8968
+Time Elapsed 00:00:01.99
+    Last step completed in 00:00:02.4576
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - TransformManifest.proj]
-Build started 10/05/2016 14:40:55.
+Build started 23/05/2016 14:55:34.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
   XslTransform (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\ApplyVSDocModel.xsl&#39;.
   Copying file from &quot;reflection.xml&quot; to &quot;reflection.nofilenames&quot;.
   XslTransform (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\AddFilenames.xsl&#39;.
   XslTransform (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
 Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\TransformManifest.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.58
-    Last step completed in 00:00:00.7275
+Time Elapsed 00:00:01.18
+    Last step completed in 00:00:01.5864
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0125
+    Last step completed in 00:00:00.0317
 </buildStep>
 <buildStep step="CopyConceptualContent">
 Copying conceptual content...
@@ -108,46 +108,48 @@ Copying images and creating the media map file...
 Generating conceptual topic files
     Parsing topic file &#39;D:\Data\Documents\AAU\MidiGremlin\doc\Guides\getting_started.aml&#39;
     D:\Data\Documents\AAU\MidiGremlin\doc\Guides\getting_started.aml -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\ddueXml\1fa61ad2-5eb3-43b3-b032-c2a26aa46d34.xml
-    Last step completed in 00:00:00.0240
+    Parsing topic file &#39;D:\Data\Documents\AAU\MidiGremlin\doc\Guides\conways_game_of_life.aml&#39;
+    D:\Data\Documents\AAU\MidiGremlin\doc\Guides\conways_game_of_life.aml -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\ddueXml\fda06c87-3c98-4ebd-81ba-ca03ff28d18c.xml
+    Last step completed in 00:00:00.0650
 </buildStep>
 <buildStep step="CreateConceptualTopicConfigs">
 Creating conceptual topic configuration files...
     Companion files
     _ContentMetadata_.xml
     Merging topic IDs into manifest.xml
-    Last step completed in 00:00:00.0155
+    Last step completed in 00:00:00.0475
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 D:\Data\Documents\AAU\MidiGremlin\doc\icons\Gremlin.png -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\icons\Gremlin.png
-    Last step completed in 00:00:00.0030
+    Last step completed in 00:00:00.0090
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
-    Last step completed in 00:00:00.0035
+    Last step completed in 00:00:00.0060
 </buildStep>
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 10/05/2016 14:40:56.
+Build started 23/05/2016 14:55:35.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
   XslTransform (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Applying XSL transformation &#39;D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
 Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\GenerateIntermediateTOC.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.01
+Time Elapsed 00:00:00.75
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:01.2713
+    Last step completed in 00:00:01.1997
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.2562
+    Last step completed in 00:00:00.3413
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -155,54 +157,56 @@ D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\sandcastle.config
   Updating reference topic configurations.
   Updating conceptual topic configurations.
     Removing unused ExampleComponent.
-    Last step completed in 00:00:00.0100
+    Last step completed in 00:00:00.0350
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - BuildTopics.proj]
-Build started 10/05/2016 14:40:58.
+Build started 23/05/2016 14:55:37.
 Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj&quot; on node 1 (default targets).
 BuildTopics:
   BuildAssembler (v2016.4.9.0)
-  Copyright &#184; 2006-2016, Microsoft Corporation, All Rights Reserved.
-  Portions Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved.
+  Copyright &#169; 2006-2016, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved.
   Loading configuration...
   Processing topics...
+BuildAssembler : warning : ResolveConceptualLinksComponent: [1fa61ad2-5eb3-43b3-b032-c2a26aa46d34] Unknown conceptual link target &#39;8c0c97d0-c968-4c15-9fe9-e8f3a443c50a&#39;. [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [1fa61ad2-5eb3-43b3-b032-c2a26aa46d34] Unknown reference link target &#39;M:MidiGremlin.MusicObject.Select``1(System.Func{``0,``0})&#39;. [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:MidiGremlin.InstrumentTypeExtensions.IsDrum(MidiGremlin.InstrumentType)] Missing &lt;param name=&quot;instrumentType&quot;/&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [N:MidiGremlin.Internal] Missing &lt;summary&gt; documentation [D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj]
-  Processed 205 topic(s)
-  2 warning(s)
+  Processed 209 topic(s)
+  4 warning(s)
   CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
   ResolveArtLinksComponent: Copying media files...
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 5 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 2 of 30.
-  SaveComponent: Waiting for the document writer task to finish (87 Website API file(s) remaining)...
+  SaveComponent: Waiting for the document writer task to finish (100 Website API file(s) remaining)...
 Done Building Project &quot;D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\BuildTopics.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:12.45
-    Last step completed in 00:00:12.6441
+Time Elapsed 00:00:15.75
+    Last step completed in 00:00:16.1868
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0140
+    Last step completed in 00:00:00.0090
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
 [C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe - ExtractHtmlInfo.proj]
 Sandcastle Help File Builder and Tools, version 2016.4.9.0
-Copyright &#184; 2006-2016, Eric Woodruff, All Rights Reserved
+Copyright &#169; 2006-2016, Eric Woodruff, All Rights Reserved
 E-Mail: Eric@EWoodruff.us
 
 Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
 
 Processing website files in D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website
-Processed 205 HTML files
+Processed 209 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\WebKI.xml
 Saving website table of contents to D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\WebTOC.xml
-    Last step completed in 00:00:01.1012
+    Last step completed in 00:00:02.3188
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -281,32 +285,32 @@ D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\icons\TocOpen.gif -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\icons\TocOpen.gif
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\scripts\branding-Website.js
 D:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-1.11.0.min.js -&gt; D:\Data\Documents\AAU\MidiGremlin\Documentation\Working\Output\Website\scripts\jquery-1.11.0.min.js
-    Last step completed in 00:00:00.3170
+    Last step completed in 00:00:00.5585
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
-    Last step completed in 00:00:00.0005
+    Last step completed in 00:00:00.0010
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:01.7572
+</plugIn>    Last step completed in 00:00:01.8207
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
-Copied 382 files for the website content
-    Last step completed in 00:00:00.6411
+Copied 389 files for the website content
+    Last step completed in 00:00:00.6850
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1548
+    Last step completed in 00:00:00.1795
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 10/05/2016 14:41:14.  Total time: 00:00:21.5841
+Build completed successfully at 23/05/2016 14:55:58.  Total time: 00:00:29.0532
 
 </buildStep>
 </shfbBuild>
